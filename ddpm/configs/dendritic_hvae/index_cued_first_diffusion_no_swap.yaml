@@ -1,0 +1,62 @@
+# 2025.29.04
+
+# Model
+model_name: hvae_delayed_index_cue_dendritic
+model_config:
+  sample_ambient_dim: 16
+  time_embedding_size: 8
+  branching_factors: [10, 10]
+  indexing_embeddings_same_slots: false
+  num_items: 2
+  residual_model_kwargs: {}
+  ddpm_model_kwargs:
+    train_as_rnn: false
+    noise_scaler: 'nat'
+    seperate_output_neurons: false
+
+
+
+regularise_prep_state: true
+regularise_prep_state_weight: 0.001
+
+
+# New!
+regularise_prep_activity_indices: [0, 1, 2, 3]
+regularise_prep_activity_weight: 0.00001 
+regularise_diffusion_nullspace: true
+
+
+# Diffusion
+ultimate_sigma2: 0.30
+starting_sigma2: 0.01
+num_timesteps: 40
+
+
+
+
+# Training/logging
+logging_freq: 250
+batch_size: 32
+num_samples: 512
+num_trials: 10_000_000
+lr: 0.001
+save_base: "results_link_sampler/shaiq_test_20251023/index_cued_first_diffusion_no_swap"
+
+resume_path: "results_link_sampler/shaiq_test_20251023/index_cued_first_rnn_no_swap_0/state.mdl"
+
+
+
+# Task
+task_name: indexing_cue_first_fixed_probability_vectoral
+task_config:
+
+  sample_size: 2
+  num_items: 2
+  correct_probability: 1.0
+  residual_in_behaviour_plane_only: false
+  sample_radius: 2.5
+
+  stimulus_exposure_duration: 5
+  pre_index_delay_duration: [15, 15]
+  index_duration: 5
+  post_index_delay_duration: 1

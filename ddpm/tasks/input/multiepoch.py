@@ -74,6 +74,37 @@ class DelayedIndexCuingSensoryGeneratorWithMemory(MultiEpochSensoryGenerator):
 
 
 
+class IndexFirstCuingSensoryGeneratorWithMemory(DelayedIndexCuingSensoryGeneratorWithMemory):
+    """
+    Cue‑first variant:
+    Prep epoch 1: provide just the index (shape [1])
+    Prep epoch 2: empty (zeros matching report coords)
+    Prep epoch 3: provide report_features_cart flattened ([num_items * 2])
+    Prep epoch 4: empty (zeros)
+    Diffusion epoch 1: zeros of same shape as the underlying sensory shape (report coords)
+    """
+    def __init__(self, num_items: int) -> None:
+        self.required_task_variable_keys = {"report_features_cart", "cued_item_idx"}
+        self.num_items = num_items
+        # underlying sensory shape corresponds to the report coords vector
+        self.underlying_sensory_shape = [num_items * 2]
+        # prep epochs shapes: [index], [empty(report-sized)], [report coords], [empty(report-sized)]
+        self.prep_sensory_shape = [[1], [num_items * 2], [num_items * 2], [num_items * 2]]
+        self.diffusion_sensory_shapes = [[num_items * 2]]
+
+    def generate_prep_sensory_inputs(self, variable_dict: Dict[str, _T]) -> List[_T]:
+        batch_size = variable_dict["report_features_cart"].shape[0]
+        assert tuple(variable_dict["report_features_cart"].shape) == (
+            batch_size,
+            self.num_items,
+            2,
+        )
+        flattened_coords = variable_dict["report_features_cart"].reshape(batch_size, -1).to(default_dtype)
+        index = variable_dict["cued_item_idx"].unsqueeze(-1).to(default_dtype)  # [B, 1]
+        empty = torch.zeros(batch_size, self.num_items * 2, dtype=default_dtype)
+        # cue first: index, empty, report coords, empty
+        return [index, empty, flattened_coords, empty]
+
 
 class DelayedProbeCuingSensoryGeneratorWithMemory(MultiEpochSensoryGenerator):
     """

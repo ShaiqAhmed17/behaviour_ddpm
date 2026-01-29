@@ -203,7 +203,6 @@ def hvae_delayed_index_cue_axonal(
 
 
 
-
 def hvae_delayed_index_cue_dendritic(
     prep_sensory_shape,
     underlying_sensory_shape,

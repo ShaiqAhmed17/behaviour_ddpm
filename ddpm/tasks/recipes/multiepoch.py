@@ -5,6 +5,37 @@ from ddpm.tasks.input.multiepoch import *
 
 
 
+def indexing_cue_first_fixed_probability_vectoral(
+    sample_size,
+    num_items,
+    correct_probability,
+    stimulus_exposure_duration,
+    pre_index_delay_duration,
+    index_duration,
+    post_index_delay_duration,
+    **sample_kwargs
+):
+    """
+    Cue-first variant: present the index/cue before the stimulus epochs,
+    keeping the same SpikeAndSlab task-variable generator and vectoral samples.
+    """
+    task_variable_gen = SpikeAndSlabSwapProbabilityTaskVariableGenerator(
+        num_items, correct_probability, stimulus_exposure_duration,
+        pre_index_delay_duration, index_duration, post_index_delay_duration
+    )
+
+    # Use the cue-first sensory generator from the multiepoch input module.
+    # If the exact class name differs in your codebase, replace below with the correct class.
+    sensory_gen = IndexFirstCuingSensoryGeneratorWithMemory(num_items=num_items)
+
+    sample_gen = VectoralEmbeddedExampleSampleGenerator(
+        sample_size=sample_size, **sample_kwargs
+    )
+    return MultiEpochDiffusionTask(
+        task_variable_gen=task_variable_gen,
+        sensory_gen=sensory_gen,
+        sample_gen=sample_gen,
+    )
 
 
 def delayed_indexing_cue_fixed_probability_vectoral(
