@@ -40,9 +40,9 @@ batch_size: 32
 num_samples: 512
 num_trials: 10_000_000
 lr: 0.001
-save_base: "results_link_sampler/shaiq_test_20251023/index_cued_first_diffusion_no_swap"
+save_base: "results_link_sampler/index_cued_first_diffusion_no_swap"
 
-resume_path: "results_link_sampler/shaiq_test_20251023/index_cued_first_rnn_no_swap_0/state.mdl"
+resume_path: "results_link_sampler/index_cued_first_rnn_no_swap_0/state.mdl"
 
 
 

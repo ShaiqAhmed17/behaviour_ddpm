@@ -115,7 +115,8 @@ class MultiPreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
         noise_scaler: float = 1.0,
         kwargs_for_residual_model={},
         end_t_idx=None,
-        override_initial_state: Optional[_T] = None
+        override_initial_state: Optional[_T] = None,
+        ablation_vector: Optional[_T] = None,
     ) -> Tuple[List[Dict[str, _T]], Dict[str, _T]]:
         assert len(prep_network_inputs) == len(prep_epoch_durations)
         all_prep_dicts = [
@@ -150,6 +151,7 @@ class MultiPreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
                 kwargs_for_residual_model=kwargs_for_residual_model,
                 start_t_idx=1,
                 end_t_idx=end_t_idx,
+                ablation_vector=ablation_vector,
             )
             return all_prep_dicts, samples_dict
         else:

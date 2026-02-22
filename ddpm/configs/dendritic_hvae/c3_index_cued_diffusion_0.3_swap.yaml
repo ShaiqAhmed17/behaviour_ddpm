@@ -40,11 +40,9 @@ batch_size: 32
 num_samples: 512
 num_trials: 10_000_000
 lr: 0.001
-save_base: "/homes/pr450/repos/research_projects/sampling_ddpm/results_link_sampler/hvae_with_dendritic_20250410/run_c3_index_cued_diffusion_0.05_swap"
+save_base: "results_link_sampler/run_c3_index_cued_diffusion_0.3_swap"
 
-resume_path: "/homes/pr450/repos/research_projects/sampling_ddpm/results_link_sampler/hvae_with_dendritic_20250410/run_c_index_cued_rnn_no_swap_0/state.mdl"
-
-
+resume_path: "results_link_sampler/run_c2_index_cued_diffusion_no_swap_1/state.mdl"
 
 # Task
 task_name: delayed_indexing_cue_fixed_probability_vectoral
@@ -52,7 +50,7 @@ task_config:
 
   sample_size: 2
   num_items: 2
-  correct_probability: 0.95
+  correct_probability: 0.7
   residual_in_behaviour_plane_only: false
   sample_radius: 2.5
 

@@ -1,0 +1,133 @@
+{
+  "neuron_ablated": 3,
+  "num_tasks": 8,
+  "num_samples_per_task": 512,
+  "per_task_stats": [
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 2.748650074005127,
+        "std_change": 1.1978964805603027
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.18375900387763977,
+        "std_change": 0.014818544499576092
+      },
+      "real_vs_ablated": {
+        "mean_shift": 2.7662506103515625,
+        "std_change": 1.1850839853286743
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 2.8889646530151367,
+        "std_change": 2.241985321044922
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.05975263938307762,
+        "std_change": 0.017554715275764465
+      },
+      "real_vs_ablated": {
+        "mean_shift": 2.8802266120910645,
+        "std_change": 2.2379953861236572
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 4.057113170623779,
+        "std_change": 2.1068835258483887
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.12173502892255783,
+        "std_change": 0.04961005598306656
+      },
+      "real_vs_ablated": {
+        "mean_shift": 3.966590404510498,
+        "std_change": 2.1550536155700684
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 3.213721513748169,
+        "std_change": 1.1799144744873047
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.11088810861110687,
+        "std_change": 0.05185376852750778
+      },
+      "real_vs_ablated": {
+        "mean_shift": 3.3112382888793945,
+        "std_change": 1.128495216369629
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 2.123234272003174,
+        "std_change": 0.7910315990447998
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.0044695851393043995,
+        "std_change": 0.01590934582054615
+      },
+      "real_vs_ablated": {
+        "mean_shift": 2.1269261837005615,
+        "std_change": 0.7772516012191772
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 2.7319276332855225,
+        "std_change": 1.8634523153305054
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.09532660990953445,
+        "std_change": 0.036388080567121506
+      },
+      "real_vs_ablated": {
+        "mean_shift": 2.824134588241577,
+        "std_change": 1.8454991579055786
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 1.5328505039215088,
+        "std_change": 1.3273142576217651
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.20017701387405396,
+        "std_change": 0.08455946296453476
+      },
+      "real_vs_ablated": {
+        "mean_shift": 1.6241580247879028,
+        "std_change": 1.402747631072998
+      }
+    },
+    {
+      "intact_vs_ablated": {
+        "mean_shift": 4.347146511077881,
+        "std_change": 1.6620835065841675
+      },
+      "real_vs_intact": {
+        "mean_shift": 0.2874417304992676,
+        "std_change": 0.12090696394443512
+      },
+      "real_vs_ablated": {
+        "mean_shift": 4.572270393371582,
+        "std_change": 1.5511690378189087
+      }
+    }
+  ],
+  "avg_stats": {
+    "intact_vs_ablated": {
+      "mean_shift": 2.9554510414600372,
+      "std_change": 1.5463201850652695
+    },
+    "real_vs_intact": {
+      "mean_shift": 0.1329437150270678,
+      "std_change": 0.048950117197819054
+    },
+    "real_vs_ablated": {
+      "mean_shift": 3.008974388241768,
+      "std_change": 1.5354119539260864
+    }
+  }
+}
