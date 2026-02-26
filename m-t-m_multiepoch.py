@@ -70,18 +70,6 @@ def parse_args():
         default=None,
         help="Noise scaler used when sampling from source model (default: use source model's trained setting)",
     )
-    parser.add_argument(
-        "--early_stopping_patience",
-        type=int,
-        default=5,
-        help="Number of logging intervals without improvement before stopping (default: 5)",
-    )
-    parser.add_argument(
-        "--early_stopping_threshold",
-        type=float,
-        default=0.999,
-        help="Relative improvement threshold for early stopping (default: 0.999 = 0.1%% improvement required)",
-    )
     return parser.parse_args()
 
 
@@ -328,13 +316,6 @@ def main():
 
     plotting_offset = 0
     plotting_start = 0
-    
-    # Early stopping tracking
-    best_test_mse = float('inf')
-    patience_counter = 0
-    early_stopping_patience = cli_args.early_stopping_patience
-    early_stopping_threshold = cli_args.early_stopping_threshold
-    print(f"Early stopping enabled: patience={early_stopping_patience}, threshold={early_stopping_threshold}")
 
     for t in tqdm(range(num_trials)):
 
@@ -509,35 +490,6 @@ def main():
                     diffusion_epoch_durations=test_trial_information.diffusion_epoch_durations,
                     samples_shape=[len(task.task_variable_gen.trial_types), 500],
                 )
-                
-                # Compute test MSE for early stopping
-                test_prep_dicts, test_epsilon_hat_dict = ddpm_model.residual(
-                    x_samples=test_forward_process["x_t"],
-                    prep_network_inputs=test_trial_information.prep_network_inputs,
-                    diffusion_network_inputs=test_trial_information.diffusion_network_inputs,
-                    prep_epoch_durations=test_trial_information.prep_epoch_durations,
-                    diffusion_epoch_durations=test_trial_information.diffusion_epoch_durations,
-                )
-                test_residual_mse = task.sample_gen.mse(
-                    test_epsilon_hat_dict[mse_key_pred], test_forward_process[mse_key_target]
-                )
-                current_test_mse = test_residual_mse.mean().item()
-                
-                # Early stopping logic
-                if current_test_mse < best_test_mse * early_stopping_threshold:
-                    # Improvement detected
-                    improvement = (best_test_mse - current_test_mse) / best_test_mse * 100 if best_test_mse < float('inf') else 0
-                    print(f"\n[t={t}] Test MSE improved: {best_test_mse:.6f} -> {current_test_mse:.6f} ({improvement:.2f}% improvement)")
-                    best_test_mse = current_test_mse
-                    patience_counter = 0
-                    # Save best model
-                    torch.save(ddpm_model.state_dict(), os.path.join(save_base, "best_state.mdl"))
-                    torch.save(optim.state_dict(), os.path.join(save_base, "best_opt_state.mdl"))
-                    print(f"Saved best model at trial {t}")
-                else:
-                    # No improvement
-                    patience_counter += 1
-                    print(f"\n[t={t}] Test MSE: {current_test_mse:.6f} (best: {best_test_mse:.6f}, patience: {patience_counter}/{early_stopping_patience})")
 
             for trial_type_idx, test_trial_type in enumerate(task.task_variable_gen.trial_types):
 
@@ -583,16 +535,6 @@ def main():
 
             torch.save(ddpm_model.state_dict(), os.path.join(save_base, f"state.mdl"))
             torch.save(optim.state_dict(), os.path.join(save_base, f"opt_state.mdl"))
-            
-            # Check early stopping
-            if patience_counter >= early_stopping_patience:
-                print(f"\n{'='*80}")
-                print(f"EARLY STOPPING: No improvement for {early_stopping_patience} logging intervals")
-                print(f"Best test MSE: {best_test_mse:.6f} at trial ~{t - patience_counter * logging_freq}")
-                print(f"Final test MSE: {current_test_mse:.6f}")
-                print(f"Best model saved at: {os.path.join(save_base, 'best_state.mdl')}")
-                print(f"{'='*80}")
-                break
 
 
 if __name__ == "__main__":
