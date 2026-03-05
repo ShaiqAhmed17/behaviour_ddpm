@@ -126,6 +126,7 @@ class MultiPreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
                 prep_epoch_durations[0],
                 noise_scaler=noise_scaler,
                 override_initial_state=override_initial_state,
+                ablation_vector=ablation_vector,
             )
         ]
         for pni, ped in zip(prep_network_inputs[1:], prep_epoch_durations[1:]):
@@ -136,6 +137,7 @@ class MultiPreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
                     ped,
                     noise_scaler=noise_scaler,
                     override_initial_state=all_prep_dicts[-1]["postprep_state"],
+                    ablation_vector=ablation_vector,
                 )
             )
         if len(diffusion_epoch_durations) == 1:

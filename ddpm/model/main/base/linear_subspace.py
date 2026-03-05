@@ -378,6 +378,7 @@ class PreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
         *_,
         noise_scaler: float = 1.0,
         override_initial_state: Optional[_T] = None,
+        ablation_vector: Optional[_T] = None,
     ) -> Dict[str, _T]:
         """
         Generate initial states to feed into residual or generate_samples
@@ -416,6 +417,12 @@ class PreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
             recent_state, _ = self.denoise_one_step(
                 1, recent_state, embedded_predicted_residual, noise_scaler=noise_scaler
             )
+            
+            # Apply ablation to prep state (same direction as diffusion phase)
+            if ablation_vector is not None:
+                component = (recent_state @ ablation_vector.unsqueeze(-1)) * ablation_vector
+                recent_state = recent_state - component
+            
             preparatory_trajectory.append(recent_state)
         
         preparatory_trajectory = torch.concat(preparatory_trajectory, len(batch_shape))  # Reverse time!

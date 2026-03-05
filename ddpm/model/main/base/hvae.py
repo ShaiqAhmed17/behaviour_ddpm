@@ -62,8 +62,7 @@ class LinearSubspaceTeacherForcedHVAEReverseProcess(
 
         using HVAE time convention => x_{t-1} = (1-euler_alpha) x_t + euler_alpha (f(x_t, s_t, t) + v_t \eta)
         
-        If ablation_vector is pro
-        vided (shape [ambient_dim]), projects out this direction from x_t.
+        If ablation_vector is provided (shape [ambient_dim]), projects out this direction from x_t.
         """
         euler_alpha = override_euler_alpha if override_euler_alpha is not None else self.euler_alpha
 
