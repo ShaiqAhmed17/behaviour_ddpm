@@ -1,11 +1,11 @@
 """
-Copy of ddpm/train/multiepoch.py that replaces task targets with samples
-from an ablated source model.
+Copy of ddpm/train/multiepoch.py that replaces task targets with samples from an ablated source model.
 """
 
 import argparse
 import os
 import copy
+import math
 import torch
 import numpy as np
 from tqdm import tqdm
@@ -33,6 +33,7 @@ import matplotlib.colors as colors
 
 from purias_utils.util.logging import configure_logging_paths
 from purias_utils.util.logging import LoopTimer
+from purias_utils.multiitem_working_memory.util.circle_utils import polar2cart
 
 
 def parse_args():
@@ -70,7 +71,73 @@ def parse_args():
         default=None,
         help="Noise scaler used when sampling from source model (default: use source model's trained setting)",
     )
+    parser.add_argument(
+        "--initial_sweep_trials",
+        type=int,
+        default=0,
+        help="Number of initial training iterations to run with deterministic cue/color sweep (default: 0)",
+    )
+    parser.add_argument(
+        "--initial_sweep_angle_step",
+        type=int,
+        default=30,
+        help="Angle step (degrees) used for initial sweep combinations (default: 30)",
+    )
     return parser.parse_args()
+
+
+def generate_sweep_trial_combinations(angle_step=30):
+    if angle_step <= 0 or 360 % angle_step != 0:
+        raise ValueError(f"initial_sweep_angle_step must divide 360 exactly, got {angle_step}")
+
+    angles = list(range(0, 360, angle_step))
+    trials = []
+    for cue in [1, 2]:
+        for color1 in angles:
+            for color2 in angles:
+                trials.append({
+                    "cue": cue,
+                    "color1_angle": float(color1),
+                    "color2_angle": float(color2),
+                })
+    return trials
+
+
+def generate_sweep_trial_information(task, batch_size, num_samples, sweep_trials, trial_step):
+    start_idx = trial_step * batch_size
+    selected = [sweep_trials[(start_idx + i) % len(sweep_trials)] for i in range(batch_size)]
+
+    angle_rows = [[tr["color1_angle"], tr["color2_angle"]] for tr in selected]
+    # Keep override tensors on CPU; task generators often combine with numpy internals.
+    angle_tensor_deg = torch.tensor(angle_rows, dtype=torch.float32)
+    angle_tensor_rad = angle_tensor_deg * (math.pi / 180.0)
+
+    override_stimulus_features = {
+        "probe_features": angle_tensor_rad,
+        "report_features": angle_tensor_rad.clone(),
+    }
+
+    override_stimulus_cart_features = {}
+    for key, value in override_stimulus_features.items():
+        override_stimulus_cart_features[f"{key}_cart"] = torch.stack(polar2cart(1.0, value), -1)
+
+    override_stimulus_features_dict = {
+        **override_stimulus_features,
+        **override_stimulus_cart_features,
+        "cued_item_idx": torch.tensor([int(tr["cue"]) - 1 for tr in selected], dtype=torch.long),
+    }
+
+    task_variable_dict = task.task_variable_gen.generate_variable_dict(
+        batch_size=batch_size,
+        override_stimulus_features_dict=override_stimulus_features_dict,
+    )
+
+    trial_information = task.generate_trial_information(
+        batch_size=batch_size,
+        num_samples=num_samples,
+        override_task_variable_information=task_variable_dict,
+    )
+    return trial_information, selected
 
 
 def load_model_from_run(run_path, device='cuda', checkpoint_name='state.mdl'):
@@ -159,6 +226,9 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     source_device = cli_args.source_device or device
 
+    if cli_args.initial_sweep_trials < 0:
+        raise ValueError("initial_sweep_trials must be >= 0")
+
     # Unpack all args
     ultimate_sigma2 = args.ultimate_sigma2
     starting_sigma2 = args.starting_sigma2
@@ -188,6 +258,8 @@ def main():
     [training_print_path], save_base, _ = configure_logging_paths(
         save_base, log_suffixes=[f"train"], index_new=True
     )
+    ablated_trajectories_dir = os.path.join(save_base, "ablated_teacher_trajectories")
+    os.makedirs(ablated_trajectories_dir, exist_ok=True)
     all_prep_state_losses = np.zeros([num_trials])
     all_delay_activity_losses = np.zeros([num_trials])
     args.write_to_yaml(os.path.join(save_base, "args.yaml"))
@@ -314,6 +386,14 @@ def main():
     # This will get filled in and continuously updated by task.sample_gen.generate_sample_diagnostics
     recent_sample_diagnostics = deque(maxlen=100)
 
+    sweep_trials = None
+    if cli_args.initial_sweep_trials > 0:
+        sweep_trials = generate_sweep_trial_combinations(cli_args.initial_sweep_angle_step)
+        print(
+            f"Initial deterministic sweep enabled for first {cli_args.initial_sweep_trials} steps "
+            f"using {len(sweep_trials)} cue/color combinations (angle step={cli_args.initial_sweep_angle_step} deg)"
+        )
+
     plotting_offset = 0
     plotting_start = 0
 
@@ -323,9 +403,30 @@ def main():
 
         timer.loop_start()
 
-        trial_information = task.generate_trial_information(
-            batch_size=batch_size, num_samples=num_samples
-        )
+        using_initial_sweep = sweep_trials is not None and t < cli_args.initial_sweep_trials
+        if using_initial_sweep:
+            try:
+                trial_information, sweep_batch_trials = generate_sweep_trial_information(
+                    task=task,
+                    batch_size=batch_size,
+                    num_samples=num_samples,
+                    sweep_trials=sweep_trials,
+                    trial_step=t,
+                )
+                if t == 0:
+                    print("Using deterministic sweep trial generation for early geometry snapshots")
+            except Exception as e:
+                print(f"Initial sweep generation failed at step {t}: {e}")
+                print("Falling back to default task.generate_trial_information for this step")
+                trial_information = task.generate_trial_information(
+                    batch_size=batch_size, num_samples=num_samples
+                )
+                sweep_batch_trials = None
+        else:
+            trial_information = task.generate_trial_information(
+                batch_size=batch_size, num_samples=num_samples
+            )
+            sweep_batch_trials = None
 
         with torch.no_grad():
             # Move inputs to source device
@@ -357,6 +458,32 @@ def main():
             
             source_samples_prep_dicts, source_samples_dict = source_model.generate_samples(**source_sample_kwargs)
             ablated_samples = source_samples_dict['samples'].to(device).float()
+            
+            # Extract trajectories from the ablated teacher for later analysis
+            # source_samples_dict keys typically include:
+            #   - 'samples': final sample values [batch, num_samples, sample_dim]
+            #   - 'embedded_sample_trajectory': neural state trajectories through diffusion [batch, num_samples, T, state_dim]
+            #   - 'sample_trajectory': sample-space trajectories [batch, num_samples, T, sample_dim]
+            #   - 'early_x0_preds': early predictions of x0 [batch, num_samples, T, sample_dim]
+            # source_samples_prep_dicts is a list of dicts with keys like:
+            #   - 'postprep_state': state after preparatory epoch
+            #   - 'preparatory_trajectory': trajectory during preparatory epoch
+            ablated_teacher_trajectories = source_samples_dict.get('embedded_sample_trajectory', None)
+            if ablated_teacher_trajectories is not None:
+                ablated_teacher_trajectories = ablated_teacher_trajectories.to(device).float()
+
+        if using_initial_sweep and ablated_teacher_trajectories is not None:
+            # Save non-overwriting early snapshots so geometry can be analyzed while training continues.
+            torch.save({
+                'ablated_teacher_trajectories': ablated_teacher_trajectories.detach().cpu(),
+                'ablated_teacher_prep_dicts': [{
+                    k: v.detach().cpu() if isinstance(v, torch.Tensor) else v
+                    for k, v in d.items()
+                } for d in source_samples_prep_dicts],
+                'trial_info': trial_information,
+                'sweep_batch_trials': sweep_batch_trials,
+                'training_step': t,
+            }, os.path.join(ablated_trajectories_dir, f"ablated_teacher_trajectories_sweep_step_{t:06d}.pt"))
 
         trial_information.sample_information.sample_set = ablated_samples.detach().cpu()
 
@@ -477,6 +604,10 @@ def main():
                 
                 source_test_prep_dicts, source_test_samples_dict = source_model.generate_samples(**source_test_kwargs)
                 ablated_test_samples = source_test_samples_dict['samples'].to(device).float()
+                
+                # Extract trajectories from the ablated teacher for analysis/plotting
+                ablated_test_trajectories = source_test_samples_dict.get('embedded_sample_trajectory', None)
+                
                 test_trial_information.sample_information.sample_set = ablated_test_samples.detach().cpu()
                 
                 test_forward_process = ddpm_model.noise(
@@ -535,6 +666,16 @@ def main():
 
             torch.save(ddpm_model.state_dict(), os.path.join(save_base, f"state.mdl"))
             torch.save(optim.state_dict(), os.path.join(save_base, f"opt_state.mdl"))
+            
+            # Save the ablated teacher trajectories for downstream analysis
+            if ablated_test_trajectories is not None:
+                torch.save({
+                    'ablated_teacher_trajectories': ablated_test_trajectories.detach().cpu(),
+                    'ablated_teacher_prep_dicts': [{k: v.detach().cpu() if isinstance(v, torch.Tensor) else v 
+                                                     for k, v in d.items()} for d in source_test_prep_dicts],
+                    'trial_info': test_trial_information,
+                    'training_step': t,
+                }, os.path.join(ablated_trajectories_dir, "ablated_teacher_trajectories_latest.pt"))
 
 
 if __name__ == "__main__":

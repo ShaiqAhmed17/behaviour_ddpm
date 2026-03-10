@@ -1,0 +1,62 @@
+{
+  "run_name": "index_cued_first_diffusion_0.3_swap_recovery_6",
+  "trajectory_dir": "/scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_6/ablated_teacher_trajectories",
+  "num_sweep_files": 288,
+  "num_trials": 9216,
+  "state_dim": 16,
+  "prep_idx_primary": 2,
+  "cue_separation_primary": 34.767215728759766,
+  "pca_explained_variance_primary": [
+    0.5417630672454834,
+    0.30692058801651,
+    0.07014065235853195
+  ],
+  "target_distractor_plane_angle": 12.006315231323242,
+  "target_distractor_center_separation": 7.119366728147725e-06,
+  "prep_epoch_results": {
+    "0": {
+      "plane_angle": 25.214920043945312,
+      "separation": 10.685541152954102,
+      "cue1_planarity": 0.9005089998245239,
+      "cue2_planarity": 0.851534366607666,
+      "explained_variance": [
+        0.9999976754188538,
+        4.296043414342421e-07,
+        3.7178216416577925e-07
+      ]
+    },
+    "1": {
+      "plane_angle": 48.914817810058594,
+      "separation": 26.385696411132812,
+      "cue1_planarity": 0.8928281664848328,
+      "cue2_planarity": 0.8356198072433472,
+      "explained_variance": [
+        0.9999995231628418,
+        2.726396814978216e-07,
+        1.0627086766135108e-07
+      ]
+    },
+    "2": {
+      "plane_angle": 21.816282272338867,
+      "separation": 34.767215728759766,
+      "cue1_planarity": 0.957923412322998,
+      "cue2_planarity": 0.9569010734558105,
+      "explained_variance": [
+        0.5417630672454834,
+        0.30692058801651,
+        0.07014065235853195
+      ]
+    },
+    "3": {
+      "plane_angle": 23.119619369506836,
+      "separation": 43.536705017089844,
+      "cue1_planarity": 0.9541258811950684,
+      "cue2_planarity": 0.9636635780334473,
+      "explained_variance": [
+        0.5869454145431519,
+        0.2816019654273987,
+        0.06986242532730103
+      ]
+    }
+  }
+}
