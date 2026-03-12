@@ -2,8 +2,6 @@
 
 Master’s project codebase (forked from `puria-radmard/behaviour_ddpm`) exploring diffusion-style models for behaviour/decision-time modelling, with supporting modules for DDM-style baselines, RL components, and a “dynamic observer” set of experiments.
 
-> Status: the repository currently has almost no top-level documentation (the root `README.md` is just a title). This README is a best-effort based on the code/files currently present.
-
 ---
 
 ## What’s in this repo (high level)
