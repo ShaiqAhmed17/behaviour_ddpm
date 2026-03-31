@@ -471,11 +471,15 @@ def main():
             ablated_teacher_trajectories = source_samples_dict.get('embedded_sample_trajectory', None)
             if ablated_teacher_trajectories is not None:
                 ablated_teacher_trajectories = ablated_teacher_trajectories.to(device).float()
+            ablated_teacher_sample_trajectory = source_samples_dict.get('sample_trajectory', None)
+            ablated_teacher_early_x0_preds = source_samples_dict.get('early_x0_preds', None)
 
         if using_initial_sweep and ablated_teacher_trajectories is not None:
             # Save non-overwriting early snapshots so geometry can be analyzed while training continues.
             torch.save({
                 'ablated_teacher_trajectories': ablated_teacher_trajectories.detach().cpu(),
+                'ablated_teacher_sample_trajectory': ablated_teacher_sample_trajectory.detach().cpu() if ablated_teacher_sample_trajectory is not None else None,
+                'ablated_teacher_early_x0_preds': ablated_teacher_early_x0_preds.detach().cpu() if ablated_teacher_early_x0_preds is not None else None,
                 'ablated_teacher_prep_dicts': [{
                     k: v.detach().cpu() if isinstance(v, torch.Tensor) else v
                     for k, v in d.items()
@@ -607,6 +611,8 @@ def main():
                 
                 # Extract trajectories from the ablated teacher for analysis/plotting
                 ablated_test_trajectories = source_test_samples_dict.get('embedded_sample_trajectory', None)
+                ablated_test_sample_trajectory = source_test_samples_dict.get('sample_trajectory', None)
+                ablated_test_early_x0_preds = source_test_samples_dict.get('early_x0_preds', None)
                 
                 test_trial_information.sample_information.sample_set = ablated_test_samples.detach().cpu()
                 
@@ -667,12 +673,21 @@ def main():
             torch.save(ddpm_model.state_dict(), os.path.join(save_base, f"state.mdl"))
             torch.save(optim.state_dict(), os.path.join(save_base, f"opt_state.mdl"))
             
-            # Save the ablated teacher trajectories for downstream analysis
+            # Save the ablated teacher and student trajectories for downstream analysis
             if ablated_test_trajectories is not None:
                 torch.save({
+                    # --- teacher (ablated source model) ---
                     'ablated_teacher_trajectories': ablated_test_trajectories.detach().cpu(),
+                    'ablated_teacher_sample_trajectory': ablated_test_sample_trajectory.detach().cpu() if ablated_test_sample_trajectory is not None else None,
+                    'ablated_teacher_early_x0_preds': ablated_test_early_x0_preds.detach().cpu() if ablated_test_early_x0_preds is not None else None,
                     'ablated_teacher_prep_dicts': [{k: v.detach().cpu() if isinstance(v, torch.Tensor) else v 
                                                      for k, v in d.items()} for d in source_test_prep_dicts],
+                    # --- student (model being trained) ---
+                    'student_samples': novel_samples_dict['samples'].detach().cpu(),
+                    'student_sample_trajectory': novel_samples_dict['sample_trajectory'].detach().cpu() if 'sample_trajectory' in novel_samples_dict and novel_samples_dict['sample_trajectory'] is not None else None,
+                    'student_prep_dicts': [{k: v.detach().cpu() if isinstance(v, torch.Tensor) else v
+                                            for k, v in d.items()} for d in novel_samples_prep_dicts],
+                    # --- shared trial context ---
                     'trial_info': test_trial_information,
                     'training_step': t,
                 }, os.path.join(ablated_trajectories_dir, "ablated_teacher_trajectories_latest.pt"))

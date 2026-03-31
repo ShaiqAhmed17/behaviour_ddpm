@@ -1,336 +1,494 @@
 """
-Analysis script for ablated teacher trajectories.
+Standalone prospective-memory geometry analysis with a single global PCA.
 
-This script demonstrates how to:
-1. Load saved trajectory data (from training or extraction)
-2. Extract neural states at specific timepoints
-3. Perform analyses similar to prospective_memory_analysis.ipynb
+This script separates the shared-coordinate analysis from the notebook and makes
+it reproducible from the command line.
 
-Usage:
-    # From m-t-m training output:
-    python analyze_ablated_teacher_trajectories.py <run_directory>
-    
-    # From extract_ablated_trajectories.py output:
-    python analyze_ablated_teacher_trajectories.py <ablation_trajectories_dir> --extraction
-    
-Examples:
-    python analyze_ablated_teacher_trajectories.py results/m-t-m_run_001/
-    python analyze_ablated_teacher_trajectories.py results/model/ablation_trajectories_neuron_0/ --extraction
+What it does:
+1. Loads a DDPM model checkpoint.
+2. Generates all non-swap trials over cue and color combinations.
+3. Extracts neural states for multiple prep indices.
+4. Bins states by a shared feature (cued-color bin).
+5. Fits one global PCA across all prep indices.
+6. Visualizes each prep index in the same PCA coordinate system.
+
+Example:
+    conda activate ddpm
+    python analyze_ablated_teacher_trajectories.py \
+      --repo-root /scratch3/shaiq_home/repos/behaviour_ddpm \
+      --run-path results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_8
 """
 
 import argparse
-import os
-import torch
-import numpy as np
-import matplotlib.pyplot as plt
+import json
 from pathlib import Path
 
+import colorsys
+import matplotlib.pyplot as plt
+import numpy as np
+import torch
+from matplotlib.lines import Line2D
+from sklearn.decomposition import PCA
 
-def load_trajectory_data(run_dir, from_extraction=False):
-    """
-    Load the saved trajectory data.
-    
-    Args:
-        run_dir: Directory containing trajectory data
-        from_extraction: If True, load from extract_ablated_trajectories.py output
-                        If False, load from m-t-m training output
-    """
-    if from_extraction:
-        traj_path = os.path.join(run_dir, "ablated_trajectories.pt")
-        if not os.path.exists(traj_path):
-            raise FileNotFoundError(
-                f"Trajectory file not found: {traj_path}\n"
-                "Make sure you've run extract_ablated_trajectories.py first."
-            )
-        
-        data = torch.load(traj_path, map_location='cpu', weights_only=False)
-        print(f"Loaded extracted trajectory data")
-        if 'metadata' in data:
-            print(f"  Ablated neuron: {data['metadata']['ablate_neuron']}")
-            print(f"  Number of trials: {data['metadata']['num_trials']}")
-        
-        # Normalize format to match training output structure
-        normalized = {
-            'ablated_teacher_trajectories': data.get('embedded_sample_trajectory'),  # Use full neural state
-            'ablated_teacher_prep_dicts': data.get('prep_dicts', []),
-            'trial_info': None,
-            'metadata': data.get('metadata', {}),
-        }
-        # Also pass through other trajectory types
-        if 'sample_trajectory' in data:
-            normalized['sample_trajectory'] = data['sample_trajectory']
-        if 'early_x0_preds' in data:
-            normalized['early_x0_preds'] = data['early_x0_preds']
-        if 'epsilon_hat' in data:
-            normalized['epsilon_hat'] = data['epsilon_hat']
-        
-        return normalized
-    else:
-        traj_path = os.path.join(run_dir, "ablated_teacher_trajectories_latest.pt")
-        
-        if not os.path.exists(traj_path):
-            raise FileNotFoundError(
-                f"Trajectory file not found: {traj_path}\n"
-                "Make sure the training run has completed at least one logging step."
-            )
-        
-        data = torch.load(traj_path, map_location='cpu', weights_only=False)
-        print(f"Loaded trajectory data from training step {data['training_step']}")
-        
-        return data
+from ddpm.utils.loading import generate_model_and_task_from_args_path_multiepoch
+from purias_utils.multiitem_working_memory.util.circle_utils import polar2cart
 
 
-def extract_neural_states_at_timepoint(trajectories, timepoint_idx):
-    """
-    Extract neural states at a specific timepoint from trajectories.
-    
-    Args:
-        trajectories: Tensor of shape [batch, num_samples, T, state_dim]
-        timepoint_idx: Index of timepoint to extract (0 to T-1)
-        
-    Returns:
-        Neural states of shape [batch, num_samples, state_dim]
-    """
-    if trajectories is None:
-        raise ValueError("Trajectories not available in saved data")
-    
-    return trajectories[:, :, timepoint_idx, :]
-
-
-def plot_trajectory_evolution(trajectories, trial_idx=0, save_path=None):
-    """
-    Plot the evolution of neural trajectories over time.
-    
-    Args:
-        trajectories: Tensor of shape [batch, num_samples, T, state_dim]
-        trial_idx: Which trial to plot (default: 0)
-        save_path: Optional path to save the figure
-    """
-    if trajectories is None:
-        print("No trajectories available to plot")
-        return
-    
-    # Shape: [num_samples, T, state_dim]
-    trial_trajs = trajectories[trial_idx].numpy()
-    num_samples, T, state_dim = trial_trajs.shape
-    
-    # Plot first few dimensions over time
-    dims_to_plot = min(6, state_dim)
-    fig, axes = plt.subplots(dims_to_plot, 1, figsize=(12, 2*dims_to_plot), sharex=True)
-    if dims_to_plot == 1:
-        axes = [axes]
-    
-    for dim_idx in range(dims_to_plot):
-        ax = axes[dim_idx]
-        
-        # Plot trajectories for first 10 samples
-        for sample_idx in range(min(10, num_samples)):
-            ax.plot(trial_trajs[sample_idx, :, dim_idx], alpha=0.5, linewidth=1)
-        
-        ax.set_ylabel(f'Dim {dim_idx}')
-        ax.grid(True, alpha=0.3)
-    
-    axes[-1].set_xlabel('Diffusion Timestep')
-    axes[0].set_title(f'Neural Trajectory Evolution (Trial {trial_idx})')
-    
-    plt.tight_layout()
-    
-    if save_path:
-        plt.savefig(save_path, dpi=150, bbox_inches='tight')
-        print(f"Saved trajectory plot to {save_path}")
-    else:
-        plt.show()
-    
-    return fig
-
-
-def plot_prep_trajectories(prep_dicts, trial_idx=0, save_path=None):
-    """
-    Plot preparatory epoch trajectories.
-    
-    Args:
-        prep_dicts: List of preparatory dictionaries
-        trial_idx: Which trial to plot
-        save_path: Optional path to save the figure
-    """
-    num_epochs = len(prep_dicts)
-    fig, axes = plt.subplots(num_epochs, 1, figsize=(12, 3*num_epochs), sharex=True)
-    if num_epochs == 1:
-        axes = [axes]
-    
-    for epoch_idx, prep_dict in enumerate(prep_dicts):
-        ax = axes[epoch_idx]
-        
-        if 'preparatory_trajectory' in prep_dict:
-            # Shape: [batch, num_samples, num_prep_steps, state_dim]
-            traj = prep_dict['preparatory_trajectory'][trial_idx].numpy()
-            num_samples, num_steps, state_dim = traj.shape
-            
-            # Plot first few dimensions
-            dims_to_plot = min(3, state_dim)
-            for dim_idx in range(dims_to_plot):
-                for sample_idx in range(min(5, num_samples)):
-                    ax.plot(traj[sample_idx, :, dim_idx], 
-                           alpha=0.5, linewidth=1, 
-                           label=f'Dim {dim_idx}' if sample_idx == 0 else '')
-            
-            ax.set_ylabel(f'Prep Epoch {epoch_idx}')
-            ax.grid(True, alpha=0.3)
-            if epoch_idx == 0:
-                ax.legend()
-    
-    axes[-1].set_xlabel('Preparatory Steps')
-    axes[0].set_title(f'Preparatory Trajectories (Trial {trial_idx})')
-    
-    plt.tight_layout()
-    
-    if save_path:
-        plt.savefig(save_path, dpi=150, bbox_inches='tight')
-        print(f"Saved prep trajectory plot to {save_path}")
-    else:
-        plt.show()
-    
-    return fig
-
-
-def analyze_trajectory_statistics(trajectories, name="trajectories"):
-    """
-    Compute basic statistics about the trajectories.
-    
-    Args:
-        trajectories: Tensor of shape [batch, num_samples, T, state_dim]
-        name: Name of the trajectory type for display
-    """
-    if trajectories is None:
-        print(f"\n=== {name.title()} Statistics ===")
-        print("Not available in this data")
-        return
-    
-    print(f"\n=== {name.title()} Statistics ===")
-    print(f"Shape: {trajectories.shape}")
-    print(f"  batch_size: {trajectories.shape[0]}")
-    print(f"  num_samples: {trajectories.shape[1]}")
-    print(f"  num_timesteps: {trajectories.shape[2]}")
-    print(f"  dims: {trajectories.shape[3]}")
-    print(f"\nValue range:")
-    print(f"  min: {trajectories.min().item():.4f}")
-    print(f"  max: {trajectories.max().item():.4f}")
-    print(f"  mean: {trajectories.mean().item():.4f}")
-    print(f"  std: {trajectories.std().item():.4f}")
-    
-    # Compute trajectory norms over time
-    traj_norms = torch.norm(trajectories, dim=-1).mean(dim=(0, 1))  # [T]
-    print(f"\nMean trajectory norm:")
-    print(f"  at t=0: {traj_norms[0].item():.4f}")
-    print(f"  at t=T/2: {traj_norms[len(traj_norms)//2].item():.4f}")
-    print(f"  at t=T: {traj_norms[-1].item():.4f}")
-
-
-def main():
+def parse_args():
     parser = argparse.ArgumentParser(
-        description="Analyze ablated teacher trajectories"
+        description="Consistent PCA across prep states using common cued-color binning."
     )
     parser.add_argument(
-        "run_dir",
-        type=str,
-        help="Directory containing trajectory data"
+        "--repo-root",
+        type=Path,
+        default=Path("/scratch3/shaiq_home/repos/behaviour_ddpm"),
+        help="Path to repository root.",
     )
     parser.add_argument(
-        "--extraction",
-        action="store_true",
-        help="Load from extract_ablated_trajectories.py output (not training output)"
+        "--run-path",
+        type=Path,
+        default=Path("results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_8"),
+        help="Path relative to repo-root for model run directory containing args.yaml and state.mdl.",
     )
     parser.add_argument(
-        "--trial-idx",
+        "--prep-indices",
         type=int,
-        default=0,
-        help="Trial index to visualize (default: 0)"
+        nargs="+",
+        default=[0, 1, 2, 3],
+        help="Prep indices to analyze in a shared PCA basis.",
+    )
+    parser.add_argument(
+        "--angle-step",
+        type=int,
+        default=30,
+        help="Color angle step in degrees.",
+    )
+    parser.add_argument(
+        "--neural-dim",
+        type=int,
+        default=16,
+        help="Number of neural dimensions to extract from postprep_state.",
+    )
+    parser.add_argument(
+        "--n-bins",
+        type=int,
+        default=12,
+        help="Number of cued-color bins.",
     )
     parser.add_argument(
         "--output-dir",
-        type=str,
+        type=Path,
         default=None,
-        help="Directory to save plots (default: run_dir/trajectory_analysis)"
+        help="Output directory. Defaults to ddpm/analysis/new_analysis/results/<run_name>/global_pca.",
     )
-    
-    args = parser.parse_args()
-    
-    # Set up output directory
+    parser.add_argument(
+        "--device",
+        type=str,
+        default="auto",
+        choices=["auto", "cpu", "cuda"],
+        help="Torch device to use.",
+    )
+    return parser.parse_args()
+
+
+def generate_trial_combinations(angle_step):
+    angles = list(range(0, 360, angle_step))
+    trials = []
+    for cue in [1, 2]:
+        for color1 in angles:
+            for color2 in angles:
+                trials.append(
+                    {
+                        "cue": cue,
+                        "color1_angle": color1,
+                        "color2_angle": color2,
+                        "swap": False,
+                    }
+                )
+    return trials
+
+
+def extract_neural_state_from_model(trial, task, model, device, prep_idx, neural_dim):
+    with torch.no_grad():
+        probe_features = torch.tensor([[trial["color1_angle"], trial["color2_angle"]]]) * (
+            np.pi / 180
+        )
+        report_features = torch.tensor([[trial["color1_angle"], trial["color2_angle"]]]) * (
+            np.pi / 180
+        )
+
+        override_stimulus_features = {
+            "probe_features": probe_features,
+            "report_features": report_features,
+        }
+
+        override_stimulus_cart_features = {}
+        for key, value in override_stimulus_features.items():
+            override_stimulus_cart_features[f"{key}_cart"] = torch.stack(
+                polar2cart(1.0, value), -1
+            )
+
+        override_stimulus_features_dict = {}
+        override_stimulus_features_dict.update(override_stimulus_features)
+        override_stimulus_features_dict.update(override_stimulus_cart_features)
+        override_stimulus_features_dict["cued_item_idx"] = torch.tensor([trial["cue"] - 1])
+
+        task_variable_dict = task.task_variable_gen.generate_variable_dict(
+            batch_size=1,
+            override_stimulus_features_dict=override_stimulus_features_dict,
+        )
+
+        trial_info = task.generate_trial_information(
+            batch_size=1,
+            num_samples=1,
+            override_task_variable_information=task_variable_dict,
+        )
+
+        prep_network_inputs_device = []
+        for inp in trial_info.prep_network_inputs:
+            prep_network_inputs_device.append(inp.to(device) if isinstance(inp, torch.Tensor) else inp)
+
+        diffusion_network_inputs_device = []
+        for inp in trial_info.diffusion_network_inputs:
+            diffusion_network_inputs_device.append(inp.to(device) if isinstance(inp, torch.Tensor) else inp)
+
+        prep_dicts, _ = model.generate_samples(
+            prep_network_inputs=prep_network_inputs_device,
+            diffusion_network_inputs=diffusion_network_inputs_device,
+            prep_epoch_durations=trial_info.prep_epoch_durations,
+            diffusion_epoch_durations=trial_info.diffusion_epoch_durations,
+            samples_shape=[1, 1],
+            noise_scaler=1.0,
+        )
+
+        if prep_idx >= len(prep_dicts):
+            raise ValueError(
+                f"prep_idx {prep_idx} exceeds number of prep epochs {len(prep_dicts)}"
+            )
+
+        return prep_dicts[prep_idx]["postprep_state"][0, 0, :neural_dim].cpu().numpy()
+
+
+def bin_angle(angle, bin_size):
+    return int(angle // bin_size) % int(360 // bin_size)
+
+
+def bin_and_average_by_cued_color(states, metadata, n_bins):
+    bin_size = 360.0 / n_bins
+    binned_data = {
+        1: {b: [] for b in range(n_bins)},
+        2: {b: [] for b in range(n_bins)},
+    }
+
+    for i, (cue, c1, c2) in enumerate(metadata):
+        cue = int(cue)
+        cued_angle = c1 if cue == 1 else c2
+        bin_idx = bin_angle(cued_angle, bin_size)
+        binned_data[cue][bin_idx].append(states[i])
+
+    averaged_data = {
+        1: np.full((n_bins, states.shape[1]), np.nan),
+        2: np.full((n_bins, states.shape[1]), np.nan),
+    }
+
+    for cue in [1, 2]:
+        for b in range(n_bins):
+            if binned_data[cue][b]:
+                averaged_data[cue][b] = np.mean(binned_data[cue][b], axis=0)
+
+    return averaged_data, binned_data
+
+
+def angle_to_colour(bin_idx, n_bins):
+    hue = bin_idx / n_bins
+    return colorsys.hsv_to_rgb(hue, 0.9, 0.9)
+
+
+def get_states_for_prep(trials, prep_idx, task, model, device, neural_dim):
+    states = []
+    metadata = []
+
+    print(f"Extracting states for prep_idx={prep_idx}...")
+    for i, trial in enumerate(trials):
+        if i % 200 == 0 and i > 0:
+            print(f"  progress: {i}/{len(trials)}")
+        state = extract_neural_state_from_model(
+            trial=trial,
+            task=task,
+            model=model,
+            device=device,
+            prep_idx=prep_idx,
+            neural_dim=neural_dim,
+        )
+        states.append(state)
+        metadata.append([trial["cue"], trial["color1_angle"], trial["color2_angle"]])
+
+    return np.array(states), np.array(metadata)
+
+
+def make_global_pca_figure(pooled_pca, pooled_labels, prep_indices, prep_names, pca_global, out_path, n_bins):
+    mins = pooled_pca.min(axis=0)
+    maxs = pooled_pca.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+    fig = plt.figure(figsize=(18, 20))
+    global_frac = pca_global.explained_variance_ratio_
+
+    for row, prep_idx in enumerate(prep_indices):
+        prep_mask = pooled_labels[:, 0] == prep_idx
+        coords = pooled_pca[prep_mask]
+        cues = pooled_labels[prep_mask, 1]
+        bins = pooled_labels[prep_mask, 2]
+        if coords.shape[0] > 1:
+            local_var = coords.var(axis=0, ddof=1)
+            local_frac = local_var / max(local_var.sum(), 1e-12)
+        else:
+            local_frac = np.zeros(3)
+
+        ax3d = fig.add_subplot(len(prep_indices), 3, row * 3 + 1, projection="3d")
+        for cue_val, marker in [(1, "o"), (2, "^")]:
+            mask = cues == cue_val
+            ax3d.scatter(
+                coords[mask, 0],
+                coords[mask, 1],
+                coords[mask, 2],
+                c=[angle_to_colour(int(b), n_bins) for b in bins[mask]],
+                marker=marker,
+                s=90,
+                edgecolors="k",
+                linewidths=0.8,
+                alpha=0.9,
+            )
+        ax3d.set_xlim(lims[0])
+        ax3d.set_ylim(lims[1])
+        ax3d.set_zlim(lims[2])
+        ax3d.set_xlabel(f"PC1 (g:{global_frac[0]:.1%}, l:{local_frac[0]:.1%})")
+        ax3d.set_ylabel(f"PC2 (g:{global_frac[1]:.1%}, l:{local_frac[1]:.1%})")
+        ax3d.set_zlabel(f"PC3 (g:{global_frac[2]:.1%}, l:{local_frac[2]:.1%})")
+        ax3d.set_title(
+            (
+                f"prep_idx={prep_idx}: {prep_names.get(prep_idx, str(prep_idx))}\n"
+                f"local var frac: PC1={local_frac[0]:.1%}, PC2={local_frac[1]:.1%}, PC3={local_frac[2]:.1%}"
+            ),
+            fontweight="bold",
+        )
+        ax3d.grid(True, alpha=0.25)
+
+        marker_legend = [
+            Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 1"),
+            Line2D([0], [0], marker="^", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 2"),
+        ]
+        ax3d.legend(handles=marker_legend, fontsize=8, loc="upper right")
+
+        ax12 = fig.add_subplot(len(prep_indices), 3, row * 3 + 2)
+        for cue_val, marker in [(1, "o"), (2, "^")]:
+            mask = cues == cue_val
+            ax12.scatter(
+                coords[mask, 0],
+                coords[mask, 1],
+                c=[angle_to_colour(int(b), n_bins) for b in bins[mask]],
+                marker=marker,
+                s=90,
+                edgecolors="k",
+                linewidths=0.8,
+                alpha=0.9,
+            )
+        ax12.set_xlim(lims[0])
+        ax12.set_ylim(lims[1])
+        ax12.set_xlabel(f"PC1 (g:{global_frac[0]:.1%}, l:{local_frac[0]:.1%})", fontweight="bold")
+        ax12.set_ylabel(f"PC2 (g:{global_frac[1]:.1%}, l:{local_frac[1]:.1%})", fontweight="bold")
+        ax12.set_title(
+            f"PC1 vs PC2 (local: {local_frac[0]:.1%}, {local_frac[1]:.1%})",
+            fontweight="bold",
+        )
+        ax12.grid(True, alpha=0.25)
+        ax12.set_aspect("equal", adjustable="box")
+
+        ax23 = fig.add_subplot(len(prep_indices), 3, row * 3 + 3)
+        for cue_val, marker in [(1, "o"), (2, "^")]:
+            mask = cues == cue_val
+            ax23.scatter(
+                coords[mask, 1],
+                coords[mask, 2],
+                c=[angle_to_colour(int(b), n_bins) for b in bins[mask]],
+                marker=marker,
+                s=90,
+                edgecolors="k",
+                linewidths=0.8,
+                alpha=0.9,
+            )
+        ax23.set_xlim(lims[1])
+        ax23.set_ylim(lims[2])
+        ax23.set_xlabel(f"PC2 (g:{global_frac[1]:.1%}, l:{local_frac[1]:.1%})", fontweight="bold")
+        ax23.set_ylabel(f"PC3 (g:{global_frac[2]:.1%}, l:{local_frac[2]:.1%})", fontweight="bold")
+        ax23.set_title(
+            f"PC2 vs PC3 (local: {local_frac[1]:.1%}, {local_frac[2]:.1%})",
+            fontweight="bold",
+        )
+        ax23.grid(True, alpha=0.25)
+        ax23.set_aspect("equal", adjustable="box")
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=150, bbox_inches="tight")
+    plt.close(fig)
+
+
+def main():
+    args = parse_args()
+
+    repo_root = args.repo_root.resolve()
+    run_dir = (repo_root / args.run_path).resolve()
+    args_path = run_dir / "args.yaml"
+    checkpoint_path = run_dir / "state.mdl"
+
     if args.output_dir is None:
-        args.output_dir = os.path.join(args.run_dir, "trajectory_analysis")
-    
-    os.makedirs(args.output_dir, exist_ok=True)
-    print(f"Output directory: {args.output_dir}")
-    
-    # Load data
-    print(f"\nLoading data from {args.run_dir}...")
-    data = load_trajectory_data(args.run_dir, from_extraction=args.extraction)
-    
-    # Get trajectories - try different sources in order of preference
-    # 1. ablated_teacher_trajectories (from m-t-m training, if neural states were saved)
-    # 2. embedded_sample_trajectory (full neural state from extraction)
-    # 3. sample_trajectory (behavioral subspace only)
-    trajectories = data.get('ablated_teacher_trajectories')
-    if trajectories is None:
-        trajectories = data.get('embedded_sample_trajectory')
-    
-    prep_dicts = data.get('ablated_teacher_prep_dicts', [])
-    
-    # Check for alternative trajectory data
-    sample_trajectory = data.get('sample_trajectory') if 'sample_trajectory' in data else None
-    early_x0_preds = data.get('early_x0_preds') if 'early_x0_preds' in data else None
-    epsilon_hat = data.get('epsilon_hat') if 'epsilon_hat' in data else None
-    
-    # Determine what we have
-    if trajectories is not None:
-        traj_name = "Full Neural State Trajectories"
-        primary_traj = trajectories
-    elif sample_trajectory is not None:
-        traj_name = "Behavioral Subspace Trajectories"
-        primary_traj = sample_trajectory
+        output_dir = (
+            repo_root
+            / "ddpm"
+            / "analysis"
+            / "new_analysis"
+            / "results"
+            / run_dir.name
+            / "global_pca"
+        )
     else:
-        traj_name = None
-        primary_traj = None
-    
-    # Analyze statistics for all available trajectory types
-    if primary_traj is not None:
-        analyze_trajectory_statistics(primary_traj, name=traj_name)
-    if sample_trajectory is not None and trajectories is not None:
-        analyze_trajectory_statistics(sample_trajectory, name="Behavioral Subspace Trajectories")
-    if early_x0_preds is not None:
-        analyze_trajectory_statistics(early_x0_preds, name="Early X0 Predictions")
-    if epsilon_hat is not None:
-        analyze_trajectory_statistics(epsilon_hat, name="Predicted Residuals (Epsilon Hat)")
-    
-    # Plot diffusion trajectories
-    if primary_traj is not None:
-        print(f"\nPlotting {traj_name.lower()} for trial {args.trial_idx}...")
-        plot_trajectory_evolution(
-            primary_traj,
-            trial_idx=args.trial_idx,
-            save_path=os.path.join(args.output_dir, f"diffusion_trajectories_trial_{args.trial_idx}.png")
+        output_dir = args.output_dir.resolve()
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    if args.device == "auto":
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    else:
+        device = torch.device(args.device)
+
+    print(f"Repo root: {repo_root}")
+    print(f"Run dir: {run_dir}")
+    print(f"Args: {args_path}")
+    print(f"Checkpoint: {checkpoint_path}")
+    print(f"Output dir: {output_dir}")
+    print(f"Device: {device}")
+
+    _, task, model, _, _ = generate_model_and_task_from_args_path_multiepoch(
+        str(args_path), device
+    )
+
+    checkpoint = torch.load(checkpoint_path, map_location=device, weights_only=True)
+    model.load_state_dict(checkpoint)
+    model.eval()
+
+    trials = generate_trial_combinations(args.angle_step)
+    print(f"Generated {len(trials)} trials")
+
+    prep_names = {
+        0: "Cue presentation",
+        1: "Delay 1 onset",
+        2: "Delay 2 onset",
+        3: "Pre-response",
+    }
+
+    pooled_states = []
+    pooled_labels = []
+    per_prep_separation = {}
+    per_prep_local_variance_fraction = {}
+
+    for prep_idx in args.prep_indices:
+        states, metadata = get_states_for_prep(
+            trials=trials,
+            prep_idx=prep_idx,
+            task=task,
+            model=model,
+            device=device,
+            neural_dim=args.neural_dim,
         )
-    
-    # Plot preparatory trajectories
-    if prep_dicts and len(prep_dicts) > 0:
-        print(f"\nPlotting preparatory trajectories for trial {args.trial_idx}...")
-        plot_prep_trajectories(
-            prep_dicts,
-            trial_idx=args.trial_idx,
-            save_path=os.path.join(args.output_dir, f"prep_trajectories_trial_{args.trial_idx}.png")
+
+        averaged, _ = bin_and_average_by_cued_color(
+            states=states,
+            metadata=metadata,
+            n_bins=args.n_bins,
         )
-    
-    print(f"\n✓ Analysis complete! Results saved to {args.output_dir}")
-    
-    # Example: Extract states at specific timepoint
-    if primary_traj is not None:
-        print(f"\n=== Example: Extracting states at timepoint T/2 ===")
-        mid_timepoint = primary_traj.shape[2] // 2
-        states_at_mid = extract_neural_states_at_timepoint(primary_traj, mid_timepoint)
-        print(f"States at timepoint {mid_timepoint}:")
-        print(f"  Shape: {states_at_mid.shape}")
-        print(f"  Mean: {states_at_mid.mean().item():.4f}")
-        print(f"  Std: {states_at_mid.std().item():.4f}")
+
+        for cue in [1, 2]:
+            for b in range(args.n_bins):
+                vec = averaged[cue][b]
+                if np.isnan(vec).any():
+                    continue
+                pooled_states.append(vec)
+                pooled_labels.append((prep_idx, cue, b))
+
+    pooled_states = np.array(pooled_states)
+    pooled_labels = np.array(pooled_labels, dtype=int)
+
+    pca_global = PCA(n_components=3)
+    pooled_pca = pca_global.fit_transform(pooled_states)
+
+    print("Global PCA explained variance ratio:", pca_global.explained_variance_ratio_)
+    print("Global PCA cumulative variance:", pca_global.explained_variance_ratio_.cumsum())
+
+    for prep_idx in args.prep_indices:
+        pmask = pooled_labels[:, 0] == prep_idx
+        coords = pooled_pca[pmask]
+        cues = pooled_labels[pmask, 1]
+        c1_center = coords[cues == 1].mean(axis=0)
+        c2_center = coords[cues == 2].mean(axis=0)
+        per_prep_separation[int(prep_idx)] = float(np.linalg.norm(c1_center - c2_center))
+        if coords.shape[0] > 1:
+            var = coords.var(axis=0, ddof=1)
+            frac = var / max(var.sum(), 1e-12)
+            per_prep_local_variance_fraction[int(prep_idx)] = {
+                "PC1": float(frac[0]),
+                "PC2": float(frac[1]),
+                "PC3": float(frac[2]),
+            }
+        else:
+            per_prep_local_variance_fraction[int(prep_idx)] = {
+                "PC1": 0.0,
+                "PC2": 0.0,
+                "PC3": 0.0,
+            }
+
+    figure_path = output_dir / "prospective_memory_global_pca_common_cued_bin.png"
+    make_global_pca_figure(
+        pooled_pca=pooled_pca,
+        pooled_labels=pooled_labels,
+        prep_indices=args.prep_indices,
+        prep_names=prep_names,
+        pca_global=pca_global,
+        out_path=figure_path,
+        n_bins=args.n_bins,
+    )
+
+    np.savez(
+        output_dir / "global_pca_data.npz",
+        pooled_states=pooled_states,
+        pooled_labels=pooled_labels,
+        pooled_pca=pooled_pca,
+        explained_variance=pca_global.explained_variance_ratio_,
+        pca_components=pca_global.components_,
+        pca_mean=pca_global.mean_,
+    )
+
+    summary = {
+        "run_dir": str(run_dir),
+        "prep_indices": [int(p) for p in args.prep_indices],
+        "n_trials": len(trials),
+        "n_bins": int(args.n_bins),
+        "angle_step": int(args.angle_step),
+        "neural_dim": int(args.neural_dim),
+        "explained_variance_ratio": pca_global.explained_variance_ratio_.tolist(),
+        "explained_variance_cumulative": pca_global.explained_variance_ratio_.cumsum().tolist(),
+        "per_prep_cue_center_separation": per_prep_separation,
+        "per_prep_local_variance_fraction_in_global_basis": per_prep_local_variance_fraction,
+        "figure_path": str(figure_path),
+    }
+
+    with open(output_dir / "global_pca_summary.json", "w", encoding="utf-8") as f:
+        json.dump(summary, f, indent=2)
+
+    print("Saved outputs:")
+    print(f"  {figure_path}")
+    print(f"  {output_dir / 'global_pca_data.npz'}")
+    print(f"  {output_dir / 'global_pca_summary.json'}")
 
 
 if __name__ == "__main__":
