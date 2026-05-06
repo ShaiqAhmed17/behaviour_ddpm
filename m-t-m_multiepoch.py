@@ -6,6 +6,7 @@ import argparse
 import os
 import copy
 import math
+from pathlib import Path
 import torch
 import numpy as np
 from tqdm import tqdm
@@ -140,11 +141,34 @@ def generate_sweep_trial_information(task, batch_size, num_samples, sweep_trials
     return trial_information, selected
 
 
-def load_model_from_run(run_path, device='cuda', checkpoint_name='state.mdl'):
-    args_path = os.path.join(run_path, 'args.yaml')
-    state_path = os.path.join(run_path, checkpoint_name)
+def resolve_run_path(run_path):
+    run_path = Path(run_path)
+    if run_path.is_dir():
+        return run_path
 
-    args = ConfigNamepace.from_yaml_path(args_path)
+    candidate_roots = [Path("results_link_sampler"), Path("results_link_sampler_ext"), Path("results_link_drl")]
+    for root in candidate_roots:
+        candidate = root / run_path
+        if candidate.is_dir():
+            return candidate
+
+    raise FileNotFoundError(
+        f"Could not resolve source run path '{run_path}'. "
+        f"Pass an existing run directory or a run name under one of: {', '.join(str(root) for root in candidate_roots)}"
+    )
+
+
+def load_model_from_run(run_path, device='cuda', checkpoint_name='state.mdl'):
+    run_path = resolve_run_path(run_path)
+    args_path = run_path / 'args.yaml'
+    state_path = run_path / checkpoint_name
+
+    if not args_path.is_file():
+        raise FileNotFoundError(f"Missing args.yaml in run directory: {run_path}")
+    if not state_path.is_file():
+        raise FileNotFoundError(f"Missing checkpoint '{checkpoint_name}' in run directory: {run_path}")
+
+    args = ConfigNamepace.from_yaml_path(str(args_path))
 
     task = getattr(tasks, args.task_name)(**args.task_config.dict)
 
@@ -237,7 +261,7 @@ def main():
     batch_size = args.batch_size
     num_trials = args.num_trials
     logging_freq = args.logging_freq
-    save_base = args.save_base
+    save_base = f"{args.save_base}_ablation_{cli_args.ablate_neuron}"
     task_name = args.task_name
     task_config = args.task_config
     regularise_prep_state_weight = args.regularise_prep_state_weight
@@ -535,10 +559,7 @@ def main():
         total_loss.backward()
         optim.step()
 
-        if 'trial_type_idx' in trial_information.task_variable_information:
-            import pdb; pdb.set_trace()
-        else:
-            all_trial_type_trial_indices['all'].append(t)
+        all_trial_type_trial_indices['all'].append(t)
 
         if t % 100_000 == 0:
             torch.save(ddpm_model.state_dict(), os.path.join(save_base, f"state.{t}.mdl"))

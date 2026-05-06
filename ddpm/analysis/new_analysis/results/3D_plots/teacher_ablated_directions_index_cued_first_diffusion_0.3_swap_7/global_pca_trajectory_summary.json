@@ -1,0 +1,183 @@
+{
+  "run_dir": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_0.3_swap_7",
+  "prep_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_trials": 4320,
+  "ablation_conditions": [
+    -1,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "healthy_condition_code": -1,
+  "ablation_info": {
+    "source": "direction_sweep",
+    "run_ablation_neuron_idx": null,
+    "run_has_ablation_data": false
+  },
+  "separate_ablation_plots": true,
+  "skip_combined_plots": true,
+  "separate_figure_paths": {
+    "healthy": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_healthy.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_healthy.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_healthy.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_healthy.png"
+    },
+    "dir_0": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_0.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_0.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_0.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_0.png"
+    },
+    "dir_1": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_1.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_1.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_1.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_1.png"
+    },
+    "dir_2": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_2.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_2.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_2.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_2.png"
+    },
+    "dir_3": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_3.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_3.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_3.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_3.png"
+    },
+    "dir_4": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_4.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_4.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_4.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_4.png"
+    },
+    "dir_5": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_5.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_5.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_5.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_5.png"
+    },
+    "dir_6": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_6.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_6.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_6.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_6.png"
+    },
+    "dir_7": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_7.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_7.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_7.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_7.png"
+    },
+    "dir_8": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_8.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_8.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_8.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_8.png"
+    },
+    "dir_9": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_9.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_9.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_9.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_9.png"
+    },
+    "dir_10": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_10.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_10.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_10.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_10.png"
+    },
+    "dir_11": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_11.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_11.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_11.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_11.png"
+    },
+    "dir_12": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_12.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_12.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_12.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_12.png"
+    },
+    "dir_13": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d_dir_13.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_13.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d_dir_13.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_13.png"
+    }
+  },
+  "n_bins": 12,
+  "angle_step": 30,
+  "neural_dim": 16,
+  "global_explained_variance_ratio": [
+    0.7470811313557784,
+    0.10088351652168769,
+    0.06984153712100723
+  ],
+  "global_explained_variance_cumulative": [
+    0.7470811313557784,
+    0.8479646478774661,
+    0.9178061849984733
+  ],
+  "diffusion_global_explained_variance_ratio": [
+    0.9993726325898561,
+    0.0006270757252808033,
+    2.3969808021432864e-07
+  ],
+  "diffusion_global_explained_variance_cumulative": [
+    0.9993726325898561,
+    0.9999997083151368,
+    0.999999948013217
+  ],
+  "per_prep_local_variance_fraction_in_global_basis": {
+    "0": {
+      "PC1": 0.33073237229257235,
+      "PC2": 0.38641795429731934,
+      "PC3": 0.2828496734101082
+    },
+    "1": {
+      "PC1": 0.7176487195214345,
+      "PC2": 0.1332160767502584,
+      "PC3": 0.14913520372830708
+    },
+    "2": {
+      "PC1": 0.651648217766773,
+      "PC2": 0.2070023100363378,
+      "PC3": 0.1413494721968893
+    },
+    "3": {
+      "PC1": 0.2867714545235357,
+      "PC2": 0.4208414683616851,
+      "PC3": 0.29238707711477935
+    }
+  },
+  "prep_step_counts": {
+    "0": 5,
+    "1": 15,
+    "2": 5,
+    "3": 1
+  },
+  "diffusion_step_count": 40,
+  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_prep_steps_3d.png",
+  "diffusion_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_all_diffusion_steps_3d.png",
+  "prep_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png",
+  "diffusion_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_ablated_directions_index_cued_first_diffusion_0.3_swap_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png"
+}

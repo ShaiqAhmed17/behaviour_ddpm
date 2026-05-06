@@ -1,0 +1,23 @@
+{
+  "repo_root": "/scratch3/shaiq_home/repos/behaviour_ddpm",
+  "run_root": "results_link_sampler",
+  "step_policy": "sweep_all",
+  "prep_indices": [0, 1, 2, 3],
+  "n_bins": 12,
+  "weights": {
+    "prep_bin_distance": 0.55,
+    "prep_separation_rmse": 0.15,
+    "prep_angle_rmse": 0.2,
+    "prep_planarity_rmse": 0.1
+  },
+  "teachers": [
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_7"},
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_8"},
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_9"}
+  ],
+  "students": [
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_7", "true_teacher": "index_cued_first_diffusion_0.3_swap_recovery_7"},
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_8", "true_teacher": "index_cued_first_diffusion_0.3_swap_recovery_8"},
+    {"name": "index_cued_first_diffusion_0.3_swap_recovery_9", "true_teacher": "index_cued_first_diffusion_0.3_swap_recovery_9"}
+  ]
+}

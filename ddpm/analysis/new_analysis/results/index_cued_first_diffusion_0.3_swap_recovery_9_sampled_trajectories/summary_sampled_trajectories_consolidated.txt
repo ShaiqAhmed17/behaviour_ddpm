@@ -1,0 +1,43 @@
+========================================================================================
+SAMPLED-TRAJECTORY PROSPECTIVE-MEMORY REPORT (CONSOLIDATED)
+========================================================================================
+Run name: index_cued_first_diffusion_0.3_swap_recovery_9
+Trajectory source: /scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_9/ablated_teacher_trajectories
+Results directory: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories
+
+1) Primary analysis context
+- Primary prep index: 2
+- Trials: 32000
+- State dimension: 16
+- Cue separation (primary PCA): 53.4985
+- Target-vs-distractor plane angle: 5.72 deg
+- Target-vs-distractor center separation: 0.0000
+
+2) Time-step geometry parity block (prep + diffusion)
+- Prep timeline plane angles by prep_idx:
+  prep_idx=0: 16.02 deg
+  prep_idx=1: 49.03 deg
+  prep_idx=2: 37.57 deg
+  prep_idx=3: 40.53 deg
+- Diffusion timeline summary statistics:
+  plane angle (deg): min=None, max=None, mean=None
+  center separation: min=None, max=None, mean=None
+  cue1 planarity (%): min=None, max=None, mean=None
+  cue2 planarity (%): min=None, max=None, mean=None
+
+3) Interpretation notes
+- This block is intentionally verbose for parity with the original notebook reporting footprint.
+- Prep-wise and diffusion-wise geometry are now recorded in a single consolidated payload.
+- Use the saved JSON files for exact comparisons between direct-sampling and sampled-trajectory pipelines.
+
+4) Saved artifacts
+- primary_npz: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/sampled_neural_states_primary.npz
+- primary_summary_json: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/summary_sampled_trajectories.json
+- time_step_stats_json: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_statistics_sampled.json
+- time_step_prep_plot: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_prep_sampled.png
+- time_step_diffusion_plot: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_diffusion_sampled.png
+- global_pca_plot: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/prospective_memory_global_pca_common_cued_bin.png
+- all_prep_plot: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/prospective_memory_all_prep_indices.png
+- plane_fit_plot: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/plane_fitting_visualization.png
+- consolidated_report_json: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/summary_sampled_trajectories_consolidated.json
+========================================================================================

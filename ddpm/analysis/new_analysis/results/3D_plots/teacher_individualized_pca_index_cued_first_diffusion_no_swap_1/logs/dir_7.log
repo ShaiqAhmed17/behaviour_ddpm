@@ -1,0 +1,2327 @@
+Repo root: /scratch3/shaiq_home/repos/behaviour_ddpm
+Run dir: /scratch3/shaiq_home/results_link/index_cued_first_diffusion_no_swap_1
+Output dir: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7
+Device: cuda
+Ablation setup: source=direction_sweep, conditions=[7]
+Prep indices: [0, 1, 2, 3]
+Generated 288 trials (1 ablation conditions: [7])
+Extracting all preparatory timesteps across trials...
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.591720
+  Mean |x_t| before ablation: 172.065063
+  Mean |x_t| after ablation: 172.027573
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.686264
+  Mean |x_t| before ablation: 173.516266
+  Mean |x_t| after ablation: 173.452972
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.093597
+  Mean |x_t| before ablation: 177.549011
+  Mean |x_t| after ablation: 177.522064
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.554420
+  Mean |x_t| before ablation: 166.223068
+  Mean |x_t| after ablation: 166.203430
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.753216
+  Mean |x_t| before ablation: 172.137039
+  Mean |x_t| after ablation: 172.115005
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.295650
+  Mean |x_t| before ablation: 169.467972
+  Mean |x_t| after ablation: 169.435928
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.613956
+  Mean |x_t| before ablation: 170.622711
+  Mean |x_t| after ablation: 170.602676
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.850716
+  Mean |x_t| before ablation: 173.833878
+  Mean |x_t| after ablation: 173.810486
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.831146
+  Mean |x_t| before ablation: 177.830627
+  Mean |x_t| after ablation: 177.808090
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.847034
+  Mean |x_t| before ablation: 178.004150
+  Mean |x_t| after ablation: 177.962585
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.557068
+  Mean |x_t| before ablation: 173.791290
+  Mean |x_t| after ablation: 173.754868
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.491256
+  Mean |x_t| before ablation: 179.917206
+  Mean |x_t| after ablation: 179.883347
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.745647
+  Mean |x_t| before ablation: 187.004776
+  Mean |x_t| after ablation: 186.916489
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.395275
+  Mean |x_t| before ablation: 194.898453
+  Mean |x_t| after ablation: 194.848892
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.311180
+  Mean |x_t| before ablation: 191.385437
+  Mean |x_t| after ablation: 191.336884
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.220554
+  Mean |x_t| before ablation: 190.371948
+  Mean |x_t| after ablation: 190.300354
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.730690
+  Mean |x_t| before ablation: 191.965607
+  Mean |x_t| after ablation: 191.880035
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.507812
+  Mean |x_t| before ablation: 191.546570
+  Mean |x_t| after ablation: 191.467361
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.220989
+  Mean |x_t| before ablation: 184.294754
+  Mean |x_t| after ablation: 184.246414
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.492000
+  Mean |x_t| before ablation: 191.268570
+  Mean |x_t| after ablation: 191.189697
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.272834
+  Mean |x_t| before ablation: 192.151245
+  Mean |x_t| after ablation: 192.078888
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.744956
+  Mean |x_t| before ablation: 197.849243
+  Mean |x_t| after ablation: 197.792313
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.317272
+  Mean |x_t| before ablation: 191.847824
+  Mean |x_t| after ablation: 191.774124
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.732933
+  Mean |x_t| before ablation: 190.245331
+  Mean |x_t| after ablation: 190.158936
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.619789
+  Mean |x_t| before ablation: 210.755447
+  Mean |x_t| after ablation: 210.617661
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.142673
+  Mean |x_t| before ablation: 205.678650
+  Mean |x_t| after ablation: 205.586899
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.935951
+  Mean |x_t| before ablation: 203.088837
+  Mean |x_t| after ablation: 202.970367
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.392471
+  Mean |x_t| before ablation: 202.465820
+  Mean |x_t| after ablation: 202.364883
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.374698
+  Mean |x_t| before ablation: 210.350327
+  Mean |x_t| after ablation: 210.281631
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.496997
+  Mean |x_t| before ablation: 210.301071
+  Mean |x_t| after ablation: 210.167404
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.568836
+  Mean |x_t| before ablation: 220.898560
+  Mean |x_t| after ablation: 220.768829
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.275383
+  Mean |x_t| before ablation: 212.490875
+  Mean |x_t| after ablation: 212.398193
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.605659
+  Mean |x_t| before ablation: 213.559341
+  Mean |x_t| after ablation: 213.457169
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.943810
+  Mean |x_t| before ablation: 217.626968
+  Mean |x_t| after ablation: 217.516174
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.197365
+  Mean |x_t| before ablation: 212.331360
+  Mean |x_t| after ablation: 212.209335
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.398426
+  Mean |x_t| before ablation: 213.781021
+  Mean |x_t| after ablation: 213.652969
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.309093
+  Mean |x_t| before ablation: 217.900558
+  Mean |x_t| after ablation: 217.742096
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.512710
+  Mean |x_t| before ablation: 207.233459
+  Mean |x_t| after ablation: 207.131088
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.130332
+  Mean |x_t| before ablation: 206.104187
+  Mean |x_t| after ablation: 206.012985
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.851493
+  Mean |x_t| before ablation: 210.605652
+  Mean |x_t| after ablation: 210.524353
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.536712
+  Mean |x_t| before ablation: 209.694641
+  Mean |x_t| after ablation: 209.592728
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.036651
+  Mean |x_t| before ablation: 200.516174
+  Mean |x_t| after ablation: 200.392685
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.640613
+  Mean |x_t| before ablation: 211.042145
+  Mean |x_t| after ablation: 210.937637
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.727970
+  Mean |x_t| before ablation: 215.781906
+  Mean |x_t| after ablation: 215.643463
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.656444
+  Mean |x_t| before ablation: 206.620590
+  Mean |x_t| after ablation: 206.513336
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.492294
+  Mean |x_t| before ablation: 207.074646
+  Mean |x_t| after ablation: 206.939056
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.009422
+  Mean |x_t| before ablation: 216.303421
+  Mean |x_t| after ablation: 216.155075
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.861103
+  Mean |x_t| before ablation: 216.982147
+  Mean |x_t| after ablation: 216.839706
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.259491
+  Mean |x_t| before ablation: 214.734451
+  Mean |x_t| after ablation: 214.670044
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.552085
+  Mean |x_t| before ablation: 211.685104
+  Mean |x_t| after ablation: 211.612289
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.423507
+  Mean |x_t| before ablation: 204.460968
+  Mean |x_t| after ablation: 204.389038
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.991371
+  Mean |x_t| before ablation: 211.566666
+  Mean |x_t| after ablation: 211.507767
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.027160
+  Mean |x_t| before ablation: 206.442551
+  Mean |x_t| after ablation: 206.354553
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.431343
+  Mean |x_t| before ablation: 211.118576
+  Mean |x_t| after ablation: 211.048691
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.867744
+  Mean |x_t| before ablation: 207.921066
+  Mean |x_t| after ablation: 207.864105
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.580326
+  Mean |x_t| before ablation: 212.380127
+  Mean |x_t| after ablation: 212.278152
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.519901
+  Mean |x_t| before ablation: 220.216187
+  Mean |x_t| after ablation: 220.146988
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.019417
+  Mean |x_t| before ablation: 219.306458
+  Mean |x_t| after ablation: 219.249023
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.621185
+  Mean |x_t| before ablation: 214.384460
+  Mean |x_t| after ablation: 214.310760
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.209164
+  Mean |x_t| before ablation: 214.723282
+  Mean |x_t| after ablation: 214.633484
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.121395
+  Mean |x_t| before ablation: 211.830521
+  Mean |x_t| after ablation: 211.790421
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.724224
+  Mean |x_t| before ablation: 215.836243
+  Mean |x_t| after ablation: 215.784546
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.278919
+  Mean |x_t| before ablation: 213.029053
+  Mean |x_t| after ablation: 213.003815
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.135838
+  Mean |x_t| before ablation: 212.306885
+  Mean |x_t| after ablation: 212.283707
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.045711
+  Mean |x_t| before ablation: 209.688553
+  Mean |x_t| after ablation: 209.649521
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.579548
+  Mean |x_t| before ablation: 214.734497
+  Mean |x_t| after ablation: 214.704666
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.453045
+  Mean |x_t| before ablation: 209.461105
+  Mean |x_t| after ablation: 209.432648
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.783310
+  Mean |x_t| before ablation: 210.611313
+  Mean |x_t| after ablation: 210.577332
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.855553
+  Mean |x_t| before ablation: 208.917938
+  Mean |x_t| after ablation: 208.898422
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.027847
+  Mean |x_t| before ablation: 216.177277
+  Mean |x_t| after ablation: 216.139755
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.510860
+  Mean |x_t| before ablation: 208.001892
+  Mean |x_t| after ablation: 207.972260
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.126781
+  Mean |x_t| before ablation: 213.690613
+  Mean |x_t| after ablation: 213.629089
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.274036
+  Mean |x_t| before ablation: 192.050873
+  Mean |x_t| after ablation: 192.037415
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.281467
+  Mean |x_t| before ablation: 188.719437
+  Mean |x_t| after ablation: 188.705627
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.248749
+  Mean |x_t| before ablation: 190.550217
+  Mean |x_t| after ablation: 190.536942
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.118946
+  Mean |x_t| before ablation: 198.680054
+  Mean |x_t| after ablation: 198.676910
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.639240
+  Mean |x_t| before ablation: 190.992783
+  Mean |x_t| after ablation: 190.985748
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.095005
+  Mean |x_t| before ablation: 186.147781
+  Mean |x_t| after ablation: 186.147751
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.229233
+  Mean |x_t| before ablation: 190.594940
+  Mean |x_t| after ablation: 190.581909
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.445999
+  Mean |x_t| before ablation: 183.389206
+  Mean |x_t| after ablation: 183.383499
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.144684
+  Mean |x_t| before ablation: 179.753647
+  Mean |x_t| after ablation: 179.753601
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.886764
+  Mean |x_t| before ablation: 179.572296
+  Mean |x_t| after ablation: 179.562378
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.220653
+  Mean |x_t| before ablation: 177.824554
+  Mean |x_t| after ablation: 177.820358
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.339912
+  Mean |x_t| before ablation: 193.386658
+  Mean |x_t| after ablation: 193.386353
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.013046
+  Mean |x_t| before ablation: 171.973663
+  Mean |x_t| after ablation: 171.973663
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.696663
+  Mean |x_t| before ablation: 166.582626
+  Mean |x_t| after ablation: 166.560791
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.760475
+  Mean |x_t| before ablation: 168.086365
+  Mean |x_t| after ablation: 168.084656
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.613607
+  Mean |x_t| before ablation: 166.193466
+  Mean |x_t| after ablation: 166.192337
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.053467
+  Mean |x_t| before ablation: 166.640442
+  Mean |x_t| after ablation: 166.637115
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.078821
+  Mean |x_t| before ablation: 160.501556
+  Mean |x_t| after ablation: 160.497940
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.091824
+  Mean |x_t| before ablation: 165.834320
+  Mean |x_t| after ablation: 165.830734
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.473801
+  Mean |x_t| before ablation: 161.172684
+  Mean |x_t| after ablation: 161.171982
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.505844
+  Mean |x_t| before ablation: 169.686752
+  Mean |x_t| after ablation: 169.686005
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.296856
+  Mean |x_t| before ablation: 168.806992
+  Mean |x_t| after ablation: 168.806732
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.220364
+  Mean |x_t| before ablation: 166.895340
+  Mean |x_t| after ablation: 166.895203
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.751026
+  Mean |x_t| before ablation: 168.486450
+  Mean |x_t| after ablation: 168.484772
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.214437
+  Mean |x_t| before ablation: 148.187790
+  Mean |x_t| after ablation: 148.187637
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.407204
+  Mean |x_t| before ablation: 147.937698
+  Mean |x_t| after ablation: 147.937134
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.163759
+  Mean |x_t| before ablation: 153.748749
+  Mean |x_t| after ablation: 153.748672
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.544762
+  Mean |x_t| before ablation: 151.041275
+  Mean |x_t| after ablation: 151.033386
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.987585
+  Mean |x_t| before ablation: 153.387146
+  Mean |x_t| after ablation: 153.383972
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.117578
+  Mean |x_t| before ablation: 141.688644
+  Mean |x_t| after ablation: 141.688599
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.853079
+  Mean |x_t| before ablation: 151.658630
+  Mean |x_t| after ablation: 151.656250
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.324245
+  Mean |x_t| before ablation: 147.899704
+  Mean |x_t| after ablation: 147.893768
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.626772
+  Mean |x_t| before ablation: 152.630295
+  Mean |x_t| after ablation: 152.629013
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.252277
+  Mean |x_t| before ablation: 145.506409
+  Mean |x_t| after ablation: 145.506180
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.236977
+  Mean |x_t| before ablation: 149.992508
+  Mean |x_t| after ablation: 149.992325
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.046413
+  Mean |x_t| before ablation: 150.198486
+  Mean |x_t| after ablation: 150.198471
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.292774
+  Mean |x_t| before ablation: 149.639175
+  Mean |x_t| after ablation: 149.638885
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.028183
+  Mean |x_t| before ablation: 147.104858
+  Mean |x_t| after ablation: 147.104858
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.250240
+  Mean |x_t| before ablation: 138.396194
+  Mean |x_t| after ablation: 138.395966
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.027758
+  Mean |x_t| before ablation: 137.554779
+  Mean |x_t| after ablation: 137.554779
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.948769
+  Mean |x_t| before ablation: 146.913925
+  Mean |x_t| after ablation: 146.910873
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.080915
+  Mean |x_t| before ablation: 140.005997
+  Mean |x_t| after ablation: 140.005981
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.164333
+  Mean |x_t| before ablation: 139.225281
+  Mean |x_t| after ablation: 139.225189
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.754379
+  Mean |x_t| before ablation: 144.727356
+  Mean |x_t| after ablation: 144.725388
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.075035
+  Mean |x_t| before ablation: 138.662292
+  Mean |x_t| after ablation: 138.662262
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.939648
+  Mean |x_t| before ablation: 146.123016
+  Mean |x_t| after ablation: 146.119995
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.127464
+  Mean |x_t| before ablation: 137.169525
+  Mean |x_t| after ablation: 137.169479
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.048626
+  Mean |x_t| before ablation: 139.908096
+  Mean |x_t| after ablation: 139.904175
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.086807
+  Mean |x_t| before ablation: 143.590652
+  Mean |x_t| after ablation: 143.586548
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.133747
+  Mean |x_t| before ablation: 144.266632
+  Mean |x_t| after ablation: 144.262177
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.263069
+  Mean |x_t| before ablation: 137.623611
+  Mean |x_t| after ablation: 137.623367
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.671245
+  Mean |x_t| before ablation: 147.062607
+  Mean |x_t| after ablation: 147.053116
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.621940
+  Mean |x_t| before ablation: 144.426743
+  Mean |x_t| after ablation: 144.417633
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.001366
+  Mean |x_t| before ablation: 144.114990
+  Mean |x_t| after ablation: 144.111511
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.520565
+  Mean |x_t| before ablation: 148.464188
+  Mean |x_t| after ablation: 148.456406
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.257614
+  Mean |x_t| before ablation: 141.164673
+  Mean |x_t| after ablation: 141.146622
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.112175
+  Mean |x_t| before ablation: 145.781067
+  Mean |x_t| after ablation: 145.765778
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.875195
+  Mean |x_t| before ablation: 143.245529
+  Mean |x_t| after ablation: 143.242844
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.775226
+  Mean |x_t| before ablation: 145.511215
+  Mean |x_t| after ablation: 145.500397
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.077362
+  Mean |x_t| before ablation: 146.942505
+  Mean |x_t| after ablation: 146.927826
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.784721
+  Mean |x_t| before ablation: 154.448425
+  Mean |x_t| after ablation: 154.438126
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.645920
+  Mean |x_t| before ablation: 158.525208
+  Mean |x_t| after ablation: 158.516663
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.774917
+  Mean |x_t| before ablation: 156.683884
+  Mean |x_t| after ablation: 156.673828
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.201568
+  Mean |x_t| before ablation: 158.744888
+  Mean |x_t| after ablation: 158.712601
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.950996
+  Mean |x_t| before ablation: 162.518692
+  Mean |x_t| after ablation: 162.506989
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.068123
+  Mean |x_t| before ablation: 155.592636
+  Mean |x_t| after ablation: 155.578903
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.170368
+  Mean |x_t| before ablation: 155.614197
+  Mean |x_t| after ablation: 155.599060
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.358288
+  Mean |x_t| before ablation: 159.042160
+  Mean |x_t| after ablation: 159.024658
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.689552
+  Mean |x_t| before ablation: 161.709198
+  Mean |x_t| after ablation: 161.686829
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.026951
+  Mean |x_t| before ablation: 154.765198
+  Mean |x_t| after ablation: 154.751923
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.570755
+  Mean |x_t| before ablation: 153.685516
+  Mean |x_t| after ablation: 153.677505
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.933445
+  Mean |x_t| before ablation: 161.437302
+  Mean |x_t| after ablation: 161.425735
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.147953
+  Mean |x_t| before ablation: 218.046692
+  Mean |x_t| after ablation: 217.985916
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.206893
+  Mean |x_t| before ablation: 237.693192
+  Mean |x_t| after ablation: 237.612152
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.592041
+  Mean |x_t| before ablation: 254.984726
+  Mean |x_t| after ablation: 254.871674
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.688117
+  Mean |x_t| before ablation: 272.288544
+  Mean |x_t| after ablation: 272.116150
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.197742
+  Mean |x_t| before ablation: 283.252869
+  Mean |x_t| after ablation: 283.134247
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.383419
+  Mean |x_t| before ablation: 262.282410
+  Mean |x_t| after ablation: 262.245758
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.070276
+  Mean |x_t| before ablation: 265.494019
+  Mean |x_t| after ablation: 265.485931
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.031837
+  Mean |x_t| before ablation: 250.371933
+  Mean |x_t| after ablation: 250.371918
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.197471
+  Mean |x_t| before ablation: 240.883362
+  Mean |x_t| after ablation: 240.880386
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.052786
+  Mean |x_t| before ablation: 216.375916
+  Mean |x_t| after ablation: 216.366180
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.334961
+  Mean |x_t| before ablation: 206.643097
+  Mean |x_t| after ablation: 206.642822
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.555565
+  Mean |x_t| before ablation: 206.454315
+  Mean |x_t| after ablation: 206.438507
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.493507
+  Mean |x_t| before ablation: 209.426331
+  Mean |x_t| after ablation: 209.378128
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.621425
+  Mean |x_t| before ablation: 232.948212
+  Mean |x_t| after ablation: 232.902359
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.174496
+  Mean |x_t| before ablation: 263.987000
+  Mean |x_t| after ablation: 263.860413
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.339485
+  Mean |x_t| before ablation: 281.388763
+  Mean |x_t| after ablation: 281.233765
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.823868
+  Mean |x_t| before ablation: 279.020477
+  Mean |x_t| after ablation: 278.910797
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.530490
+  Mean |x_t| before ablation: 270.418304
+  Mean |x_t| after ablation: 270.380371
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.046276
+  Mean |x_t| before ablation: 262.785156
+  Mean |x_t| after ablation: 262.777161
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.122370
+  Mean |x_t| before ablation: 251.594284
+  Mean |x_t| after ablation: 251.594269
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.195978
+  Mean |x_t| before ablation: 241.087753
+  Mean |x_t| after ablation: 241.084793
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.929619
+  Mean |x_t| before ablation: 218.585052
+  Mean |x_t| after ablation: 218.583069
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.119861
+  Mean |x_t| before ablation: 208.136017
+  Mean |x_t| after ablation: 208.132996
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.486633
+  Mean |x_t| before ablation: 206.604187
+  Mean |x_t| after ablation: 206.598846
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.427105
+  Mean |x_t| before ablation: 207.686478
+  Mean |x_t| after ablation: 207.639282
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.926242
+  Mean |x_t| before ablation: 233.025711
+  Mean |x_t| after ablation: 232.950333
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.884918
+  Mean |x_t| before ablation: 266.252289
+  Mean |x_t| after ablation: 266.163239
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.993053
+  Mean |x_t| before ablation: 275.574402
+  Mean |x_t| after ablation: 275.427643
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.192966
+  Mean |x_t| before ablation: 288.611633
+  Mean |x_t| after ablation: 288.495331
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.936678
+  Mean |x_t| before ablation: 269.439697
+  Mean |x_t| after ablation: 269.394501
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.261764
+  Mean |x_t| before ablation: 258.306244
+  Mean |x_t| after ablation: 258.296356
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.393204
+  Mean |x_t| before ablation: 251.667374
+  Mean |x_t| after ablation: 251.667068
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.265394
+  Mean |x_t| before ablation: 246.999069
+  Mean |x_t| after ablation: 246.998932
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.883085
+  Mean |x_t| before ablation: 212.170624
+  Mean |x_t| after ablation: 212.168793
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.976658
+  Mean |x_t| before ablation: 199.138336
+  Mean |x_t| after ablation: 199.135925
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.828251
+  Mean |x_t| before ablation: 209.250977
+  Mean |x_t| after ablation: 209.242996
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.109604
+  Mean |x_t| before ablation: 208.892639
+  Mean |x_t| after ablation: 208.869476
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.417191
+  Mean |x_t| before ablation: 235.389832
+  Mean |x_t| after ablation: 235.302338
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.405738
+  Mean |x_t| before ablation: 258.778259
+  Mean |x_t| after ablation: 258.698975
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.454353
+  Mean |x_t| before ablation: 281.108124
+  Mean |x_t| after ablation: 280.949127
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.305297
+  Mean |x_t| before ablation: 280.951569
+  Mean |x_t| after ablation: 280.856598
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.538788
+  Mean |x_t| before ablation: 274.189270
+  Mean |x_t| after ablation: 274.151672
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.710926
+  Mean |x_t| before ablation: 265.348450
+  Mean |x_t| after ablation: 265.334625
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.379532
+  Mean |x_t| before ablation: 251.683868
+  Mean |x_t| after ablation: 251.683578
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.149780
+  Mean |x_t| before ablation: 236.604614
+  Mean |x_t| after ablation: 236.604568
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.790325
+  Mean |x_t| before ablation: 218.671982
+  Mean |x_t| after ablation: 218.670563
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.331997
+  Mean |x_t| before ablation: 200.201263
+  Mean |x_t| after ablation: 200.200989
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.612526
+  Mean |x_t| before ablation: 205.107498
+  Mean |x_t| after ablation: 205.101166
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.854087
+  Mean |x_t| before ablation: 208.653564
+  Mean |x_t| after ablation: 208.597107
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.545151
+  Mean |x_t| before ablation: 239.826859
+  Mean |x_t| after ablation: 239.762741
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.144833
+  Mean |x_t| before ablation: 258.407471
+  Mean |x_t| after ablation: 258.308685
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.451285
+  Mean |x_t| before ablation: 286.505798
+  Mean |x_t| after ablation: 286.349854
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.741474
+  Mean |x_t| before ablation: 273.973511
+  Mean |x_t| after ablation: 273.890564
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.332260
+  Mean |x_t| before ablation: 232.969543
+  Mean |x_t| after ablation: 232.929260
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.284218
+  Mean |x_t| before ablation: 261.980438
+  Mean |x_t| after ablation: 261.970490
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.011292
+  Mean |x_t| before ablation: 244.829239
+  Mean |x_t| after ablation: 244.829239
+  trial progress: 200/288
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.714201
+  Mean |x_t| before ablation: 231.002060
+  Mean |x_t| after ablation: 231.000961
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.653643
+  Mean |x_t| before ablation: 217.715836
+  Mean |x_t| after ablation: 217.709564
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.482502
+  Mean |x_t| before ablation: 196.521988
+  Mean |x_t| after ablation: 196.521393
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.566837
+  Mean |x_t| before ablation: 206.909012
+  Mean |x_t| after ablation: 206.893082
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.899688
+  Mean |x_t| before ablation: 208.635468
+  Mean |x_t| after ablation: 208.599014
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.712257
+  Mean |x_t| before ablation: 227.068253
+  Mean |x_t| after ablation: 226.996384
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.430275
+  Mean |x_t| before ablation: 262.353119
+  Mean |x_t| after ablation: 262.247864
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.593463
+  Mean |x_t| before ablation: 276.907440
+  Mean |x_t| after ablation: 276.741180
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.131942
+  Mean |x_t| before ablation: 279.255280
+  Mean |x_t| after ablation: 279.164185
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.088666
+  Mean |x_t| before ablation: 269.802399
+  Mean |x_t| after ablation: 269.754395
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.571499
+  Mean |x_t| before ablation: 265.789856
+  Mean |x_t| after ablation: 265.785187
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.147692
+  Mean |x_t| before ablation: 244.899765
+  Mean |x_t| after ablation: 244.897079
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.145401
+  Mean |x_t| before ablation: 239.284271
+  Mean |x_t| after ablation: 239.281525
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.174345
+  Mean |x_t| before ablation: 209.880432
+  Mean |x_t| after ablation: 209.877136
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.635914
+  Mean |x_t| before ablation: 195.734741
+  Mean |x_t| after ablation: 195.733704
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.646904
+  Mean |x_t| before ablation: 199.156036
+  Mean |x_t| after ablation: 199.149216
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.961986
+  Mean |x_t| before ablation: 206.426300
+  Mean |x_t| after ablation: 206.388275
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.227729
+  Mean |x_t| before ablation: 233.808685
+  Mean |x_t| after ablation: 233.725739
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.099391
+  Mean |x_t| before ablation: 257.026123
+  Mean |x_t| after ablation: 256.953735
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.546515
+  Mean |x_t| before ablation: 274.134674
+  Mean |x_t| after ablation: 273.968384
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.615119
+  Mean |x_t| before ablation: 275.204437
+  Mean |x_t| after ablation: 275.099030
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.616858
+  Mean |x_t| before ablation: 261.634583
+  Mean |x_t| after ablation: 261.593811
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.849464
+  Mean |x_t| before ablation: 253.034592
+  Mean |x_t| after ablation: 253.018555
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.137167
+  Mean |x_t| before ablation: 248.310760
+  Mean |x_t| after ablation: 248.310730
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.004953
+  Mean |x_t| before ablation: 238.568253
+  Mean |x_t| after ablation: 238.568237
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.224682
+  Mean |x_t| before ablation: 214.871582
+  Mean |x_t| after ablation: 214.871460
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.375717
+  Mean |x_t| before ablation: 197.091675
+  Mean |x_t| after ablation: 197.091309
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.782024
+  Mean |x_t| before ablation: 195.684280
+  Mean |x_t| after ablation: 195.676178
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.583782
+  Mean |x_t| before ablation: 205.846252
+  Mean |x_t| after ablation: 205.770508
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.942314
+  Mean |x_t| before ablation: 231.725571
+  Mean |x_t| after ablation: 231.649353
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.742713
+  Mean |x_t| before ablation: 254.552307
+  Mean |x_t| after ablation: 254.462982
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.741024
+  Mean |x_t| before ablation: 271.144501
+  Mean |x_t| after ablation: 271.033997
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.949883
+  Mean |x_t| before ablation: 271.729675
+  Mean |x_t| after ablation: 271.640778
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.458450
+  Mean |x_t| before ablation: 259.593109
+  Mean |x_t| after ablation: 259.535706
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.116581
+  Mean |x_t| before ablation: 253.907852
+  Mean |x_t| after ablation: 253.899017
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.502226
+  Mean |x_t| before ablation: 256.578369
+  Mean |x_t| after ablation: 256.577881
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.109880
+  Mean |x_t| before ablation: 235.217407
+  Mean |x_t| after ablation: 235.217392
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.396507
+  Mean |x_t| before ablation: 201.610291
+  Mean |x_t| after ablation: 201.605453
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.407669
+  Mean |x_t| before ablation: 191.922089
+  Mean |x_t| after ablation: 191.921646
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.215011
+  Mean |x_t| before ablation: 188.360321
+  Mean |x_t| after ablation: 188.347290
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.097565
+  Mean |x_t| before ablation: 200.322495
+  Mean |x_t| after ablation: 200.280594
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.661602
+  Mean |x_t| before ablation: 224.225677
+  Mean |x_t| after ablation: 224.154190
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.203262
+  Mean |x_t| before ablation: 254.495468
+  Mean |x_t| after ablation: 254.419846
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.280147
+  Mean |x_t| before ablation: 272.826843
+  Mean |x_t| after ablation: 272.668976
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.504379
+  Mean |x_t| before ablation: 274.208008
+  Mean |x_t| after ablation: 274.105286
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.460478
+  Mean |x_t| before ablation: 268.028717
+  Mean |x_t| after ablation: 267.991577
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.775517
+  Mean |x_t| before ablation: 260.189545
+  Mean |x_t| after ablation: 260.183472
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.484705
+  Mean |x_t| before ablation: 254.079971
+  Mean |x_t| after ablation: 254.079498
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.079491
+  Mean |x_t| before ablation: 226.329758
+  Mean |x_t| after ablation: 226.327179
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.460201
+  Mean |x_t| before ablation: 215.949158
+  Mean |x_t| after ablation: 215.944214
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.082737
+  Mean |x_t| before ablation: 186.866302
+  Mean |x_t| after ablation: 186.866287
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.153999
+  Mean |x_t| before ablation: 189.959473
+  Mean |x_t| after ablation: 189.947266
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.580795
+  Mean |x_t| before ablation: 204.482697
+  Mean |x_t| after ablation: 204.451355
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.796150
+  Mean |x_t| before ablation: 237.925797
+  Mean |x_t| after ablation: 237.855194
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.009677
+  Mean |x_t| before ablation: 251.160156
+  Mean |x_t| after ablation: 251.032394
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.076648
+  Mean |x_t| before ablation: 267.068848
+  Mean |x_t| after ablation: 266.946686
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.979881
+  Mean |x_t| before ablation: 282.073792
+  Mean |x_t| after ablation: 282.010406
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.859165
+  Mean |x_t| before ablation: 259.327942
+  Mean |x_t| after ablation: 259.282410
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.796814
+  Mean |x_t| before ablation: 272.711395
+  Mean |x_t| after ablation: 272.705475
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.066013
+  Mean |x_t| before ablation: 247.472427
+  Mean |x_t| after ablation: 247.472412
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.479319
+  Mean |x_t| before ablation: 239.775131
+  Mean |x_t| after ablation: 239.774643
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.270691
+  Mean |x_t| before ablation: 211.374298
+  Mean |x_t| after ablation: 211.362106
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.286964
+  Mean |x_t| before ablation: 191.494629
+  Mean |x_t| after ablation: 191.494415
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.006775
+  Mean |x_t| before ablation: 189.630432
+  Mean |x_t| after ablation: 189.619812
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 3.937870
+  Mean |x_t| before ablation: 202.674500
+  Mean |x_t| after ablation: 202.636246
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.019295
+  Mean |x_t| before ablation: 232.143356
+  Mean |x_t| after ablation: 232.065292
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.993320
+  Mean |x_t| before ablation: 253.890503
+  Mean |x_t| after ablation: 253.764633
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.867531
+  Mean |x_t| before ablation: 273.936188
+  Mean |x_t| after ablation: 273.792633
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 8.239844
+  Mean |x_t| before ablation: 275.883118
+  Mean |x_t| after ablation: 275.760040
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.454589
+  Mean |x_t| before ablation: 260.466309
+  Mean |x_t| after ablation: 260.428223
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 2.662167
+  Mean |x_t| before ablation: 258.088104
+  Mean |x_t| after ablation: 258.074402
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.085091
+  Mean |x_t| before ablation: 253.818192
+  Mean |x_t| after ablation: 253.818176
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.904695
+  Mean |x_t| before ablation: 238.349243
+  Mean |x_t| after ablation: 238.341629
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.182833
+  Mean |x_t| before ablation: 214.969986
+  Mean |x_t| after ablation: 214.966721
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.694458
+  Mean |x_t| before ablation: 199.395218
+  Mean |x_t| after ablation: 199.393997
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.914085
+  Mean |x_t| before ablation: 195.136948
+  Mean |x_t| after ablation: 195.127548
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 4.264355
+  Mean |x_t| before ablation: 215.209732
+  Mean |x_t| after ablation: 215.167465
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.372253
+  Mean |x_t| before ablation: 228.646118
+  Mean |x_t| after ablation: 228.582977
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 6.986160
+  Mean |x_t| before ablation: 256.498596
+  Mean |x_t| after ablation: 256.403442
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 9.164017
+  Mean |x_t| before ablation: 276.492218
+  Mean |x_t| after ablation: 276.340332
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 7.216087
+  Mean |x_t| before ablation: 274.752533
+  Mean |x_t| after ablation: 274.657776
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 5.545597
+  Mean |x_t| before ablation: 269.552795
+  Mean |x_t| after ablation: 269.495697
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.633274
+  Mean |x_t| before ablation: 258.985565
+  Mean |x_t| after ablation: 258.980408
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.428909
+  Mean |x_t| before ablation: 251.554520
+  Mean |x_t| after ablation: 251.554153
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.113647
+  Mean |x_t| before ablation: 239.464737
+  Mean |x_t| after ablation: 239.462143
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.476688
+  Mean |x_t| before ablation: 216.240997
+  Mean |x_t| after ablation: 216.240494
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 0.066292
+  Mean |x_t| before ablation: 201.648148
+  Mean |x_t| after ablation: 201.648132
+USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
+[denoise_one_step] t_idx=1
+  x_t shape: torch.Size([1, 1, 1, 16])
+  ablation_vector shape: torch.Size([16])
+  component shape: torch.Size([1, 1, 1, 16])
+  Mean |component| being removed: 1.576500
+  Mean |x_t| before ablation: 196.626434
+  Mean |x_t| after ablation: 196.620117
+Binning and averaging each preparatory timestep by cued-color bin...
+Global PCA explained variance ratio: [0.61773598 0.24043799 0.05937857]
+Global PCA cumulative variance: [0.61773598 0.85817397 0.91755254]
+Binning and averaging each diffusion timestep by cued-color bin...
+Diffusion PCA explained variance ratio: [0.58465219 0.19919654 0.16142832]
+Diffusion PCA cumulative variance: [0.58465219 0.78384873 0.94527705]
+Saved outputs:
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/prospective_memory_global_pca_all_prep_steps_3d.png
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/prospective_memory_global_pca_all_diffusion_steps_3d.png
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/global_pca_trajectory_data.npz
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/global_pca_diffusion_data.npz
+  /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_7/global_pca_trajectory_summary.json

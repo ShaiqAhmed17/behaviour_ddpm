@@ -1,0 +1,43 @@
+[
+  {
+    "subspace": "global_pc12_span",
+    "min_principal_angle_deg": 0.335230999366437,
+    "max_principal_angle_deg": 2.1369225840698047,
+    "mean_principal_angle_deg": 1.2360767917181208,
+    "angles_deg": [
+      0.335230999366437,
+      2.1369225840698047
+    ]
+  },
+  {
+    "subspace": "global_pc123_span",
+    "min_principal_angle_deg": 0.0,
+    "max_principal_angle_deg": 2.1377863471372036,
+    "mean_principal_angle_deg": 0.8244215133638026,
+    "angles_deg": [
+      0.0,
+      0.3354781929542044,
+      2.1377863471372036
+    ]
+  },
+  {
+    "subspace": "cue1_plane_span",
+    "min_principal_angle_deg": 2.2931707111306032,
+    "max_principal_angle_deg": 5.134438116303642,
+    "mean_principal_angle_deg": 3.7138044137171224,
+    "angles_deg": [
+      2.2931707111306032,
+      5.134438116303642
+    ]
+  },
+  {
+    "subspace": "cue2_plane_span",
+    "min_principal_angle_deg": 0.1464708192765618,
+    "max_principal_angle_deg": 4.908583028685573,
+    "mean_principal_angle_deg": 2.5275269239810676,
+    "angles_deg": [
+      0.1464708192765618,
+      4.908583028685573
+    ]
+  }
+]

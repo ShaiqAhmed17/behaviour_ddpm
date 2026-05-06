@@ -1,0 +1,115 @@
+{
+  "report_name": "prospective_memory_sampled_consolidated_report",
+  "generated_at_utc": "2026-04-16T21:12:51Z",
+  "run_name": "index_cued_first_diffusion_0.3_swap_recovery_9",
+  "trajectory_dir": "/scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_9/ablated_teacher_trajectories",
+  "results_dir": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories",
+  "primary_summary": {
+    "run_name": "index_cued_first_diffusion_0.3_swap_recovery_9",
+    "trajectory_dir": "/scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_9/ablated_teacher_trajectories",
+    "num_sweep_files": 1000,
+    "num_trials": 32000,
+    "state_dim": 16,
+    "prep_idx_primary": 2,
+    "cue_separation_primary": 53.498477935791016,
+    "pca_explained_variance_primary": [
+      0.5027582049369812,
+      0.30567702651023865,
+      0.13858425617218018
+    ],
+    "target_distractor_plane_angle": 5.723101615905762,
+    "target_distractor_center_separation": 2.4000278244784568e-06,
+    "prep_epoch_results": {
+      "0": {
+        "plane_angle": 16.015207290649414,
+        "separation": 35.924041748046875,
+        "cue1_planarity": 0.9067047834396362,
+        "cue2_planarity": 0.9288196563720703,
+        "explained_variance": [
+          1.0,
+          2.1320499143939742e-08,
+          1.5597315439208614e-08
+        ]
+      },
+      "1": {
+        "plane_angle": 49.025672912597656,
+        "separation": 61.23936080932617,
+        "cue1_planarity": 0.9352691173553467,
+        "cue2_planarity": 0.9926628470420837,
+        "explained_variance": [
+          0.999999463558197,
+          5.337689685802616e-07,
+          1.5758917726316213e-08
+        ]
+      },
+      "2": {
+        "plane_angle": 37.56803894042969,
+        "separation": 53.498477935791016,
+        "cue1_planarity": 0.9991884827613831,
+        "cue2_planarity": 0.9983426928520203,
+        "explained_variance": [
+          0.5027582049369812,
+          0.30567702651023865,
+          0.13858425617218018
+        ]
+      },
+      "3": {
+        "plane_angle": 40.5279655456543,
+        "separation": 53.974952697753906,
+        "cue1_planarity": 0.9991580247879028,
+        "cue2_planarity": 0.9989544749259949,
+        "explained_variance": [
+          0.5281439423561096,
+          0.3017207682132721,
+          0.12634596228599548
+        ]
+      }
+    },
+    "global_pca_output_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/prospective_memory_global_pca_common_cued_bin.png"
+  },
+  "timeline_geometry_summary": {
+    "available": true,
+    "prep_angle_deg": {
+      "0": 16.015207290649414,
+      "1": 49.02566909790039,
+      "2": 37.56803894042969,
+      "3": 40.52796173095703
+    },
+    "prep_separation": {
+      "0": 35.92403793334961,
+      "1": 61.239356994628906,
+      "2": 53.498477935791016,
+      "3": 53.974952697753906
+    },
+    "diffusion_angle_deg_stats": {
+      "min": null,
+      "max": null,
+      "mean": null
+    },
+    "diffusion_separation_stats": {
+      "min": null,
+      "max": null,
+      "mean": null
+    },
+    "diffusion_cue1_planarity_stats": {
+      "min": null,
+      "max": null,
+      "mean": null
+    },
+    "diffusion_cue2_planarity_stats": {
+      "min": null,
+      "max": null,
+      "mean": null
+    }
+  },
+  "artifacts": {
+    "primary_npz": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/sampled_neural_states_primary.npz",
+    "primary_summary_json": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/summary_sampled_trajectories.json",
+    "time_step_stats_json": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_statistics_sampled.json",
+    "time_step_prep_plot": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_prep_sampled.png",
+    "time_step_diffusion_plot": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_diffusion_sampled.png",
+    "global_pca_plot": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/prospective_memory_global_pca_common_cued_bin.png",
+    "all_prep_plot": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/prospective_memory_all_prep_indices.png",
+    "plane_fit_plot": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/plane_fitting_visualization.png"
+  }
+}

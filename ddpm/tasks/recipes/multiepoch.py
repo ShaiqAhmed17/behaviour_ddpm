@@ -2,6 +2,80 @@ from ddpm.tasks.variable.base import *
 from ddpm.tasks.sample.base import *
 from ddpm.tasks.main.multiepoch import *
 from ddpm.tasks.input.multiepoch import *
+from torch import Tensor as _T
+
+
+class JointIndexCueSpikeAndSlabSwapProbabilityTaskVariableGenerator(
+    SpikeAndSlabSwapProbabilityTaskVariableGenerator
+):
+    """
+    Task variable generator for a joint index-memory model.
+
+    The existing cue-first and cue-delayed tasks are represented with the same
+    underlying sensory shape, while the sampled task_mode selects which prep
+    epoch receives the index cue.
+    """
+
+    trial_types = ["index_first", "delayed_index"]
+
+    task_variable_keys = SpikeAndSlabSwapProbabilityTaskVariableGenerator.task_variable_keys.union(
+        {"task_mode"}
+    )
+
+    def __init__(
+        self,
+        num_items: int,
+        correct_probability: float,
+        stimulus_exposure_duration: int,
+        pre_index_delay_duration: int | List[int],
+        index_duration: int,
+        post_index_delay_duration: int,
+        p_index_first: float = 0.5,
+    ) -> None:
+        super().__init__(
+            num_items=num_items,
+            correct_probability=correct_probability,
+            stimulus_exposure_duration=stimulus_exposure_duration,
+            pre_index_delay_duration=pre_index_delay_duration,
+            index_duration=index_duration,
+            post_index_delay_duration=post_index_delay_duration,
+        )
+        assert 0.0 <= p_index_first <= 1.0
+        self.p_index_first = p_index_first
+
+    def generate_variable_dict(
+        self,
+        batch_size: int,
+        *_,
+        override_stimulus_features_dict: Optional[Dict[str, _T]] = None,
+    ) -> Dict[str, _T]:
+        ret = super().generate_variable_dict(
+            batch_size=batch_size,
+            override_stimulus_features_dict=override_stimulus_features_dict,
+        )
+        task_mode = torch.bernoulli(
+            torch.full((batch_size,), self.p_index_first, dtype=default_dtype)
+        ).long()
+        ret.update(
+            {
+                "task_mode": task_mode,
+                "trial_type_idx": task_mode,
+            }
+        )
+        return ret
+
+    def generate_representative_variable_dict(
+        self,
+        *args,
+        override_stimulus_features_dict: Optional[Dict[str, _T]] = None,
+    ) -> Dict[str, _T]:
+        ret = super().generate_variable_dict(
+            batch_size=len(self.trial_types),
+            override_stimulus_features_dict=override_stimulus_features_dict,
+        )
+        ret["task_mode"] = torch.tensor([0, 1]).long()
+        ret["trial_type_idx"] = ret["task_mode"]
+        return ret
 
 
 
@@ -53,6 +127,40 @@ def delayed_indexing_cue_fixed_probability_vectoral(
         pre_index_delay_duration, index_duration, post_index_delay_duration
     )
     sensory_gen = DelayedIndexCuingSensoryGeneratorWithMemory(num_items=num_items)
+    sample_gen = VectoralEmbeddedExampleSampleGenerator(
+        sample_size=sample_size, **sample_kwargs
+    )
+    return MultiEpochDiffusionTask(
+        task_variable_gen=task_variable_gen,
+        sensory_gen=sensory_gen,
+        sample_gen=sample_gen,
+    )
+
+
+def joint_indexing_cue_fixed_probability_vectoral(
+    sample_size,
+    num_items,
+    correct_probability,
+    stimulus_exposure_duration,
+    pre_index_delay_duration,
+    index_duration,
+    post_index_delay_duration,
+    p_index_first: float = 0.5,
+    **sample_kwargs,
+):
+    """
+    Joint index-cuing task that samples both cue-first and cue-delayed trials.
+    """
+    task_variable_gen = JointIndexCueSpikeAndSlabSwapProbabilityTaskVariableGenerator(
+        num_items,
+        correct_probability,
+        stimulus_exposure_duration,
+        pre_index_delay_duration,
+        index_duration,
+        post_index_delay_duration,
+        p_index_first=p_index_first,
+    )
+    sensory_gen = JointIndexCuingSensoryGeneratorWithMemory(num_items=num_items)
     sample_gen = VectoralEmbeddedExampleSampleGenerator(
         sample_size=sample_size, **sample_kwargs
     )

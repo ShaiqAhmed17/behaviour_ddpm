@@ -1,0 +1,78 @@
+{
+  "run_dir": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_no_swap_1",
+  "prep_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_trials": 288,
+  "ablation_conditions": [
+    10
+  ],
+  "healthy_condition_code": -1,
+  "ablation_info": {
+    "source": "direction_sweep",
+    "run_ablation_neuron_idx": null,
+    "run_has_ablation_data": false
+  },
+  "separate_ablation_plots": false,
+  "skip_combined_plots": false,
+  "separate_figure_paths": {},
+  "n_bins": 12,
+  "angle_step": 30,
+  "neural_dim": 16,
+  "global_explained_variance_ratio": [
+    0.7822851733090813,
+    0.09741357340609823,
+    0.05968515307062536
+  ],
+  "global_explained_variance_cumulative": [
+    0.7822851733090813,
+    0.8796987467151796,
+    0.9393838997858049
+  ],
+  "diffusion_global_explained_variance_ratio": [
+    0.7333009965027174,
+    0.20146131600849365,
+    0.03774343490421535
+  ],
+  "diffusion_global_explained_variance_cumulative": [
+    0.7333009965027174,
+    0.934762312511211,
+    0.9725057474154264
+  ],
+  "per_prep_local_variance_fraction_in_global_basis": {
+    "0": {
+      "PC1": 0.5303089857201962,
+      "PC2": 0.14541402978464038,
+      "PC3": 0.32427698449516335
+    },
+    "1": {
+      "PC1": 0.8673538451501597,
+      "PC2": 0.10403305143710354,
+      "PC3": 0.028613103412736877
+    },
+    "2": {
+      "PC1": 0.5952257072247218,
+      "PC2": 0.2461462473456513,
+      "PC3": 0.1586280454296269
+    },
+    "3": {
+      "PC1": 0.43987350462768915,
+      "PC2": 0.2936873140038123,
+      "PC3": 0.26643918136849853
+    }
+  },
+  "prep_step_counts": {
+    "0": 5,
+    "1": 15,
+    "2": 5,
+    "3": 1
+  },
+  "diffusion_step_count": 40,
+  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_10/prospective_memory_global_pca_all_prep_steps_3d.png",
+  "diffusion_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_10/prospective_memory_global_pca_all_diffusion_steps_3d.png",
+  "prep_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_10/prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png",
+  "diffusion_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/3D_plots/teacher_individualized_pca_index_cued_first_diffusion_no_swap_1/dir_10/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png"
+}

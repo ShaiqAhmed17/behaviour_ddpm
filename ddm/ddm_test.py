@@ -4,6 +4,11 @@ import os
 import math
 import torch
 
+if __name__ != "__main__":
+    import pytest
+
+    pytest.skip("ddm_test.py is a training script, not a pytest module", allow_module_level=True)
+
 from purias_utils.util.logging import configure_logging_paths
 
 from ddpm.model.input import InputModelBlock

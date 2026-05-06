@@ -290,7 +290,7 @@ class LinearSubspaceTeacherForcedDDPMReverseProcess(
             )
 
             base_samples, early_embedded_x0_pred = self.denoise_one_step(
-                t_idx, base_samples, predicted_residual, noise_scaler, ablation_vector=ablation_vector
+                t_idx, base_samples, predicted_residual, noise_scaler
             )
             
             early_x0_pred = self.extract_subspace(early_embedded_x0_pred) # [..., 1, sample dim]
@@ -418,9 +418,11 @@ class PreparatoryLinearSubspaceTeacherForcedDDPMReverseProcess(
                 1, recent_state, embedded_predicted_residual, noise_scaler=noise_scaler
             )
             
-            # Apply ablation to prep state (same direction as diffusion phase)
             if ablation_vector is not None:
-                component = (recent_state @ ablation_vector.unsqueeze(-1)) * ablation_vector
+                if ablation_vector.dim() == 1:
+                    component = (recent_state @ ablation_vector.unsqueeze(-1)) * ablation_vector
+                else:
+                    component = (recent_state @ ablation_vector.T) @ ablation_vector
                 recent_state = recent_state - component
             
             preparatory_trajectory.append(recent_state)

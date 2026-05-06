@@ -1,0 +1,11 @@
+direction,best_ablation_idx,best_abs_cosine,low_coverage_candidate
+global_pc2,2,0.4491214343023787,False
+cue2_local_pc2,13,0.469695539178563,False
+cue_separation,9,0.470923119432263,False
+cue1_local_pc1,9,0.475635662243566,False
+global_pc3,10,0.48739042716441683,False
+cue1_local_pc2,10,0.5399579527406448,False
+cue1_local_pc3,13,0.5604210866817445,False
+global_pc1,12,0.564534087442925,False
+cue2_local_pc1,4,0.5744619751331632,False
+cue2_local_pc3,13,0.6259825494180586,False

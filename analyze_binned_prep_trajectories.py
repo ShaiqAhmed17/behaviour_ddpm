@@ -7,7 +7,8 @@ trajectory across multiple prep indices in one shared PCA space.
 What it does:
 1. Loads a DDPM model checkpoint.
 2. Generates all non-swap cue/color trial combinations.
-3. Extracts neural states for all requested prep indices per trial in one pass.
+3. Optionally applies ablation (from run ablation_data or direction sweep).
+4. Extracts neural states for all requested prep indices per trial in one pass.
 4. Bins states by a common feature (cued-color bin) for each cue.
 5. Averages states per (cue, bin, prep_idx).
 6. Fits one global PCA across all prep_idx points.
@@ -89,23 +90,59 @@ def parse_args():
         default=None,
         help="Output directory. Defaults to ddpm/analysis/new_analysis/results/<run_name>/global_pca_trajectory.",
     )
+    parser.add_argument(
+        "--ablation-directions",
+        type=int,
+        nargs="+",
+        default=None,
+        help=(
+            "Ablation direction indices from model.behaviour_nullspace to analyze. "
+            "If omitted and --all-ablation-directions is not set, the script auto-uses "
+            "run ablation_data.pt when available, else healthy only."
+        ),
+    )
+    parser.add_argument(
+        "--all-ablation-directions",
+        action="store_true",
+        help="Analyze all directions in model.behaviour_nullspace.",
+    )
+    parser.add_argument(
+        "--include-healthy",
+        action="store_true",
+        help="Also include the healthy (no-ablation) condition alongside ablated conditions.",
+    )
+    parser.add_argument(
+        "--separate-ablation-plots",
+        action="store_true",
+        help=(
+            "Generate separate 3D plot files for each ablation condition "
+            "(healthy and/or each direction) instead of only overlaid views."
+        ),
+    )
+    parser.add_argument(
+        "--skip-combined-plots",
+        action="store_true",
+        help="Skip combined/overlaid plots and only write per-condition plots when used with --separate-ablation-plots.",
+    )
     return parser.parse_args()
 
 
-def generate_trial_combinations(angle_step):
+def generate_trial_combinations(angle_step, ablation_conditions):
     angles = list(range(0, 360, angle_step))
     trials = []
-    for cue in [1, 2]:
-        for color1 in angles:
-            for color2 in angles:
-                trials.append(
-                    {
-                        "cue": cue,
-                        "color1_angle": color1,
-                        "color2_angle": color2,
-                        "swap": False,
-                    }
-                )
+    for ablation_condition in ablation_conditions:
+        for cue in [1, 2]:
+            for color1 in angles:
+                for color2 in angles:
+                    trials.append(
+                        {
+                            "cue": cue,
+                            "color1_angle": color1,
+                            "color2_angle": color2,
+                            "swap": False,
+                            "ablation_condition": int(ablation_condition),
+                        }
+                    )
     return trials
 
 
@@ -154,7 +191,15 @@ def build_trial_info(trial, task):
     )
 
 
-def extract_states_all_preps_for_trial(trial, task, model, device, prep_indices, neural_dim):
+def extract_states_all_preps_for_trial(
+    trial,
+    task,
+    model,
+    device,
+    prep_indices,
+    neural_dim,
+    ablation_vectors,
+):
     with torch.no_grad():
         trial_info = build_trial_info(trial, task)
 
@@ -166,49 +211,77 @@ def extract_states_all_preps_for_trial(trial, task, model, device, prep_indices,
         for inp in trial_info.diffusion_network_inputs:
             diffusion_network_inputs_device.append(inp.to(device) if isinstance(inp, torch.Tensor) else inp)
 
-        prep_dicts, _ = model.generate_samples(
-            prep_network_inputs=prep_network_inputs_device,
-            diffusion_network_inputs=diffusion_network_inputs_device,
-            prep_epoch_durations=trial_info.prep_epoch_durations,
-            diffusion_epoch_durations=trial_info.diffusion_epoch_durations,
-            samples_shape=[1, 1],
-            noise_scaler=1.0,
-        )
+        sample_kwargs = {
+            "prep_network_inputs": prep_network_inputs_device,
+            "diffusion_network_inputs": diffusion_network_inputs_device,
+            "prep_epoch_durations": trial_info.prep_epoch_durations,
+            "diffusion_epoch_durations": trial_info.diffusion_epoch_durations,
+            "samples_shape": [1, 1],
+            "noise_scaler": 1.0,
+        }
+
+        ablation_condition = int(trial["ablation_condition"])
+        if ablation_condition >= 0:
+            sample_kwargs["ablation_vector"] = ablation_vectors[ablation_condition]
+
+        prep_dicts, samples_dict = model.generate_samples(**sample_kwargs)
 
         out = {}
         for p in prep_indices:
             if p >= len(prep_dicts):
                 raise ValueError(f"prep_idx {p} exceeds number of prep epochs {len(prep_dicts)}")
-            out[p] = prep_dicts[p]["postprep_state"][0, 0, :neural_dim].cpu().numpy()
-        return out
+            # Shape: [batch, samples, T_prep, neural_dim]
+            prep_traj = prep_dicts[p]["preparatory_trajectory"][0, 0, :, :neural_dim].cpu().numpy()
+            out[p] = prep_traj
+
+        # Shape: [batch, samples, T_diff, neural_dim]
+        diff_traj = samples_dict["embedded_sample_trajectory"][0, 0, :, :neural_dim].cpu().numpy()
+        return out, diff_traj
 
 
-def extract_states_for_all_trials(trials, task, model, device, prep_indices, neural_dim):
-    states_by_prep = {p: [] for p in prep_indices}
+def extract_states_for_all_trials(
+    trials,
+    task,
+    model,
+    device,
+    prep_indices,
+    neural_dim,
+    ablation_vectors,
+):
+    # states_seq_by_prep[p][trial_idx] has shape [T_prep, neural_dim]
+    states_seq_by_prep = {p: [] for p in prep_indices}
+    states_seq_by_diffusion = []
     metadata = []
 
     for i, trial in enumerate(trials):
         if i % 200 == 0 and i > 0:
             print(f"  trial progress: {i}/{len(trials)}")
 
-        trial_states = extract_states_all_preps_for_trial(
+        trial_states, trial_diffusion_states = extract_states_all_preps_for_trial(
             trial=trial,
             task=task,
             model=model,
             device=device,
             prep_indices=prep_indices,
             neural_dim=neural_dim,
+            ablation_vectors=ablation_vectors,
         )
 
         for p in prep_indices:
-            states_by_prep[p].append(trial_states[p])
+            states_seq_by_prep[p].append(trial_states[p])
 
-        metadata.append([trial["cue"], trial["color1_angle"], trial["color2_angle"]])
+        states_seq_by_diffusion.append(trial_diffusion_states)
 
-    for p in prep_indices:
-        states_by_prep[p] = np.array(states_by_prep[p])
+        metadata.append(
+            [
+                trial["cue"],
+                trial["color1_angle"],
+                trial["color2_angle"],
+                trial["ablation_condition"],
+            ]
+        )
 
-    return states_by_prep, np.array(metadata)
+    return states_seq_by_prep, np.array(states_seq_by_diffusion), np.array(metadata)
 
 
 def bin_and_average_states(states, metadata, n_bins):
@@ -218,7 +291,8 @@ def bin_and_average_states(states, metadata, n_bins):
         2: {b: [] for b in range(n_bins)},
     }
 
-    for i, (cue, c1, c2) in enumerate(metadata):
+    for i, trial_metadata in enumerate(metadata):
+        cue, c1, c2 = trial_metadata[:3]
         cue = int(cue)
         cued_angle = c1 if cue == 1 else c2
         b = bin_angle(cued_angle, bin_size)
@@ -237,26 +311,344 @@ def bin_and_average_states(states, metadata, n_bins):
     return averaged
 
 
-def make_trajectory_dataset(states_by_prep, metadata, prep_indices, n_bins):
-    averaged_by_prep = {}
-    for p in prep_indices:
-        averaged_by_prep[p] = bin_and_average_states(states_by_prep[p], metadata, n_bins)
+def make_full_step_trajectory_dataset(states_seq_by_prep, metadata, prep_indices, n_bins):
+    """Build pooled points over all preparatory timesteps for global PCA.
 
+    labels columns:
+            [prep_idx, cue, bin, prep_order, local_step, global_step, ablation_condition]
+    """
     points = []
-    labels = []  # [prep_idx, cue, bin, prep_order]
+    labels = []
+    prep_step_counts = {}
 
+    global_step_offset = 0
     for prep_order, p in enumerate(prep_indices):
-        for cue in [1, 2]:
-            for b in range(n_bins):
-                vec = averaged_by_prep[p][cue][b]
-                if np.isnan(vec).any():
-                    continue
-                points.append(vec)
-                labels.append([p, cue, b, prep_order])
+        seqs = states_seq_by_prep[p]
+        if len(seqs) == 0:
+            prep_step_counts[int(p)] = 0
+            continue
+
+        # Assume fixed prep duration for this epoch; use first trial as reference.
+        num_steps = int(seqs[0].shape[0])
+        prep_step_counts[int(p)] = num_steps
+
+        for local_step in range(num_steps):
+            # Stack this local prep step across trials -> [n_trials, neural_dim]
+            states_step = np.stack([seq[local_step] for seq in seqs], axis=0)
+            condition_values = metadata[:, 3]
+            for ablation_condition in np.unique(condition_values):
+                cond_mask = condition_values == ablation_condition
+                averaged = bin_and_average_states(states_step[cond_mask], metadata[cond_mask], n_bins)
+
+                for cue in [1, 2]:
+                    for b in range(n_bins):
+                        vec = averaged[cue][b]
+                        if np.isnan(vec).any():
+                            continue
+                        points.append(vec)
+                        labels.append([
+                            int(p),
+                            int(cue),
+                            int(b),
+                            int(prep_order),
+                            int(local_step),
+                            int(global_step_offset + local_step),
+                            int(ablation_condition),
+                        ])
+
+        global_step_offset += num_steps
 
     points = np.array(points)
     labels = np.array(labels, dtype=int)
-    return averaged_by_prep, points, labels
+    return points, labels, prep_step_counts
+
+
+def make_diffusion_step_dataset(states_seq_by_diffusion, metadata, n_bins):
+    """Build pooled points over all diffusion timesteps for a global diffusion PCA.
+
+    labels columns:
+            [diff_step, cue, bin, global_step, ablation_condition]
+    """
+    points = []
+    labels = []
+
+    if states_seq_by_diffusion.shape[0] == 0:
+        return np.array(points), np.array(labels, dtype=int), 0
+
+    num_diff_steps = int(states_seq_by_diffusion.shape[1])
+
+    for diff_step in range(num_diff_steps):
+        states_step = states_seq_by_diffusion[:, diff_step, :]
+        condition_values = metadata[:, 3]
+        for ablation_condition in np.unique(condition_values):
+            cond_mask = condition_values == ablation_condition
+            averaged = bin_and_average_states(states_step[cond_mask], metadata[cond_mask], n_bins)
+
+            for cue in [1, 2]:
+                for b in range(n_bins):
+                    vec = averaged[cue][b]
+                    if np.isnan(vec).any():
+                        continue
+                    points.append(vec)
+                    labels.append([
+                        int(diff_step),
+                        int(cue),
+                        int(b),
+                        int(diff_step),
+                        int(ablation_condition),
+                    ])
+
+    points = np.array(points)
+    labels = np.array(labels, dtype=int)
+    return points, labels, num_diff_steps
+
+
+def plot_all_prep_steps_3d(pca_coords, labels, pca, out_path, n_bins):
+    """Plot full stepwise preparatory trajectories in one global PCA space."""
+    mins = pca_coords.min(axis=0)
+    maxs = pca_coords.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection="3d")
+
+    # Draw full trajectory for each (cue, bin), sorted by global_step.
+    ablation_conditions = np.unique(labels[:, 6])
+    for ablation_condition in ablation_conditions:
+        for cue in [1, 2]:
+            marker = "o" if cue == 1 else "^"
+            for b in range(n_bins):
+                mask = (
+                    (labels[:, 1] == cue)
+                    & (labels[:, 2] == b)
+                    & (labels[:, 6] == ablation_condition)
+                )
+                seq = pca_coords[mask]
+                seq_labels = labels[mask]
+                if seq.shape[0] < 2:
+                    continue
+
+                order = np.argsort(seq_labels[:, 5])
+                seq = seq[order]
+
+                color = angle_to_colour(int(b), n_bins)
+                ax.plot(seq[:, 0], seq[:, 1], seq[:, 2], color=color, alpha=0.65, linewidth=1.8)
+                ax.scatter(
+                    seq[:, 0],
+                    seq[:, 1],
+                    seq[:, 2],
+                    c=[color],
+                    marker=marker,
+                    s=26,
+                    edgecolors="k",
+                    linewidths=0.35,
+                    alpha=0.9,
+                )
+
+                # Highlight start and end points for readability.
+                ax.scatter(
+                    seq[0, 0], seq[0, 1], seq[0, 2], c=[color], marker=marker,
+                    s=72, edgecolors="k", linewidths=0.7, alpha=1.0
+                )
+                ax.scatter(
+                    seq[-1, 0], seq[-1, 1], seq[-1, 2], c=[color], marker=marker,
+                    s=100, edgecolors="k", linewidths=0.9, alpha=1.0
+                )
+
+    g = pca.explained_variance_ratio_
+    ax.set_xlim(lims[0])
+    ax.set_ylim(lims[1])
+    ax.set_zlim(lims[2])
+    ax.set_xlabel(f"PC1 ({g[0]:.1%})", fontweight="bold")
+    ax.set_ylabel(f"PC2 ({g[1]:.1%})", fontweight="bold")
+    ax.set_zlabel(f"PC3 ({g[2]:.1%})", fontweight="bold")
+    ax.set_title("All Preparatory Timesteps in Global PCA Space", fontweight="bold")
+    ax.grid(True, alpha=0.25)
+    ax.view_init(elev=24, azim=-56)
+
+    legend = [
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 1"),
+        Line2D([0], [0], marker="^", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 2"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=6, label="Start"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=9, label="End"),
+    ]
+    ax.legend(handles=legend, fontsize=8, loc="upper right")
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=170, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_all_diffusion_steps_3d(pca_coords, labels, pca, out_path, n_bins):
+    """Plot full stepwise diffusion trajectories in one diffusion-global PCA space."""
+    mins = pca_coords.min(axis=0)
+    maxs = pca_coords.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection="3d")
+
+    ablation_conditions = np.unique(labels[:, 4])
+    for ablation_condition in ablation_conditions:
+        for cue in [1, 2]:
+            marker = "o" if cue == 1 else "^"
+            for b in range(n_bins):
+                mask = (
+                    (labels[:, 1] == cue)
+                    & (labels[:, 2] == b)
+                    & (labels[:, 4] == ablation_condition)
+                )
+                seq = pca_coords[mask]
+                seq_labels = labels[mask]
+                if seq.shape[0] < 2:
+                    continue
+
+                order = np.argsort(seq_labels[:, 3])
+                seq = seq[order]
+                color = angle_to_colour(int(b), n_bins)
+
+                ax.plot(seq[:, 0], seq[:, 1], seq[:, 2], color=color, alpha=0.65, linewidth=1.7)
+                ax.scatter(
+                    seq[:, 0],
+                    seq[:, 1],
+                    seq[:, 2],
+                    c=[color],
+                    marker=marker,
+                    s=20,
+                    edgecolors="k",
+                    linewidths=0.3,
+                    alpha=0.85,
+                )
+
+                ax.scatter(
+                    seq[0, 0], seq[0, 1], seq[0, 2], c=[color], marker=marker,
+                    s=68, edgecolors="k", linewidths=0.7, alpha=1.0
+                )
+                ax.scatter(
+                    seq[-1, 0], seq[-1, 1], seq[-1, 2], c=[color], marker=marker,
+                    s=92, edgecolors="k", linewidths=0.9, alpha=1.0
+                )
+
+    g = pca.explained_variance_ratio_
+    ax.set_xlim(lims[0])
+    ax.set_ylim(lims[1])
+    ax.set_zlim(lims[2])
+    ax.set_xlabel(f"PC1 ({g[0]:.1%})", fontweight="bold")
+    ax.set_ylabel(f"PC2 ({g[1]:.1%})", fontweight="bold")
+    ax.set_zlabel(f"PC3 ({g[2]:.1%})", fontweight="bold")
+    ax.set_title("All Diffusion Timesteps in Global PCA Space", fontweight="bold")
+    ax.grid(True, alpha=0.25)
+    ax.view_init(elev=22, azim=-58)
+
+    legend = [
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 1"),
+        Line2D([0], [0], marker="^", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 2"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=6, label="Start"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=9, label="End"),
+    ]
+    ax.legend(handles=legend, fontsize=8, loc="upper right")
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=170, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_spatial_rings_by_time_3d(
+    pca_coords,
+    labels,
+    pca,
+    out_path,
+    n_bins,
+    time_col,
+    cue_col,
+    bin_col,
+    condition_col,
+    title,
+):
+    """At each fixed timestep, connect points across bins; darken lines over time."""
+    mins = pca_coords.min(axis=0)
+    maxs = pca_coords.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+    fig = plt.figure(figsize=(10, 8))
+    ax = fig.add_subplot(111, projection="3d")
+
+    times = np.unique(labels[:, time_col])
+    if len(times) == 1:
+        t_min, t_max = float(times[0]), float(times[0] + 1.0)
+    else:
+        t_min, t_max = float(times.min()), float(times.max())
+
+    # Build a lookup so we can retrieve coordinates by (time, cue, bin, condition)
+    lookup = {}
+    for i in range(labels.shape[0]):
+        t = int(labels[i, time_col])
+        cue = int(labels[i, cue_col])
+        b = int(labels[i, bin_col])
+        condition = int(labels[i, condition_col])
+        lookup[(t, cue, b, condition)] = pca_coords[i]
+
+    condition_values = np.unique(labels[:, condition_col])
+
+    for t in times:
+        # Darker as time increases.
+        norm = (float(t) - t_min) / max(t_max - t_min, 1e-12)
+        gray = 0.85 - 0.75 * norm
+        line_color = (gray, gray, gray)
+
+        for condition in condition_values:
+            for cue in [1, 2]:
+                pts = []
+                for b in range(n_bins):
+                    key = (int(t), cue, int(b), int(condition))
+                    if key in lookup:
+                        pts.append(lookup[key])
+
+                if len(pts) < 3:
+                    continue
+
+                pts = np.array(pts)
+                # Close the ring.
+                closed = np.vstack([pts, pts[0:1]])
+
+                ax.plot(
+                    closed[:, 0],
+                    closed[:, 1],
+                    closed[:, 2],
+                    color=line_color,
+                    linewidth=1.3 if cue == 1 else 1.0,
+                    linestyle="-" if cue == 1 else "--",
+                    alpha=0.95,
+                )
+
+    g = pca.explained_variance_ratio_
+    ax.set_xlim(lims[0])
+    ax.set_ylim(lims[1])
+    ax.set_zlim(lims[2])
+    ax.set_xlabel(f"PC1 ({g[0]:.1%})", fontweight="bold")
+    ax.set_ylabel(f"PC2 ({g[1]:.1%})", fontweight="bold")
+    ax.set_zlabel(f"PC3 ({g[2]:.1%})", fontweight="bold")
+    ax.set_title(title, fontweight="bold")
+    ax.grid(True, alpha=0.25)
+    ax.view_init(elev=24, azim=-56)
+
+    legend = [
+        Line2D([0], [0], color="black", linestyle="-", linewidth=1.5, label="Cue 1 ring"),
+        Line2D([0], [0], color="black", linestyle="--", linewidth=1.5, label="Cue 2 ring"),
+        Line2D([0], [0], color=(0.85, 0.85, 0.85), linestyle="-", linewidth=2, label="Early time"),
+        Line2D([0], [0], color=(0.10, 0.10, 0.10), linestyle="-", linewidth=2, label="Late time"),
+    ]
+    ax.legend(handles=legend, fontsize=8, loc="upper right")
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=170, bbox_inches="tight")
+    plt.close(fig)
 
 
 def plot_trajectory_geometry(pca_coords, labels, prep_indices, pca, out_path, n_bins):
@@ -449,11 +841,125 @@ def compute_prep_local_variance_fractions(pca_coords, labels, prep_indices):
     return out
 
 
+def resolve_run_dir(repo_root, run_path):
+    run_path = Path(run_path)
+
+    candidate_dirs = []
+    if run_path.is_absolute():
+        candidate_dirs.append(run_path)
+    else:
+        candidate_dirs.append((repo_root / run_path).resolve())
+        for prefix in ["results_link_sampler", "results_link_sampler_ext", "results_link_drl"]:
+            candidate_dirs.append((repo_root / prefix / run_path).resolve())
+
+    seen = set()
+    unique_candidate_dirs = []
+    for path in candidate_dirs:
+        path_str = str(path)
+        if path_str not in seen:
+            seen.add(path_str)
+            unique_candidate_dirs.append(path)
+
+    for candidate in unique_candidate_dirs:
+        args_path = candidate / "args.yaml"
+        checkpoint_path = candidate / "state.mdl"
+        if args_path.exists() and checkpoint_path.exists():
+            return candidate
+
+    checked = "\n  - " + "\n  - ".join(str(p) for p in unique_candidate_dirs)
+    raise FileNotFoundError(
+        "Could not resolve --run-path to a model run directory containing both "
+        f"args.yaml and state.mdl. Checked:{checked}"
+    )
+
+
+def load_run_ablation_vector(run_dir, device):
+    ablation_data_path = run_dir / "ablation_data.pt"
+    if not ablation_data_path.exists():
+        return None, None
+
+    ablation_data = torch.load(ablation_data_path, map_location=device, weights_only=True)
+    if "ablation_vector" not in ablation_data:
+        return None, None
+
+    vec = ablation_data["ablation_vector"].to(device)
+    vec = vec / torch.norm(vec)
+    neuron_idx = ablation_data.get("neuron_idx", None)
+    return vec, neuron_idx
+
+
+def build_ablation_vectors(model, direction_indices, device):
+    ablation_vectors = {}
+    for direction_idx in direction_indices:
+        vec = model.behaviour_nullspace[direction_idx].clone()
+        vec = vec / torch.norm(vec)
+        ablation_vectors[int(direction_idx)] = vec.to(device)
+    return ablation_vectors
+
+
+def get_ablation_setup(args, model, run_dir, device):
+    if args.ablation_directions is not None and args.all_ablation_directions:
+        raise ValueError("Use either --ablation-directions or --all-ablation-directions, not both.")
+
+    ablation_vectors = {}
+    run_ablation_vector, run_ablation_idx = load_run_ablation_vector(run_dir, device)
+
+    if args.all_ablation_directions or args.ablation_directions is not None:
+        if not hasattr(model, "behaviour_nullspace"):
+            raise ValueError(
+                "Model has no behaviour_nullspace, so ablation direction sweep is unavailable."
+            )
+
+        max_dirs = model.behaviour_nullspace.shape[0]
+        if args.all_ablation_directions:
+            direction_indices = list(range(max_dirs))
+        else:
+            direction_indices = sorted(set(int(d) for d in args.ablation_directions))
+            bad = [d for d in direction_indices if d < 0 or d >= max_dirs]
+            if bad:
+                raise ValueError(
+                    f"Invalid ablation direction(s) {bad}; valid range is [0, {max_dirs - 1}]"
+                )
+
+        ablation_vectors.update(build_ablation_vectors(model, direction_indices, device))
+        ablation_conditions = list(direction_indices)
+        source = "direction_sweep"
+    elif run_ablation_vector is not None:
+        condition_idx = int(run_ablation_idx) if run_ablation_idx is not None else 0
+        if condition_idx < 0:
+            condition_idx = 0
+        ablation_vectors[condition_idx] = run_ablation_vector
+        ablation_conditions = [condition_idx]
+        source = "run_ablation_data"
+    else:
+        ablation_conditions = []
+        source = "healthy_only"
+
+    if args.include_healthy or not ablation_conditions:
+        all_conditions = [-1] + ablation_conditions
+    else:
+        all_conditions = ablation_conditions
+
+    info = {
+        "source": source,
+        "run_ablation_neuron_idx": None if run_ablation_idx is None else int(run_ablation_idx),
+        "run_has_ablation_data": run_ablation_vector is not None,
+    }
+    return all_conditions, ablation_vectors, info
+
+
+def ablation_condition_tag(condition):
+    condition = int(condition)
+    if condition < 0:
+        return "healthy"
+    return f"dir_{condition}"
+
+
 def main():
     args = parse_args()
 
     repo_root = args.repo_root.resolve()
-    run_dir = (repo_root / args.run_path).resolve()
+    run_dir = resolve_run_dir(repo_root, args.run_path)
     args_path = run_dir / "args.yaml"
     checkpoint_path = run_dir / "state.mdl"
 
@@ -488,25 +994,40 @@ def main():
     model.load_state_dict(checkpoint)
     model.eval()
 
+    ablation_conditions, ablation_vectors, ablation_info = get_ablation_setup(
+        args=args,
+        model=model,
+        run_dir=run_dir,
+        device=device,
+    )
+    print(
+        f"Ablation setup: source={ablation_info['source']}, "
+        f"conditions={ablation_conditions}"
+    )
+
     prep_indices = list(args.prep_indices)
     print(f"Prep indices: {prep_indices}")
 
-    trials = generate_trial_combinations(args.angle_step)
-    print(f"Generated {len(trials)} trials")
+    trials = generate_trial_combinations(args.angle_step, ablation_conditions)
+    print(
+        f"Generated {len(trials)} trials "
+        f"({len(ablation_conditions)} ablation conditions: {ablation_conditions})"
+    )
 
-    print("Extracting full prep trajectories across trials...")
-    states_by_prep, metadata = extract_states_for_all_trials(
+    print("Extracting all preparatory timesteps across trials...")
+    states_seq_by_prep, states_seq_by_diffusion, metadata = extract_states_for_all_trials(
         trials=trials,
         task=task,
         model=model,
         device=device,
         prep_indices=prep_indices,
         neural_dim=args.neural_dim,
+        ablation_vectors=ablation_vectors,
     )
 
-    print("Binning and averaging states by cued-color bin...")
-    _, points, labels = make_trajectory_dataset(
-        states_by_prep=states_by_prep,
+    print("Binning and averaging each preparatory timestep by cued-color bin...")
+    points, labels, prep_step_counts = make_full_step_trajectory_dataset(
+        states_seq_by_prep=states_seq_by_prep,
         metadata=metadata,
         prep_indices=prep_indices,
         n_bins=args.n_bins,
@@ -518,15 +1039,134 @@ def main():
     print("Global PCA explained variance ratio:", pca_global.explained_variance_ratio_)
     print("Global PCA cumulative variance:", pca_global.explained_variance_ratio_.cumsum())
 
-    fig_path = output_dir / "prospective_memory_global_pca_adjacent_segments.png"
-    plot_adjacent_segment_transitions(
-        pca_coords=pca_coords,
-        labels=labels,
-        prep_indices=prep_indices,
-        pca=pca_global,
-        out_path=fig_path,
+    fig_path = output_dir / "prospective_memory_global_pca_all_prep_steps_3d.png"
+    prep_spatial_fig_path = output_dir / "prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png"
+
+    if not args.skip_combined_plots:
+        plot_all_prep_steps_3d(
+            pca_coords=pca_coords,
+            labels=labels,
+            pca=pca_global,
+            out_path=fig_path,
+            n_bins=args.n_bins,
+        )
+
+        plot_spatial_rings_by_time_3d(
+            pca_coords=pca_coords,
+            labels=labels,
+            pca=pca_global,
+            out_path=prep_spatial_fig_path,
+            n_bins=args.n_bins,
+            time_col=5,
+            cue_col=1,
+            bin_col=2,
+            condition_col=6,
+            title="Prep: Spatial Rings at Fixed Time (darker = later)",
+        )
+
+    print("Binning and averaging each diffusion timestep by cued-color bin...")
+    diff_points, diff_labels, num_diff_steps = make_diffusion_step_dataset(
+        states_seq_by_diffusion=states_seq_by_diffusion,
+        metadata=metadata,
         n_bins=args.n_bins,
     )
+
+    pca_diff = PCA(n_components=3)
+    diff_pca_coords = pca_diff.fit_transform(diff_points)
+
+    print("Diffusion PCA explained variance ratio:", pca_diff.explained_variance_ratio_)
+    print("Diffusion PCA cumulative variance:", pca_diff.explained_variance_ratio_.cumsum())
+
+    diff_fig_path = output_dir / "prospective_memory_global_pca_all_diffusion_steps_3d.png"
+    diff_spatial_fig_path = output_dir / "prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png"
+
+    if not args.skip_combined_plots:
+        plot_all_diffusion_steps_3d(
+            pca_coords=diff_pca_coords,
+            labels=diff_labels,
+            pca=pca_diff,
+            out_path=diff_fig_path,
+            n_bins=args.n_bins,
+        )
+
+        plot_spatial_rings_by_time_3d(
+            pca_coords=diff_pca_coords,
+            labels=diff_labels,
+            pca=pca_diff,
+            out_path=diff_spatial_fig_path,
+            n_bins=args.n_bins,
+            time_col=3,
+            cue_col=1,
+            bin_col=2,
+            condition_col=4,
+            title="Diffusion: Spatial Rings at Fixed Time (darker = later)",
+        )
+
+    separate_figures = {}
+    if args.separate_ablation_plots:
+        for condition in ablation_conditions:
+            cond_tag = ablation_condition_tag(condition)
+            prep_mask = labels[:, 6] == int(condition)
+            diff_mask = diff_labels[:, 4] == int(condition)
+
+            cond_prep_coords = pca_coords[prep_mask]
+            cond_prep_labels = labels[prep_mask]
+            cond_diff_coords = diff_pca_coords[diff_mask]
+            cond_diff_labels = diff_labels[diff_mask]
+
+            if cond_prep_coords.shape[0] == 0 or cond_diff_coords.shape[0] == 0:
+                continue
+
+            cond_prep_path = output_dir / f"prospective_memory_global_pca_all_prep_steps_3d_{cond_tag}.png"
+            cond_prep_rings_path = output_dir / f"prospective_memory_global_pca_prep_spatial_rings_over_time_3d_{cond_tag}.png"
+            cond_diff_path = output_dir / f"prospective_memory_global_pca_all_diffusion_steps_3d_{cond_tag}.png"
+            cond_diff_rings_path = output_dir / f"prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_{cond_tag}.png"
+
+            plot_all_prep_steps_3d(
+                pca_coords=cond_prep_coords,
+                labels=cond_prep_labels,
+                pca=pca_global,
+                out_path=cond_prep_path,
+                n_bins=args.n_bins,
+            )
+            plot_spatial_rings_by_time_3d(
+                pca_coords=cond_prep_coords,
+                labels=cond_prep_labels,
+                pca=pca_global,
+                out_path=cond_prep_rings_path,
+                n_bins=args.n_bins,
+                time_col=5,
+                cue_col=1,
+                bin_col=2,
+                condition_col=6,
+                title="Prep: Spatial Rings at Fixed Time (darker = later)",
+            )
+            plot_all_diffusion_steps_3d(
+                pca_coords=cond_diff_coords,
+                labels=cond_diff_labels,
+                pca=pca_diff,
+                out_path=cond_diff_path,
+                n_bins=args.n_bins,
+            )
+            plot_spatial_rings_by_time_3d(
+                pca_coords=cond_diff_coords,
+                labels=cond_diff_labels,
+                pca=pca_diff,
+                out_path=cond_diff_rings_path,
+                n_bins=args.n_bins,
+                time_col=3,
+                cue_col=1,
+                bin_col=2,
+                condition_col=4,
+                title="Diffusion: Spatial Rings at Fixed Time (darker = later)",
+            )
+
+            separate_figures[str(cond_tag)] = {
+                "prep_path": str(cond_prep_path),
+                "prep_rings_path": str(cond_prep_rings_path),
+                "diffusion_path": str(cond_diff_path),
+                "diffusion_rings_path": str(cond_diff_rings_path),
+            }
 
     local_fractions = compute_prep_local_variance_fractions(
         pca_coords=pca_coords,
@@ -544,26 +1184,59 @@ def main():
         explained_variance=pca_global.explained_variance_ratio_,
     )
 
+    np.savez(
+        output_dir / "global_pca_diffusion_data.npz",
+        points=diff_points,
+        labels=diff_labels,
+        pca_coords=diff_pca_coords,
+        pca_components=pca_diff.components_,
+        pca_mean=pca_diff.mean_,
+        explained_variance=pca_diff.explained_variance_ratio_,
+    )
+
+
     summary = {
         "run_dir": str(run_dir),
         "prep_indices": [int(p) for p in prep_indices],
         "n_trials": int(len(trials)),
+        "ablation_conditions": [int(c) for c in ablation_conditions],
+        "healthy_condition_code": -1,
+        "ablation_info": ablation_info,
+        "separate_ablation_plots": bool(args.separate_ablation_plots),
+        "skip_combined_plots": bool(args.skip_combined_plots),
+        "separate_figure_paths": separate_figures,
         "n_bins": int(args.n_bins),
         "angle_step": int(args.angle_step),
         "neural_dim": int(args.neural_dim),
         "global_explained_variance_ratio": pca_global.explained_variance_ratio_.tolist(),
         "global_explained_variance_cumulative": pca_global.explained_variance_ratio_.cumsum().tolist(),
+        "diffusion_global_explained_variance_ratio": pca_diff.explained_variance_ratio_.tolist(),
+        "diffusion_global_explained_variance_cumulative": pca_diff.explained_variance_ratio_.cumsum().tolist(),
         "per_prep_local_variance_fraction_in_global_basis": local_fractions,
-        "segment_pairs": [[int(prep_indices[i]), int(prep_indices[i + 1])] for i in range(len(prep_indices) - 1)],
+        "prep_step_counts": prep_step_counts,
+        "diffusion_step_count": int(num_diff_steps),
         "figure_path": str(fig_path),
+        "diffusion_figure_path": str(diff_fig_path),
+        "prep_spatial_rings_figure_path": str(prep_spatial_fig_path),
+        "diffusion_spatial_rings_figure_path": str(diff_spatial_fig_path),
     }
 
     with open(output_dir / "global_pca_trajectory_summary.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
 
     print("Saved outputs:")
-    print(f"  {fig_path}")
+    if not args.skip_combined_plots:
+        print(f"  {fig_path}")
+        print(f"  {prep_spatial_fig_path}")
+        print(f"  {diff_fig_path}")
+        print(f"  {diff_spatial_fig_path}")
+    for cond_tag, cond_paths in separate_figures.items():
+        print(f"  [{cond_tag}] {cond_paths['prep_path']}")
+        print(f"  [{cond_tag}] {cond_paths['prep_rings_path']}")
+        print(f"  [{cond_tag}] {cond_paths['diffusion_path']}")
+        print(f"  [{cond_tag}] {cond_paths['diffusion_rings_path']}")
     print(f"  {output_dir / 'global_pca_trajectory_data.npz'}")
+    print(f"  {output_dir / 'global_pca_diffusion_data.npz'}")
     print(f"  {output_dir / 'global_pca_trajectory_summary.json'}")
 
 

@@ -61,8 +61,8 @@ class LinearSubspaceTeacherForcedHVAEReverseProcess(
         \tau \dot x_t = -x_t + f(x_t, s_t, t) + v_t \eta
 
         using HVAE time convention => x_{t-1} = (1-euler_alpha) x_t + euler_alpha (f(x_t, s_t, t) + v_t \eta)
-        
-        If ablation_vector is provided (shape [ambient_dim]), projects out this direction from x_t.
+
+        ablation_vector: [D] to project out one direction, or [N, D] to project out N orthonormal directions.
         """
         euler_alpha = override_euler_alpha if override_euler_alpha is not None else self.euler_alpha
 
@@ -73,33 +73,14 @@ class LinearSubspaceTeacherForcedHVAEReverseProcess(
         integration_term = euler_alpha * predicted_residual
 
         x_t = leaky_term + integration_term + scaled_noise
-        
-        # Apply ablation by projecting out the ablation_vector direction
+
         if ablation_vector is not None:
-            # Debug: print shapes on first timestep
-            if t_idx == 1:
-                print(f"[denoise_one_step] t_idx={t_idx}")
-                print(f"  x_t shape: {x_t.shape}")
-                print(f"  ablation_vector shape: {ablation_vector.shape}")
-            
-            # Compute component along ablation_vector: (x_t · v) v
-            # ablation_vector is assumed to be normalized
-            component = (x_t @ ablation_vector.unsqueeze(-1)) * ablation_vector
-            
-            # Debug: check magnitude being removed
-            if t_idx == 1:
-                component_norm = torch.norm(component, dim=-1).mean()
-                x_t_norm = torch.norm(x_t, dim=-1).mean()
-                print(f"  component shape: {component.shape}")
-                print(f"  Mean |component| being removed: {component_norm.item():.6f}")
-                print(f"  Mean |x_t| before ablation: {x_t_norm.item():.6f}")
-            
+            if ablation_vector.dim() == 1:
+                component = (x_t @ ablation_vector.unsqueeze(-1)) * ablation_vector
+            else:
+                component = (x_t @ ablation_vector.T) @ ablation_vector
             x_t = x_t - component
-            
-            if t_idx == 1:
-                x_t_norm_after = torch.norm(x_t, dim=-1).mean()
-                print(f"  Mean |x_t| after ablation: {x_t_norm_after.item():.6f}")
-            
+
         fake_early_x0_pred = torch.ones_like(x_t) * torch.nan
 
         return x_t, fake_early_x0_pred

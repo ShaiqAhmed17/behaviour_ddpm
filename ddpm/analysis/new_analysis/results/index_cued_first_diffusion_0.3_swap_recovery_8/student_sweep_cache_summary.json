@@ -1,0 +1,47 @@
+{
+  "args_path": "results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_8/args.yaml",
+  "checkpoint_path": "results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_8/state.mdl",
+  "output_dir": "ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8",
+  "npz_path": "ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/student_sweep_cache.npz",
+  "saved_pt_shards": false,
+  "pt_shards_dir": null,
+  "n_trials": 288,
+  "num_samples": 1,
+  "angle_step": 30,
+  "trajectories_shape": [
+    288,
+    1,
+    40,
+    16
+  ],
+  "prep_post_states_shape": [
+    288,
+    1,
+    4,
+    16
+  ],
+  "metadata_shape": [
+    288,
+    3
+  ],
+  "prep_epoch_durations": [
+    5,
+    15,
+    5,
+    1
+  ],
+  "diffusion_epoch_durations": [
+    -1
+  ],
+  "prep_epoch_durations_raw": [
+    5,
+    15,
+    5,
+    1
+  ],
+  "diffusion_epoch_durations_raw": [
+    null
+  ],
+  "device": "cuda",
+  "seed": 42
+}

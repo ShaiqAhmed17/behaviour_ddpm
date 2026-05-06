@@ -1,0 +1,80 @@
+{
+  "teacher_run_path": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_0.3_swap_recovery_9",
+  "student_run_path": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_no_swap_1",
+  "inferred_student_from_teacher_resume": null,
+  "inferred_student_matches_provided": null,
+  "angle_step_deg": 30,
+  "expected_total_trials": 288,
+  "teacher_total_rows": 288,
+  "teacher_unique_trials": 288,
+  "expected_unique_trials": 288,
+  "unique_trial_sets_match_exactly": true,
+  "teacher_missing_trials_count": 0,
+  "teacher_extra_trials_count": 0,
+  "teacher_missing_trials_example": [],
+  "teacher_extra_trials_example": [],
+  "teacher_cue_distribution": {
+    "1": 144,
+    "2": 144
+  },
+  "teacher_bin_coverage_by_cue": {
+    "1": 12,
+    "2": 12
+  },
+  "training_step_min": 0,
+  "training_step_max": 8,
+  "scanned_sweep_files": 9,
+  "total_sweep_files_available": 1000,
+  "stopped_early_on_full_coverage": true,
+  "top_repeated_teacher_trials": [
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 0.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 30.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 60.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 90.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 120.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 150.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 180.0,
+      "count": 1
+    },
+    {
+      "cue": 1,
+      "color1_angle": 0.0,
+      "color2_angle": 210.0,
+      "count": 1
+    }
+  ],
+  "strict_pass": true
+}

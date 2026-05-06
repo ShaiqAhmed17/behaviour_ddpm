@@ -58,5 +58,6 @@
         0.04566041752696037
       ]
     }
-  }
+  },
+  "global_pca_output_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8_sampled_trajectories/prospective_memory_global_pca_common_cued_bin.png"
 }

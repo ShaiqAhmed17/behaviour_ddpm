@@ -1,0 +1,15 @@
+{
+  "n_trials": 288,
+  "prep_idx": 2,
+  "neural_dim": 16,
+  "n_bins": 12,
+  "angle_step": 30,
+  "cue_separation": 4.590216121869162e-06,
+  "explained_variance": [
+    0.4355492184099725,
+    0.2980746647257734,
+    0.2054568595953133
+  ],
+  "cue1_trials": 144,
+  "cue2_trials": 144
+}

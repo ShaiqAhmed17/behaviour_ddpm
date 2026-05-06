@@ -1,0 +1,78 @@
+{
+  "run_name": "index_cued_first_diffusion_0.3_swap_recovery_9",
+  "trajectory_file": "ablated_teacher_trajectories_sweep_step_000999.pt",
+  "prep_timeline_stats": {
+    "0": {
+      "plane_angle_deg": 16.015207290649414,
+      "center_separation": 35.92403793334961,
+      "cue1_planarity": 0.9067047834396362,
+      "cue2_planarity": 0.9288196563720703,
+      "n_valid_bins": 24
+    },
+    "1": {
+      "plane_angle_deg": 49.02566909790039,
+      "center_separation": 61.239356994628906,
+      "cue1_planarity": 0.9352691173553467,
+      "cue2_planarity": 0.9926628470420837,
+      "n_valid_bins": 24
+    },
+    "2": {
+      "plane_angle_deg": 37.56803894042969,
+      "center_separation": 53.498477935791016,
+      "cue1_planarity": 0.9991884827613831,
+      "cue2_planarity": 0.9983426928520203,
+      "n_valid_bins": 24
+    },
+    "3": {
+      "plane_angle_deg": 40.52796173095703,
+      "center_separation": 53.974952697753906,
+      "cue1_planarity": 0.9991579651832581,
+      "cue2_planarity": 0.9989543557167053,
+      "n_valid_bins": 24
+    }
+  },
+  "diffusion_timeline_stats": {
+    "0": null,
+    "1": null,
+    "2": null,
+    "3": null,
+    "4": null,
+    "5": null,
+    "6": null,
+    "7": null,
+    "8": null,
+    "9": null,
+    "10": null,
+    "11": null,
+    "12": null,
+    "13": null,
+    "14": null,
+    "15": null,
+    "16": null,
+    "17": null,
+    "18": null,
+    "19": null,
+    "20": null,
+    "21": null,
+    "22": null,
+    "23": null,
+    "24": null,
+    "25": null,
+    "26": null,
+    "27": null,
+    "28": null,
+    "29": null,
+    "30": null,
+    "31": null,
+    "32": null,
+    "33": null,
+    "34": null,
+    "35": null,
+    "36": null,
+    "37": null,
+    "38": null,
+    "39": null
+  },
+  "prep_plot_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_prep_sampled.png",
+  "diffusion_plot_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_9_sampled_trajectories/time_step_plane_stats_diffusion_sampled.png"
+}

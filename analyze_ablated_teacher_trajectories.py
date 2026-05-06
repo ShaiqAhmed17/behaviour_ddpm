@@ -7,7 +7,8 @@ it reproducible from the command line.
 What it does:
 1. Loads a DDPM model checkpoint.
 2. Generates all non-swap trials over cue and color combinations.
-3. Extracts neural states for multiple prep indices.
+3. Optionally sweeps ablation directions for each cue/color trial.
+4. Extracts neural states for multiple prep indices.
 4. Bins states by a shared feature (cued-color bin).
 5. Fits one global PCA across all prep indices.
 6. Visualizes each prep index in the same PCA coordinate system.
@@ -88,27 +89,57 @@ def parse_args():
         choices=["auto", "cpu", "cuda"],
         help="Torch device to use.",
     )
+    parser.add_argument(
+        "--ablation-directions",
+        type=int,
+        nargs="+",
+        default=None,
+        help=(
+            "Ablation direction indices from model.behaviour_nullspace to analyze. "
+            "If omitted and --all-ablation-directions is not set, no ablation is applied."
+        ),
+    )
+    parser.add_argument(
+        "--all-ablation-directions",
+        action="store_true",
+        help="Analyze all directions in model.behaviour_nullspace.",
+    )
+    parser.add_argument(
+        "--include-healthy",
+        action="store_true",
+        help="Also include the healthy (no-ablation) condition alongside ablated directions.",
+    )
     return parser.parse_args()
 
 
-def generate_trial_combinations(angle_step):
+def generate_trial_combinations(angle_step, ablation_directions):
     angles = list(range(0, 360, angle_step))
     trials = []
-    for cue in [1, 2]:
-        for color1 in angles:
-            for color2 in angles:
-                trials.append(
-                    {
-                        "cue": cue,
-                        "color1_angle": color1,
-                        "color2_angle": color2,
-                        "swap": False,
-                    }
-                )
+    for ablation_direction in ablation_directions:
+        for cue in [1, 2]:
+            for color1 in angles:
+                for color2 in angles:
+                    trials.append(
+                        {
+                            "cue": cue,
+                            "color1_angle": color1,
+                            "color2_angle": color2,
+                            "swap": False,
+                            "ablation_direction": int(ablation_direction),
+                        }
+                    )
     return trials
 
 
-def extract_neural_state_from_model(trial, task, model, device, prep_idx, neural_dim):
+def extract_neural_state_from_model(
+    trial,
+    task,
+    model,
+    device,
+    prep_idx,
+    neural_dim,
+    ablation_vectors,
+):
     with torch.no_grad():
         probe_features = torch.tensor([[trial["color1_angle"], trial["color2_angle"]]]) * (
             np.pi / 180
@@ -152,14 +183,20 @@ def extract_neural_state_from_model(trial, task, model, device, prep_idx, neural
         for inp in trial_info.diffusion_network_inputs:
             diffusion_network_inputs_device.append(inp.to(device) if isinstance(inp, torch.Tensor) else inp)
 
-        prep_dicts, _ = model.generate_samples(
-            prep_network_inputs=prep_network_inputs_device,
-            diffusion_network_inputs=diffusion_network_inputs_device,
-            prep_epoch_durations=trial_info.prep_epoch_durations,
-            diffusion_epoch_durations=trial_info.diffusion_epoch_durations,
-            samples_shape=[1, 1],
-            noise_scaler=1.0,
-        )
+        sample_kwargs = {
+            "prep_network_inputs": prep_network_inputs_device,
+            "diffusion_network_inputs": diffusion_network_inputs_device,
+            "prep_epoch_durations": trial_info.prep_epoch_durations,
+            "diffusion_epoch_durations": trial_info.diffusion_epoch_durations,
+            "samples_shape": [1, 1],
+            "noise_scaler": 1.0,
+        }
+
+        ablation_direction = int(trial["ablation_direction"])
+        if ablation_direction >= 0:
+            sample_kwargs["ablation_vector"] = ablation_vectors[ablation_direction]
+
+        prep_dicts, _ = model.generate_samples(**sample_kwargs)
 
         if prep_idx >= len(prep_dicts):
             raise ValueError(
@@ -180,7 +217,8 @@ def bin_and_average_by_cued_color(states, metadata, n_bins):
         2: {b: [] for b in range(n_bins)},
     }
 
-    for i, (cue, c1, c2) in enumerate(metadata):
+    for i, trial_metadata in enumerate(metadata):
+        cue, c1, c2 = trial_metadata[:3]
         cue = int(cue)
         cued_angle = c1 if cue == 1 else c2
         bin_idx = bin_angle(cued_angle, bin_size)
@@ -204,7 +242,7 @@ def angle_to_colour(bin_idx, n_bins):
     return colorsys.hsv_to_rgb(hue, 0.9, 0.9)
 
 
-def get_states_for_prep(trials, prep_idx, task, model, device, neural_dim):
+def get_states_for_prep(trials, prep_idx, task, model, device, neural_dim, ablation_vectors):
     states = []
     metadata = []
 
@@ -219,11 +257,83 @@ def get_states_for_prep(trials, prep_idx, task, model, device, neural_dim):
             device=device,
             prep_idx=prep_idx,
             neural_dim=neural_dim,
+            ablation_vectors=ablation_vectors,
         )
         states.append(state)
-        metadata.append([trial["cue"], trial["color1_angle"], trial["color2_angle"]])
+        metadata.append(
+            [
+                trial["cue"],
+                trial["color1_angle"],
+                trial["color2_angle"],
+                trial["ablation_direction"],
+            ]
+        )
 
     return np.array(states), np.array(metadata)
+
+
+def get_requested_ablation_directions(args, model):
+    if args.ablation_directions is not None and args.all_ablation_directions:
+        raise ValueError("Use either --ablation-directions or --all-ablation-directions, not both.")
+
+    if args.all_ablation_directions:
+        max_dirs = model.behaviour_nullspace.shape[0]
+        ablation_directions = list(range(max_dirs))
+    elif args.ablation_directions is not None:
+        ablation_directions = sorted(set(int(d) for d in args.ablation_directions))
+        max_dirs = model.behaviour_nullspace.shape[0]
+        bad = [d for d in ablation_directions if d < 0 or d >= max_dirs]
+        if bad:
+            raise ValueError(
+                f"Invalid ablation direction(s) {bad}; valid range is [0, {max_dirs - 1}]"
+            )
+    else:
+        ablation_directions = []
+
+    if args.include_healthy or not ablation_directions:
+        return [-1] + ablation_directions
+    return ablation_directions
+
+
+def build_ablation_vectors(model, direction_indices, device):
+    ablation_vectors = {}
+    for direction_idx in direction_indices:
+        vec = model.behaviour_nullspace[direction_idx].clone()
+        vec = vec / torch.norm(vec)
+        ablation_vectors[int(direction_idx)] = vec.to(device)
+    return ablation_vectors
+
+
+def resolve_run_dir(repo_root, run_path):
+    run_path = Path(run_path)
+
+    candidate_dirs = []
+    if run_path.is_absolute():
+        candidate_dirs.append(run_path)
+    else:
+        candidate_dirs.append((repo_root / run_path).resolve())
+        for prefix in ["results_link_sampler", "results_link_sampler_ext", "results_link_drl"]:
+            candidate_dirs.append((repo_root / prefix / run_path).resolve())
+
+    seen = set()
+    unique_candidate_dirs = []
+    for path in candidate_dirs:
+        path_str = str(path)
+        if path_str not in seen:
+            seen.add(path_str)
+            unique_candidate_dirs.append(path)
+
+    for candidate in unique_candidate_dirs:
+        args_path = candidate / "args.yaml"
+        checkpoint_path = candidate / "state.mdl"
+        if args_path.exists() and checkpoint_path.exists():
+            return candidate
+
+    checked = "\n  - " + "\n  - ".join(str(p) for p in unique_candidate_dirs)
+    raise FileNotFoundError(
+        "Could not resolve --run-path to a model run directory containing both "
+        f"args.yaml and state.mdl. Checked:{checked}"
+    )
 
 
 def make_global_pca_figure(pooled_pca, pooled_labels, prep_indices, prep_names, pca_global, out_path, n_bins):
@@ -330,6 +440,8 @@ def make_global_pca_figure(pooled_pca, pooled_labels, prep_indices, prep_names, 
         ax23.grid(True, alpha=0.25)
         ax23.set_aspect("equal", adjustable="box")
 
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     plt.tight_layout()
     plt.savefig(out_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
@@ -339,7 +451,7 @@ def main():
     args = parse_args()
 
     repo_root = args.repo_root.resolve()
-    run_dir = (repo_root / args.run_path).resolve()
+    run_dir = resolve_run_dir(repo_root, args.run_path)
     args_path = run_dir / "args.yaml"
     checkpoint_path = run_dir / "state.mdl"
 
@@ -377,8 +489,18 @@ def main():
     model.load_state_dict(checkpoint)
     model.eval()
 
-    trials = generate_trial_combinations(args.angle_step)
-    print(f"Generated {len(trials)} trials")
+    all_ablation_directions = get_requested_ablation_directions(args, model)
+    active_ablation_directions = [d for d in all_ablation_directions if d >= 0]
+    ablation_vectors = build_ablation_vectors(model, active_ablation_directions, device)
+
+    trials = generate_trial_combinations(
+        angle_step=args.angle_step,
+        ablation_directions=all_ablation_directions,
+    )
+    print(
+        f"Generated {len(trials)} trials "
+        f"({len(all_ablation_directions)} ablation conditions: {all_ablation_directions})"
+    )
 
     prep_names = {
         0: "Cue presentation",
@@ -400,21 +522,24 @@ def main():
             model=model,
             device=device,
             neural_dim=args.neural_dim,
+            ablation_vectors=ablation_vectors,
         )
 
-        averaged, _ = bin_and_average_by_cued_color(
-            states=states,
-            metadata=metadata,
-            n_bins=args.n_bins,
-        )
-
-        for cue in [1, 2]:
-            for b in range(args.n_bins):
-                vec = averaged[cue][b]
-                if np.isnan(vec).any():
-                    continue
-                pooled_states.append(vec)
-                pooled_labels.append((prep_idx, cue, b))
+        direction_values = metadata[:, 3]
+        for ablation_direction in np.unique(direction_values):
+            direction_mask = direction_values == ablation_direction
+            direction_averaged, _ = bin_and_average_by_cued_color(
+                states=states[direction_mask],
+                metadata=metadata[direction_mask],
+                n_bins=args.n_bins,
+            )
+            for cue in [1, 2]:
+                for b in range(args.n_bins):
+                    direction_vec = direction_averaged[cue][b]
+                    if np.isnan(direction_vec).any():
+                        continue
+                    pooled_states.append(direction_vec)
+                    pooled_labels.append((prep_idx, cue, b, int(ablation_direction)))
 
     pooled_states = np.array(pooled_states)
     pooled_labels = np.array(pooled_labels, dtype=int)
@@ -472,6 +597,8 @@ def main():
         "run_dir": str(run_dir),
         "prep_indices": [int(p) for p in args.prep_indices],
         "n_trials": len(trials),
+        "ablation_directions": [int(d) for d in all_ablation_directions],
+        "healthy_direction_code": -1,
         "n_bins": int(args.n_bins),
         "angle_step": int(args.angle_step),
         "neural_dim": int(args.neural_dim),

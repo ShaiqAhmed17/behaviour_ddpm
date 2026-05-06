@@ -1,0 +1,48 @@
+# Joint index-memory config mixing cue-first and cue-delayed trials
+
+# Model
+model_name: teacher_forced_delayed_index_cue
+model_config:
+  recurrence_hidden_layers: [128]
+  time_embedding_size: 16
+  sample_ambient_dim: 128
+  indexing_embeddings_same_slots: false
+  residual_model_kwargs:
+    nonlin_first: true
+  ddpm_model_kwargs:
+    stabilise_nullspace: true
+    seperate_output_neurons: false
+  num_items: 2
+
+
+regularise_prep_state: true
+regularise_prep_state_weight: 0.1
+
+
+# Diffusion
+ultimate_sigma2: 0.06
+starting_sigma2: 0.06
+num_timesteps: 100
+
+# Training/logging
+logging_freq: 100
+batch_size: 64
+num_samples: 1024
+num_trials: 10_000_000
+lr: 0.001
+save_base: "/scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/ddpm_recoup_20250108/run_h_teacher_forced_joint_index_memory"
+
+
+# Task
+task_name: joint_indexing_cue_fixed_probability_vectoral
+task_config:
+  sample_size: 2
+  sample_radius: 2.5
+  residual_in_behaviour_plane_only: false
+  num_items: 2
+  correct_probability: 0.8
+  stimulus_exposure_duration: 15
+  pre_index_delay_duration: [15, 15]
+  index_duration: 10
+  post_index_delay_duration: 1
+  p_index_first: 0.5

@@ -6,55 +6,101 @@
     2,
     3
   ],
-  "n_trials": 288,
+  "n_trials": 1152,
+  "ablation_conditions": [
+    -1,
+    0,
+    1,
+    2
+  ],
+  "healthy_condition_code": -1,
+  "ablation_info": {
+    "source": "direction_sweep",
+    "run_ablation_neuron_idx": null,
+    "run_has_ablation_data": false
+  },
+  "separate_ablation_plots": true,
+  "skip_combined_plots": true,
+  "separate_figure_paths": {
+    "healthy": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_prep_steps_3d_healthy.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_healthy.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_diffusion_steps_3d_healthy.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_healthy.png"
+    },
+    "dir_0": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_prep_steps_3d_dir_0.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_0.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_diffusion_steps_3d_dir_0.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_0.png"
+    },
+    "dir_1": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_prep_steps_3d_dir_1.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_1.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_diffusion_steps_3d_dir_1.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_1.png"
+    },
+    "dir_2": {
+      "prep_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_prep_steps_3d_dir_2.png",
+      "prep_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_prep_spatial_rings_over_time_3d_dir_2.png",
+      "diffusion_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_diffusion_steps_3d_dir_2.png",
+      "diffusion_rings_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_dir_2.png"
+    }
+  },
   "n_bins": 12,
   "angle_step": 30,
   "neural_dim": 16,
   "global_explained_variance_ratio": [
-    0.5888537064923343,
-    0.17650554509367494,
-    0.11649001215719078
+    0.6194324762546122,
+    0.11036002359767157,
+    0.0927792016077307
   ],
   "global_explained_variance_cumulative": [
-    0.5888537064923343,
-    0.7653592515860093,
-    0.8818492637432
+    0.6194324762546122,
+    0.7297924998522838,
+    0.8225717014600145
+  ],
+  "diffusion_global_explained_variance_ratio": [
+    0.5159474750502528,
+    0.24695716694245606,
+    0.10796748833879041
+  ],
+  "diffusion_global_explained_variance_cumulative": [
+    0.5159474750502528,
+    0.7629046419927089,
+    0.8708721303314994
   ],
   "per_prep_local_variance_fraction_in_global_basis": {
     "0": {
-      "PC1": 0.17397382031045827,
-      "PC2": 0.06954092842064512,
-      "PC3": 0.7564852512688967
+      "PC1": 0.15378752854803965,
+      "PC2": 0.18281154855790943,
+      "PC3": 0.6634009228940508
     },
     "1": {
-      "PC1": 0.31072238454179474,
-      "PC2": 0.018266769994563843,
-      "PC3": 0.6710108454636414
+      "PC1": 0.24538403269541814,
+      "PC2": 0.08943527185638814,
+      "PC3": 0.6651806954481937
     },
     "2": {
-      "PC1": 0.21172014939481837,
-      "PC2": 0.48608646097989444,
-      "PC3": 0.30219338962528725
+      "PC1": 0.48620000516753525,
+      "PC2": 0.30038116624752387,
+      "PC3": 0.2134188285849409
     },
     "3": {
-      "PC1": 0.2019276557017962,
-      "PC2": 0.48694576013191093,
-      "PC3": 0.3111265841662929
+      "PC1": 0.240407676814073,
+      "PC2": 0.39948094308518683,
+      "PC3": 0.3601113801007402
     }
   },
-  "segment_pairs": [
-    [
-      0,
-      1
-    ],
-    [
-      1,
-      2
-    ],
-    [
-      2,
-      3
-    ]
-  ],
-  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_adjacent_segments.png"
+  "prep_step_counts": {
+    "0": 5,
+    "1": 15,
+    "2": 5,
+    "3": 1
+  },
+  "diffusion_step_count": 40,
+  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_prep_steps_3d.png",
+  "diffusion_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_all_diffusion_steps_3d.png",
+  "prep_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png",
+  "diffusion_spatial_rings_figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_8/global_pca_trajectory/prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png"
 }

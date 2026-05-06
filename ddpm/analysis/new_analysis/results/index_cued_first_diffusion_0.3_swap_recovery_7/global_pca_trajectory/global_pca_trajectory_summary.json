@@ -1,0 +1,60 @@
+{
+  "run_dir": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_0.3_swap_recovery_7",
+  "prep_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_trials": 288,
+  "n_bins": 12,
+  "angle_step": 30,
+  "neural_dim": 16,
+  "global_explained_variance_ratio": [
+    0.7063959733475856,
+    0.10514154660939873,
+    0.06907109170252643
+  ],
+  "global_explained_variance_cumulative": [
+    0.7063959733475856,
+    0.8115375199569843,
+    0.8806086116595108
+  ],
+  "per_prep_local_variance_fraction_in_global_basis": {
+    "0": {
+      "PC1": 0.19638149950213948,
+      "PC2": 0.27421102053042207,
+      "PC3": 0.5294074799674385
+    },
+    "1": {
+      "PC1": 0.05001557866134985,
+      "PC2": 0.5793487174753769,
+      "PC3": 0.37063570386327327
+    },
+    "2": {
+      "PC1": 0.4541203375054013,
+      "PC2": 0.3111674370578062,
+      "PC3": 0.23471222543679243
+    },
+    "3": {
+      "PC1": 0.5156130434849481,
+      "PC2": 0.2934699667474694,
+      "PC3": 0.19091698976758248
+    }
+  },
+  "segment_pairs": [
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      3
+    ]
+  ],
+  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/index_cued_first_diffusion_0.3_swap_recovery_7/global_pca_trajectory/prospective_memory_global_pca_adjacent_segments.png"
+}

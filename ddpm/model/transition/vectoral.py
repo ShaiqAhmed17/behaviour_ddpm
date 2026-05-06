@@ -61,17 +61,26 @@ class VectoralResidualModel(nn.Module):
         t_embeddings_schedule of shape [T, time_emb_size]
         input_vector of shape [..., T, input_size]
         """
-        reshaped_t_schedule = self.unsqueeze_start_dims(
-            t_embeddings_schedule, x.shape[:-2]
-        )
-        x_concat = torch.concat(
-            [
-                x,
-                reshaped_t_schedule.to(x.device, x.dtype),
-                input_vector.to(x.device, x.dtype),
-            ],
-            -1,
-        )
+        if self.include_time:
+            reshaped_t_schedule = self.unsqueeze_start_dims(
+                t_embeddings_schedule, x.shape[:-2]
+            )
+            x_concat = torch.concat(
+                [
+                    x,
+                    reshaped_t_schedule.to(x.device, x.dtype),
+                    input_vector.to(x.device, x.dtype),
+                ],
+                -1,
+            )
+        else:
+            x_concat = torch.concat(
+                [
+                    x,
+                    input_vector.to(x.device, x.dtype),
+                ],
+                -1,
+            )
         return x_concat
 
     def forward(self, x: _T, t_embeddings_schedule: _T, input_vector: _T) -> _T:

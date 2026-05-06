@@ -196,6 +196,39 @@ def fit_lognormal_parameters_by_trial(response_times_trialwise, dt, exclude_max=
     return fitted_log_means, fitted_log_vars
 
 
+def fit_lognormal_parameters(response_times_batch, dt, exclude_max=False, max_timesteps=None):
+    """Fit log-normal parameters from [batch, samples] response-time tensors.
+
+    This keeps compatibility with older callers that expect batch-level fitting
+    rather than per-trial fitting.
+    """
+    if response_times_batch.ndim != 2:
+        raise ValueError(
+            f"Expected response_times_batch shape [batch, samples], got {tuple(response_times_batch.shape)}"
+        )
+
+    batch_size = response_times_batch.shape[0]
+    device = response_times_batch.device
+    fitted_log_means = torch.zeros(batch_size, device=device)
+    fitted_log_vars = torch.zeros(batch_size, device=device)
+
+    for b in range(batch_size):
+        sample_times = response_times_batch[b]
+
+        if exclude_max and max_timesteps is not None:
+            valid_mask = sample_times < (max_timesteps - 1)
+            if valid_mask.sum() > 1:
+                sample_times = sample_times[valid_mask]
+
+        continuous_times = torch.clamp(sample_times * dt, min=dt / 10)
+        log_times = torch.log(continuous_times)
+
+        fitted_log_means[b] = torch.mean(log_times)
+        fitted_log_vars[b] = torch.var(log_times, unbiased=True) if len(log_times) > 1 else 0.1
+
+    return fitted_log_means, fitted_log_vars
+
+
 # Keep existing functions that don't need changes
 def hazard_to_distribution(hazard_rates, eps=1e-8):
     """Convert discrete hazard rates to response time probability distributions."""

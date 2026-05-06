@@ -1,0 +1,65 @@
+{
+  "source_mode": "sampled",
+  "run_name_for_output": "index_cued_first_diffusion_0.3_swap_recovery_8",
+  "prep_idx_primary": 2,
+  "prep_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "num_trials": 9216,
+  "state_dim": 16,
+  "cue_separation_primary": 7.477235317230225,
+  "pca_explained_variance_primary": [
+    0.5304139852523804,
+    0.3771428167819977,
+    0.04246290400624275
+  ],
+  "prep_epoch_results": {
+    "0": {
+      "plane_angle": 75.50672912597656,
+      "separation": 11.413511276245117,
+      "cue1_planarity": 0.8871941566467285,
+      "cue2_planarity": 0.8841917514801025,
+      "explained_variance": [
+        0.9999977350234985,
+        4.4804494336858625e-07,
+        3.827156263014331e-07
+      ]
+    },
+    "1": {
+      "plane_angle": 30.783306121826172,
+      "separation": 34.53579330444336,
+      "cue1_planarity": 0.9120128154754639,
+      "cue2_planarity": 0.8947073221206665,
+      "explained_variance": [
+        0.9999998211860657,
+        3.8623976905682866e-08,
+        2.7166839444703328e-08
+      ]
+    },
+    "2": {
+      "plane_angle": 13.592309951782227,
+      "separation": 7.477235317230225,
+      "cue1_planarity": 0.9542008638381958,
+      "cue2_planarity": 0.9678316712379456,
+      "explained_variance": [
+        0.5304139852523804,
+        0.3771428167819977,
+        0.04246290400624275
+      ]
+    },
+    "3": {
+      "plane_angle": 11.856622695922852,
+      "separation": 11.505395889282227,
+      "cue1_planarity": 0.9449225068092346,
+      "cue2_planarity": 0.969246506690979,
+      "explained_variance": [
+        0.5484470129013062,
+        0.36703041195869446,
+        0.04566041752696037
+      ]
+    }
+  }
+}
