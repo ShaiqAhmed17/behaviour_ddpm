@@ -26,8 +26,8 @@ num_timesteps: 100
 
 # Training/logging
 logging_freq: 100
-batch_size: 64
-num_samples: 1024
+batch_size: 32
+num_samples: 512
 num_trials: 10_000_000
 lr: 0.001
 save_base: "/scratch3/shaiq_home/repos/behaviour_ddpm/results_link_sampler/ddpm_recoup_20250108/run_h_teacher_forced_joint_index_memory"

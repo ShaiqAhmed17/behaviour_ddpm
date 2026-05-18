@@ -74,7 +74,7 @@ class LinearSubspaceBounceNetworkTeacherForcedHVAEReverseProcess(
         assert residual_model.nonlin_first
 
     def denoise_one_step(
-        self, t_idx: int, x_t_plus_1: _T, predicted_residual: _T, noise_scaler: float
+        self, t_idx: int, x_t_plus_1: _T, predicted_residual: _T, noise_scaler: float, *_, override_euler_alpha: Optional[float] = None, ablation_vector: Optional[_T] = None
     ):
         """
         Same as before, but for each population seperately
@@ -86,6 +86,7 @@ class LinearSubspaceBounceNetworkTeacherForcedHVAEReverseProcess(
             predicted_residual[..., 0, :],
             noise_scaler * self.primary_noise_scalar,
             override_euler_alpha=self.primary_euler_alpha,
+            ablation_vector=ablation_vector,
         )
         x_t_bounce, x0_pred_bounce = super().denoise_one_step(
             t_idx,
@@ -93,6 +94,7 @@ class LinearSubspaceBounceNetworkTeacherForcedHVAEReverseProcess(
             predicted_residual[..., 1, :],
             noise_scaler * self.bounce_noise_scalar,
             override_euler_alpha=self.bounce_euler_alpha,
+            ablation_vector=ablation_vector,
         )
         return torch.stack([x_t_primary, x_t_bounce], -2), torch.stack(
             [x0_pred_primary, x0_pred_bounce], -2

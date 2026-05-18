@@ -2,7 +2,7 @@
 Standalone trajectory geometry analysis with common cued-color binning.
 
 This script extends the endpoint-style prep analysis by tracking the full prep
-trajectory across multiple prep indices in one shared PCA space.
+trajectory and full diffusion trajectory in one shared PCA space.
 
 What it does:
 1. Loads a DDPM model checkpoint.
@@ -11,8 +11,8 @@ What it does:
 4. Extracts neural states for all requested prep indices per trial in one pass.
 4. Bins states by a common feature (cued-color bin) for each cue.
 5. Averages states per (cue, bin, prep_idx).
-6. Fits one global PCA across all prep_idx points.
-7. Visualizes trajectories that connect prep_idx points for each (cue, bin).
+6. Fits one global PCA across all time points.
+7. Visualizes full prep and diffusion trajectories for each (cue, bin).
 
 Example:
     conda activate ddpm
@@ -363,6 +363,85 @@ def make_full_step_trajectory_dataset(states_seq_by_prep, metadata, prep_indices
     return points, labels, prep_step_counts
 
 
+def make_full_timeline_dataset(states_seq_by_prep, states_seq_by_diffusion, metadata, prep_indices, n_bins):
+    """Build pooled points over the full prep timeline and full diffusion timeline.
+
+    labels columns:
+            prep labels: [time_idx, cue, bin, local_step, global_step, phase, ablation_condition]
+            diffusion labels: [time_idx, cue, bin, local_step, global_step, phase, ablation_condition]
+    """
+    points = []
+    labels = []
+    prep_time_counts = {}
+    diffusion_time_count = 0
+
+    if len(prep_indices) == 0:
+        return np.array(points), np.array(labels, dtype=int), prep_time_counts, diffusion_time_count
+
+    n_trials = len(metadata)
+    full_prep_sequences = []
+    for trial_idx in range(n_trials):
+        trial_segments = []
+        for p in prep_indices:
+            trial_segments.append(states_seq_by_prep[p][trial_idx])
+        full_prep_sequences.append(np.concatenate(trial_segments, axis=0))
+
+    prep_total_steps = int(full_prep_sequences[0].shape[0])
+    prep_time_counts["total"] = prep_total_steps
+
+    for local_step in range(prep_total_steps):
+        states_step = np.stack([seq[local_step] for seq in full_prep_sequences], axis=0)
+        condition_values = metadata[:, 3]
+        for ablation_condition in np.unique(condition_values):
+            cond_mask = condition_values == ablation_condition
+            averaged = bin_and_average_states(states_step[cond_mask], metadata[cond_mask], n_bins)
+
+            for cue in [1, 2]:
+                for b in range(n_bins):
+                    vec = averaged[cue][b]
+                    if np.isnan(vec).any():
+                        continue
+                    points.append(vec)
+                    labels.append([
+                        int(local_step),
+                        int(cue),
+                        int(b),
+                        int(local_step),
+                        int(local_step),
+                        0,
+                        int(ablation_condition),
+                    ])
+
+    if states_seq_by_diffusion.shape[0] > 0:
+        diffusion_time_count = int(states_seq_by_diffusion.shape[1])
+        for diff_step in range(diffusion_time_count):
+            states_step = states_seq_by_diffusion[:, diff_step, :]
+            condition_values = metadata[:, 3]
+            for ablation_condition in np.unique(condition_values):
+                cond_mask = condition_values == ablation_condition
+                averaged = bin_and_average_states(states_step[cond_mask], metadata[cond_mask], n_bins)
+
+                for cue in [1, 2]:
+                    for b in range(n_bins):
+                        vec = averaged[cue][b]
+                        if np.isnan(vec).any():
+                            continue
+                        points.append(vec)
+                        labels.append([
+                            int(diff_step),
+                            int(cue),
+                            int(b),
+                            int(diff_step),
+                            int(prep_total_steps + diff_step),
+                            1,
+                            int(ablation_condition),
+                        ])
+
+    points = np.array(points)
+    labels = np.array(labels, dtype=int)
+    return points, labels, prep_time_counts, diffusion_time_count
+
+
 def make_diffusion_step_dataset(states_seq_by_diffusion, metadata, n_bins):
     """Build pooled points over all diffusion timesteps for a global diffusion PCA.
 
@@ -639,8 +718,8 @@ def plot_spatial_rings_by_time_3d(
     ax.view_init(elev=24, azim=-56)
 
     legend = [
-        Line2D([0], [0], color="black", linestyle="-", linewidth=1.5, label="Cue 1 ring"),
-        Line2D([0], [0], color="black", linestyle="--", linewidth=1.5, label="Cue 2 ring"),
+        Line2D([0], [0], color="black", linestyle="-", linewidth=1.5, label="Colour 1 ring"),
+        Line2D([0], [0], color="black", linestyle="--", linewidth=1.5, label="Colour 2 ring"),
         Line2D([0], [0], color=(0.85, 0.85, 0.85), linestyle="-", linewidth=2, label="Early time"),
         Line2D([0], [0], color=(0.10, 0.10, 0.10), linestyle="-", linewidth=2, label="Late time"),
     ]
@@ -820,6 +899,98 @@ def plot_adjacent_segment_transitions(pca_coords, labels, prep_indices, pca, out
 
     plt.tight_layout()
     plt.savefig(out_path, dpi=160, bbox_inches="tight")
+    plt.close(fig)
+
+
+def plot_time_trajectory_3d(
+    pca_coords,
+    labels,
+    pca,
+    out_path,
+    n_bins,
+    time_col,
+    cue_col,
+    bin_col,
+    condition_col,
+    title,
+):
+    """Plot a 3D trajectory where time order is encoded by connected points."""
+    mins = pca_coords.min(axis=0)
+    maxs = pca_coords.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+    fig = plt.figure(figsize=(11, 8))
+    ax = fig.add_subplot(111, projection="3d")
+
+    times = np.unique(labels[:, time_col])
+    t_min = float(times.min())
+    t_max = float(times.max()) if len(times) > 1 else float(times.min() + 1.0)
+
+    for condition in np.unique(labels[:, condition_col]):
+        for cue in [1, 2]:
+            marker = "o" if cue == 1 else "^"
+            for b in range(n_bins):
+                mask = (
+                    (labels[:, cue_col] == cue)
+                    & (labels[:, bin_col] == b)
+                    & (labels[:, condition_col] == condition)
+                )
+                seq = pca_coords[mask]
+                seq_labels = labels[mask]
+                if seq.shape[0] < 2:
+                    continue
+
+                order = np.argsort(seq_labels[:, time_col])
+                seq = seq[order]
+                seq_times = seq_labels[order, time_col]
+                color = angle_to_colour(int(b), n_bins)
+
+                ax.plot(seq[:, 0], seq[:, 1], seq[:, 2], color=color, alpha=0.55, linewidth=1.6)
+                time_norm = (seq_times - t_min) / max(t_max - t_min, 1e-12)
+                point_colors = [(0.2 + 0.75 * float(t), 0.2 + 0.55 * float(t), 0.2 + 0.35 * float(t)) for t in time_norm]
+                ax.scatter(
+                    seq[:, 0],
+                    seq[:, 1],
+                    seq[:, 2],
+                    c=point_colors,
+                    marker=marker,
+                    s=26,
+                    edgecolors="k",
+                    linewidths=0.35,
+                    alpha=0.95,
+                )
+                ax.scatter(
+                    seq[0, 0], seq[0, 1], seq[0, 2],
+                    c=[color], marker=marker, s=72, edgecolors="k", linewidths=0.7, alpha=1.0
+                )
+                ax.scatter(
+                    seq[-1, 0], seq[-1, 1], seq[-1, 2],
+                    c=[color], marker=marker, s=100, edgecolors="k", linewidths=0.9, alpha=1.0
+                )
+
+    g = pca.explained_variance_ratio_
+    ax.set_xlim(lims[0])
+    ax.set_ylim(lims[1])
+    ax.set_zlim(lims[2])
+    ax.set_xlabel(f"PC1 ({g[0]:.1%})", fontweight="bold")
+    ax.set_ylabel(f"PC2 ({g[1]:.1%})", fontweight="bold")
+    ax.set_zlabel(f"PC3 ({g[2]:.1%})", fontweight="bold")
+    ax.set_title(title, fontweight="bold")
+    ax.grid(True, alpha=0.25)
+    ax.view_init(elev=24, azim=-56)
+
+    legend = [
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 1"),
+        Line2D([0], [0], marker="^", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=7, label="Cue 2"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=6, label="Start"),
+        Line2D([0], [0], marker="o", linestyle="None", color="w", markerfacecolor="lightgray", markeredgecolor="k", markersize=9, label="End"),
+    ]
+    ax.legend(handles=legend, fontsize=8, loc="upper right")
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=170, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -1025,173 +1196,182 @@ def main():
         ablation_vectors=ablation_vectors,
     )
 
-    print("Binning and averaging each preparatory timestep by cued-color bin...")
-    points, labels, prep_step_counts = make_full_step_trajectory_dataset(
+    print("Binning and averaging each preparatory timestep and diffusion timestep by cued-color bin...")
+    timeline_points, timeline_labels, prep_time_counts, num_diff_steps = make_full_timeline_dataset(
         states_seq_by_prep=states_seq_by_prep,
+        states_seq_by_diffusion=states_seq_by_diffusion,
         metadata=metadata,
         prep_indices=prep_indices,
         n_bins=args.n_bins,
     )
 
     pca_global = PCA(n_components=3)
-    pca_coords = pca_global.fit_transform(points)
+    pca_coords = pca_global.fit_transform(timeline_points)
 
     print("Global PCA explained variance ratio:", pca_global.explained_variance_ratio_)
     print("Global PCA cumulative variance:", pca_global.explained_variance_ratio_.cumsum())
 
-    fig_path = output_dir / "prospective_memory_global_pca_all_prep_steps_3d.png"
-    prep_spatial_fig_path = output_dir / "prospective_memory_global_pca_prep_spatial_rings_over_time_3d.png"
+    prep_mask = timeline_labels[:, 5] == 0
+    diff_mask = timeline_labels[:, 5] == 1
+    prep_coords = pca_coords[prep_mask]
+    prep_labels = timeline_labels[prep_mask]
+    diff_coords = pca_coords[diff_mask]
+    diff_labels = timeline_labels[diff_mask]
+
+    prep_fig_path = output_dir / "retrospective_memory_global_pca_all_prep_timesteps_3d.png"
+    diff_fig_path = output_dir / "retrospective_memory_global_pca_all_diffusion_timesteps_3d.png"
+    prep_ring_fig_path = output_dir / "retrospective_memory_global_pca_all_prep_timesteps_3d_rings.png"
+    diff_ring_fig_path = output_dir / "retrospective_memory_global_pca_all_diffusion_timesteps_3d_rings.png"
 
     if not args.skip_combined_plots:
-        plot_all_prep_steps_3d(
-            pca_coords=pca_coords,
-            labels=labels,
+        plot_time_trajectory_3d(
+            pca_coords=prep_coords,
+            labels=prep_labels,
             pca=pca_global,
-            out_path=fig_path,
+            out_path=prep_fig_path,
             n_bins=args.n_bins,
-        )
-
-        plot_spatial_rings_by_time_3d(
-            pca_coords=pca_coords,
-            labels=labels,
-            pca=pca_global,
-            out_path=prep_spatial_fig_path,
-            n_bins=args.n_bins,
-            time_col=5,
+            time_col=0,
             cue_col=1,
             bin_col=2,
             condition_col=6,
-            title="Prep: Spatial Rings at Fixed Time (darker = later)",
+            title="Retrospective colours-first, cue-later: all preparatory timesteps in global PCA space",
         )
 
-    print("Binning and averaging each diffusion timestep by cued-color bin...")
-    diff_points, diff_labels, num_diff_steps = make_diffusion_step_dataset(
-        states_seq_by_diffusion=states_seq_by_diffusion,
-        metadata=metadata,
-        n_bins=args.n_bins,
-    )
-
-    pca_diff = PCA(n_components=3)
-    diff_pca_coords = pca_diff.fit_transform(diff_points)
-
-    print("Diffusion PCA explained variance ratio:", pca_diff.explained_variance_ratio_)
-    print("Diffusion PCA cumulative variance:", pca_diff.explained_variance_ratio_.cumsum())
-
-    diff_fig_path = output_dir / "prospective_memory_global_pca_all_diffusion_steps_3d.png"
-    diff_spatial_fig_path = output_dir / "prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d.png"
-
-    if not args.skip_combined_plots:
-        plot_all_diffusion_steps_3d(
-            pca_coords=diff_pca_coords,
+        plot_time_trajectory_3d(
+            pca_coords=diff_coords,
             labels=diff_labels,
-            pca=pca_diff,
+            pca=pca_global,
             out_path=diff_fig_path,
             n_bins=args.n_bins,
+            time_col=0,
+            cue_col=1,
+            bin_col=2,
+            condition_col=6,
+            title="Retrospective colours-first, cue-later: all diffusion timesteps in global PCA space",
         )
 
         plot_spatial_rings_by_time_3d(
-            pca_coords=diff_pca_coords,
-            labels=diff_labels,
-            pca=pca_diff,
-            out_path=diff_spatial_fig_path,
+            pca_coords=prep_coords,
+            labels=prep_labels,
+            pca=pca_global,
+            out_path=prep_ring_fig_path,
             n_bins=args.n_bins,
-            time_col=3,
+            time_col=0,
             cue_col=1,
             bin_col=2,
-            condition_col=4,
-            title="Diffusion: Spatial Rings at Fixed Time (darker = later)",
+            condition_col=6,
+            title="Retrospective colours-first ring view: all preparatory timesteps in global PCA space",
+        )
+
+        plot_spatial_rings_by_time_3d(
+            pca_coords=diff_coords,
+            labels=diff_labels,
+            pca=pca_global,
+            out_path=diff_ring_fig_path,
+            n_bins=args.n_bins,
+            time_col=0,
+            cue_col=1,
+            bin_col=2,
+            condition_col=6,
+            title="Retrospective colours-first ring view: all diffusion timesteps in global PCA space",
         )
 
     separate_figures = {}
     if args.separate_ablation_plots:
         for condition in ablation_conditions:
             cond_tag = ablation_condition_tag(condition)
-            prep_mask = labels[:, 6] == int(condition)
-            diff_mask = diff_labels[:, 4] == int(condition)
+            cond_mask = timeline_labels[:, 6] == int(condition)
+            cond_coords = pca_coords[cond_mask]
+            cond_labels = timeline_labels[cond_mask]
 
-            cond_prep_coords = pca_coords[prep_mask]
-            cond_prep_labels = labels[prep_mask]
-            cond_diff_coords = diff_pca_coords[diff_mask]
-            cond_diff_labels = diff_labels[diff_mask]
+            if cond_coords.shape[0] == 0:
+                continue
+
+            cond_prep_mask = cond_labels[:, 5] == 0
+            cond_diff_mask = cond_labels[:, 5] == 1
+            cond_prep_coords = cond_coords[cond_prep_mask]
+            cond_prep_labels = cond_labels[cond_prep_mask]
+            cond_diff_coords = cond_coords[cond_diff_mask]
+            cond_diff_labels = cond_labels[cond_diff_mask]
 
             if cond_prep_coords.shape[0] == 0 or cond_diff_coords.shape[0] == 0:
                 continue
 
-            cond_prep_path = output_dir / f"prospective_memory_global_pca_all_prep_steps_3d_{cond_tag}.png"
-            cond_prep_rings_path = output_dir / f"prospective_memory_global_pca_prep_spatial_rings_over_time_3d_{cond_tag}.png"
-            cond_diff_path = output_dir / f"prospective_memory_global_pca_all_diffusion_steps_3d_{cond_tag}.png"
-            cond_diff_rings_path = output_dir / f"prospective_memory_global_pca_diffusion_spatial_rings_over_time_3d_{cond_tag}.png"
+            cond_prep_path = output_dir / f"retrospective_memory_global_pca_all_prep_timesteps_3d_{cond_tag}.png"
+            cond_diff_path = output_dir / f"retrospective_memory_global_pca_all_diffusion_timesteps_3d_{cond_tag}.png"
+            cond_prep_ring_path = output_dir / f"retrospective_memory_global_pca_all_prep_timesteps_3d_rings_{cond_tag}.png"
+            cond_diff_ring_path = output_dir / f"retrospective_memory_global_pca_all_diffusion_timesteps_3d_rings_{cond_tag}.png"
 
-            plot_all_prep_steps_3d(
+            plot_time_trajectory_3d(
                 pca_coords=cond_prep_coords,
                 labels=cond_prep_labels,
                 pca=pca_global,
                 out_path=cond_prep_path,
                 n_bins=args.n_bins,
+                time_col=0,
+                cue_col=1,
+                bin_col=2,
+                condition_col=6,
+                title=f"Retrospective colours-first, cue-later: all preparatory timesteps in global PCA space ({cond_tag})",
+            )
+            plot_time_trajectory_3d(
+                pca_coords=cond_diff_coords,
+                labels=cond_diff_labels,
+                pca=pca_global,
+                out_path=cond_diff_path,
+                n_bins=args.n_bins,
+                time_col=0,
+                cue_col=1,
+                bin_col=2,
+                condition_col=6,
+                title=f"Retrospective colours-first, cue-later: all diffusion timesteps in global PCA space ({cond_tag})",
             )
             plot_spatial_rings_by_time_3d(
                 pca_coords=cond_prep_coords,
                 labels=cond_prep_labels,
                 pca=pca_global,
-                out_path=cond_prep_rings_path,
+                out_path=cond_prep_ring_path,
                 n_bins=args.n_bins,
-                time_col=5,
+                time_col=0,
                 cue_col=1,
                 bin_col=2,
                 condition_col=6,
-                title="Prep: Spatial Rings at Fixed Time (darker = later)",
-            )
-            plot_all_diffusion_steps_3d(
-                pca_coords=cond_diff_coords,
-                labels=cond_diff_labels,
-                pca=pca_diff,
-                out_path=cond_diff_path,
-                n_bins=args.n_bins,
+                title=f"Retrospective colours-first ring view: all preparatory timesteps in global PCA space ({cond_tag})",
             )
             plot_spatial_rings_by_time_3d(
                 pca_coords=cond_diff_coords,
                 labels=cond_diff_labels,
-                pca=pca_diff,
-                out_path=cond_diff_rings_path,
+                pca=pca_global,
+                out_path=cond_diff_ring_path,
                 n_bins=args.n_bins,
-                time_col=3,
+                time_col=0,
                 cue_col=1,
                 bin_col=2,
-                condition_col=4,
-                title="Diffusion: Spatial Rings at Fixed Time (darker = later)",
+                condition_col=6,
+                title=f"Retrospective colours-first ring view: all diffusion timesteps in global PCA space ({cond_tag})",
             )
 
             separate_figures[str(cond_tag)] = {
                 "prep_path": str(cond_prep_path),
-                "prep_rings_path": str(cond_prep_rings_path),
                 "diffusion_path": str(cond_diff_path),
-                "diffusion_rings_path": str(cond_diff_rings_path),
+                "prep_ring_path": str(cond_prep_ring_path),
+                "diffusion_ring_path": str(cond_diff_ring_path),
             }
 
     local_fractions = compute_prep_local_variance_fractions(
         pca_coords=pca_coords,
-        labels=labels,
+        labels=timeline_labels,
         prep_indices=prep_indices,
     )
 
     np.savez(
         output_dir / "global_pca_trajectory_data.npz",
-        points=points,
-        labels=labels,
+        points=timeline_points,
+        labels=timeline_labels,
         pca_coords=pca_coords,
         pca_components=pca_global.components_,
         pca_mean=pca_global.mean_,
         explained_variance=pca_global.explained_variance_ratio_,
-    )
-
-    np.savez(
-        output_dir / "global_pca_diffusion_data.npz",
-        points=diff_points,
-        labels=diff_labels,
-        pca_coords=diff_pca_coords,
-        pca_components=pca_diff.components_,
-        pca_mean=pca_diff.mean_,
-        explained_variance=pca_diff.explained_variance_ratio_,
     )
 
 
@@ -1210,15 +1390,14 @@ def main():
         "neural_dim": int(args.neural_dim),
         "global_explained_variance_ratio": pca_global.explained_variance_ratio_.tolist(),
         "global_explained_variance_cumulative": pca_global.explained_variance_ratio_.cumsum().tolist(),
-        "diffusion_global_explained_variance_ratio": pca_diff.explained_variance_ratio_.tolist(),
-        "diffusion_global_explained_variance_cumulative": pca_diff.explained_variance_ratio_.cumsum().tolist(),
         "per_prep_local_variance_fraction_in_global_basis": local_fractions,
-        "prep_step_counts": prep_step_counts,
+        "prep_step_counts": prep_time_counts,
+        "prep_time_step_count": int(prep_time_counts.get("total", 0)),
         "diffusion_step_count": int(num_diff_steps),
-        "figure_path": str(fig_path),
+        "figure_path": str(prep_fig_path),
         "diffusion_figure_path": str(diff_fig_path),
-        "prep_spatial_rings_figure_path": str(prep_spatial_fig_path),
-        "diffusion_spatial_rings_figure_path": str(diff_spatial_fig_path),
+        "prep_ring_figure_path": str(prep_ring_fig_path),
+        "diffusion_ring_figure_path": str(diff_ring_fig_path),
     }
 
     with open(output_dir / "global_pca_trajectory_summary.json", "w", encoding="utf-8") as f:
@@ -1226,17 +1405,16 @@ def main():
 
     print("Saved outputs:")
     if not args.skip_combined_plots:
-        print(f"  {fig_path}")
-        print(f"  {prep_spatial_fig_path}")
+        print(f"  {prep_fig_path}")
         print(f"  {diff_fig_path}")
-        print(f"  {diff_spatial_fig_path}")
+        print(f"  {prep_ring_fig_path}")
+        print(f"  {diff_ring_fig_path}")
     for cond_tag, cond_paths in separate_figures.items():
         print(f"  [{cond_tag}] {cond_paths['prep_path']}")
-        print(f"  [{cond_tag}] {cond_paths['prep_rings_path']}")
         print(f"  [{cond_tag}] {cond_paths['diffusion_path']}")
-        print(f"  [{cond_tag}] {cond_paths['diffusion_rings_path']}")
+        print(f"  [{cond_tag}] {cond_paths['prep_ring_path']}")
+        print(f"  [{cond_tag}] {cond_paths['diffusion_ring_path']}")
     print(f"  {output_dir / 'global_pca_trajectory_data.npz'}")
-    print(f"  {output_dir / 'global_pca_diffusion_data.npz'}")
     print(f"  {output_dir / 'global_pca_trajectory_summary.json'}")
 
 

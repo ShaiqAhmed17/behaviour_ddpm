@@ -375,7 +375,7 @@ for t in tqdm(range(num_trials)):
         
         fig.savefig(os.path.join(save_base, "latest_log.png"))
 
-        plt.close(test_trial_type)
+        plt.close(fig)
 
         torch.save(ddpm_model.state_dict(), os.path.join(save_base, f"state.mdl"))
         torch.save(optim.state_dict(), os.path.join(save_base, f"opt_state.mdl"))

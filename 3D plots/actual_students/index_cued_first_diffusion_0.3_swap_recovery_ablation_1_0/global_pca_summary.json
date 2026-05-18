@@ -1,0 +1,56 @@
+{
+  "run_dir": "/scratch3/shaiq_home/results_link/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_0",
+  "prep_indices": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_trials": 288,
+  "ablation_directions": [
+    -1
+  ],
+  "healthy_direction_code": -1,
+  "n_bins": 12,
+  "angle_step": 30,
+  "neural_dim": 16,
+  "explained_variance_ratio": [
+    0.6603996084196627,
+    0.12449251191863178,
+    0.09216486074991172
+  ],
+  "explained_variance_cumulative": [
+    0.6603996084196627,
+    0.7848921203382945,
+    0.8770569810882062
+  ],
+  "per_prep_cue_center_separation": {
+    "0": 7.545819820656631,
+    "1": 71.3499133838069,
+    "2": 60.76151361425817,
+    "3": 57.86425030573111
+  },
+  "per_prep_local_variance_fraction_in_global_basis": {
+    "0": {
+      "PC1": 0.013383229181032541,
+      "PC2": 0.9798045649691465,
+      "PC3": 0.006812205849820938
+    },
+    "1": {
+      "PC1": 0.003940504250069069,
+      "PC2": 0.962545183047315,
+      "PC3": 0.03351431270261586
+    },
+    "2": {
+      "PC1": 0.3788670696494019,
+      "PC2": 0.3326645521914064,
+      "PC3": 0.2884683781591918
+    },
+    "3": {
+      "PC1": 0.39895915887837663,
+      "PC2": 0.3139736792907617,
+      "PC3": 0.2870671618308616
+    }
+  },
+  "figure_path": "/scratch3/shaiq_home/repos/behaviour_ddpm/3D plots/actual_students/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_0/prospective_memory_global_pca_common_cued_bin.png"
+}

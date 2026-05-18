@@ -290,7 +290,7 @@ class LinearSubspaceTeacherForcedDDPMReverseProcess(
             )
 
             base_samples, early_embedded_x0_pred = self.denoise_one_step(
-                t_idx, base_samples, predicted_residual, noise_scaler
+                t_idx, base_samples, predicted_residual, noise_scaler, ablation_vector=ablation_vector
             )
             
             early_x0_pred = self.extract_subspace(early_embedded_x0_pred) # [..., 1, sample dim]
