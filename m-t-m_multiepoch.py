@@ -57,8 +57,9 @@ def parse_args():
     parser.add_argument(
         "--ablate_neuron",
         type=int,
-        required=True,
-        help="Neuron index to ablate in the source model (indexing the memory nullspace, not behavioral subspace)",
+        required=False,
+        default=None,
+        help="Neuron index to ablate in the source model (indexing the memory nullspace, not behavioral subspace). Omit to use no ablation",
     )
     parser.add_argument(
         "--source_device",
@@ -261,7 +262,10 @@ def main():
     batch_size = args.batch_size
     num_trials = args.num_trials
     logging_freq = args.logging_freq
-    save_base = f"{args.save_base}_ablation_{cli_args.ablate_neuron}"
+    if cli_args.ablate_neuron is None:
+        save_base = f"{args.save_base}_no_ablation"
+    else:
+        save_base = f"{args.save_base}_ablation_{cli_args.ablate_neuron}"
     task_name = args.task_name
     task_config = args.task_config
     regularise_prep_state_weight = args.regularise_prep_state_weight
@@ -355,17 +359,23 @@ def main():
         checkpoint_name=cli_args.source_checkpoint,
     )
     
-    # Validate neuron index is in memory subspace range
-    memory_dims = source_model.behaviour_nullspace.shape[0]
-    if cli_args.ablate_neuron < 0 or cli_args.ablate_neuron >= memory_dims:
-        raise ValueError(f"Neuron index {cli_args.ablate_neuron} out of range for memory subspace (0-{memory_dims-1})")
-    
-    # Extract ablation vector from nullspace (state-space ablation)
-    ablation_vector = get_ablation_vector(source_model, cli_args.ablate_neuron)
-    ablation_vector = ablation_vector.to(source_device)
-    
-    print(f"Source model has {memory_dims} nullspace basis vectors")
-    print(f"Ablating nullspace direction {cli_args.ablate_neuron}")
+    # Optionally validate neuron index and extract ablation vector
+    if cli_args.ablate_neuron is None:
+        ablation_vector = None
+        memory_dims = source_model.behaviour_nullspace.shape[0]
+        print(f"Source model has {memory_dims} nullspace basis vectors")
+        print("No ablation direction specified; using intact source model for targets")
+    else:
+        memory_dims = source_model.behaviour_nullspace.shape[0]
+        if cli_args.ablate_neuron < 0 or cli_args.ablate_neuron >= memory_dims:
+            raise ValueError(f"Neuron index {cli_args.ablate_neuron} out of range for memory subspace (0-{memory_dims-1})")
+
+        # Extract ablation vector from nullspace (state-space ablation)
+        ablation_vector = get_ablation_vector(source_model, cli_args.ablate_neuron)
+        ablation_vector = ablation_vector.to(source_device)
+
+        print(f"Source model has {memory_dims} nullspace basis vectors")
+        print(f"Ablating nullspace direction {cli_args.ablate_neuron}")
     
     # CRITICAL: Copy projection matrices from source to training model
     # This ensures both models use the same behavioral/memory subspace decomposition
@@ -475,8 +485,10 @@ def main():
                 'prep_epoch_durations': trial_information.prep_epoch_durations,
                 'diffusion_epoch_durations': trial_information.diffusion_epoch_durations,
                 'samples_shape': [batch_size, num_samples],
-                'ablation_vector': ablation_vector,  # Pass ablation vector for state-space ablation
             }
+            # Only include ablation vector when provided
+            if ablation_vector is not None:
+                source_sample_kwargs['ablation_vector'] = ablation_vector
             if cli_args.noise_scaler is not None:
                 source_sample_kwargs['noise_scaler'] = cli_args.noise_scaler
             
@@ -622,8 +634,10 @@ def main():
                     'prep_epoch_durations': test_trial_information.prep_epoch_durations,
                     'diffusion_epoch_durations': test_trial_information.diffusion_epoch_durations,
                     'samples_shape': [len(task.task_variable_gen.trial_types), 500],
-                    'ablation_vector': ablation_vector,  # CRITICAL: Also ablate during test sampling
                 }
+                # Only include ablation vector when provided
+                if ablation_vector is not None:
+                    source_test_kwargs['ablation_vector'] = ablation_vector
                 if cli_args.noise_scaler is not None:
                     source_test_kwargs['noise_scaler'] = cli_args.noise_scaler
                 

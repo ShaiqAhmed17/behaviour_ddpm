@@ -1,8 +1,8 @@
 """
 procrustes_heatmap.py
 
-Teacher-student trajectory alignment in the 14-D behavioural nullspace, with
-joint sample-correspondence and orthogonal Procrustes optimisation.
+Teacher-student trajectory alignment via joint sample-correspondence and
+orthogonal Procrustes optimisation.
 
 Public API
 ----------
@@ -10,9 +10,10 @@ align_trajectories(X, Y, ...)              -> AlignmentResult
 compute_heatmap(teacher_trajs, student_trajs, ...) -> dict
 permutation_test(D, ...)                   -> dict
 
-All trajectory arrays must have shape (N_trials, S_samples, T_timesteps, 14)
-and must already be projected into the behavioural nullspace.  Use
-project_to_nullspace() to convert 16-D hidden states.
+All trajectory arrays must have shape (N_trials, S_samples, T_timesteps, M)
+where M is the feature dimension (e.g. 16 for full hidden state, 14 for the
+behavioural nullspace projection).  Use project_to_nullspace() to project
+16-D hidden states into the 14-D behavioural nullspace if desired.
 
 GPU acceleration
 ----------------
@@ -40,16 +41,13 @@ except ImportError:
     _HAS_TORCH = False
 
 
-NULLSPACE_DIM = 14
-
-
 # ---------------------------------------------------------------------------
 # Result type
 # ---------------------------------------------------------------------------
 
 @dataclass
 class AlignmentResult:
-    R: np.ndarray            # (14, 14) orthogonal rotation
+    R: np.ndarray            # (M, M) orthogonal rotation
     c: float                 # positive global scale factor
     matches: np.ndarray      # (N_trials, S_samples) int — per-trial sample permutation
     residual: float          # ||c·X@R − Y_matched||_F / ||X||_F  (best restart)
@@ -153,6 +151,10 @@ def _solve_procrustes(
     Yf = pooled_Y.reshape(-1, M)
     A = Xf.T @ Yf
     U, s, Vt = np.linalg.svd(A)
+    # Enforce proper rotation (det = +1); flip last singular vector if needed
+    if np.linalg.det(U @ Vt) < 0:
+        U[:, -1] *= -1
+        s[-1] *= -1
     R = U @ Vt
     if allow_scaling:
         c = float(s.sum()) / (float((Xf ** 2).sum()) + 1e-30)
@@ -189,6 +191,9 @@ def _identity_residual(X: np.ndarray, Y: np.ndarray) -> float:
 def _run_one_restart(
     X: np.ndarray,
     Y: np.ndarray,
+    X_w: np.ndarray,
+    Y_w: np.ndarray,
+    w_sqrt: np.ndarray,
     R_init: np.ndarray,
     allow_scaling: bool,
     max_iter: int,
@@ -197,25 +202,32 @@ def _run_one_restart(
 ) -> tuple:
     """
     One alternating-minimisation run from a single (R_init, c=1) initialisation.
+    Both steps use the same temporal weighting:
+      A-step: cost matrix built from X_w = X * w_sqrt[t], Y_w = Y * w_sqrt[t]
+      B-step: Procrustes SVD and residual also use the weighted matched pairs
+    This means the whole pipeline minimises Σ_t w[t] * ||c·X[t]@R − Y_matched[t]||²_F.
     Returns (R, c, matches, final_residual, objective_trace).
     """
     N = X.shape[0]
     R, c, prev_obj = R_init.copy(), 1.0, np.inf
+    w_col = w_sqrt.astype(np.float64).reshape(1, -1, 1)   # (1, T, 1) for broadcasting
     trace = []
 
     for _ in range(max_iter):
-        # A-step: solve LAP per trial, in parallel with threads (LAP releases GIL)
-        cost = _compute_cost_matrices(X, Y, R, c)          # (N, S, S)
+        # A-step: weighted cost matrix → LAP per trial
+        cost = _compute_cost_matrices(X_w, Y_w, R, c)      # (N, S, S)
         results = Parallel(n_jobs=n_jobs, prefer='threads')(
             delayed(_lap_one_trial)(cost[n]) for n in range(N)
         )
         matches = np.stack(results, axis=0)                # (N, S)
 
-        # B-step: closed-form Procrustes on all matched pairs pooled
+        # B-step: gather matched pairs, apply weights, solve weighted Procrustes
         pooled_X, pooled_Y = _gather_matched(X, Y, matches)
-        R, c = _solve_procrustes(pooled_X, pooled_Y, allow_scaling)
+        pX_w = pooled_X * w_col                            # (N*S, T, M)
+        pY_w = pooled_Y * w_col
+        R, c = _solve_procrustes(pX_w, pY_w, allow_scaling)
 
-        obj = _normalised_residual(pooled_X, pooled_Y, R, c)
+        obj = _normalised_residual(pX_w, pY_w, R, c)
         trace.append(float(obj))
 
         if abs(prev_obj - obj) / (abs(prev_obj) + 1e-30) < tol:
@@ -269,6 +281,10 @@ def _solve_procrustes_gpu(
     Xf = pooled_X.reshape(-1, M)
     Yf = pooled_Y.reshape(-1, M)
     U, s, Vh = _torch.linalg.svd(Xf.T @ Yf)
+    # Enforce proper rotation (det = +1); flip last singular vector if needed
+    if float(_torch.linalg.det(U @ Vh).item()) < 0:
+        U[:, -1] *= -1
+        s[-1] *= -1
     R = U @ Vh
     if allow_scaling:
         c = float(s.sum().item()) / (float((Xf ** 2).sum().item()) + 1e-30)
@@ -302,6 +318,9 @@ def _identity_residual_gpu(X: '_torch.Tensor', Y: '_torch.Tensor') -> float:
 def _run_one_restart_gpu(
     X_t: '_torch.Tensor',
     Y_t: '_torch.Tensor',
+    X_w_t: '_torch.Tensor',
+    Y_w_t: '_torch.Tensor',
+    w_sqrt: np.ndarray,
     R_init: np.ndarray,
     allow_scaling: bool,
     max_iter: int,
@@ -310,28 +329,34 @@ def _run_one_restart_gpu(
 ) -> tuple:
     """
     One alternating-min restart on GPU.
+    Both steps use the same temporal weighting — see _run_one_restart for details.
     Cost matrix and SVD on device; Hungarian on CPU via scipy threads.
     Returns (R_np, c, matches, final_residual, objective_trace) — R as float64 numpy.
     """
     N = X_t.shape[0]
+    T = X_t.shape[2]
     R_t = _torch.as_tensor(R_init, dtype=X_t.dtype, device=X_t.device)
+    # (1, T, 1) weight column for broadcasting over pooled (N*S, T, M) arrays
+    w_t = _torch.as_tensor(w_sqrt.astype(np.float32), device=X_t.device).reshape(1, T, 1)
     c, prev_obj = 1.0, float('inf')
     trace: list = []
     matches: np.ndarray | None = None
 
     for _ in range(max_iter):
-        # A-step: cost on GPU → CPU for parallel scipy LAP
-        cost_np = _compute_cost_matrices_gpu(X_t, Y_t, R_t, c).cpu().numpy().astype(np.float64)
+        # A-step: weighted cost on GPU → CPU for parallel scipy LAP
+        cost_np = _compute_cost_matrices_gpu(X_w_t, Y_w_t, R_t, c).cpu().numpy().astype(np.float64)
         results = Parallel(n_jobs=n_jobs, prefer='threads')(
             delayed(_lap_one_trial)(cost_np[n]) for n in range(N)
         )
         matches = np.stack(results, axis=0)
 
-        # B-step: gather + Procrustes on GPU
+        # B-step: gather matched pairs, apply weights, solve weighted Procrustes
         pooled_X, pooled_Y = _gather_matched_gpu(X_t, Y_t, matches)
-        R_t, c = _solve_procrustes_gpu(pooled_X, pooled_Y, allow_scaling)
+        pX_w = pooled_X * w_t                              # (N*S, T, M)
+        pY_w = pooled_Y * w_t
+        R_t, c = _solve_procrustes_gpu(pX_w, pY_w, allow_scaling)
 
-        obj = _normalised_residual_gpu(pooled_X, pooled_Y, R_t, c)
+        obj = _normalised_residual_gpu(pX_w, pY_w, R_t, c)
         trace.append(obj)
         if abs(prev_obj - obj) / (abs(prev_obj) + 1e-30) < tol:
             break
@@ -354,11 +379,11 @@ def align_trajectories(
     n_jobs: int = -1,
     seed: int = 42,
     device: str = 'cpu',
+    match_weights: np.ndarray | None = None,
 ) -> AlignmentResult:
     """
-    Align teacher trajectories X to student trajectories Y in the 14-D
-    behavioural nullspace via joint sample-correspondence and orthogonal
-    Procrustes optimisation.
+    Align teacher trajectories X to student trajectories Y via joint
+    sample-correspondence and orthogonal Procrustes optimisation.
 
     The optimisation alternates between:
       A-step: fix (R, c), solve a Hungarian assignment per trial on the
@@ -368,19 +393,28 @@ def align_trajectories(
 
     Parameters
     ----------
-    X, Y         : (N_trials, S_samples, T_timesteps, 14) float arrays,
-                   already projected into the 14-D behavioural nullspace.
-    allow_scaling: optimise global scale c > 0 alongside rotation R.
-                   Set False for pure orthogonal Procrustes (c = 1).
-    n_restarts   : number of initialisations; restart 0 always uses R = I.
-    max_iter     : max alternating-minimisation iterations per restart.
-    tol          : convergence: relative change in residual below this value.
-    n_jobs       : joblib thread-pool size for the per-trial Hungarian step.
-                   -1 uses all available CPUs.
-    seed         : RNG seed for random orthogonal initialisations.
-    device       : 'cpu' (default) or a torch device string ('cuda', 'cuda:0',
-                   etc.).  GPU path runs cost-matrix computation and Procrustes
-                   SVD on the device; Hungarian stays on CPU.
+    X, Y          : (N_trials, S_samples, T_timesteps, M) float arrays.
+                    M can be any positive integer (e.g. 16 for full hidden
+                    state, 14 for the behavioural nullspace projection).
+    allow_scaling : optimise global scale c > 0 alongside rotation R.
+                    Set False for pure orthogonal Procrustes (c = 1).
+    n_restarts    : number of initialisations; restart 0 always uses R = I.
+    max_iter      : max alternating-minimisation iterations per restart.
+    tol           : convergence: relative change in residual below this value.
+    n_jobs        : joblib thread-pool size for the per-trial Hungarian step.
+                    -1 uses all available CPUs.
+    seed          : RNG seed for random orthogonal initialisations.
+    device        : 'cpu' (default) or a torch device string ('cuda', 'cuda:0',
+                    etc.).  GPU path runs cost-matrix computation and Procrustes
+                    SVD on the device; Hungarian stays on CPU.
+    match_weights : (T,) non-negative array controlling how much each timestep
+                    contributes to the Hungarian cost matrix (A-step only).
+                    None = uniform (all 1s).  Weights are normalised so their
+                    sum equals T, keeping cost magnitudes comparable across
+                    choices.  Examples:
+                      np.array([0]*20 + [1]*6)   — last 6 timesteps only
+                      np.array([0]*25 + [1])      — final state only
+                    The Procrustes B-step always uses all timesteps equally.
 
     Returns
     -------
@@ -388,29 +422,44 @@ def align_trajectories(
     """
     assert X.ndim == 4 and Y.ndim == 4, "Trajectories must be (N, S, T, M)"
     assert X.shape == Y.shape, f"Shape mismatch: X={X.shape}, Y={Y.shape}"
-    assert X.shape[3] == NULLSPACE_DIM, (
-        f"Last dim must be {NULLSPACE_DIM} (nullspace); got {X.shape[3]}"
-    )
 
     use_gpu = (device != 'cpu') and _HAS_TORCH
-    M = NULLSPACE_DIM
+    T = X.shape[2]
+    M = X.shape[3]
     rng = np.random.default_rng(seed)
+
+    # Build temporal weight vector; normalise so sum == T (same cost scale as uniform)
+    if match_weights is None:
+        w_sqrt = np.ones(T, dtype=np.float32)
+    else:
+        w = np.asarray(match_weights, dtype=np.float32)
+        assert w.shape == (T,), f"match_weights must have length T={T}, got {w.shape}"
+        assert (w >= 0).all(), "match_weights must be non-negative"
+        w_sum = float(w.sum())
+        w = w * (T / w_sum) if w_sum > 0 else np.ones(T, dtype=np.float32)
+        w_sqrt = np.sqrt(w)   # (T,) — applied as X_w = X * w_sqrt[:, None]
 
     if use_gpu:
         X_t = _torch.as_tensor(np.asarray(X, dtype=np.float32)).to(device)
         Y_t = _torch.as_tensor(np.asarray(Y, dtype=np.float32)).to(device)
         # Remove the temporal mean of every trajectory — makes alignment
         # invariant to translation (absolute position in nullspace).
-        # Equivalent to the centering in compare_two_models_prep_trajectories.
         X_t = X_t - X_t.mean(dim=2, keepdim=True)   # (N, S, T, M)
         Y_t = Y_t - Y_t.mean(dim=2, keepdim=True)
         id_res = _identity_residual_gpu(X_t, Y_t)
+        # Weighted copies for the A-step cost matrix
+        w_t = _torch.as_tensor(w_sqrt, device=device).reshape(1, 1, T, 1)
+        X_w_t = X_t * w_t
+        Y_w_t = Y_t * w_t
     else:
         X = np.asarray(X, dtype=np.float64)
         Y = np.asarray(Y, dtype=np.float64)
         X = X - X.mean(axis=2, keepdims=True)        # (N, S, T, M)
         Y = Y - Y.mean(axis=2, keepdims=True)
         id_res = _identity_residual(X, Y)
+        w_np = w_sqrt.astype(np.float64).reshape(1, 1, T, 1)
+        X_w = X * w_np
+        Y_w = Y * w_np
 
     best: dict = dict(R=None, c=1.0, matches=None, residual=np.inf, trace=[])
     restart_residuals = []
@@ -419,11 +468,11 @@ def align_trajectories(
         R_init = np.eye(M) if restart_idx == 0 else _random_orthogonal(M, rng)
         if use_gpu:
             R, c, matches, residual, trace = _run_one_restart_gpu(
-                X_t, Y_t, R_init, allow_scaling, max_iter, tol, n_jobs
+                X_t, Y_t, X_w_t, Y_w_t, w_sqrt, R_init, allow_scaling, max_iter, tol, n_jobs
             )
         else:
             R, c, matches, residual, trace = _run_one_restart(
-                X, Y, R_init, allow_scaling, max_iter, tol, n_jobs
+                X, Y, X_w, Y_w, w_sqrt, R_init, allow_scaling, max_iter, tol, n_jobs
             )
         restart_residuals.append(float(residual))
         if residual < best['residual']:
@@ -454,6 +503,7 @@ def compute_heatmap(
     n_jobs_lap: int = -1,
     seed: int = 42,
     device: str = 'cpu',
+    match_weights: np.ndarray | None = None,
 ) -> dict:
     """
     Compute alignment-derived Procrustes residuals for all teacher × student pairs.
@@ -464,9 +514,12 @@ def compute_heatmap(
 
     Parameters
     ----------
-    teacher_trajs : list of n_teachers arrays, each (N, S, T, 14)
-    student_trajs : list of n_students  arrays, each (N, S, T, 14)
+    teacher_trajs : list of n_teachers arrays, each (N, S, T, M)
+    student_trajs : list of n_students  arrays, each (N, S, T, M)
     allow_scaling : passed through to align_trajectories for every cell
+    match_weights : (T,) array passed through to align_trajectories; controls
+                    which timesteps drive the Hungarian sample matching.
+                    None = uniform.  See align_trajectories for details.
     device        : torch device string; 'cpu' or 'cuda' / 'cuda:0' etc.
     [other args]  : passed through to align_trajectories
 
@@ -492,6 +545,7 @@ def compute_heatmap(
                 n_jobs=n_jobs_lap,
                 seed=seed + i * n_students + j,
                 device=device,
+                match_weights=match_weights,
             )
             residuals[i, j] = result.residual
             all_results[i][j] = result

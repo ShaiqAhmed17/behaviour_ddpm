@@ -108,11 +108,15 @@ def _extract_trajectories(
     ablation_vector=None,
     trial_indices=None,
     chunk_size: int = 64,
+    include_diffusion: bool = False,
 ) -> np.ndarray:
     """
-    Extract preparatory trajectories for a subset of trials.
+    Extract trajectories for a subset of trials.
 
-    Returns ndarray of shape (N_trials, n_samples, T_prep, 16).
+    Returns ndarray of shape (N_trials, n_samples, T, 16) where T is:
+      - T_prep (sum of prep epoch durations) when include_diffusion=False
+      - T_prep + T_diff                       when include_diffusion=True
+
     The S=n_samples independent trajectories arise from different random
     initial states drawn inside model.prepare().
 
@@ -151,12 +155,18 @@ def _extract_trajectories(
                 if ablation_vector is not None:
                     sample_kwargs['ablation_vector'] = ablation_vector
 
-                prep_dicts, _ = model.generate_samples(**sample_kwargs)
+                prep_dicts, samples_dict = model.generate_samples(**sample_kwargs)
                 # prep_dicts[epoch]['preparatory_trajectory']: (1, this_chunk, T_epoch, 16)
-                chunk_epoch_lists.append([
+                chunk_epochs = [
                     pd['preparatory_trajectory'][0].cpu().numpy()  # (this_chunk, T_epoch, 16)
                     for pd in prep_dicts
-                ])
+                ]
+                if include_diffusion:
+                    # embedded_sample_trajectory: (1, this_chunk, T_diff, 16) — ambient 16D path
+                    chunk_epochs.append(
+                        samples_dict['embedded_sample_trajectory'][0].cpu().numpy()
+                    )
+                chunk_epoch_lists.append(chunk_epochs)
 
             # Concatenate chunks then epochs.
             n_epochs = len(chunk_epoch_lists[0])
@@ -209,21 +219,25 @@ def load_or_extract_trajectories(
     cache_dir: Path | None,
     label: str,
     chunk_size: int = 64,
+    include_diffusion: bool = False,
 ) -> np.ndarray:
     """
     Load from cache if available, otherwise extract from model checkpoint.
     Returns (N, S, T, 16) float32.
+      include_diffusion=False: T = T_prep  (prep epochs only, legacy behaviour)
+      include_diffusion=True:  T = T_prep + T_diff (full path through 16D space)
     chunk_size: max samples per model.generate_samples call (prevents OOM for large S).
     """
     if cache_dir is not None:
         cache_dir.mkdir(parents=True, exist_ok=True)
-        suffix = f'abl{ablation_direction_idx:02d}' if ablation_direction_idx is not None else 'unablated'
-        cache_path = cache_dir / f'{label}_{suffix}_S{n_samples}.npy'
+        abl_part = f'abl{ablation_direction_idx:02d}' if ablation_direction_idx is not None else 'unablated'
+        diff_part = '_full' if include_diffusion else ''
+        cache_path = cache_dir / f'{label}_{abl_part}{diff_part}_S{n_samples}.npy'
         if cache_path.exists():
             print(f'  [cache] loading {cache_path}')
             return np.load(cache_path)
 
-    print(f'  extracting {label} (ablation={ablation_direction_idx}) ...', flush=True)
+    print(f'  extracting {label} (ablation={ablation_direction_idx}, include_diffusion={include_diffusion}) ...', flush=True)
     task, model = _load_model(run_dir, device)
 
     ablation_vector = None
@@ -235,6 +249,7 @@ def load_or_extract_trajectories(
         ablation_vector=ablation_vector,
         trial_indices=trial_indices,
         chunk_size=chunk_size,
+        include_diffusion=include_diffusion,
     )
 
     if cache_dir is not None:
@@ -410,6 +425,10 @@ def parse_args():
                    help='Add the unablated teacher as an extra heatmap row')
     p.add_argument('--include-unablated-student', action='store_true',
                    help='Add the unablated teacher model as an extra column')
+    p.add_argument('--include-diffusion', action='store_true',
+                   help='Append the 40-step denoising trajectory after prep epochs, giving '
+                        'a full (T_prep + T_diff)-step path through 16D space. '
+                        'Cache files are written with a _full suffix.')
     p.add_argument('--angle-step', type=int, default=30,
                    help='Degrees between colour angles for trial generation')
     p.add_argument('--n-trials',   type=int, default=None,
@@ -494,6 +513,7 @@ def main():
             cache_dir=cache_dir,
             label=args.teacher_run,
             chunk_size=args.sample_chunk_size,
+            include_diffusion=args.include_diffusion,
         )
         teacher_trajs_16d.append(t)
         teacher_labels.append('unablated')
@@ -507,6 +527,7 @@ def main():
             cache_dir=cache_dir,
             label=args.teacher_run,
             chunk_size=args.sample_chunk_size,
+            include_diffusion=args.include_diffusion,
         )
         teacher_trajs_16d.append(t)
         teacher_labels.append(f'dir_{di:02d}')
@@ -526,6 +547,7 @@ def main():
             cache_dir=cache_dir,
             label=args.teacher_run + '_as_student',
             chunk_size=args.sample_chunk_size,
+            include_diffusion=args.include_diffusion,
         )
         student_trajs_16d.append(t)
         student_labels.append('unablated_teacher')
@@ -540,6 +562,7 @@ def main():
             cache_dir=cache_dir,
             label=s_run,
             chunk_size=args.sample_chunk_size,
+            include_diffusion=args.include_diffusion,
         )
         student_trajs_16d.append(t)
         # Shorten label for axis readability

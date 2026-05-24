@@ -1,0 +1,50 @@
+/scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/run_procrustes_heatmap.py:401: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+Existing matrix: (15, 19)  teachers=['unablated', 'dir_00', 'dir_01', 'dir_02', 'dir_03', 'dir_04', 'dir_05', 'dir_06', 'dir_07', 'dir_08', 'dir_09', 'dir_10', 'dir_11', 'dir_12', 'dir_13']
+Loaded 15 teacher trajectories. Shape: (288, 512, 66, 14)
+Loaded no_ablation student. Shape: (288, 512, 66, 14)
+
+Computing 15 × 1 column (allow_scaling=True) ...
+  [ 0, 0]  residual=0.2316  id_residual=0.8869  c=0.276  restarts=['0.2316', '0.2316', '0.2316']
+  [ 1, 0]  residual=0.4390  id_residual=0.9733  c=0.510  restarts=['0.4390', '0.4390', '0.4390']
+  [ 2, 0]  residual=0.2398  id_residual=0.8819  c=0.284  restarts=['0.2398', '0.2398', '0.2398']
+  [ 3, 0]  residual=0.0371  id_residual=0.9991  c=0.003  restarts=['0.0371', '0.0371', '0.0371']
+  [ 4, 0]  residual=0.0017  id_residual=1.0000  c=0.000  restarts=['0.0017', '0.0017', '0.0017']
+  [ 5, 0]  residual=0.2456  id_residual=0.8734  c=0.304  restarts=['0.2456', '0.2456', '0.2456']
+  [ 6, 0]  residual=0.2530  id_residual=0.8788  c=0.291  restarts=['0.2530', '0.2530', '0.2530']
+  [ 7, 0]  residual=0.2374  id_residual=0.8936  c=0.285  restarts=['0.2374', '0.2374', '0.2374']
+  [ 8, 0]  residual=0.3114  id_residual=0.9033  c=0.336  restarts=['0.3114', '0.3114', '0.3114']
+  [ 9, 0]  residual=0.2977  id_residual=0.9045  c=0.287  restarts=['0.2977', '0.2977', '0.2977']
+  [10, 0]  residual=0.0243  id_residual=0.9999  c=0.001  restarts=['0.0243', '0.0243', '0.0243']
+  [11, 0]  residual=0.0010  id_residual=1.0000  c=0.000  restarts=['0.0010', '0.0010', '0.0010']
+  [12, 0]  residual=0.0000  id_residual=1.0000  c=0.000  restarts=['0.0000', '0.0000', '0.0000']
+  [13, 0]  residual=0.4647  id_residual=0.9242  c=0.451  restarts=['0.4647', '0.4647', '0.4647']
+  [14, 0]  residual=0.0102  id_residual=0.9999  c=0.000  restarts=['0.0102', '0.0102', '0.0102']
+
+Computing 15 × 1 column (allow_scaling=False) ...
+  [ 0, 0]  residual=0.7600  id_residual=0.8869  c=1.000  restarts=['0.7600', '0.7600', '0.7600']
+  [ 1, 0]  residual=0.6578  id_residual=0.9733  c=1.000  restarts=['0.6578', '0.6578', '0.6578']
+  [ 2, 0]  residual=0.7547  id_residual=0.8819  c=1.000  restarts=['0.7547', '0.7547', '0.7547']
+  [ 3, 0]  residual=0.9980  id_residual=0.9991  c=1.000  restarts=['0.9980', '0.9980', '0.9980']
+  [ 4, 0]  residual=1.0000  id_residual=1.0000  c=1.000  restarts=['1.0000', '1.0000', '1.0000']
+  [ 5, 0]  residual=0.7380  id_residual=0.8734  c=1.000  restarts=['0.7380', '0.7380', '0.7380']
+  [ 6, 0]  residual=0.7531  id_residual=0.8788  c=1.000  restarts=['0.7531', '0.7531', '0.7531']
+  [ 7, 0]  residual=0.7536  id_residual=0.8936  c=1.000  restarts=['0.7536', '0.7536', '0.7536']
+  [ 8, 0]  residual=0.7332  id_residual=0.9033  c=1.000  restarts=['0.7332', '0.7332', '0.7332']
+  [ 9, 0]  residual=0.7724  id_residual=0.9045  c=1.000  restarts=['0.7724', '0.7724', '0.7724']
+  [10, 0]  residual=0.9991  id_residual=0.9999  c=1.000  restarts=['0.9991', '0.9991', '0.9991']
+  [11, 0]  residual=1.0000  id_residual=1.0000  c=1.000  restarts=['1.0000', '1.0000', '1.0000']
+  [12, 0]  residual=1.0000  id_residual=1.0000  c=1.000  restarts=['1.0000', '1.0000', '1.0000']
+  [13, 0]  residual=0.7191  id_residual=0.9242  c=1.000  restarts=['0.7191', '0.7191', '0.7191']
+  [14, 0]  residual=0.9998  id_residual=0.9999  c=1.000  restarts=['0.9998', '0.9998', '0.9998']
+
+Updated matrices: (15, 20)
+Saved heatmap: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/procrustes_heatmap_15dirs_all_students/heatmap_scaled.png
+Saved heatmap: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/procrustes_heatmap_15dirs_all_students/heatmap_fixed.png
+Saved comparison heatmap: /scratch3/shaiq_home/repos/behaviour_ddpm/ddpm/analysis/new_analysis/results/procrustes_heatmap_15dirs_all_students/heatmap_comparison.png
+
+Done. no_ablation column appended and plots regenerated.
+Scaled col: [0.2316 0.439  0.2398 0.0371 0.0017 0.2456 0.253  0.2374 0.3114 0.2977
+ 0.0243 0.001  0.     0.4647 0.0102]
+Fixed  col: [0.76   0.6578 0.7547 0.998  1.     0.738  0.7531 0.7536 0.7332 0.7724
+ 0.9991 1.     1.     0.7191 0.9998]
