@@ -659,7 +659,23 @@ def run_sweep(
             seed=args.seed + trial_idx,
         )
         sw_summary = "  ".join(f"{lB}:{sw:.3f}" for (lA, lB), sw in sw_scores.items())
-        print(f"  {sw_summary}")
+
+        # Self-SW baseline: sample the reference model a second time and compute SW(batch1, batch2)
+        sw_self = None
+        if ref_idx is not None:
+            ref_model = all_models[ref_idx]
+            ref_abl_vec = all_ablation_vectors[ref_idx]
+            _, ref_sd2 = generate_samples_for_model(ref_model, trial_info, args.num_samples, device, ref_abl_vec)
+            ref_samples_1 = all_samples_dicts[ref_idx]["samples"][0].cpu().float().numpy()
+            ref_samples_2 = ref_sd2["samples"][0].cpu().float().numpy()
+            sw_self = sliced_wasserstein_distance(
+                ref_samples_1, ref_samples_2,
+                n_projections=args.n_sw_projections,
+                seed=args.seed + trial_idx + 10000,
+            )
+            print(f"  {sw_summary}  [self:{sw_self:.3f}]")
+        else:
+            print(f"  {sw_summary}")
 
         row = {
             "trial_idx": trial_idx,
@@ -670,6 +686,8 @@ def run_sweep(
         }
         for (lA, lB), sw in sw_scores.items():
             row[f"sw_{lA}_vs_{lB}"] = sw
+        if sw_self is not None:
+            row["sw_self_reference"] = sw_self
 
         # Aggregate teacher-vs-students stats (only when reference is set and there are >1 students)
         if ref_idx is not None:
@@ -712,6 +730,18 @@ def run_sweep(
         same = df.loc[df["same_color"], col].mean()
         diff = df.loc[~df["same_color"], col].mean()
         print(f"  {col}: {df[col].mean():.6f}  same={same:.6f}  diff={diff:.6f}")
+
+    if "sw_self_reference" in df.columns:
+        self_mean = df["sw_self_reference"].mean()
+        self_same = df.loc[df["same_color"], "sw_self_reference"].mean()
+        self_diff = df.loc[~df["same_color"], "sw_self_reference"].mean()
+        print(f"\nReference self-SW (noise floor) — overall: {self_mean:.6f}  same: {self_same:.6f}  diff: {self_diff:.6f}")
+        print("\nNormalised SW (ratio to self-SW baseline):")
+        for col in sw_cols:
+            ratio_col = df[col] / df["sw_self_reference"]
+            same_ratio = (df.loc[df["same_color"], col] / df.loc[df["same_color"], "sw_self_reference"]).mean()
+            diff_ratio = (df.loc[~df["same_color"], col] / df.loc[~df["same_color"], "sw_self_reference"]).mean()
+            print(f"  {col}: {ratio_col.mean():.3f}×  same={same_ratio:.3f}×  diff={diff_ratio:.3f}×")
 
     if "teacher_vs_students_mean" in df.columns:
         print("\nTeacher-vs-students aggregate (mean over student SW per trial):")

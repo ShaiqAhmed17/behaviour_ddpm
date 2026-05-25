@@ -1,0 +1,151 @@
+
+============================================================
+Teacher: Healthy  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_no_ablation
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Healthy_vs_Student_0: 0.435162  same=0.173151  diff=0.458981
+    sw_self_reference: 0.058172  same=0.031868  diff=0.060563
+  
+
+============================================================
+Teacher: Ablated_0  |  Students: 2
+Output:  results/all_teacher_student_sweeps/ablation_0
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_0_vs_Student_0: 1.883350  same=2.675090  diff=1.811373
+    sw_Ablated_0_vs_Student_1: 0.210666  same=0.739829  diff=0.162561
+    sw_Student_0_vs_Student_1: 1.820866  same=2.797627  diff=1.732070
+    sw_self_reference: 0.035239  same=0.047826  diff=0.034095
+  
+
+============================================================
+Teacher: Ablated_1  |  Students: 5
+Output:  results/all_teacher_student_sweeps/ablation_1
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_1_vs_Student_0: 0.104773  same=0.179767  diff=0.097955
+    sw_Ablated_1_vs_Student_1: 0.123571  same=0.162529  diff=0.120029
+    sw_Ablated_1_vs_Student_2: 0.121637  same=0.182787  diff=0.116078
+    sw_Ablated_1_vs_Student_3: 0.410217  same=0.277234  diff=0.422306
+    sw_Ablated_1_vs_Student_4: 0.415340  same=0.305926  diff=0.425287
+    sw_Student_0_vs_Student_1: 0.108869  same=0.141579  diff=0.105895
+    sw_Student_0_vs_Student_2: 0.098810  same=0.119584  diff=0.096922
+    sw_Student_0_vs_Student_3: 0.412941  same=0.258694  diff=0.426963
+    sw_Student_0_vs_Student_4: 0.419923  same=0.282071  diff=0.432455
+    sw_Student_1_vs_Student_2: 0.116435  same=0.118148  diff=0.116279
+    sw_Student_1_vs_Student_3: 0.409100  same=0.236017  diff=0.424834
+    sw_Student_1_vs_Student_4: 0.416406  same=0.271046  diff=0.429621
+    sw_Student_2_vs_Student_3: 0.429672  same=0.242560  diff=0.446683
+    sw_Student_2_vs_Student_4: 0.441408  same=0.284056  diff=0.455712
+    sw_Student_3_vs_Student_4: 0.093398  same=0.128863  diff=0.090174
+    sw_self_reference: 0.058446  same=0.041734  diff=0.059966
+  
+
+============================================================
+Teacher: Ablated_2  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_2
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_2_vs_Student_0: 12.159876  same=0.398615  diff=13.229082
+    sw_self_reference: 0.604021  same=0.039141  diff=0.655374
+  
+
+============================================================
+Teacher: Ablated_3  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_3
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_3_vs_Student_0: 9.655697  same=38.793049  diff=7.006847
+    sw_self_reference: 7.041030  same=17.909336  diff=6.053002
+  
+
+============================================================
+Teacher: Ablated_4  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_4
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_4_vs_Student_0: 0.140741  same=0.213381  diff=0.134137
+    sw_self_reference: 0.074038  same=0.085240  diff=0.073020
+  
+
+============================================================
+Teacher: Ablated_5  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_5
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_5_vs_Student_0: 0.124570  same=0.211922  diff=0.116629
+    sw_self_reference: 0.052635  same=0.036793  diff=0.054075
+  
+
+============================================================
+Teacher: Ablated_6  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_6
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_6_vs_Student_0: 12.644748  same=12.984771  diff=12.613837
+    sw_self_reference: 0.032234  same=0.030892  diff=0.032356
+  
+
+============================================================
+Teacher: Ablated_7  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_7
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_7_vs_Student_0: 0.111065  same=0.207626  diff=0.102287
+    sw_self_reference: 0.049735  same=0.029927  diff=0.051535
+  
+Skipping direction '8' — no students found.
+
+============================================================
+Teacher: Ablated_9  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_9
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_9_vs_Student_0: 156.906790  same=275.603940  diff=146.116140
+    sw_self_reference: 1.964700  same=13.693246  diff=0.898469
+  
+
+============================================================
+Teacher: Ablated_10  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_10
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_10_vs_Student_0: 3.401679  same=0.199631  diff=3.692774
+    sw_self_reference: 3.650109  same=0.035463  diff=3.978714
+  
+
+============================================================
+Teacher: Ablated_11  |  Students: 2
+Output:  results/all_teacher_student_sweeps/ablation_11
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_11_vs_Student_0: 300746.786880  same=394691.688670  diff=292206.341263
+    sw_Ablated_11_vs_Student_1: 302804.331644  same=396100.459934  diff=294322.865436
+    sw_Student_0_vs_Student_1: 3313.319677  same=3311.968976  diff=3313.442468
+    sw_self_reference: 34959.481704  same=41144.670008  diff=34397.191858
+  
+
+============================================================
+Teacher: Ablated_12  |  Students: 2
+Output:  results/all_teacher_student_sweeps/ablation_12
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_12_vs_Student_0: 0.063490  same=0.128659  diff=0.057565
+    sw_Ablated_12_vs_Student_1: 0.072052  same=0.130950  diff=0.066698
+    sw_Student_0_vs_Student_1: 0.046021  same=0.048499  diff=0.045796
+    sw_self_reference: 0.028620  same=0.019098  diff=0.029485
+  
+
+============================================================
+Teacher: Ablated_13  |  Students: 1
+Output:  results/all_teacher_student_sweeps/ablation_13
+============================================================
+  Mean sliced-Wasserstein per pair (overall / same-color / different-color):
+    sw_Ablated_13_vs_Student_0: 0.191006  same=0.160924  diff=0.193740
+    sw_self_reference: 0.132882  same=0.036745  diff=0.141622
+  
+
+============================================================
+Done. Ran: ['no_ablation', '0', '1', '2', '3', '4', '5', '6', '7', '9', '10', '11', '12', '13']
+Skipped (no students): ['8']
