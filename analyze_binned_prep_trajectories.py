@@ -484,6 +484,7 @@ def make_diffusion_step_dataset(states_seq_by_diffusion, metadata, n_bins):
 
 def plot_all_prep_steps_3d(pca_coords, labels, pca, out_path, n_bins):
     """Plot full stepwise preparatory trajectories in one global PCA space."""
+    pca_coords = pca_coords - pca_coords.mean(axis=0, keepdims=True)
     mins = pca_coords.min(axis=0)
     maxs = pca_coords.max(axis=0)
     span = np.maximum(maxs - mins, 1e-6)
@@ -562,6 +563,7 @@ def plot_all_prep_steps_3d(pca_coords, labels, pca, out_path, n_bins):
 
 def plot_all_diffusion_steps_3d(pca_coords, labels, pca, out_path, n_bins):
     """Plot full stepwise diffusion trajectories in one diffusion-global PCA space."""
+    pca_coords = pca_coords - pca_coords.mean(axis=0, keepdims=True)
     mins = pca_coords.min(axis=0)
     maxs = pca_coords.max(axis=0)
     span = np.maximum(maxs - mins, 1e-6)
@@ -649,6 +651,7 @@ def plot_spatial_rings_by_time_3d(
     title,
 ):
     """At each fixed timestep, connect points across bins; darken lines over time."""
+    pca_coords = pca_coords - pca_coords.mean(axis=0, keepdims=True)
     mins = pca_coords.min(axis=0)
     maxs = pca_coords.max(axis=0)
     span = np.maximum(maxs - mins, 1e-6)
@@ -915,6 +918,7 @@ def plot_time_trajectory_3d(
     title,
 ):
     """Plot a 3D trajectory where time order is encoded by connected points."""
+    pca_coords = pca_coords - pca_coords.mean(axis=0, keepdims=True)
     mins = pca_coords.min(axis=0)
     maxs = pca_coords.max(axis=0)
     span = np.maximum(maxs - mins, 1e-6)

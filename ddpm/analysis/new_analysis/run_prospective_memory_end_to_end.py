@@ -14,13 +14,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import subprocess
 import sys
 from pathlib import Path
 from typing import Dict, List
 
 import numpy as np
 import torch
+from sklearn.decomposition import PCA
 
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
@@ -32,6 +32,12 @@ from ddpm.analysis.new_analysis.export_student_sweep_cache import (
     generate_trial_combinations,
     move_to_device,
     build_override_stimulus_features_dict,
+)
+from ddpm.analysis.new_analysis.prospective_memory_plotting import (
+    compute_3d_limits,
+    make_full_step_diffusion_dataset,
+    make_full_step_trajectory_dataset,
+    plot_global_3d_trajectories,
 )
 
 
@@ -165,19 +171,71 @@ def main():
 
     print(f"Saved sampling cache: {npz_out}")
 
-    # Call existing plotting wrapper for prep and diffusion plots
-    wrapper = REPO_ROOT / "ddpm/analysis/new_analysis/run_prospective_memory_plotting.py"
-
     prep_png = outdir / "prospective_memory_global_pca_all_prep_steps_3d.png"
     diff_png = outdir / "prospective_memory_global_pca_all_diffusion_steps_3d.png"
 
-    cmd_prep = [sys.executable, str(wrapper), "--input", str(npz_out), "--output", str(prep_png), "--mode", "prep", "--n-bins", str(args.n_bins), "--variance-threshold", str(args.variance_threshold)]
-    cmd_diff = [sys.executable, str(wrapper), "--input", str(npz_out), "--output", str(diff_png), "--mode", "diffusion", "--n-bins", str(args.n_bins), "--variance-threshold", str(args.variance_threshold)]
+    prep_indices = sorted(states_seq_by_prep.keys())
+    prep_points, prep_labels, prep_step_counts = make_full_step_trajectory_dataset(
+        states_seq_by_prep=states_seq_by_prep,
+        metadata=metadata,
+        prep_indices=prep_indices,
+        n_bins=args.n_bins,
+    )
+    diff_points, diff_labels, diff_step_count = make_full_step_diffusion_dataset(
+        states_seq_by_diffusion=all_trajectories,
+        metadata=metadata,
+        n_bins=args.n_bins,
+    )
 
-    print("Running prep plotting wrapper...")
-    subprocess.run(cmd_prep, check=True)
-    print("Running diffusion plotting wrapper...")
-    subprocess.run(cmd_diff, check=True)
+    if prep_points.shape[0] == 0:
+        raise RuntimeError("No preparatory points available for shared PCA fitting")
+    if diff_points.shape[0] == 0:
+        raise RuntimeError("No diffusion points available for plotting")
+
+    n_comp = min(max(3, 3), prep_points.shape[0], prep_points.shape[1])
+    if n_comp < 3:
+        raise RuntimeError(
+            "Need at least 3 preparatory samples/features for the shared 3D PCA plot. "
+            f"Got {prep_points.shape[0]} samples and {prep_points.shape[1]} features."
+        )
+
+    pca = PCA(n_components=n_comp)
+    prep_coords = pca.fit_transform(prep_points)
+    diff_coords = pca.transform(diff_points)
+
+    shared_lims = compute_3d_limits(np.vstack([prep_coords[:, :3], diff_coords[:, :3]]))
+
+    cumulative = np.cumsum(pca.explained_variance_ratio_)
+    print("Shared PCA explained variance ratio:", pca.explained_variance_ratio_)
+    print("Shared PCA cumulative variance:", cumulative)
+    print(
+        f"Minimal PCs for threshold {args.variance_threshold:.1%}: "
+        f"{int(np.searchsorted(cumulative, args.variance_threshold) + 1)}"
+    )
+
+    print("Running preparatory plot with shared PCA basis...")
+    plot_global_3d_trajectories(
+        pca_coords=prep_coords,
+        labels=prep_labels,
+        pca=pca,
+        n_bins=args.n_bins,
+        out_path=prep_png,
+        title="All Preparatory Timesteps in Shared Global PCA Space",
+        label_schema="prep",
+        lims=shared_lims,
+    )
+
+    print("Running diffusion plot with shared PCA basis...")
+    plot_global_3d_trajectories(
+        pca_coords=diff_coords,
+        labels=diff_labels,
+        pca=pca,
+        n_bins=args.n_bins,
+        out_path=diff_png,
+        title="All Diffusion Timesteps in Shared Global PCA Space",
+        label_schema="diffusion",
+        lims=shared_lims,
+    )
 
     print("End-to-end run complete. Figures saved:")
     print("- ", prep_png)

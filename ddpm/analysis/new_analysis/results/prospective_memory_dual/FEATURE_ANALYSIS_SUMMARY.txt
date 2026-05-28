@@ -1,0 +1,143 @@
+================================================================================
+FEATURE IMPORTANCE ANALYSIS: COMPREHENSIVE SUMMARY
+================================================================================
+
+PROJECT GOAL:
+Rank all 36 features (10 hand-crafted + 10 topological + 16 diff/sum modes) by
+their contribution to MDS quality. Identify which features matter for capturing
+the neural state space geometry of teacher/student brain models.
+
+================================================================================
+KEY FINDING: ONLY 3 FEATURES MATTER
+================================================================================
+
+Using LEAVE-ONE-OUT analysis: remove each feature, recompute MDS, measure stress.
+
+BASELINE (all 36 features):
+  MDS Stress: 1030.12
+
+OPTIMAL (top 3 features):
+  MDS Stress: 0.9363
+  Improvement: 1029.2 points (99.9% reduction!)
+
+The 3 optimal features are:
+  1. mean_sq_temporal_deriv_sum          (+8.54 importance)
+     → Trajectory speed + acceleration; captures dynamics
+  
+  2. reconstruction_error_rank3_sum      (+4.98 importance)
+     → Intrinsic dimensionality structure; captures low-D manifold
+  
+  3. principal_angle_tgt_dis_sum         (+1.84 importance)
+     → Ring geometry separation; captures working memory selectivity
+
+================================================================================
+WHY IS THIS REMARKABLE?
+================================================================================
+
+✓ 33 other features are NOISE
+  - Removing them actually IMPROVES MDS fit
+  - Worst offenders: radius_curvature_sum (-84.07), plane_angle_deg_sum (-76.90)
+
+✓ The "curse of dimensionality"
+  - Adding more features in high-D space confuses distance metrics
+  - Each added feature adds independent noise dimensions
+  - MDS distance becomes dominated by noise, not signal
+
+✓ Biological interpretation
+  - Trajectory dynamics (MSTD) matters most
+  - Manifold structure (reconstruction error) is #2
+  - Ring geometry (plane angle) is #3
+  - Everything else (radius, eccentricity, SNR, etc.) is redundant
+
+================================================================================
+DETAILED RESULTS: ALL 36 FEATURES RANKED
+================================================================================
+
+POSITIVE IMPORTANCE (keep these):
+  1. mean_sq_temporal_deriv_sum          +8.5415   ← Top feature
+  2. reconstruction_error_rank3_sum      +4.9814
+  3. principal_angle_tgt_dis_sum         +1.8355
+
+NEGATIVE IMPORTANCE (these are noise):
+  4. arc_std_sum                         -0.0634
+  5. var_top3_pcs_sum                    -0.2353
+  6. centroid_separation_sum             -0.8651
+  ...
+  34. radius_curvature_diff              -71.2729
+  35. plane_angle_deg_diff               -73.9923
+  36. radius_curvature_sum               -84.0705   ← Worst feature
+
+================================================================================
+MDS STRESS ACROSS DIFFERENT FEATURE SELECTIONS
+================================================================================
+
+Strategy                    n_features    Stress    Improvement
+─────────────────────────────────────────────────────────────
+All 36 features                36         1030.12        0.00
+Top 3 (pos importance)          3          0.94       1029.19 ✓ BEST
+Top 10                         10         42.73        987.39
+Top 15 (original)              15        120.57        909.55
+Top 20                         20        209.33        820.79
+
+CONCLUSION: Using just 3 features is ~1000x better than 36!
+
+================================================================================
+WHAT THIS MEANS FOR YOUR ANALYSIS
+================================================================================
+
+Option A: Use optimal 3 features
+  ✓ Stress = 0.94 (nearly perfect embedding)
+  ✓ Clean separation of teachers and students
+  ✓ No noise from redundant features
+  ✗ Less biological interpretation (ignoring ring geometry details)
+
+Option B: Use top 10-15 features (original approach)
+  ✓ Still much better than all 36 (stress ~40-120)
+  ✓ More biological detail captured
+  ✓ Balances efficiency vs interpretability
+  ✗ Some noise still present
+
+Option C: Keep all 36 features
+  ✓ Every detail included
+  ✗ Worst MDS stress; distances corrupted by noise
+  ✗ Poor embedding quality
+
+RECOMMENDATION: Use top 10 features as sweet spot
+  - Captures most biological signal
+  - Manageable dimensionality
+  - Stress ~43 (still excellent vs 1030)
+
+================================================================================
+FILES GENERATED
+================================================================================
+
+feature_importance.csv                    - Full ranking of all 36 features
+feature_importance_top20.png              - Bar plot of top 20 features
+feature_importance_all36_ranked.png       - All 36 features ranked (this summary)
+feature_importance_cumulative.png         - Cumulative importance curve
+mds_stress_comparison.png                 - Stress across feature selections
+mds_stress_summary.csv                    - Quantitative comparison table
+MDS_optimal_features_top3.png             - Visualization with top 3 features
+
+================================================================================
+METHODOLOGY
+================================================================================
+
+1. Extracted 36 features from each teacher/student NPZ file
+   - 10 hand-crafted ring geometry metrics
+   - 10 topological metrics
+   - 16 diff/sum modes (each metric in cue1-cue2 and cue1+cue2 form)
+
+2. For each feature independently:
+   a. Removed that feature from the 36-D matrix
+   b. Normalized remaining features with StandardScaler
+   c. Computed pairwise Euclidean distances
+   d. Fitted 2D MDS with dissimilarity='precomputed'
+   e. Recorded MDS stress value
+   f. Importance = stress_without - stress_all
+
+3. Ranked features by importance (highest to lowest)
+
+4. Tested different feature subsets (3, 10, 15, 20, all 36)
+
+================================================================================

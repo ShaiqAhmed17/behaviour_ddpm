@@ -1,0 +1,174 @@
+================================================================================
+FEATURE VARIANCE BETWEEN TEACHERS: SIMPLE EXPLANATION
+================================================================================
+
+QUESTION: "What does high variance between teachers mean?"
+
+ANSWER: It means different teacher ablations have VERY DIFFERENT neural signatures.
+         This is GOOD because you can tell teachers apart.
+
+
+================================================================================
+THE 3 MOST IMPORTANT FEATURES (HIGH VARIANCE)
+================================================================================
+
+FEATURE #1: mean_sq_temporal_deriv_sum
+────────────────────────────────────────────────────────────────────────────
+
+WHAT IT MEASURES:
+  How fast does the neural population activity change over time?
+  (Like measuring "how twitchy" is the brain)
+
+ACTUAL VALUES ACROSS TEACHERS:
+  Teacher 0:           1312  ← SLOW (sluggish dynamics)
+  Teacher 1:           4996  ← FAST (hyperactive)
+  Teacher 10:          5396  ← FAST (hyperactive)
+  Teacher 12:          1670  ← SLOW (sluggish)
+  no_ablation (healthy): 5558  ← FAST (normal brain)
+
+MIN: 1312,  MAX: 5396  →  4.2× DIFFERENCE!
+
+INTERPRETATION:
+  ✓ Teacher 0 & 12: Removing their directions SLOWS DOWN neural activity
+  ✓ Teacher 1, 10, etc.: Removing their directions SPEEDS UP neural activity
+  → These are CLEARLY different states you can recognize
+
+BIOLOGICAL MEANING:
+  • Direction 0 might control "neural momentum" or "rate of change"
+  • When it's ablated, the brain becomes sluggish and moves slowly
+  • Without it: decisions happen 4× slower
+
+
+────────────────────────────────────────────────────────────────────────────
+
+FEATURE #2: reconstruction_error_rank3_sum
+────────────────────────────────────────────────────────────────────────────
+
+WHAT IT MEASURES:
+  How high-dimensional is the neural code?
+  Can you explain the activity with just 3 dimensions, or do you need many?
+
+ACTUAL VALUES:
+  Teacher 0:           109  ← Simple code (only 3D needed)
+  Teacher 13:          207  ← Complex code (needs many dimensions)
+  no_ablation:         226  ← Complex code (healthy has complex activity)
+
+MIN: 109,  MAX: 226  →  2.1× DIFFERENCE
+
+INTERPRETATION:
+  ✓ Some ablations make the code simple (low error, compresses to 3D)
+  ✓ Others make it complex (high error, needs many dimensions)
+  → Different teachers use different "compression levels"
+
+BIOLOGICAL MEANING:
+  • Simple code (low error): Information is tightly organized in 3D space
+  • Complex code (high error): Information scattered across all dimensions
+  • Healthy brain: Tends toward complex (more flexible, richer)
+
+
+────────────────────────────────────────────────────────────────────────────
+
+FEATURE #3: principal_angle_tgt_dis_sum
+────────────────────────────────────────────────────────────────────────────
+
+WHAT IT MEASURES:
+  How well separated are the "target" and "distractor" neural rings?
+  (Like asking: "are the two memories well-kept apart?")
+
+ACTUAL VALUES:
+  Teacher 12:          2.8°  ← Poor separation (blurry)
+  Teacher 0:           3.5°  ← Poor separation
+  Teacher 6:           4.1°  ← Fair separation
+  Teacher 7:           7.4°  ← Excellent separation (crystal clear)
+
+MIN: 2.8°,  MAX: 7.4°  →  2.6× DIFFERENCE
+
+INTERPRETATION:
+  ✓ Some ablations keep memories well-separated (can distinguish target vs distractor)
+  ✓ Others mix them up (can't tell which is which)
+  → This is a measure of "selectivity" or "specificity"
+
+BIOLOGICAL MEANING:
+  • High angle (7.4°): "This teacher is GOOD at holding separate memories"
+  • Low angle (2.8°): "This teacher mixes up target and distractor"
+  • Healthy brain: Should have HIGH angle (clear memory separation)
+
+
+================================================================================
+WHY THIS MATTERS FOR YOUR MDS PLOT
+================================================================================
+
+When you use features with HIGH VARIANCE between teachers:
+
+  ✓ Teachers spread FAR APART in 2D space
+  ✓ Each teacher has a distinct "location" in the plot
+  ✓ Students cluster NEAR their matching teacher
+  ✓ You can clearly see teacher-student relationships
+  ✓ The plot makes biological sense
+
+
+EXAMPLE:
+  
+  MDS Plot with HIGH VARIANCE features:
+  ┌─────────────────────────────────┐
+  │     T7 ◯                         │
+  │         T13 ◯ S13              │
+  │    T0 ◯   S1   T1 ◯ S1         │  ← Teachers are SEPARATED
+  │         S0    S4                │     Students cluster with their teacher
+  │    T12 ◯  T4 ◯                 │
+  │         S12                     │
+  └─────────────────────────────────┘
+  
+  → GOOD! You can see structure and relationships.
+
+
+  MDS Plot with LOW VARIANCE features:
+  ┌─────────────────────────────────┐
+  │  T0 S1 T7 S0 T1 S13 T13        │
+  │   S4  T12  S12  T4   S1        │  ← Everything is MIXED UP
+  │     T6  S6  T10  S0            │     Can't distinguish anything
+  │      S7   T0   S1  T4          │
+  └─────────────────────────────────┘
+  
+  → BAD! Can't see any structure.
+
+
+================================================================================
+KEY INSIGHT: VARIANCE ≠ NOISE
+================================================================================
+
+❌ NOT all variance is good (you saw this with "participation_ratio")
+   → Some features vary widely but add NOISE instead of SIGNAL
+   → These 33 features had negative importance (they confused the MDS)
+
+✓ GOOD variance is systematic:
+   → Teacher 0 always has value X
+   → Teacher 1 always has value Y
+   → The difference is consistent and meaningful
+
+✓ BAD variance is random:
+   → Values jump around inconsistently
+   → Doesn't correlate with any biological structure
+   → Makes MDS distances unreliable
+
+
+================================================================================
+SUMMARY: THE INTERPRETATION
+================================================================================
+
+QUESTION: Why do we care about feature variance?
+
+ANSWER:   High variance features are BIOMARKERS of neural states.
+          They tell you which teacher (which ablation direction) you're looking at.
+          
+          Think of it like fingerprints:
+          - High variance feature = distinct fingerprint pattern
+          - Low variance feature = blurry smudge that looks the same for everyone
+
+When you use high-variance features in MDS:
+  → You get clear, distinct clusters (teachers well-separated)
+  → Students group near their teacher (recovery visible)
+  → The plot tells a coherent story about learning and recovery
+
+
+================================================================================

@@ -15,6 +15,7 @@ Usage in notebook:
 import colorsys
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from sklearn.decomposition import PCA
 
 
@@ -147,8 +148,26 @@ def make_full_step_diffusion_dataset(states_seq_by_diffusion, metadata, n_bins):
     return np.asarray(points), np.asarray(labels, dtype=int), T_d
 
 
-def plot_global_3d_trajectories(pca_coords, labels, pca, n_bins, out_path, 
-                                title, label_schema='prep'):
+def compute_3d_limits(pca_coords):
+    """Compute padded axis limits for a 3D PCA projection."""
+    mins = pca_coords.min(axis=0)
+    maxs = pca_coords.max(axis=0)
+    span = np.maximum(maxs - mins, 1e-6)
+    pad = 0.08 * span
+    return [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+
+
+def plot_global_3d_trajectories(
+    pca_coords,
+    labels,
+    pca,
+    n_bins,
+    out_path,
+    title,
+    label_schema='prep',
+    lims=None,
+    center_coords=False,
+):
     """Plot 3D trajectories in PCA space with bin-colored paths.
     
     Args:
@@ -159,12 +178,15 @@ def plot_global_3d_trajectories(pca_coords, labels, pca, n_bins, out_path,
         out_path: path to save figure
         title: plot title
         label_schema: 'prep' or 'diffusion' (determines label column mapping)
+        lims: optional precomputed axis limits to reuse across figures
+        center_coords: whether to recenter projected coordinates before plotting
     """
-    mins = pca_coords.min(axis=0)
-    maxs = pca_coords.max(axis=0)
-    span = np.maximum(maxs - mins, 1e-6)
-    pad = 0.08 * span
-    lims = [(mins[d] - pad[d], maxs[d] + pad[d]) for d in range(3)]
+    coords = np.array(pca_coords, copy=True)
+    if center_coords:
+        coords = coords - coords.mean(axis=0, keepdims=True)
+
+    if lims is None:
+        lims = compute_3d_limits(coords)
     
     fig = plt.figure(figsize=(12, 10))
     ax = fig.add_subplot(111, projection='3d')
@@ -188,7 +210,7 @@ def plot_global_3d_trajectories(pca_coords, labels, pca, n_bins, out_path,
             
             idx = np.where(m)[0]
             idx = idx[np.argsort(labels[idx, time_col])]
-            traj = pca_coords[idx]
+            traj = coords[idx]
             color = angle_to_colour(int(b), n_bins=n_bins)
             
             # Draw line if trajectory has multiple points
@@ -196,10 +218,23 @@ def plot_global_3d_trajectories(pca_coords, labels, pca, n_bins, out_path,
                 ax.plot(traj[:, 0], traj[:, 1], traj[:, 2], 
                        color=color, alpha=0.55, linewidth=1.8)
             
-            # Plot points
+            # Plot points and make the endpoints stand out.
             ax.scatter(traj[:, 0], traj[:, 1], traj[:, 2], 
                       c=[color], marker=marker, s=36, alpha=0.9, 
                       edgecolors='k', linewidths=0.4)
+
+            if traj.shape[0] >= 1:
+                ax.scatter(
+                    traj[0, 0], traj[0, 1], traj[0, 2],
+                    facecolors='white', marker='o', s=180, alpha=1.0,
+                    edgecolors='k', linewidths=2.2,
+                )
+            if traj.shape[0] >= 2:
+                ax.scatter(
+                    traj[-1, 0], traj[-1, 1], traj[-1, 2],
+                    facecolors='black', marker='o', s=95, alpha=1.0,
+                    edgecolors='white', linewidths=2.2,
+                )
     
     # Set limits and labels
     ax.set_xlim(lims[0])
@@ -210,6 +245,14 @@ def plot_global_3d_trajectories(pca_coords, labels, pca, n_bins, out_path,
     ax.set_zlabel(f'PC3 ({pca.explained_variance_ratio_[2]:.1%})')
     ax.set_title(title, fontweight='bold')
     ax.grid(True, alpha=0.25)
+
+    legend_handles = [
+        Line2D([0], [0], marker='o', linestyle='None', color='w', markerfacecolor='lightgray', markeredgecolor='k', markersize=7, label='Cue 1'),
+        Line2D([0], [0], marker='^', linestyle='None', color='w', markerfacecolor='lightgray', markeredgecolor='k', markersize=7, label='Cue 2'),
+        Line2D([0], [0], marker='o', linestyle='None', color='w', markerfacecolor='white', markeredgecolor='k', markersize=9, label='Start'),
+        Line2D([0], [0], marker='o', linestyle='None', color='w', markerfacecolor='black', markeredgecolor='white', markersize=6, label='End'),
+    ]
+    ax.legend(handles=legend_handles, fontsize=8, loc='upper right')
     
     plt.tight_layout()
     plt.savefig(out_path, dpi=160, bbox_inches='tight')

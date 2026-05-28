@@ -1,0 +1,156 @@
+================================================================================
+MDS APPROACH COMPARISON: WHICH METHOD IS BEST?
+================================================================================
+
+You asked: "But why is stress so high? Should we do non-metric MDS?"
+
+ANSWER: Yes! Non-metric MDS is better for this data.
+
+================================================================================
+THREE APPROACHES COMPARED
+================================================================================
+
+APPROACH 1: Metric MDS + All 36 Features
+────────────────────────────────────────
+Metric: Preserves exact distances
+Stress: 1030.12 ❌ TERRIBLE
+Pros:
+  - Most accurate distances preserved
+  - Standard approach
+Cons:
+  - 33 noisy features corrupt the distance metric
+  - Stress dominated by noise dimensions
+  - Poor 2D embedding quality
+
+VERDICT: ❌ Don't use this
+
+
+APPROACH 2: Metric MDS + Top 3 Features
+─────────────────────────────────────────
+Metric: Preserves exact distances
+Stress: 0.94 ✓ GOOD
+Pros:
+  - Removes noise, forces us to keep only signal
+  - Excellent stress value
+  - Clean, interpretable features
+Cons:
+  - Throws away 33 dimensions of information
+  - Less comprehensive biological detail
+
+VERDICT: ✓ Works, but not optimal
+
+
+APPROACH 3: Non-Metric MDS + All 36 Features ← RECOMMENDED
+───────────────────────────────────────────────────────────
+Metric: Preserves rank-order (ordinal relationships)
+Stress: 0.27 ✓✓ EXCELLENT
+Pros:
+  - Uses all 36 features without being hurt by noise
+  - Lowest stress of all approaches
+  - Preserves relative geometry (what matters for interpretation)
+  - Robust to feature noise
+  - Captures all biological detail
+Cons:
+  - Doesn't preserve exact distances (but ordinal is usually better)
+  - Less familiar to some readers
+
+VERDICT: ✓✓ BEST APPROACH
+
+
+================================================================================
+WHY NON-METRIC MDS WORKS BETTER
+================================================================================
+
+METRIC MDS:
+- Tries to preserve: exact pairwise distances from 36D → 2D
+- Problem: With 33 noisy features, distances become contradictory
+- Each noisy feature adds independent noise to Euclidean distance
+- In high-D space, noise swamps signal
+- Result: Stress = 1030 (can't fit contradictory distances in 2D)
+
+NON-METRIC MDS:
+- Tries to preserve: rank order of distances (nearest ≈ nearest, farthest ≈ farthest)
+- Uses monotonic regression instead of exact distance fitting
+- Forgiving of noisy features as long as relative ordering is preserved
+- The 33 noisy features don't corrupt ordinal relationships much
+- Result: Stress = 0.27 (ordinal relationships are coherent despite noise)
+
+ANALOGY:
+- Metric MDS: tries to arrange dots so their exact distances match the distance matrix
+- Non-metric MDS: tries to arrange dots so nearest neighbors stay near (ordinal)
+- Ordinal relationships are more robust to noise than exact distances
+
+
+================================================================================
+COMPARISON TABLE
+================================================================================
+
+                          Metric    Non-metric   Metric     Metric
+                       (All 36)     (All 36)    (Top 3)    (Top 15)
+────────────────────────────────────────────────────────────────────
+Features                  36          36          3         15
+Stress                  1030.12       0.27       0.94      120.57
+Approach              ❌ FAILS     ✓✓ BEST      ✓ GOOD    ⚠️ OK
+────────────────────────────────────────────────────────────────────
+
+KEY INSIGHT:
+Non-metric MDS with all 36 features (0.27) beats metric MDS with top 3 (0.94)!
+
+
+================================================================================
+WHAT THIS MEANS FOR YOUR ANALYSIS
+================================================================================
+
+YOU HAVE 3 CHOICES:
+
+CHOICE A: Use NON-METRIC MDS with all 36 features ← RECOMMENDED
+- Stress: 0.27 (best)
+- Keeps all biological detail
+- Robust to noise
+- Ordinal relationships preserved
+- Go with: MDS_nonmetric_all36.png
+
+CHOICE B: Use METRIC MDS with top 3 features
+- Stress: 0.94 (still good)
+- Forces you to identify only essential features
+- Better interpretability (only 3 features matter)
+- Matches feature importance analysis
+- Go with: MDS_optimal_features_top3.png
+
+CHOICE C: Use METRIC MDS with top 10-15 features
+- Stress: 42-120 (reasonable)
+- Balance between detail and interpretability
+- Shows you selected important features
+- Go with: MDS_teacher_student_space.png (original top-15 plot)
+
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+✓✓ Use APPROACH 3: Non-Metric MDS with all 36 features
+
+Why:
+1. Best stress value (0.27 is excellent)
+2. Uses all available biological information
+3. Robust to noisy features
+4. Interprets "distance" as ordinal rank, which is actually more meaningful
+   for neuroscience (which points cluster together matters more than exact
+   distances)
+5. Visualizations are equally clean as top-3 metric
+
+Science communication:
+- "We used non-metric MDS to preserve rank-order relationships between
+  neural state vectors across all 36 computed features. This approach
+  is robust to measurement noise while capturing the full dimensionality
+  of the teacher/student neural state space."
+
+
+================================================================================
+FILES GENERATED
+================================================================================
+
+mds_metric_vs_nonmetric.png       - Direct comparison plot
+MDS_nonmetric_all36.png           - Your new visualization (recommended)
+
+================================================================================

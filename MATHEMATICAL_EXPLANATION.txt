@@ -1,0 +1,271 @@
+================================================================================
+HOW WE CALCULATE THE FEATURES: THE MATHEMATICS
+================================================================================
+
+Let me show you the exact equations used for our top 3 features.
+
+Data structure:
+  tl_st = array of shape (n_trials, T, D)
+    - n_trials: number of trials (e.g., 200)
+    - T: number of diffusion timesteps (e.g., 66)
+    - D: dimensionality of neural states (e.g., 16 neurons)
+
+  Example: tl_st[5, 20, :] = neural activity of trial 5 at timestep 20, all 16 neurons
+
+
+================================================================================
+FEATURE #1: MEAN SQUARED TEMPORAL DERIVATIVE (Neural Activity Speed)
+================================================================================
+
+QUESTION: "How fast is the neural state changing at each timestep?"
+
+FORMULA:
+
+  For each trial i (1 to n_trials):
+    
+    1. Compute first-order difference (velocity):
+       diffs[t] = tl_st[i, t+1, :] - tl_st[i, t, :]    for t = 0 to T-2
+       (This is the change in neural state between consecutive timesteps)
+    
+    2. Compute squared norm (speed²):
+       speed²[t] = ||diffs[t]||² = sum_d (diffs[t, d])²
+       (Sum of squared velocity across all D dimensions)
+    
+    3. Average across time for this trial:
+       trial_velocity = mean(speed²[0], speed²[1], ..., speed²[T-2])
+    
+    4. Average across all trials:
+       mean_sq_temporal_deriv = mean(trial_velocity_1, trial_velocity_2, ..., trial_velocity_n)
+
+PSEUDO-CODE:
+  
+  feature = 0
+  for trial in tl_st:
+    diffs = diff(trial)                          # shape (T-1, D)
+    speeds_squared = sum(diffs² , axis=1)        # shape (T-1,)
+    trial_mean = mean(speeds_squared)
+    feature += trial_mean
+  feature /= n_trials
+
+EXAMPLE:
+  
+  Trial 1, timestep 5:
+    Neuron activities: [1.2, 0.5, -0.3, ..., 2.1]
+    Next timestep:     [1.3, 0.4, -0.2, ..., 2.0]
+    diffs[5] = [0.1, -0.1, 0.1, ..., -0.1]
+    speed²[5] = 0.01 + 0.01 + 0.01 + ... + 0.01 = 0.34  (sum of squared changes)
+  
+  After averaging across all 66 timesteps for this trial: 1.23
+  After averaging across all 200 trials: 1312 ← This is our feature!
+
+
+INTERPRETATION:
+  - Small value (1312) = neurons change slowly between timesteps → sluggish brain
+  - Large value (5396) = neurons change rapidly → hyperactive brain
+  - Units: (neural activity units)² per timestep
+
+
+================================================================================
+FEATURE #2: RECONSTRUCTION ERROR AT RANK-3 (Dimensionality)
+================================================================================
+
+QUESTION: "How much information is lost if we only keep the top 3 principal components?"
+
+FORMULA:
+
+  1. Center the data:
+     X_centered[i, d] = tl_st[i, :, d] - mean(tl_st[:, :, d])
+     (Subtract the mean neural activity from each neuron)
+  
+  2. Fit a 3-component PCA:
+     W = PCA(n_components=3).fit(X_centered)
+     (Find the 3 directions that explain the most variance)
+  
+  3. Project onto the 3 principal components:
+     X_proj = X_centered @ W  (shape: (all_samples, 3))
+  
+  4. Reconstruct back to original space:
+     X_recon = X_proj @ W.T  (shape: same as X_centered)
+  
+  5. Compute reconstruction error per sample:
+     error[i] = sqrt(sum_d (X_centered[i, d] - X_recon[i, d])²)
+     (RMS error for each timestep-trial combination)
+  
+  6. Average across all samples:
+     reconstruction_error = mean(error)
+
+PSEUDO-CODE:
+  
+  X = reshape(tl_st, (n_trials * T, D))  # Flatten to 2D
+  X = X - mean(X, axis=0)                 # Center
+  
+  pca3 = PCA(n_components=3)
+  X_proj = pca3.fit_transform(X)          # Project to 3D
+  X_recon = pca3.inverse_transform(X_proj) # Reconstruct to original space
+  
+  errors = sqrt(sum((X - X_recon)² , axis=1))  # RMS error per sample
+  feature = mean(errors)
+
+EXAMPLE:
+  
+  Original neural state (16 dimensions):
+    [1.2, 0.5, -0.3, 2.1, -0.8, 1.3, 0.2, -1.1, 0.7, -0.5, 2.2, 0.1, -0.4, 1.8, 0.3, -0.9]
+  
+  Project to 3D PCA space and reconstruct:
+    [1.1, 0.6, -0.2, 2.0, -0.9, 1.4, 0.3, -1.0, 0.8, -0.4, 2.3, 0.0, -0.3, 1.7, 0.4, -0.8]
+  
+  Difference (error):
+    [0.1, -0.1, -0.1, 0.1, 0.1, -0.1, -0.1, -0.1, -0.1, -0.1, -0.1, 0.1, -0.1, 0.1, -0.1, -0.1]
+  
+  RMS error = sqrt(sum of squared differences) = sqrt(0.16) = 0.4
+  
+  After averaging across all 20,000+ samples: 109 ← This is our feature!
+
+
+INTERPRETATION:
+  - Low error (109) = 3D PCA explains the data well → simple, low-dimensional code
+  - High error (226) = 3D PCA leaves lots out → complex, high-dimensional code
+  - Units: neural activity units (same scale as the data)
+
+
+================================================================================
+FEATURE #3: PRINCIPAL ANGLE TARGET vs DISTRACTOR
+================================================================================
+
+QUESTION: "How different are the neural subspaces encoding target vs distractor?"
+
+FORMULA:
+
+  1. Split data into target and distractor groups:
+     X_target = tl_st[all samples where this is the target]
+     X_distractor = tl_st[all samples where this is the distractor]
+  
+  2. Fit PCA to each:
+     W_tgt = PCA(n_components=3).fit(X_target)
+     W_dis = PCA(n_components=3).fit(X_distractor)
+  
+  3. Get the primary axis (first principal component) of each:
+     v_tgt = W_tgt.components_[0]  (3D vector: direction of max variance in target)
+     v_dis = W_dis.components_[0]  (3D vector: direction of max variance in distractor)
+  
+  4. Compute angle between these vectors:
+     cos(θ) = |v_tgt · v_dis| / (||v_tgt|| ||v_dis||)
+              = |dot(v_tgt, v_dis)|  (both are unit vectors)
+     θ = arccos(cos(θ))
+     θ_degrees = θ * 180 / π
+
+PSEUDO-CODE:
+  
+  # Split into target and distractor
+  X_target = tl_st[indices where this is target]
+  X_distractor = tl_st[indices where this is distractor]
+  
+  # Fit PCA
+  pca_tgt = PCA(n_components=3).fit(X_target)
+  pca_dis = PCA(n_components=3).fit(X_distractor)
+  
+  # Get angle between first principal components
+  v_tgt = pca_tgt.components_[0]        # Shape (3,)
+  v_dis = pca_dis.components_[0]        # Shape (3,)
+  
+  cos_angle = abs(dot(v_tgt, v_dis))
+  angle_radians = arccos(clip(cos_angle, 0, 1))
+  angle_degrees = angle_radians * 180 / π
+
+EXAMPLE:
+  
+  Target's primary axis (direction of maximum variation):
+    v_tgt = [0.8, 0.4, 0.2]
+  
+  Distractor's primary axis:
+    v_dis = [0.2, 0.7, 0.7]
+  
+  Dot product:
+    v_tgt · v_dis = 0.8*0.2 + 0.4*0.7 + 0.2*0.7 = 0.16 + 0.28 + 0.14 = 0.58
+  
+  Angle:
+    θ = arccos(0.58) = 54.6°  ← This is our feature!
+
+
+INTERPRETATION:
+  - Small angle (2.8°) = target and distractor use similar subspaces → memories are mixed
+  - Large angle (7.4°) = target and distractor use different subspaces → memories are distinct
+  - Units: degrees (0° to 90°)
+
+
+================================================================================
+PUTTING IT TOGETHER: HOW WE GET FROM DATA TO MDS
+================================================================================
+
+STEP 1: Load neural states
+  tl_st = shape (200 trials, 66 timesteps, 16 neurons)
+
+STEP 2: Compute features
+  For each teacher/student model:
+    - Compute mean_sq_temporal_deriv (temporal dynamics)
+    - Compute reconstruction_error_rank3 (dimensionality)
+    - Compute principal_angle_tgt_dis (memory selectivity)
+    ... (and 33 other features)
+    → Feature vector: [f1, f2, f3, ... f36]  shape (36,)
+
+STEP 3: Build feature matrix
+  For 10 teachers + 16 students = 26 total models:
+    Feature matrix = shape (26, 36)
+    
+    Row 1: teacher 0's features
+    Row 2: teacher 1's features
+    ...
+    Row 26: student_5_1's features
+
+STEP 4: Standardize
+  For each feature (column):
+    feature = (feature - mean) / std
+    → Each feature now has mean=0, std=1
+
+STEP 5: Compute distances
+  For each pair of models (i, j):
+    distance[i,j] = sqrt(sum of squared differences in features)
+                  = sqrt((feature[i,0] - feature[j,0])² + ... + (feature[i,35] - feature[j,35])²)
+  → Distance matrix: shape (26, 26)
+
+STEP 6: MDS projection
+  MDS: compress 36-dimensional distances into 2D while preserving relationships
+  → MDS coordinates: shape (26, 2)
+    Row 1: teacher 0's position in 2D
+    Row 2: teacher 1's position in 2D
+    ...
+
+STEP 7: Plot
+  Plot 26 points in 2D space (the MDS coordinates)
+  Teachers as circles, students as X marks, colored by ablation direction
+
+
+================================================================================
+WHY VARIANCE MATTERS MATHEMATICALLY
+================================================================================
+
+Variance of a feature across teachers:
+  
+  var(feature) = mean((feature - mean_feature)²)
+  
+  For mean_sq_temporal_deriv:
+    Values: [1312, 4996, 5396, 1670, 4990, 4584, 4758, 5387, 3154, 5558]
+    Mean:   4180.8
+    Variance: sum of (value - 4180.8)² / 10
+            = (1312 - 4180.8)² + (4996 - 4180.8)² + ... / 10
+            = 2.47e+06 ← HUGE variance!
+
+HIGH variance features:
+  → Teachers have VERY DIFFERENT values
+  → In feature space, teachers spread far apart
+  → MDS can preserve this separation in 2D
+  → You see clear clusters
+
+LOW variance features:
+  → Teachers have similar values
+  → In feature space, teachers are close together
+  → MDS can't separate them
+  → You get a blob
+
+
+================================================================================

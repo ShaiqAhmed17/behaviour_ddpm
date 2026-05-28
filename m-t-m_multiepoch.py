@@ -11,6 +11,7 @@ import torch
 import numpy as np
 from tqdm import tqdm
 from collections import deque
+from sklearn.decomposition import PCA
 
 from ddpm.model import BouncePopulationResidualModel
 
@@ -62,6 +63,33 @@ def parse_args():
         help="Neuron index to ablate in the source model (indexing the memory nullspace, not behavioral subspace). Omit to use no ablation",
     )
     parser.add_argument(
+        "--ablate_neurons",
+        type=int,
+        nargs="+",
+        required=False,
+        default=None,
+        help="One or more neuron indices to ablate together in the source model. When set, this overrides --ablate_neuron.",
+    )
+    parser.add_argument(
+        "--ablation_basis",
+        type=str,
+        choices=["nullspace", "pca"],
+        default="nullspace",
+        help=(
+            "Which source-model basis to ablate. 'nullspace' uses behaviour_nullspace; "
+            "'pca' fits principal components from healthy source-model states before training."
+        ),
+    )
+    parser.add_argument(
+        "--ablation_basis_trials",
+        type=int,
+        default=64,
+        help=(
+            "Number of unablated calibration trials used to fit PCA directions when "
+            "--ablation_basis pca is selected."
+        ),
+    )
+    parser.add_argument(
         "--source_device",
         type=str,
         default=None,
@@ -84,6 +112,17 @@ def parse_args():
         type=int,
         default=30,
         help="Angle step (degrees) used for initial sweep combinations (default: 30)",
+    )
+    parser.add_argument(
+        "--teacher_id",
+        type=str,
+        default=None,
+        help=(
+            "Short identifier for the teacher model (e.g. '0' or '7'). "
+            "Embedded in the output path as '_teacher<id>' so students from "
+            "different teacher seeds don't collide. Omit to use the legacy "
+            "naming convention (backward-compatible with existing swap_7 runs)."
+        ),
     )
     return parser.parse_args()
 
@@ -243,6 +282,109 @@ def get_ablation_vector(model_instance, neuron_idx):
     return ablation_vector
 
 
+def get_ablation_vectors(model_instance, neuron_indices):
+    vectors = []
+    for neuron_idx in neuron_indices:
+        vectors.append(get_ablation_vector(model_instance, neuron_idx))
+    return torch.stack(vectors, dim=0)
+
+
+def _move_trial_inputs_to_device(trial_information, device):
+    if isinstance(trial_information.prep_network_inputs, dict):
+        prep_inputs = {
+            k: v.to(device) if isinstance(v, torch.Tensor) else v
+            for k, v in trial_information.prep_network_inputs.items()
+        }
+    else:
+        prep_inputs = [
+            v.to(device) if isinstance(v, torch.Tensor) else v
+            for v in trial_information.prep_network_inputs
+        ]
+
+    if isinstance(trial_information.diffusion_network_inputs, dict):
+        diff_inputs = {
+            k: v.to(device) if isinstance(v, torch.Tensor) else v
+            for k, v in trial_information.diffusion_network_inputs.items()
+        }
+    else:
+        diff_inputs = [
+            v.to(device) if isinstance(v, torch.Tensor) else v
+            for v in trial_information.diffusion_network_inputs
+        ]
+
+    return prep_inputs, diff_inputs
+
+
+def _fit_pca_ablation_vectors(
+    source_model,
+    task,
+    source_device,
+    batch_size,
+    num_samples,
+    calibration_trials,
+    noise_scaler=None,
+):
+    """
+    Fit orthonormal ablation directions from healthy source-model preparatory states.
+
+    Returns a tensor with shape [K, D], where rows are PCA components ordered by
+    explained variance.
+    """
+    if calibration_trials <= 0:
+        raise ValueError("ablation_basis_trials must be >= 1 when --ablation_basis pca is used")
+
+    collected_states = []
+    print(
+        f"Collecting {calibration_trials} healthy calibration trials to fit PCA ablation directions..."
+    )
+
+    with torch.no_grad():
+        for t in range(calibration_trials):
+            trial_information = task.generate_trial_information(
+                batch_size=batch_size,
+                num_samples=num_samples,
+            )
+            prep_inputs_source, diff_inputs_source = _move_trial_inputs_to_device(
+                trial_information, source_device
+            )
+
+            sample_kwargs = {
+                "prep_network_inputs": prep_inputs_source,
+                "diffusion_network_inputs": diff_inputs_source,
+                "prep_epoch_durations": trial_information.prep_epoch_durations,
+                "diffusion_epoch_durations": trial_information.diffusion_epoch_durations,
+                "samples_shape": [batch_size, num_samples],
+            }
+            if noise_scaler is not None:
+                sample_kwargs["noise_scaler"] = noise_scaler
+
+            prep_dicts, _ = source_model.generate_samples(**sample_kwargs)
+            if not prep_dicts:
+                raise RuntimeError("Source model returned no preparatory dictionaries during PCA calibration")
+
+            postprep_state = prep_dicts[-1]["postprep_state"]
+            collected_states.append(
+                postprep_state.detach().to("cpu").reshape(-1, postprep_state.shape[-1]).numpy()
+            )
+
+            if (t + 1) % max(1, calibration_trials // 5) == 0 or t == calibration_trials - 1:
+                print(f"  calibration {t + 1}/{calibration_trials}")
+
+    calibration_matrix = np.concatenate(collected_states, axis=0)
+    if calibration_matrix.shape[0] < 2:
+        raise RuntimeError("Not enough calibration samples to fit PCA ablation directions")
+
+    pca = PCA(n_components=min(calibration_matrix.shape[0], calibration_matrix.shape[1]))
+    pca.fit(calibration_matrix)
+
+    pca_vectors = torch.tensor(pca.components_, dtype=torch.float32, device=source_device)
+    print(
+        f"Fitted PCA ablation basis from healthy source-model states: {pca_vectors.shape[0]} directions in {pca_vectors.shape[1]}D"
+    )
+    print(f"  Explained variance ratio (first 5): {pca.explained_variance_ratio_[:5]}")
+    return pca_vectors
+
+
 def main():
     cli_args = parse_args()
 
@@ -262,10 +404,16 @@ def main():
     batch_size = args.batch_size
     num_trials = args.num_trials
     logging_freq = args.logging_freq
-    if cli_args.ablate_neuron is None:
-        save_base = f"{args.save_base}_no_ablation"
+    active_ablation_neurons = cli_args.ablate_neurons
+    if active_ablation_neurons is None and cli_args.ablate_neuron is not None:
+        active_ablation_neurons = [cli_args.ablate_neuron]
+
+    teacher_suffix = f"_teacher{cli_args.teacher_id}" if cli_args.teacher_id is not None else ""
+    if active_ablation_neurons is None:
+        save_base = f"{args.save_base}{teacher_suffix}_no_ablation"
     else:
-        save_base = f"{args.save_base}_ablation_{cli_args.ablate_neuron}"
+        ablation_tag = "-".join(str(idx) for idx in active_ablation_neurons)
+        save_base = f"{args.save_base}{teacher_suffix}_{cli_args.ablation_basis}_ablation_{ablation_tag}"
     task_name = args.task_name
     task_config = args.task_config
     regularise_prep_state_weight = args.regularise_prep_state_weight
@@ -358,24 +506,49 @@ def main():
         device=source_device,
         checkpoint_name=cli_args.source_checkpoint,
     )
+
+    ablation_basis_name = cli_args.ablation_basis
     
     # Optionally validate neuron index and extract ablation vector
-    if cli_args.ablate_neuron is None:
+    if active_ablation_neurons is None:
         ablation_vector = None
         memory_dims = source_model.behaviour_nullspace.shape[0]
         print(f"Source model has {memory_dims} nullspace basis vectors")
         print("No ablation direction specified; using intact source model for targets")
     else:
-        memory_dims = source_model.behaviour_nullspace.shape[0]
-        if cli_args.ablate_neuron < 0 or cli_args.ablate_neuron >= memory_dims:
-            raise ValueError(f"Neuron index {cli_args.ablate_neuron} out of range for memory subspace (0-{memory_dims-1})")
+        if ablation_basis_name == "nullspace":
+            memory_dims = source_model.behaviour_nullspace.shape[0]
+            invalid_neurons = [idx for idx in active_ablation_neurons if idx < 0 or idx >= memory_dims]
+            if invalid_neurons:
+                raise ValueError(
+                    f"Neuron indices {invalid_neurons} out of range for memory subspace (0-{memory_dims-1})"
+                )
 
-        # Extract ablation vector from nullspace (state-space ablation)
-        ablation_vector = get_ablation_vector(source_model, cli_args.ablate_neuron)
-        ablation_vector = ablation_vector.to(source_device)
+            # Extract one or more ablation directions from the nullspace (state-space ablation)
+            ablation_vector = get_ablation_vectors(source_model, active_ablation_neurons)
+            ablation_vector = ablation_vector.to(source_device)
 
-        print(f"Source model has {memory_dims} nullspace basis vectors")
-        print(f"Ablating nullspace direction {cli_args.ablate_neuron}")
+            print(f"Source model has {memory_dims} nullspace basis vectors")
+            print(f"Ablating nullspace directions {active_ablation_neurons}")
+        else:
+            pca_vectors = _fit_pca_ablation_vectors(
+                source_model=source_model,
+                task=task,
+                source_device=source_device,
+                batch_size=batch_size,
+                num_samples=num_samples,
+                calibration_trials=cli_args.ablation_basis_trials,
+                noise_scaler=cli_args.noise_scaler,
+            )
+            pca_dims = pca_vectors.shape[0]
+            invalid_neurons = [idx for idx in active_ablation_neurons if idx < 0 or idx >= pca_dims]
+            if invalid_neurons:
+                raise ValueError(
+                    f"PCA component indices {invalid_neurons} out of range (0-{pca_dims-1})"
+                )
+
+            ablation_vector = pca_vectors[active_ablation_neurons].to(source_device)
+            print(f"Ablating PCA directions {active_ablation_neurons} from healthy source-model states")
     
     # CRITICAL: Copy projection matrices from source to training model
     # This ensures both models use the same behavioral/memory subspace decomposition
