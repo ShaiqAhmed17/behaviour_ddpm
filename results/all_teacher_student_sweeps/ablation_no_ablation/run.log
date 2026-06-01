@@ -1,600 +1,600 @@
 Loading models...
-  [0] Healthy  (results_link_sampler/index_cued_first_diffusion_0.3_swap_7)
-  [1] Student_0  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_no_ablation_0)
+  [0] Healthy  (index_cued_first_diffusion_0.3_swap_7)
+  [1] Student_0  (index_cued_first_diffusion_0.3_swap_recovery_ablation_no_ablation_0)
 Sweep: 288 trials (24 with same color, per 12^2 × 2 cues)
 Reference model: [0] Healthy
 Student models: ['Student_0']
   [1/288] cue=1 c1=0° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.098  [self:0.035]
+  Student_0:0.119  [self:0.017]
   [2/288] cue=1 c1=0° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.098  [self:0.037]
+  Student_0:0.121  [self:0.024]
   [3/288] cue=1 c1=0° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.187  [self:0.044]
+  Student_0:0.277  [self:0.024]
   [4/288] cue=1 c1=0° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.375  [self:0.022]
+  Student_0:0.399  [self:0.031]
   [5/288] cue=1 c1=0° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.468  [self:0.092]
+  Student_0:0.502  [self:0.070]
   [6/288] cue=1 c1=0° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.505  [self:0.102]
+  Student_0:0.588  [self:0.055]
   [7/288] cue=1 c1=0° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.834  [self:0.092]
+  Student_0:0.663  [self:0.096]
   [8/288] cue=1 c1=0° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.594  [self:0.033]
+  Student_0:0.527  [self:0.070]
   [9/288] cue=1 c1=0° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.387  [self:0.092]
+  Student_0:0.446  [self:0.056]
   [10/288] cue=1 c1=0° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.296  [self:0.083]
+  Student_0:0.266  [self:0.025]
   [11/288] cue=1 c1=0° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.203  [self:0.034]
+  Student_0:0.201  [self:0.029]
   [12/288] cue=1 c1=0° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.143  [self:0.027]
+  Student_0:0.082  [self:0.023]
   [13/288] cue=1 c1=30° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.225  [self:0.023]
+  Student_0:0.212  [self:0.043]
   [14/288] cue=1 c1=30° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
   Student_0:0.120  [self:0.021]
   [15/288] cue=1 c1=30° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.220  [self:0.036]
+  Student_0:0.186  [self:0.027]
   [16/288] cue=1 c1=30° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.196  [self:0.034]
+  Student_0:0.147  [self:0.018]
   [17/288] cue=1 c1=30° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.137  [self:0.057]
+  Student_0:0.267  [self:0.020]
   [18/288] cue=1 c1=30° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.379  [self:0.202]
+  Student_0:0.324  [self:0.040]
   [19/288] cue=1 c1=30° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.599  [self:0.022]
+  Student_0:0.649  [self:0.024]
   [20/288] cue=1 c1=30° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.538  [self:0.077]
+  Student_0:0.549  [self:0.052]
   [21/288] cue=1 c1=30° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.654  [self:0.060]
+  Student_0:0.328  [self:0.026]
   [22/288] cue=1 c1=30° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.349  [self:0.043]
+  Student_0:0.343  [self:0.074]
   [23/288] cue=1 c1=30° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.333  [self:0.036]
+  Student_0:0.299  [self:0.157]
   [24/288] cue=1 c1=30° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.367  [self:0.062]
+  Student_0:0.231  [self:0.025]
   [25/288] cue=1 c1=60° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.376  [self:0.046]
+  Student_0:0.336  [self:0.022]
   [26/288] cue=1 c1=60° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.155  [self:0.024]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0025_cue1_c160_c230.png
+  Student_0:0.118  [self:0.019]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0025_cue1_c160_c230.png
   [27/288] cue=1 c1=60° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.120  [self:0.020]
+  Student_0:0.131  [self:0.054]
   [28/288] cue=1 c1=60° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  [self:0.018]
+  Student_0:0.119  [self:0.027]
   [29/288] cue=1 c1=60° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.316  [self:0.051]
+  Student_0:0.216  [self:0.046]
   [30/288] cue=1 c1=60° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.594  [self:0.048]
+  Student_0:0.508  [self:0.041]
   [31/288] cue=1 c1=60° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.562  [self:0.040]
+  Student_0:0.462  [self:0.106]
   [32/288] cue=1 c1=60° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.631  [self:0.071]
+  Student_0:0.557  [self:0.039]
   [33/288] cue=1 c1=60° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.740  [self:0.113]
+  Student_0:0.467  [self:0.068]
   [34/288] cue=1 c1=60° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.657  [self:0.031]
+  Student_0:0.612  [self:0.106]
   [35/288] cue=1 c1=60° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.610  [self:0.112]
+  Student_0:0.689  [self:0.022]
   [36/288] cue=1 c1=60° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.468  [self:0.070]
+  Student_0:0.597  [self:0.154]
   [37/288] cue=1 c1=90° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.648  [self:0.027]
+  Student_0:0.552  [self:0.045]
   [38/288] cue=1 c1=90° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.592  [self:0.101]
+  Student_0:0.619  [self:0.024]
   [39/288] cue=1 c1=90° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.259  [self:0.030]
+  Student_0:0.293  [self:0.030]
   [40/288] cue=1 c1=90° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.146  [self:0.020]
+  Student_0:0.153  [self:0.019]
   [41/288] cue=1 c1=90° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.138  [self:0.026]
+  Student_0:0.157  [self:0.064]
   [42/288] cue=1 c1=90° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.370  [self:0.032]
+  Student_0:0.377  [self:0.076]
   [43/288] cue=1 c1=90° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.378  [self:0.170]
+  Student_0:0.528  [self:0.090]
   [44/288] cue=1 c1=90° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.370  [self:0.077]
+  Student_0:0.596  [self:0.028]
   [45/288] cue=1 c1=90° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.404  [self:0.067]
+  Student_0:0.538  [self:0.104]
   [46/288] cue=1 c1=90° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.593  [self:0.193]
+  Student_0:0.750  [self:0.026]
   [47/288] cue=1 c1=90° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.619  [self:0.067]
+  Student_0:0.690  [self:0.052]
   [48/288] cue=1 c1=90° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.621  [self:0.037]
+  Student_0:0.500  [self:0.023]
   [49/288] cue=1 c1=120° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.688  [self:0.024]
+  Student_0:0.660  [self:0.108]
   [50/288] cue=1 c1=120° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.834  [self:0.043]
+  Student_0:0.710  [self:0.041]
   [51/288] cue=1 c1=120° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.323  [self:0.024]
+  Student_0:0.405  [self:0.028]
   [52/288] cue=1 c1=120° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.158  [self:0.033]
+  Student_0:0.135  [self:0.022]
   [53/288] cue=1 c1=120° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.068  [self:0.035]
+  Student_0:0.063  [self:0.025]
   [54/288] cue=1 c1=120° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.144  [self:0.020]
+  Student_0:0.136  [self:0.030]
   [55/288] cue=1 c1=120° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.288  [self:0.017]
+  Student_0:0.333  [self:0.035]
   [56/288] cue=1 c1=120° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.365  [self:0.047]
+  Student_0:0.527  [self:0.088]
   [57/288] cue=1 c1=120° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.609  [self:0.168]
+  Student_0:0.666  [self:0.106]
   [58/288] cue=1 c1=120° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.687  [self:0.101]
+  Student_0:0.822  [self:0.055]
   [59/288] cue=1 c1=120° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.574  [self:0.027]
+  Student_0:0.695  [self:0.018]
   [60/288] cue=1 c1=120° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.602  [self:0.029]
+  Student_0:0.749  [self:0.079]
   [61/288] cue=1 c1=150° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.980  [self:0.080]
+  Student_0:0.796  [self:0.144]
   [62/288] cue=1 c1=150° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.770  [self:0.051]
+  Student_0:0.703  [self:0.136]
   [63/288] cue=1 c1=150° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.453  [self:0.026]
+  Student_0:0.505  [self:0.058]
   [64/288] cue=1 c1=150° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.408  [self:0.069]
+  Student_0:0.201  [self:0.020]
   [65/288] cue=1 c1=150° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.128  [self:0.023]
+  Student_0:0.162  [self:0.021]
   [66/288] cue=1 c1=150° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.131  [self:0.045]
+  Student_0:0.180  [self:0.025]
   [67/288] cue=1 c1=150° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.177  [self:0.031]
+  Student_0:0.207  [self:0.031]
   [68/288] cue=1 c1=150° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.461  [self:0.050]
+  Student_0:0.413  [self:0.069]
   [69/288] cue=1 c1=150° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.645  [self:0.058]
+  Student_0:0.497  [self:0.099]
   [70/288] cue=1 c1=150° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.618  [self:0.030]
+  Student_0:0.658  [self:0.087]
   [71/288] cue=1 c1=150° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.790  [self:0.103]
+  Student_0:0.816  [self:0.066]
   [72/288] cue=1 c1=150° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.639  [self:0.022]
+  Student_0:0.722  [self:0.181]
   [73/288] cue=1 c1=180° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.952  [self:0.064]
+  Student_0:1.002  [self:0.047]
   [74/288] cue=1 c1=180° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.720  [self:0.020]
+  Student_0:0.806  [self:0.046]
   [75/288] cue=1 c1=180° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.693  [self:0.036]
+  Student_0:0.598  [self:0.139]
   [76/288] cue=1 c1=180° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.599  [self:0.062]
+  Student_0:0.552  [self:0.052]
   [77/288] cue=1 c1=180° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.263  [self:0.053]
+  Student_0:0.495  [self:0.055]
   [78/288] cue=1 c1=180° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.140  [self:0.042]
+  Student_0:0.177  [self:0.044]
   [79/288] cue=1 c1=180° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.135  [self:0.056]
+  Student_0:0.139  [self:0.041]
   [80/288] cue=1 c1=180° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.181  [self:0.021]
+  Student_0:0.120  [self:0.023]
   [81/288] cue=1 c1=180° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.286  [self:0.033]
+  Student_0:0.338  [self:0.024]
   [82/288] cue=1 c1=180° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.487  [self:0.027]
+  Student_0:0.564  [self:0.051]
   [83/288] cue=1 c1=180° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.611  [self:0.105]
+  Student_0:0.360  [self:0.058]
   [84/288] cue=1 c1=180° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.629  [self:0.105]
+  Student_0:0.658  [self:0.072]
   [85/288] cue=1 c1=210° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.831  [self:0.169]
+  Student_0:0.779  [self:0.069]
   [86/288] cue=1 c1=210° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.621  [self:0.076]
+  Student_0:0.658  [self:0.033]
   [87/288] cue=1 c1=210° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.732  [self:0.070]
+  Student_0:0.708  [self:0.105]
   [88/288] cue=1 c1=210° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.666  [self:0.064]
+  Student_0:0.604  [self:0.059]
   [89/288] cue=1 c1=210° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.414  [self:0.100]
+  Student_0:0.515  [self:0.056]
   [90/288] cue=1 c1=210° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.338  [self:0.037]
+  Student_0:0.281  [self:0.116]
   [91/288] cue=1 c1=210° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.191  [self:0.023]
+  Student_0:0.180  [self:0.026]
   [92/288] cue=1 c1=210° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.255  [self:0.047]
+  Student_0:0.287  [self:0.051]
   [93/288] cue=1 c1=210° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.190  [self:0.024]
+  Student_0:0.178  [self:0.036]
   [94/288] cue=1 c1=210° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.127  [self:0.067]
+  Student_0:0.236  [self:0.032]
   [95/288] cue=1 c1=210° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.437  [self:0.117]
+  Student_0:0.340  [self:0.055]
   [96/288] cue=1 c1=210° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.853  [self:0.113]
+  Student_0:0.650  [self:0.046]
   [97/288] cue=1 c1=240° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.926  [self:0.092]
+  Student_0:0.640  [self:0.088]
   [98/288] cue=1 c1=240° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.704  [self:0.128]
+  Student_0:0.850  [self:0.075]
   [99/288] cue=1 c1=240° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.833  [self:0.133]
+  Student_0:0.915  [self:0.038]
   [100/288] cue=1 c1=240° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.561  [self:0.143]
+  Student_0:0.673  [self:0.019]
   [101/288] cue=1 c1=240° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.797  [self:0.030]
+  Student_0:0.712  [self:0.143]
   [102/288] cue=1 c1=240° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.410  [self:0.046]
+  Student_0:0.480  [self:0.034]
   [103/288] cue=1 c1=240° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.197  [self:0.027]
+  Student_0:0.274  [self:0.024]
   [104/288] cue=1 c1=240° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.234  [self:0.078]
+  Student_0:0.244  [self:0.031]
   [105/288] cue=1 c1=240° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.223  [self:0.024]
+  Student_0:0.267  [self:0.036]
   [106/288] cue=1 c1=240° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.149  [self:0.040]
+  Student_0:0.132  [self:0.030]
   [107/288] cue=1 c1=240° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.353  [self:0.033]
+  Student_0:0.391  [self:0.021]
   [108/288] cue=1 c1=240° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.523  [self:0.050]
+  Student_0:0.744  [self:0.033]
   [109/288] cue=1 c1=270° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.722  [self:0.016]
+  Student_0:0.648  [self:0.056]
   [110/288] cue=1 c1=270° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.953  [self:0.027]
+  Student_0:0.918  [self:0.080]
   [111/288] cue=1 c1=270° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.762  [self:0.103]
+  Student_0:0.818  [self:0.023]
   [112/288] cue=1 c1=270° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.715  [self:0.129]
+  Student_0:0.703  [self:0.036]
   [113/288] cue=1 c1=270° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.301  [self:0.121]
+  Student_0:0.632  [self:0.120]
   [114/288] cue=1 c1=270° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.487  [self:0.067]
+  Student_0:0.286  [self:0.039]
   [115/288] cue=1 c1=270° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.311  [self:0.069]
+  Student_0:0.279  [self:0.066]
   [116/288] cue=1 c1=270° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.459  [self:0.023]
+  Student_0:0.357  [self:0.095]
   [117/288] cue=1 c1=270° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.250  [self:0.057]
+  Student_0:0.322  [self:0.018]
   [118/288] cue=1 c1=270° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.232  [self:0.018]
+  Student_0:0.238  [self:0.017]
   [119/288] cue=1 c1=270° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.233  [self:0.021]
+  Student_0:0.262  [self:0.026]
   [120/288] cue=1 c1=270° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.494  [self:0.032]
+  Student_0:0.576  [self:0.029]
   [121/288] cue=1 c1=300° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.498  [self:0.039]
+  Student_0:0.377  [self:0.052]
   [122/288] cue=1 c1=300° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.514  [self:0.061]
+  Student_0:0.563  [self:0.027]
   [123/288] cue=1 c1=300° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.702  [self:0.045]
+  Student_0:0.546  [self:0.139]
   [124/288] cue=1 c1=300° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.597  [self:0.079]
+  Student_0:0.360  [self:0.133]
   [125/288] cue=1 c1=300° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.718  [self:0.059]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0124_cue1_c1300_c2120.png
+  Student_0:0.717  [self:0.056]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0124_cue1_c1300_c2120.png
   [126/288] cue=1 c1=300° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.791  [self:0.221]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0125_cue1_c1300_c2150.png
+  Student_0:0.495  [self:0.113]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0125_cue1_c1300_c2150.png
   [127/288] cue=1 c1=300° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.565  [self:0.104]
+  Student_0:0.704  [self:0.029]
   [128/288] cue=1 c1=300° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.665  [self:0.039]
+  Student_0:0.462  [self:0.113]
   [129/288] cue=1 c1=300° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.322  [self:0.027]
+  Student_0:0.229  [self:0.048]
   [130/288] cue=1 c1=300° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.137  [self:0.044]
+  Student_0:0.137  [self:0.043]
   [131/288] cue=1 c1=300° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.254  [self:0.021]
+  Student_0:0.316  [self:0.022]
   [132/288] cue=1 c1=300° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.320  [self:0.027]
+  Student_0:0.325  [self:0.062]
   [133/288] cue=1 c1=330° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.195  [self:0.030]
+  Student_0:0.205  [self:0.025]
   [134/288] cue=1 c1=330° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.300  [self:0.030]
+  Student_0:0.235  [self:0.092]
   [135/288] cue=1 c1=330° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.515  [self:0.133]
+  Student_0:0.526  [self:0.054]
   [136/288] cue=1 c1=330° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.674  [self:0.074]
+  Student_0:0.666  [self:0.101]
   [137/288] cue=1 c1=330° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.797  [self:0.033]
+  Student_0:0.942  [self:0.050]
   [138/288] cue=1 c1=330° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.618  [self:0.052]
+  Student_0:0.690  [self:0.140]
   [139/288] cue=1 c1=330° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.739  [self:0.025]
+  Student_0:0.771  [self:0.043]
   [140/288] cue=1 c1=330° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.449  [self:0.034]
+  Student_0:0.498  [self:0.056]
   [141/288] cue=1 c1=330° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.175  [self:0.144]
+  Student_0:0.360  [self:0.034]
   [142/288] cue=1 c1=330° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.192  [self:0.041]
+  Student_0:0.214  [self:0.032]
   [143/288] cue=1 c1=330° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.118  [self:0.045]
+  Student_0:0.117  [self:0.019]
   [144/288] cue=1 c1=330° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.179  [self:0.061]
+  Student_0:0.165  [self:0.030]
   [145/288] cue=2 c1=0° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.095  [self:0.026]
+  Student_0:0.118  [self:0.038]
   [146/288] cue=2 c1=0° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.315  [self:0.016]
+  Student_0:0.346  [self:0.019]
   [147/288] cue=2 c1=0° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.382  [self:0.045]
+  Student_0:0.435  [self:0.055]
   [148/288] cue=2 c1=0° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.668  [self:0.052]
+  Student_0:0.515  [self:0.062]
   [149/288] cue=2 c1=0° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.532  [self:0.038]
+  Student_0:0.682  [self:0.152]
   [150/288] cue=2 c1=0° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:1.054  [self:0.057]
+  Student_0:0.853  [self:0.135]
   [151/288] cue=2 c1=0° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.689  [self:0.094]
+  Student_0:0.781  [self:0.046]
   [152/288] cue=2 c1=0° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.750  [self:0.072]
+  Student_0:0.689  [self:0.042]
   [153/288] cue=2 c1=0° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.819  [self:0.038]
+  Student_0:0.935  [self:0.032]
   [154/288] cue=2 c1=0° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.727  [self:0.048]
+  Student_0:0.720  [self:0.058]
   [155/288] cue=2 c1=0° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.498  [self:0.050]
+  Student_0:0.413  [self:0.039]
   [156/288] cue=2 c1=0° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.206  [self:0.037]
+  Student_0:0.196  [self:0.024]
   [157/288] cue=2 c1=30° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.167  [self:0.062]
+  Student_0:0.199  [self:0.018]
   [158/288] cue=2 c1=30° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.072  [self:0.017]
+  Student_0:0.051  [self:0.028]
   [159/288] cue=2 c1=30° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.195  [self:0.029]
+  Student_0:0.208  [self:0.042]
   [160/288] cue=2 c1=30° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.492  [self:0.075]
+  Student_0:0.524  [self:0.025]
   [161/288] cue=2 c1=30° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.872  [self:0.038]
+  Student_0:0.910  [self:0.038]
   [162/288] cue=2 c1=30° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.729  [self:0.044]
+  Student_0:0.751  [self:0.016]
   [163/288] cue=2 c1=30° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.611  [self:0.124]
+  Student_0:0.585  [self:0.091]
   [164/288] cue=2 c1=30° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.653  [self:0.104]
+  Student_0:0.643  [self:0.138]
   [165/288] cue=2 c1=30° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:1.175  [self:0.227]
+  Student_0:1.011  [self:0.035]
   [166/288] cue=2 c1=30° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.625  [self:0.056]
+  Student_0:0.831  [self:0.089]
   [167/288] cue=2 c1=30° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.507  [self:0.064]
+  Student_0:0.581  [self:0.035]
   [168/288] cue=2 c1=30° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.121  [self:0.050]
+  Student_0:0.330  [self:0.033]
   [169/288] cue=2 c1=60° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.202  [self:0.047]
+  Student_0:0.373  [self:0.062]
   [170/288] cue=2 c1=60° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.208  [self:0.032]
+  Student_0:0.214  [self:0.030]
   [171/288] cue=2 c1=60° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.114  [self:0.032]
+  Student_0:0.093  [self:0.038]
   [172/288] cue=2 c1=60° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.252  [self:0.020]
+  Student_0:0.304  [self:0.024]
   [173/288] cue=2 c1=60° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.487  [self:0.048]
+  Student_0:0.467  [self:0.026]
   [174/288] cue=2 c1=60° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.414  [self:0.044]
+  Student_0:0.434  [self:0.087]
   [175/288] cue=2 c1=60° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.539  [self:0.049]
+  Student_0:0.624  [self:0.022]
   [176/288] cue=2 c1=60° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.734  [self:0.021]
+  Student_0:0.578  [self:0.027]
   [177/288] cue=2 c1=60° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.639  [self:0.123]
+  Student_0:0.645  [self:0.093]
   [178/288] cue=2 c1=60° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.507  [self:0.078]
+  Student_0:0.837  [self:0.025]
   [179/288] cue=2 c1=60° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.541  [self:0.087]
+  Student_0:0.512  [self:0.165]
   [180/288] cue=2 c1=60° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.355  [self:0.115]
+  Student_0:0.426  [self:0.036]
   [181/288] cue=2 c1=90° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.480  [self:0.081]
+  Student_0:0.484  [self:0.049]
   [182/288] cue=2 c1=90° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.164  [self:0.022]
+  Student_0:0.162  [self:0.100]
   [183/288] cue=2 c1=90° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.106  [self:0.025]
+  Student_0:0.109  [self:0.027]
   [184/288] cue=2 c1=90° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.142  [self:0.040]
+  Student_0:0.139  [self:0.019]
   [185/288] cue=2 c1=90° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.132  [self:0.019]
+  Student_0:0.134  [self:0.021]
   [186/288] cue=2 c1=90° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.295  [self:0.044]
+  Student_0:0.381  [self:0.116]
   [187/288] cue=2 c1=90° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.444  [self:0.041]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0186_cue2_c190_c2180.png
+  Student_0:0.474  [self:0.033]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0186_cue2_c190_c2180.png
   [188/288] cue=2 c1=90° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.646  [self:0.074]
+  Student_0:0.493  [self:0.029]
   [189/288] cue=2 c1=90° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.543  [self:0.124]
+  Student_0:0.408  [self:0.203]
   [190/288] cue=2 c1=90° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.742  [self:0.109]
+  Student_0:0.770  [self:0.043]
   [191/288] cue=2 c1=90° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.350  [self:0.096]
+  Student_0:0.397  [self:0.033]
   [192/288] cue=2 c1=90° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.607  [self:0.041]
+  Student_0:0.572  [self:0.030]
   [193/288] cue=2 c1=120° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.408  [self:0.143]
+  Student_0:0.441  [self:0.047]
   [194/288] cue=2 c1=120° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.226  [self:0.019]
+  Student_0:0.313  [self:0.029]
   [195/288] cue=2 c1=120° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.128  [self:0.062]
+  Student_0:0.212  [self:0.015]
   [196/288] cue=2 c1=120° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.160  [self:0.042]
+  Student_0:0.187  [self:0.023]
   [197/288] cue=2 c1=120° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.120  [self:0.052]
+  Student_0:0.178  [self:0.060]
   [198/288] cue=2 c1=120° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.095  [self:0.036]
+  Student_0:0.123  [self:0.026]
   [199/288] cue=2 c1=120° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.314  [self:0.029]
+  Student_0:0.252  [self:0.020]
   [200/288] cue=2 c1=120° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.564  [self:0.111]
+  Student_0:0.489  [self:0.048]
   [201/288] cue=2 c1=120° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.505  [self:0.085]
+  Student_0:0.395  [self:0.094]
   [202/288] cue=2 c1=120° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.591  [self:0.092]
+  Student_0:0.456  [self:0.024]
   [203/288] cue=2 c1=120° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.773  [self:0.092]
+  Student_0:0.608  [self:0.082]
   [204/288] cue=2 c1=120° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.735  [self:0.064]
+  Student_0:0.648  [self:0.053]
   [205/288] cue=2 c1=150° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.560  [self:0.087]
+  Student_0:0.357  [self:0.046]
   [206/288] cue=2 c1=150° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.201  [self:0.040]
+  Student_0:0.241  [self:0.043]
   [207/288] cue=2 c1=150° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.579  [self:0.026]
+  Student_0:0.453  [self:0.083]
   [208/288] cue=2 c1=150° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.396  [self:0.036]
+  Student_0:0.390  [self:0.077]
   [209/288] cue=2 c1=150° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.263  [self:0.070]
+  Student_0:0.220  [self:0.027]
   [210/288] cue=2 c1=150° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.148  [self:0.046]
+  Student_0:0.097  [self:0.033]
   [211/288] cue=2 c1=150° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.154  [self:0.070]
+  Student_0:0.211  [self:0.027]
   [212/288] cue=2 c1=150° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.341  [self:0.021]
+  Student_0:0.256  [self:0.032]
   [213/288] cue=2 c1=150° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.322  [self:0.037]
+  Student_0:0.356  [self:0.025]
   [214/288] cue=2 c1=150° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.464  [self:0.083]
+  Student_0:0.315  [self:0.093]
   [215/288] cue=2 c1=150° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.485  [self:0.045]
+  Student_0:0.544  [self:0.049]
   [216/288] cue=2 c1=150° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.510  [self:0.061]
+  Student_0:0.557  [self:0.019]
   [217/288] cue=2 c1=180° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.510  [self:0.044]
+  Student_0:0.441  [self:0.087]
   [218/288] cue=2 c1=180° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.369  [self:0.042]
+  Student_0:0.396  [self:0.070]
   [219/288] cue=2 c1=180° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.529  [self:0.084]
+  Student_0:0.473  [self:0.156]
   [220/288] cue=2 c1=180° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.389  [self:0.025]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0219_cue2_c1180_c290.png
+  Student_0:0.485  [self:0.066]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0219_cue2_c1180_c290.png
   [221/288] cue=2 c1=180° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.368  [self:0.073]
+  Student_0:0.338  [self:0.066]
   [222/288] cue=2 c1=180° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.132  [self:0.036]
+  Student_0:0.125  [self:0.024]
   [223/288] cue=2 c1=180° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.248  [self:0.021]
+  Student_0:0.253  [self:0.022]
   [224/288] cue=2 c1=180° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.285  [self:0.023]
+  Student_0:0.266  [self:0.021]
   [225/288] cue=2 c1=180° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.201  [self:0.023]
+  Student_0:0.205  [self:0.035]
   [226/288] cue=2 c1=180° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.370  [self:0.082]
+  Student_0:0.472  [self:0.073]
   [227/288] cue=2 c1=180° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.430  [self:0.031]
+  Student_0:0.520  [self:0.071]
   [228/288] cue=2 c1=180° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.572  [self:0.278]
+  Student_0:0.406  [self:0.048]
   [229/288] cue=2 c1=210° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.406  [self:0.017]
+  Student_0:0.518  [self:0.021]
   [230/288] cue=2 c1=210° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.295  [self:0.082]
+  Student_0:0.304  [self:0.032]
   [231/288] cue=2 c1=210° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.479  [self:0.054]
+  Student_0:0.500  [self:0.088]
   [232/288] cue=2 c1=210° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.483  [self:0.060]
+  Student_0:0.576  [self:0.056]
   [233/288] cue=2 c1=210° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.443  [self:0.059]
+  Student_0:0.367  [self:0.065]
   [234/288] cue=2 c1=210° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.368  [self:0.041]
+  Student_0:0.400  [self:0.028]
   [235/288] cue=2 c1=210° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.165  [self:0.037]
+  Student_0:0.198  [self:0.039]
   [236/288] cue=2 c1=210° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.304  [self:0.039]
+  Student_0:0.285  [self:0.019]
   [237/288] cue=2 c1=210° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.333  [self:0.034]
+  Student_0:0.329  [self:0.026]
   [238/288] cue=2 c1=210° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.504  [self:0.089]
+  Student_0:0.461  [self:0.032]
   [239/288] cue=2 c1=210° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.498  [self:0.061]
+  Student_0:0.520  [self:0.035]
   [240/288] cue=2 c1=210° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.487  [self:0.044]
+  Student_0:0.410  [self:0.086]
   [241/288] cue=2 c1=240° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.352  [self:0.020]
+  Student_0:0.394  [self:0.024]
   [242/288] cue=2 c1=240° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.452  [self:0.091]
+  Student_0:0.433  [self:0.078]
   [243/288] cue=2 c1=240° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.474  [self:0.100]
+  Student_0:0.474  [self:0.062]
   [244/288] cue=2 c1=240° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.653  [self:0.093]
+  Student_0:0.522  [self:0.102]
   [245/288] cue=2 c1=240° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.457  [self:0.053]
+  Student_0:0.574  [self:0.059]
   [246/288] cue=2 c1=240° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.552  [self:0.060]
+  Student_0:0.488  [self:0.027]
   [247/288] cue=2 c1=240° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.296  [self:0.028]
+  Student_0:0.302  [self:0.034]
   [248/288] cue=2 c1=240° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.227  [self:0.052]
-Saved plot: results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0247_cue2_c1240_c2210.png
+  Student_0:0.174  [self:0.020]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sweep_plots/trial0247_cue2_c1240_c2210.png
   [249/288] cue=2 c1=240° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.312  [self:0.019]
+  Student_0:0.332  [self:0.049]
   [250/288] cue=2 c1=240° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.230  [self:0.039]
+  Student_0:0.229  [self:0.031]
   [251/288] cue=2 c1=240° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.229  [self:0.037]
+  Student_0:0.229  [self:0.023]
   [252/288] cue=2 c1=240° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.291  [self:0.074]
+  Student_0:0.316  [self:0.060]
   [253/288] cue=2 c1=270° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.187  [self:0.058]
+  Student_0:0.300  [self:0.051]
   [254/288] cue=2 c1=270° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.304  [self:0.094]
+  Student_0:0.278  [self:0.131]
   [255/288] cue=2 c1=270° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.679  [self:0.095]
+  Student_0:0.692  [self:0.104]
   [256/288] cue=2 c1=270° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.632  [self:0.090]
+  Student_0:0.385  [self:0.165]
   [257/288] cue=2 c1=270° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.723  [self:0.033]
+  Student_0:0.565  [self:0.037]
   [258/288] cue=2 c1=270° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.667  [self:0.039]
+  Student_0:0.638  [self:0.120]
   [259/288] cue=2 c1=270° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.430  [self:0.031]
+  Student_0:0.446  [self:0.117]
   [260/288] cue=2 c1=270° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.230  [self:0.030]
+  Student_0:0.223  [self:0.021]
   [261/288] cue=2 c1=270° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.158  [self:0.027]
+  Student_0:0.174  [self:0.032]
   [262/288] cue=2 c1=270° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.168  [self:0.023]
+  Student_0:0.170  [self:0.029]
   [263/288] cue=2 c1=270° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.146  [self:0.043]
+  Student_0:0.190  [self:0.051]
   [264/288] cue=2 c1=270° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.104  [self:0.067]
+  Student_0:0.154  [self:0.040]
   [265/288] cue=2 c1=300° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.232  [self:0.053]
+  Student_0:0.219  [self:0.044]
   [266/288] cue=2 c1=300° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.326  [self:0.108]
+  Student_0:0.448  [self:0.049]
   [267/288] cue=2 c1=300° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.662  [self:0.049]
+  Student_0:0.601  [self:0.090]
   [268/288] cue=2 c1=300° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.637  [self:0.081]
+  Student_0:0.647  [self:0.026]
   [269/288] cue=2 c1=300° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.591  [self:0.026]
+  Student_0:0.671  [self:0.079]
   [270/288] cue=2 c1=300° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.700  [self:0.045]
+  Student_0:0.853  [self:0.188]
   [271/288] cue=2 c1=300° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.565  [self:0.109]
+  Student_0:0.587  [self:0.032]
   [272/288] cue=2 c1=300° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.320  [self:0.024]
+  Student_0:0.327  [self:0.088]
   [273/288] cue=2 c1=300° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.424  [self:0.066]
+  Student_0:0.411  [self:0.026]
   [274/288] cue=2 c1=300° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.300  [self:0.022]
+  Student_0:0.315  [self:0.033]
   [275/288] cue=2 c1=300° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.240  [self:0.021]
+  Student_0:0.293  [self:0.021]
   [276/288] cue=2 c1=300° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.143  [self:0.028]
+  Student_0:0.129  [self:0.060]
   [277/288] cue=2 c1=330° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  [self:0.018]
+  Student_0:0.123  [self:0.042]
   [278/288] cue=2 c1=330° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.410  [self:0.061]
+  Student_0:0.309  [self:0.024]
   [279/288] cue=2 c1=330° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.636  [self:0.092]
+  Student_0:0.463  [self:0.034]
   [280/288] cue=2 c1=330° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.610  [self:0.019]
+  Student_0:0.620  [self:0.083]
   [281/288] cue=2 c1=330° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.556  [self:0.050]
+  Student_0:0.479  [self:0.113]
   [282/288] cue=2 c1=330° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.683  [self:0.075]
+  Student_0:0.877  [self:0.111]
   [283/288] cue=2 c1=330° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.545  [self:0.113]
+  Student_0:0.583  [self:0.024]
   [284/288] cue=2 c1=330° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.617  [self:0.086]
+  Student_0:0.591  [self:0.068]
   [285/288] cue=2 c1=330° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.704  [self:0.027]
+  Student_0:0.618  [self:0.038]
   [286/288] cue=2 c1=330° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.484  [self:0.022]
+  Student_0:0.520  [self:0.054]
   [287/288] cue=2 c1=330° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.357  [self:0.029]
+  Student_0:0.383  [self:0.066]
   [288/288] cue=2 c1=330° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.232  [self:0.026]
+  Student_0:0.257  [self:0.017]
 
-Saved sweep SW scores: results/all_teacher_student_sweeps/ablation_no_ablation/sw_sweep.csv
+Saved sweep SW scores: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_no_ablation/sw_sweep.csv
 
 Mean sliced-Wasserstein per pair (overall / same-color / different-color):
-  sw_Healthy_vs_Student_0: 0.435162  same=0.173151  diff=0.458981
-  sw_self_reference: 0.058172  same=0.031868  diff=0.060563
+  sw_Healthy_vs_Student_0: 0.434949  same=0.185260  diff=0.457648
+  sw_self_reference: 0.054767  same=0.030511  diff=0.056972
 
-Reference self-SW (noise floor) — overall: 0.058172  same: 0.031868  diff: 0.060563
+Reference self-SW (noise floor) — overall: 0.054767  same: 0.030511  diff: 0.056972
 
 Normalised SW (ratio to self-SW baseline):
-  sw_Healthy_vs_Student_0: 9.502×  same=6.514×  diff=9.774×
+  sw_Healthy_vs_Student_0: 10.227×  same=7.179×  diff=10.504×
   sw_self_reference: 1.000×  same=1.000×  diff=1.000×

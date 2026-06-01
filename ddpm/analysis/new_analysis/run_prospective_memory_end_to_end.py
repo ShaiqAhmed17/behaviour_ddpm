@@ -220,7 +220,7 @@ def main():
         pca=pca,
         n_bins=args.n_bins,
         out_path=prep_png,
-        title="All Preparatory Timesteps in Shared Global PCA Space",
+        title="Preparatory trajectories",
         label_schema="prep",
         lims=shared_lims,
     )
@@ -232,7 +232,7 @@ def main():
         pca=pca,
         n_bins=args.n_bins,
         out_path=diff_png,
-        title="All Diffusion Timesteps in Shared Global PCA Space",
+        title="Diffusion trajectories",
         label_schema="diffusion",
         lims=shared_lims,
     )

@@ -5,12 +5,13 @@ Analyze and visualize top 15 features across teacher ablation directions.
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pathlib import Path
 import re
 import sys
 
-# Import the feature extraction code from MDS.py
 sys.path.insert(0, str(Path(__file__).parent))
 from MDS import extract_all_features
 
@@ -44,6 +45,7 @@ for d in RESULTS_DIR.iterdir():
         teachers['no_ablation'] = npz
         continue
 
+    # Single/multi-dir nullspace ablation: ...recovery_ablation_{key}_{seed}
     m_student = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_ablation_(.+)_(\d+)$', d.name)
     if m_student:
         key = m_student.group(1)
@@ -53,6 +55,20 @@ for d in RESULTS_DIR.iterdir():
             pass
         if key != 'idk' and key not in EXCLUDE_DIRS:
             students.setdefault(key, []).append((d.name, npz))
+        continue
+
+    # PCA-based ablation: ...recovery_pca_ablation_{dirs}_{seed}
+    m_pca = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_pca_ablation_(.+)_(\d+)$', d.name)
+    if m_pca:
+        key = f'pca_{m_pca.group(1)}'
+        students.setdefault(key, []).append((d.name, npz))
+        continue
+
+    # No-ablation recovery: ...recovery_no_ablation_{seed}
+    m_noabl = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_no_ablation_(\d+)$', d.name)
+    if m_noabl:
+        key = 'no_ablation_v2'
+        students.setdefault(key, []).append((d.name, npz))
 
 print(f"  Teachers: {len(teachers)}")
 print(f"  Students: {sum(len(v) for v in students.values())}")
@@ -123,6 +139,14 @@ print(df.to_string())
 # Visualization 1: Heatmap of features
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Visualization 1: Heatmap of features
+# ─────────────────────────────────────────────────────────────────────────────
+
+from ddpm.utils.vis.style import set_publication_style, save_figure
+
+set_publication_style()
+
 print("\nPlotting heatmap...")
 
 fig, ax = plt.subplots(figsize=(14, 8))
@@ -145,9 +169,9 @@ ax.set_title('Top 15 Features: Normalized Heatmap Across Teachers', fontsize=13,
 plt.colorbar(im, ax=ax, label='Normalized Value')
 plt.tight_layout()
 
-heatmap_path = RESULTS_DIR / 'top15_features_heatmap.png'
-plt.savefig(heatmap_path, dpi=150, bbox_inches='tight')
-print(f"  Saved: {heatmap_path}")
+heatmap_path = RESULTS_DIR / 'top15_features_heatmap'
+save_figure(fig, heatmap_path)
+print(f"  Saved: {heatmap_path}.pdf / .png")
 plt.close()
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -176,9 +200,9 @@ for i, fname in enumerate(top_k_names):
 plt.suptitle('Top 15 Features: Values Across Teacher Ablation Directions', fontsize=14, fontweight='bold')
 plt.tight_layout()
 
-lineplot_path = RESULTS_DIR / 'top15_features_lineplots.png'
-plt.savefig(lineplot_path, dpi=150, bbox_inches='tight')
-print(f"  Saved: {lineplot_path}")
+lineplot_path = RESULTS_DIR / 'top15_features_lineplots'
+save_figure(fig, lineplot_path)
+print(f"  Saved: {lineplot_path}.pdf / .png")
 plt.close()
 
 # ─────────────────────────────────────────────────────────────────────────────

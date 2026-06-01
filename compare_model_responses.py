@@ -68,7 +68,7 @@ import torch
 from scipy.stats import wasserstein_distance
 
 from ddpm import model, tasks
-from ddpm.utils.vis import symmetrize_and_square_axis
+from ddpm.utils.vis import symmetrize_and_square_axis, save_figure, save_legend
 from purias_utils.multiitem_working_memory.util.circle_utils import polar2cart
 from purias_utils.util.arguments_yaml import ConfigNamepace
 
@@ -341,12 +341,10 @@ def plot_single_trial(
         batch_idx=0,
     )
     axes[0, 2].axis("off")
-    ref_label = all_labels[reference_idx] if reference_idx is not None else "—"
-    title = (
-        f"cue={cue}  color1={color1_deg:.0f}°  color2={color2_deg:.0f}°\n"
-        f"n_models={N}  reference={ref_label}"
+    fig.suptitle(
+        f"Cue {cue},  {color1_deg:.0f}$^\\circ$ / {color2_deg:.0f}$^\\circ$",
+        y=1.01,
     )
-    axes[0, 0].set_title(title)
 
     # SW score table in the 4th column header cell
     if sw_scores:
@@ -364,8 +362,6 @@ def plot_single_trial(
     for i, (label, samples_dict) in enumerate(zip(all_labels, all_samples_dicts)):
         row = i + 1
         is_ref = (reference_idx is not None and i == reference_idx)
-        border = dict(linewidth=2.5) if is_ref else {}
-        role = " [teacher]" if is_ref else " [student]" if reference_idx is not None else ""
 
         samples_ax = axes[row, 0]
         early_ax = axes[row, 1]
@@ -378,13 +374,16 @@ def plot_single_trial(
                 if is_ref:
                     spine.set_linewidth(2.5)
 
-        samples_ax.set_title(f"{label}{role}\nGenerated samples")
+        label_tex = str(label).replace('_', r'\_')
+        samples_ax.set_title("Generated samples")
+        samples_ax.set_ylabel(label_tex)
         task.sample_gen.display_samples(
             samples_dict["samples"], samples_ax, batch_idx=0
         )
+        samples_ax.set_xlabel(r'$x$ (a.u.)')
         symmetrize_and_square_axis(samples_ax)
 
-        early_ax.set_title(f"{label}{role}\nEarly $x_0$ predictions")
+        early_ax.set_title(r"Early $x_0$ predictions")
         early_preds = samples_dict.get("early_x0_preds")
         if early_preds is not None and not early_preds.isnan().all():
             task.sample_gen.display_early_x0_pred_timeseries(
@@ -396,19 +395,25 @@ def plot_single_trial(
                 task.sample_gen.display_early_x0_pred_timeseries(
                     sample_traj, early_ax, cmap, batch_idx=0
                 )
+        early_ax.set_xlabel(r'$x$ (a.u.)')
+        early_ax.set_ylabel(r'$y$ (a.u.)')
         symmetrize_and_square_axis(early_ax)
 
-        traj_ax.set_title(f"{label}{role}\nSample trajectory")
+        traj_ax.set_title("Sample trajectory")
         sample_traj = samples_dict.get("sample_trajectory")
         if sample_traj is not None:
             task.sample_gen.display_early_x0_pred_timeseries(
                 sample_traj, traj_ax, cmap, batch_idx=0
             )
+        traj_ax.set_xlabel(r'$x$ (a.u.)')
+        traj_ax.set_ylabel(r'$y$ (a.u.)')
         symmetrize_and_square_axis(traj_ax)
 
     # --- Final row: overlay (teacher on top) ---
     overlay_ax = axes[N + 1, 0]
     overlay_ax.set_title("Samples overlay")
+    overlay_ax.set_xlabel(r'$x$ (a.u.)')
+    overlay_ax.set_ylabel(r'$y$ (a.u.)')
 
     # Draw students first, teacher last so it's on top
     draw_order = list(range(N))
@@ -458,7 +463,8 @@ def plot_single_trial(
 
     fig.tight_layout()
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
-    fig.savefig(out_path, dpi=150)
+    save_figure(fig, Path(out_path))
+    save_legend(overlay_ax, Path(out_path))
     plt.close(fig)
     print(f"Saved plot: {out_path}")
 

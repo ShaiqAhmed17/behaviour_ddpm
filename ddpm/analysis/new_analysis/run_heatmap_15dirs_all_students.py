@@ -1,11 +1,11 @@
 """
 run_heatmap_15dirs_all_students.py
 
-15 teacher rows (unablated + abl00..abl13) × all numerically-named student runs
-of the form index_cued_first_diffusion_0.3_swap_recovery_ablation_{X}_{Y}.
-
-Uses prep-only trajectories (no diffusion) so that the existing teacher ablated
-caches (abl00–abl13_S512.npy) are reused without re-extraction.
+15 teacher rows (unablated + abl00..abl13) × all student runs, including:
+  - single nullspace-direction:  ...recovery_ablation_{N}_{seed}
+  - multi  nullspace-direction:  ...recovery_ablation_{N}-{M}-..._{seed}
+  - PCA-based:                   ...recovery_pca_ablation_{N}(-{M}...?)_{seed}
+  - no-ablation:                 ...recovery_no_ablation_{seed}
 
 Output: ddpm/analysis/new_analysis/results/procrustes_heatmap_15dirs_all_students/
 """
@@ -56,18 +56,43 @@ INCLUDE_DIFFUSION = True    # full prep + diffusion trajectories (_full cache su
 MATCH_WEIGHTS = None        # uniform weighting across all timesteps
 
 # ---------------------------------------------------------------------------
-# Discover all numerically-named student runs
+# Discover all student runs (single-dir, multi-dir, PCA, no-ablation)
 # ---------------------------------------------------------------------------
-_STUDENT_PATTERN = re.compile(
+_PAT_SINGLE = re.compile(
     r'^index_cued_first_diffusion_0\.3_swap_recovery_ablation_(\d+)_(\d+)$'
 )
+_PAT_MULTI = re.compile(
+    r'^index_cued_first_diffusion_0\.3_swap_recovery_ablation_(\d+(?:-\d+)+)_(\d+)$'
+)
+_PAT_PCA = re.compile(
+    r'^index_cued_first_diffusion_0\.3_swap_recovery_pca_ablation_(\d+(?:-\d+)*)_(\d+)$'
+)
+_PAT_NOABL = re.compile(
+    r'^index_cued_first_diffusion_0\.3_swap_recovery_no_ablation_(\d+)$'
+)
+
+def _student_sort_key(name):
+    for pat in [_PAT_SINGLE, _PAT_MULTI, _PAT_PCA, _PAT_NOABL]:
+        m = pat.match(name)
+        if m:
+            groups = m.groups()
+            # Sort by first numeric component, then remaining
+            first = int(groups[0].split('-')[0]) if groups[0].replace('-','').isdigit() else 999
+            seed  = int(groups[-1]) if groups[-1].isdigit() else 0
+            return (first, seed, name)
+    return (9999, 0, name)
+
+def _is_student(d):
+    if not d.is_dir():
+        return False
+    if not (d / 'state.mdl').exists() or not (d / 'args.yaml').exists():
+        return False
+    name = d.name
+    return any(p.match(name) for p in [_PAT_SINGLE, _PAT_MULTI, _PAT_PCA, _PAT_NOABL])
 
 student_runs = sorted(
-    [
-        d.name for d in (RESULTS_ROOT).iterdir()
-        if d.is_dir() and _STUDENT_PATTERN.match(d.name)
-    ],
-    key=lambda s: [int(x) for x in _STUDENT_PATTERN.match(s).groups()],
+    [d.name for d in RESULTS_ROOT.iterdir() if _is_student(d)],
+    key=_student_sort_key,
 )
 
 print(f'Found {len(student_runs)} student runs:')
@@ -138,8 +163,22 @@ for s_run in student_runs:
         include_diffusion=INCLUDE_DIFFUSION,
     )
     student_trajs_16d.append(t)
-    m = _STUDENT_PATTERN.match(s_run)
-    student_labels.append(f'abl{m.group(1)}_{m.group(2)}')
+    # Generate a short label from whichever pattern matches
+    m_s = _PAT_SINGLE.match(s_run)
+    m_m = _PAT_MULTI.match(s_run)
+    m_p = _PAT_PCA.match(s_run)
+    m_n = _PAT_NOABL.match(s_run)
+    if m_s:
+        lbl = f'abl{m_s.group(1)}_{m_s.group(2)}'
+    elif m_m:
+        lbl = f'multi_{m_m.group(1)}_s{m_m.group(2)}'
+    elif m_p:
+        lbl = f'pca_{m_p.group(1)}_s{m_p.group(2)}'
+    elif m_n:
+        lbl = f'noabl_s{m_n.group(1)}'
+    else:
+        lbl = s_run
+    student_labels.append(lbl)
 
 # ---------------------------------------------------------------------------
 # Project to 14-D nullspace

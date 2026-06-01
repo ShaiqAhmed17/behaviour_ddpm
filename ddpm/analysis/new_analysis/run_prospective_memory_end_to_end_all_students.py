@@ -24,6 +24,8 @@ if str(REPO_ROOT) not in sys.path:
 DEFAULT_STUDENT_GLOBS = [
     "index_cued_first_diffusion_0.3_swap_recovery_ablation_*/",
     "index_cued_first_diffusion_0.3_swap_recovery_ablation_no_ablation_0/",
+    "index_cued_first_diffusion_0.3_swap_recovery_pca_ablation_*/",
+    "index_cued_first_diffusion_0.3_swap_recovery_no_ablation_*/",
 ]
 
 EXCLUDED_RUN_NAMES = {

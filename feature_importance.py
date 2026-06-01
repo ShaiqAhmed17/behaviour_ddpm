@@ -6,6 +6,8 @@ Remove each feature one at a time, recompute MDS, measure stress increase.
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pathlib import Path
 from sklearn.decomposition import PCA
@@ -18,6 +20,9 @@ import sys
 # Import the feature extraction code from MDS.py
 sys.path.insert(0, str(Path(__file__).parent))
 from MDS import extract_all_features
+from ddpm.utils.vis.style import set_publication_style
+
+set_publication_style()
 
 REPO_ROOT = Path('/scratch3/shaiq_home/repos/behaviour_ddpm')
 RESULTS_DIR = REPO_ROOT / 'ddpm' / 'analysis' / 'new_analysis' / 'results' / 'prospective_memory_dual'

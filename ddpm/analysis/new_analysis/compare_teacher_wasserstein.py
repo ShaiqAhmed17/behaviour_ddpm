@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy.stats import wasserstein_distance
 
+from ddpm.utils.vis.style import set_publication_style
+
 
 def load_sweep(path):
     return torch.load(path, weights_only=False)
@@ -65,6 +67,8 @@ def sliced_wasserstein_distance(X, Y, n_projections=128, seed=42):
 
 
 def main():
+    set_publication_style()
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--sweeps-dir", required=True)
     parser.add_argument("--out-dir", required=True)

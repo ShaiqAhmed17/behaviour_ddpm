@@ -6,6 +6,8 @@ Compares with original top-15 feature selection.
 
 import numpy as np
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from pathlib import Path
 from sklearn.decomposition import PCA
@@ -48,6 +50,7 @@ for d in RESULTS_DIR.iterdir():
         teachers['no_ablation'] = npz
         continue
 
+    # Single/multi-dir nullspace ablation
     m_student = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_ablation_(.+)_(\d+)$', d.name)
     if m_student:
         key = m_student.group(1)
@@ -57,6 +60,19 @@ for d in RESULTS_DIR.iterdir():
             pass
         if key != 'idk' and key not in EXCLUDE_DIRS:
             students.setdefault(key, []).append((d.name, npz))
+        continue
+
+    # PCA-based ablation
+    m_pca = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_pca_ablation_(.+)_(\d+)$', d.name)
+    if m_pca:
+        key = f'pca_{m_pca.group(1)}'
+        students.setdefault(key, []).append((d.name, npz))
+        continue
+
+    # No-ablation recovery
+    m_noabl = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_no_ablation_(\d+)$', d.name)
+    if m_noabl:
+        students.setdefault('no_ablation_v2', []).append((d.name, npz))
 
 print(f"  Teachers: {len(teachers)}, Students: {sum(len(v) for v in students.values())}")
 
@@ -128,7 +144,18 @@ teacher_to_color = {
     10: '#e377c2',     # pink
     12: '#7f7f7f',     # gray
     13: '#bcbd22',     # olive
-    'no_ablation': '#17becf'  # cyan
+    'no_ablation': '#17becf',   # cyan
+    # Multi-dir: color by primary (first) direction
+    '0-1': '#1f77b4',
+    '0-1-2': '#1f77b4',
+    '0-1-2-3': '#1f77b4',
+    # PCA-based: lighter shades by primary direction
+    'pca_0': '#aec7e8',
+    'pca_1': '#ffbb78',
+    'pca_13': '#dbdb8d',
+    'pca_0-1': '#aec7e8',
+    # No-ablation recovery (variant 2)
+    'no_ablation_v2': '#9edae5',
 }
 
 # Build label arrays
@@ -136,6 +163,15 @@ labels = []
 colors = []
 markers = []
 sizes = []
+
+def _student_marker(sk):
+    if isinstance(sk, int):
+        return 'D'
+    if isinstance(sk, str) and sk.startswith('pca_'):
+        return '^'
+    if sk == 'no_ablation_v2':
+        return 'P'
+    return 's'  # multi-dir
 
 for key in all_keys:
     if key[0] == 'teacher':
@@ -147,14 +183,23 @@ for key in all_keys:
     else:
         # student: ('student', sk, sname)
         sk = key[1]
-        labels.append(f'S{sk}')
+        short = str(sk).replace('no_ablation_v2', 'noabl').replace('pca_', 'p')
+        labels.append(f'S{short}')
         colors.append(teacher_to_color.get(sk, '#17becf'))
-        markers.append('X')
+        markers.append(_student_marker(sk))
         sizes.append(150)
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Visualization: MDS with optimal features
 # ─────────────────────────────────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Visualization: MDS with optimal features
+# ─────────────────────────────────────────────────────────────────────────────
+
+from ddpm.utils.vis.style import set_publication_style, save_figure
+
+set_publication_style()
 
 fig, ax = plt.subplots(figsize=(12, 10))
 
@@ -179,9 +224,9 @@ ax.set_title(f'MDS: Teacher + Student Neural State Space\n(Top 3 Optimal Feature
 ax.grid(alpha=0.3)
 
 plt.tight_layout()
-mds_path = RESULTS_DIR / 'MDS_optimal_features_top3.png'
-plt.savefig(mds_path, dpi=150, bbox_inches='tight')
-print(f"\nPlot saved: {mds_path}")
+mds_path = RESULTS_DIR / 'MDS_optimal_features_top3'
+save_figure(fig, mds_path)
+print(f"\nPlot saved: {mds_path}.pdf / .png")
 plt.close()
 
 # ─────────────────────────────────────────────────────────────────────────────

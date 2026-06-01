@@ -1,638 +1,638 @@
 Loading models...
-  [0] Ablated_1  (results_link_sampler/index_cued_first_diffusion_0.3_swap_7)
-  [1] Student_0  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_0)
-  [2] Student_1  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_1)
-  [3] Student_2  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_2)
-  [4] Student_3  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_3)
-  [5] Student_4  (results_link_sampler/index_cued_first_diffusion_0.3_swap_recovery_ablation_1_4)
+  [0] Ablated_1  (index_cued_first_diffusion_0.3_swap_7)
+  [1] Student_0  (index_cued_first_diffusion_0.3_swap_recovery_ablation_1_0)
+  [2] Student_1  (index_cued_first_diffusion_0.3_swap_recovery_ablation_1_1)
+  [3] Student_2  (index_cued_first_diffusion_0.3_swap_recovery_ablation_1_2)
+  [4] Student_3  (index_cued_first_diffusion_0.3_swap_recovery_ablation_1_3)
+  [5] Student_4  (index_cued_first_diffusion_0.3_swap_recovery_ablation_1_4)
   [0] Ablated_1: ablating nullspace direction 1
 Sweep: 288 trials (24 with same color, per 12^2 × 2 cues)
 Reference model: [0] Ablated_1
 Student models: ['Student_0', 'Student_1', 'Student_2', 'Student_3', 'Student_4']
   [1/288] cue=1 c1=0° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.090  Student_1:0.072  Student_2:0.166  Student_3:0.339  Student_4:0.255  Student_1:0.045  Student_2:0.102  Student_3:0.269  Student_4:0.175  Student_2:0.116  Student_3:0.276  Student_4:0.194  Student_3:0.187  Student_4:0.165  Student_4:0.139  [self:0.026]
+  Student_0:0.138  Student_1:0.116  Student_2:0.167  Student_3:0.384  Student_4:0.265  Student_1:0.042  Student_2:0.057  Student_3:0.255  Student_4:0.138  Student_2:0.083  Student_3:0.277  Student_4:0.161  Student_3:0.228  Student_4:0.141  Student_4:0.152  [self:0.028]
   [2/288] cue=1 c1=0° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.088  Student_1:0.080  Student_2:0.123  Student_3:0.169  Student_4:0.133  Student_1:0.031  Student_2:0.123  Student_3:0.137  Student_4:0.099  Student_2:0.113  Student_3:0.119  Student_4:0.081  Student_3:0.091  Student_4:0.086  Student_4:0.042  [self:0.019]
+  Student_0:0.080  Student_1:0.090  Student_2:0.156  Student_3:0.293  Student_4:0.180  Student_1:0.026  Student_2:0.113  Student_3:0.224  Student_4:0.104  Student_2:0.110  Student_3:0.211  Student_4:0.097  Student_3:0.141  Student_4:0.101  Student_4:0.125  [self:0.025]
   [3/288] cue=1 c1=0° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.038  Student_1:0.037  Student_2:0.048  Student_3:0.036  Student_4:0.053  Student_1:0.031  Student_2:0.046  Student_3:0.046  Student_4:0.064  Student_2:0.041  Student_3:0.052  Student_4:0.054  Student_3:0.066  Student_4:0.076  Student_4:0.053  [self:0.027]
+  Student_0:0.039  Student_1:0.030  Student_2:0.059  Student_3:0.081  Student_4:0.055  Student_1:0.022  Student_2:0.065  Student_3:0.106  Student_4:0.074  Student_2:0.071  Student_3:0.104  Student_4:0.071  Student_3:0.085  Student_4:0.061  Student_4:0.051  [self:0.031]
   [4/288] cue=1 c1=0° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.045  Student_1:0.044  Student_2:0.037  Student_3:0.060  Student_4:0.045  Student_1:0.056  Student_2:0.017  Student_3:0.049  Student_4:0.041  Student_2:0.051  Student_3:0.060  Student_4:0.041  Student_3:0.051  Student_4:0.042  Student_4:0.024  [self:0.027]
+  Student_0:0.042  Student_1:0.033  Student_2:0.044  Student_3:0.058  Student_4:0.042  Student_1:0.056  Student_2:0.016  Student_3:0.042  Student_4:0.036  Student_2:0.059  Student_3:0.062  Student_4:0.045  Student_3:0.056  Student_4:0.046  Student_4:0.027  [self:0.015]
   [5/288] cue=1 c1=0° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.051  Student_2:0.041  Student_3:0.199  Student_4:0.162  Student_1:0.023  Student_2:0.028  Student_3:0.200  Student_4:0.161  Student_2:0.042  Student_3:0.211  Student_4:0.170  Student_3:0.204  Student_4:0.166  Student_4:0.057  [self:0.021]
+  Student_0:0.044  Student_1:0.037  Student_2:0.063  Student_3:0.212  Student_4:0.199  Student_1:0.037  Student_2:0.063  Student_3:0.173  Student_4:0.162  Student_2:0.043  Student_3:0.188  Student_4:0.177  Student_3:0.213  Student_4:0.204  Student_4:0.048  [self:0.027]
   [6/288] cue=1 c1=0° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.063  Student_1:0.091  Student_2:0.037  Student_3:0.203  Student_4:0.208  Student_1:0.053  Student_2:0.061  Student_3:0.206  Student_4:0.210  Student_2:0.082  Student_3:0.232  Student_4:0.233  Student_3:0.217  Student_4:0.222  Student_4:0.056  [self:0.044]
+  Student_0:0.058  Student_1:0.082  Student_2:0.034  Student_3:0.180  Student_4:0.158  Student_1:0.054  Student_2:0.050  Student_3:0.179  Student_4:0.153  Student_2:0.074  Student_3:0.197  Student_4:0.174  Student_3:0.188  Student_4:0.165  Student_4:0.073  [self:0.028]
   [7/288] cue=1 c1=0° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.087  Student_1:0.068  Student_2:0.136  Student_3:0.130  Student_4:0.118  Student_1:0.072  Student_2:0.082  Student_3:0.080  Student_4:0.069  Student_2:0.125  Student_3:0.110  Student_4:0.085  Student_3:0.105  Student_4:0.101  Student_4:0.051  [self:0.047]
+  Student_0:0.132  Student_1:0.060  Student_2:0.132  Student_3:0.118  Student_4:0.143  Student_1:0.103  Student_2:0.055  Student_3:0.058  Student_4:0.050  Student_2:0.113  Student_3:0.091  Student_4:0.107  Student_3:0.057  Student_4:0.071  Student_4:0.051  [self:0.035]
   [8/288] cue=1 c1=0° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.125  Student_1:0.061  Student_2:0.183  Student_3:0.138  Student_4:0.077  Student_1:0.079  Student_2:0.077  Student_3:0.119  Student_4:0.108  Student_2:0.144  Student_3:0.130  Student_4:0.066  Student_3:0.115  Student_4:0.149  Student_4:0.080  [self:0.030]
+  Student_0:0.078  Student_1:0.070  Student_2:0.109  Student_3:0.103  Student_4:0.081  Student_1:0.089  Student_2:0.058  Student_3:0.123  Student_4:0.102  Student_2:0.118  Student_3:0.114  Student_4:0.098  Student_3:0.128  Student_4:0.121  Student_4:0.047  [self:0.060]
   [9/288] cue=1 c1=0° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.104  Student_1:0.062  Student_2:0.079  Student_3:0.292  Student_4:0.200  Student_1:0.091  Student_2:0.071  Student_3:0.249  Student_4:0.188  Student_2:0.078  Student_3:0.300  Student_4:0.223  Student_3:0.260  Student_4:0.195  Student_4:0.160  [self:0.050]
+  Student_0:0.092  Student_1:0.090  Student_2:0.091  Student_3:0.275  Student_4:0.199  Student_1:0.031  Student_2:0.075  Student_3:0.336  Student_4:0.265  Student_2:0.086  Student_3:0.333  Student_4:0.262  Student_3:0.298  Student_4:0.233  Student_4:0.092  [self:0.024]
   [10/288] cue=1 c1=0° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.075  Student_2:0.145  Student_3:0.320  Student_4:0.261  Student_1:0.045  Student_2:0.066  Student_3:0.277  Student_4:0.222  Student_2:0.099  Student_3:0.317  Student_4:0.263  Student_3:0.233  Student_4:0.188  Student_4:0.101  [self:0.054]
+  Student_0:0.047  Student_1:0.085  Student_2:0.051  Student_3:0.302  Student_4:0.232  Student_1:0.053  Student_2:0.045  Student_3:0.320  Student_4:0.251  Student_2:0.076  Student_3:0.280  Student_4:0.216  Student_3:0.303  Student_4:0.236  Student_4:0.126  [self:0.026]
   [11/288] cue=1 c1=0° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.038  Student_2:0.068  Student_3:0.188  Student_4:0.095  Student_1:0.048  Student_2:0.061  Student_3:0.128  Student_4:0.050  Student_2:0.073  Student_3:0.168  Student_4:0.086  Student_3:0.181  Student_4:0.089  Student_4:0.105  [self:0.043]
+  Student_0:0.044  Student_1:0.053  Student_2:0.056  Student_3:0.132  Student_4:0.102  Student_1:0.018  Student_2:0.079  Student_3:0.132  Student_4:0.100  Student_2:0.083  Student_3:0.138  Student_4:0.105  Student_3:0.135  Student_4:0.099  Student_4:0.049  [self:0.036]
   [12/288] cue=1 c1=0° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.095  Student_1:0.049  Student_2:0.107  Student_3:0.399  Student_4:0.287  Student_1:0.135  Student_2:0.046  Student_3:0.310  Student_4:0.199  Student_2:0.150  Student_3:0.441  Student_4:0.325  Student_3:0.299  Student_4:0.193  Student_4:0.139  [self:0.026]
+  Student_0:0.067  Student_1:0.088  Student_2:0.092  Student_3:0.269  Student_4:0.240  Student_1:0.077  Student_2:0.098  Student_3:0.265  Student_4:0.232  Student_2:0.166  Student_3:0.335  Student_4:0.303  Student_3:0.192  Student_4:0.180  Student_4:0.049  [self:0.037]
   [13/288] cue=1 c1=30° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.107  Student_1:0.097  Student_2:0.121  Student_3:0.125  Student_4:0.154  Student_1:0.036  Student_2:0.043  Student_3:0.063  Student_4:0.152  Student_2:0.069  Student_3:0.066  Student_4:0.151  Student_3:0.079  Student_4:0.165  Student_4:0.111  [self:0.037]
+  Student_0:0.102  Student_1:0.204  Student_2:0.154  Student_3:0.134  Student_4:0.097  Student_1:0.122  Student_2:0.064  Student_3:0.075  Student_4:0.072  Student_2:0.084  Student_3:0.167  Student_4:0.181  Student_3:0.110  Student_4:0.129  Student_4:0.052  [self:0.064]
   [14/288] cue=1 c1=30° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.093  Student_1:0.134  Student_2:0.156  Student_3:0.130  Student_4:0.112  Student_1:0.099  Student_2:0.146  Student_3:0.060  Student_4:0.052  Student_2:0.056  Student_3:0.098  Student_4:0.097  Student_3:0.146  Student_4:0.148  Student_4:0.043  [self:0.047]
+  Student_0:0.106  Student_1:0.165  Student_2:0.192  Student_3:0.168  Student_4:0.145  Student_1:0.104  Student_2:0.162  Student_3:0.094  Student_4:0.061  Student_2:0.072  Student_3:0.066  Student_4:0.109  Student_3:0.128  Student_4:0.173  Student_4:0.071  [self:0.046]
   [15/288] cue=1 c1=30° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.089  Student_1:0.140  Student_2:0.144  Student_3:0.073  Student_4:0.064  Student_1:0.077  Student_2:0.099  Student_3:0.046  Student_4:0.048  Student_2:0.059  Student_3:0.114  Student_4:0.119  Student_3:0.133  Student_4:0.135  Student_4:0.041  [self:0.029]
+  Student_0:0.087  Student_1:0.145  Student_2:0.168  Student_3:0.092  Student_4:0.095  Student_1:0.089  Student_2:0.139  Student_3:0.036  Student_4:0.045  Student_2:0.067  Student_3:0.117  Student_4:0.114  Student_3:0.168  Student_4:0.161  Student_4:0.033  [self:0.034]
   [16/288] cue=1 c1=30° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.028  Student_1:0.050  Student_2:0.033  Student_3:0.038  Student_4:0.051  Student_1:0.045  Student_2:0.024  Student_3:0.031  Student_4:0.039  Student_2:0.051  Student_3:0.072  Student_4:0.076  Student_3:0.034  Student_4:0.031  Student_4:0.024  [self:0.028]
+  Student_0:0.025  Student_1:0.049  Student_2:0.024  Student_3:0.040  Student_4:0.050  Student_1:0.050  Student_2:0.021  Student_3:0.033  Student_4:0.038  Student_2:0.045  Student_3:0.079  Student_4:0.082  Student_3:0.038  Student_4:0.041  Student_4:0.025  [self:0.017]
   [17/288] cue=1 c1=30° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.056  Student_1:0.069  Student_2:0.125  Student_3:0.075  Student_4:0.051  Student_1:0.078  Student_2:0.090  Student_3:0.034  Student_4:0.025  Student_2:0.081  Student_3:0.099  Student_4:0.087  Student_3:0.088  Student_4:0.109  Student_4:0.042  [self:0.025]
+  Student_0:0.055  Student_1:0.079  Student_2:0.137  Student_3:0.074  Student_4:0.060  Student_1:0.083  Student_2:0.094  Student_3:0.057  Student_4:0.023  Student_2:0.079  Student_3:0.132  Student_4:0.087  Student_3:0.137  Student_4:0.097  Student_4:0.049  [self:0.022]
   [18/288] cue=1 c1=30° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  Student_1:0.071  Student_2:0.071  Student_3:0.152  Student_4:0.192  Student_1:0.089  Student_2:0.085  Student_3:0.101  Student_4:0.140  Student_2:0.080  Student_3:0.185  Student_4:0.224  Student_3:0.177  Student_4:0.217  Student_4:0.058  [self:0.039]
+  Student_0:0.127  Student_1:0.055  Student_2:0.090  Student_3:0.216  Student_4:0.210  Student_1:0.089  Student_2:0.186  Student_3:0.101  Student_4:0.095  Student_2:0.119  Student_3:0.180  Student_4:0.176  Student_3:0.282  Student_4:0.273  Student_4:0.024  [self:0.044]
   [19/288] cue=1 c1=30° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.065  Student_1:0.327  Student_2:0.123  Student_3:0.518  Student_4:0.724  Student_1:0.298  Student_2:0.084  Student_3:0.548  Student_4:0.752  Student_2:0.243  Student_3:0.817  Student_4:1.020  Student_3:0.613  Student_4:0.819  Student_4:0.213  [self:0.120]
+  Student_0:0.089  Student_1:0.260  Student_2:0.329  Student_3:0.433  Student_4:0.479  Student_1:0.308  Student_2:0.372  Student_3:0.381  Student_4:0.429  Student_2:0.114  Student_3:0.671  Student_4:0.718  Student_3:0.738  Student_4:0.788  Student_4:0.056  [self:0.034]
   [20/288] cue=1 c1=30° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.127  Student_1:0.122  Student_2:0.041  Student_3:0.857  Student_4:0.944  Student_1:0.058  Student_2:0.109  Student_3:0.746  Student_4:0.832  Student_2:0.129  Student_3:0.756  Student_4:0.841  Student_3:0.846  Student_4:0.934  Student_4:0.092  [self:0.096]
+  Student_0:0.164  Student_1:0.100  Student_2:0.104  Student_3:0.705  Student_4:0.800  Student_1:0.097  Student_2:0.237  Student_3:0.569  Student_4:0.661  Student_2:0.180  Student_3:0.627  Student_4:0.716  Student_3:0.783  Student_4:0.878  Student_4:0.104  [self:0.132]
   [21/288] cue=1 c1=30° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.296  Student_1:0.034  Student_2:0.272  Student_3:0.101  Student_4:0.217  Student_1:0.293  Student_2:0.048  Student_3:0.379  Student_4:0.500  Student_2:0.272  Student_3:0.110  Student_4:0.222  Student_3:0.347  Student_4:0.472  Student_4:0.132  [self:0.082]
+  Student_0:0.140  Student_1:0.186  Student_2:0.048  Student_3:0.313  Student_4:0.430  Student_1:0.064  Student_2:0.150  Student_3:0.208  Student_4:0.324  Student_2:0.203  Student_3:0.163  Student_4:0.277  Student_3:0.332  Student_4:0.449  Student_4:0.118  [self:0.032]
   [22/288] cue=1 c1=30° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.108  Student_1:0.081  Student_2:0.042  Student_3:0.257  Student_4:0.244  Student_1:0.031  Student_2:0.112  Student_3:0.355  Student_4:0.340  Student_2:0.099  Student_3:0.331  Student_4:0.317  Student_3:0.253  Student_4:0.240  Student_4:0.049  [self:0.067]
+  Student_0:0.098  Student_1:0.048  Student_2:0.144  Student_3:0.371  Student_4:0.313  Student_1:0.064  Student_2:0.064  Student_3:0.313  Student_4:0.255  Student_2:0.119  Student_3:0.364  Student_4:0.306  Student_3:0.253  Student_4:0.196  Student_4:0.121  [self:0.072]
   [23/288] cue=1 c1=30° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.032  Student_1:0.065  Student_2:0.126  Student_3:0.572  Student_4:0.455  Student_1:0.058  Student_2:0.120  Student_3:0.570  Student_4:0.452  Student_2:0.085  Student_3:0.521  Student_4:0.403  Student_3:0.453  Student_4:0.336  Student_4:0.148  [self:0.055]
+  Student_0:0.066  Student_1:0.106  Student_2:0.146  Student_3:0.583  Student_4:0.524  Student_1:0.050  Student_2:0.089  Student_3:0.530  Student_4:0.470  Student_2:0.049  Student_3:0.483  Student_4:0.423  Student_3:0.444  Student_4:0.385  Student_4:0.093  [self:0.075]
   [24/288] cue=1 c1=30° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.131  Student_2:0.058  Student_3:0.200  Student_4:0.144  Student_1:0.096  Student_2:0.024  Student_3:0.234  Student_4:0.182  Student_2:0.106  Student_3:0.315  Student_4:0.251  Student_3:0.231  Student_4:0.188  Student_4:0.077  [self:0.022]
+  Student_0:0.072  Student_1:0.183  Student_2:0.092  Student_3:0.217  Student_4:0.264  Student_1:0.135  Student_2:0.040  Student_3:0.263  Student_4:0.318  Student_2:0.128  Student_3:0.377  Student_4:0.427  Student_3:0.273  Student_4:0.331  Student_4:0.088  [self:0.024]
   [25/288] cue=1 c1=60° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.152  Student_2:0.096  Student_3:0.099  Student_4:0.075  Student_1:0.140  Student_2:0.068  Student_3:0.080  Student_4:0.087  Student_2:0.090  Student_3:0.095  Student_4:0.151  Student_3:0.065  Student_4:0.110  Student_4:0.086  [self:0.049]
+  Student_0:0.085  Student_1:0.146  Student_2:0.134  Student_3:0.097  Student_4:0.091  Student_1:0.082  Student_2:0.056  Student_3:0.053  Student_4:0.137  Student_2:0.054  Student_3:0.099  Student_4:0.184  Student_3:0.090  Student_4:0.183  Student_4:0.117  [self:0.028]
   [26/288] cue=1 c1=60° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.060  Student_1:0.101  Student_2:0.108  Student_3:0.125  Student_4:0.111  Student_1:0.087  Student_2:0.086  Student_3:0.083  Student_4:0.067  Student_2:0.082  Student_3:0.112  Student_4:0.098  Student_3:0.089  Student_4:0.082  Student_4:0.027  [self:0.039]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0025_cue1_c160_c230.png
+  Student_0:0.179  Student_1:0.258  Student_2:0.148  Student_3:0.196  Student_4:0.173  Student_1:0.109  Student_2:0.082  Student_3:0.069  Student_4:0.055  Student_2:0.136  Student_3:0.138  Student_4:0.135  Student_3:0.108  Student_4:0.088  Student_4:0.043  [self:0.061]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0025_cue1_c160_c230.png
   [27/288] cue=1 c1=60° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.134  Student_1:0.151  Student_2:0.130  Student_3:0.138  Student_4:0.161  Student_1:0.056  Student_2:0.078  Student_3:0.047  Student_4:0.103  Student_2:0.102  Student_3:0.094  Student_4:0.152  Student_3:0.092  Student_4:0.113  Student_4:0.083  [self:0.017]
+  Student_0:0.146  Student_1:0.184  Student_2:0.159  Student_3:0.215  Student_4:0.198  Student_1:0.070  Student_2:0.086  Student_3:0.086  Student_4:0.124  Student_2:0.100  Student_3:0.102  Student_4:0.180  Student_3:0.082  Student_4:0.121  Student_4:0.110  [self:0.063]
   [28/288] cue=1 c1=60° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.117  Student_1:0.103  Student_2:0.106  Student_3:0.231  Student_4:0.207  Student_1:0.062  Student_2:0.041  Student_3:0.156  Student_4:0.132  Student_2:0.075  Student_3:0.198  Student_4:0.176  Student_3:0.156  Student_4:0.136  Student_4:0.037  [self:0.021]
+  Student_0:0.105  Student_1:0.112  Student_2:0.129  Student_3:0.213  Student_4:0.220  Student_1:0.062  Student_2:0.060  Student_3:0.159  Student_4:0.169  Student_2:0.061  Student_3:0.156  Student_4:0.166  Student_3:0.105  Student_4:0.115  Student_4:0.040  [self:0.045]
   [29/288] cue=1 c1=60° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.070  Student_2:0.061  Student_3:0.442  Student_4:0.449  Student_1:0.033  Student_2:0.067  Student_3:0.400  Student_4:0.408  Student_2:0.064  Student_3:0.411  Student_4:0.420  Student_3:0.462  Student_4:0.467  Student_4:0.043  [self:0.030]
+  Student_0:0.137  Student_1:0.148  Student_2:0.064  Student_3:0.490  Student_4:0.493  Student_1:0.039  Student_2:0.161  Student_3:0.366  Student_4:0.367  Student_2:0.172  Student_3:0.357  Student_4:0.358  Student_3:0.520  Student_4:0.518  Student_4:0.028  [self:0.109]
   [30/288] cue=1 c1=60° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.148  Student_1:0.122  Student_2:0.116  Student_3:1.021  Student_4:1.075  Student_1:0.245  Student_2:0.243  Student_3:0.896  Student_4:0.951  Student_2:0.084  Student_3:1.121  Student_4:1.174  Student_3:1.110  Student_4:1.165  Student_4:0.070  [self:0.040]
+  Student_0:0.173  Student_1:0.213  Student_2:0.294  Student_3:0.907  Student_4:0.903  Student_1:0.103  Student_2:0.154  Student_3:1.052  Student_4:1.052  Student_2:0.123  Student_3:1.108  Student_4:1.103  Student_3:1.174  Student_4:1.172  Student_4:0.036  [self:0.074]
   [31/288] cue=1 c1=60° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.189  Student_1:0.402  Student_2:0.429  Student_3:1.900  Student_4:2.037  Student_1:0.239  Student_2:0.274  Student_3:2.060  Student_4:2.197  Student_2:0.061  Student_3:2.287  Student_4:2.422  Student_3:2.316  Student_4:2.452  Student_4:0.142  [self:0.204]
+  Student_0:0.178  Student_1:0.357  Student_2:0.422  Student_3:2.024  Student_4:2.046  Student_1:0.191  Student_2:0.266  Student_3:2.182  Student_4:2.205  Student_2:0.101  Student_3:2.370  Student_4:2.392  Student_3:2.432  Student_4:2.455  Student_4:0.031  [self:0.061]
   [32/288] cue=1 c1=60° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.127  Student_1:0.100  Student_2:0.240  Student_3:2.111  Student_4:2.363  Student_1:0.189  Student_2:0.133  Student_3:2.206  Student_4:2.456  Student_2:0.298  Student_3:2.034  Student_4:2.285  Student_3:2.327  Student_4:2.578  Student_4:0.253  [self:0.079]
+  Student_0:0.042  Student_1:0.180  Student_2:0.223  Student_3:2.280  Student_4:2.120  Student_1:0.169  Student_2:0.212  Student_3:2.269  Student_4:2.111  Student_2:0.358  Student_3:2.119  Student_4:1.959  Student_3:2.471  Student_4:2.308  Student_4:0.174  [self:0.039]
   [33/288] cue=1 c1=60° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.055  Student_1:0.204  Student_2:0.102  Student_3:1.208  Student_4:1.187  Student_1:0.213  Student_2:0.108  Student_3:1.211  Student_4:1.193  Student_2:0.288  Student_3:1.025  Student_4:1.007  Student_3:1.293  Student_4:1.273  Student_4:0.054  [self:0.241]
+  Student_0:0.104  Student_1:0.172  Student_2:0.288  Student_3:0.981  Student_4:1.057  Student_1:0.116  Student_2:0.364  Student_3:0.904  Student_4:0.980  Student_2:0.430  Student_3:0.838  Student_4:0.915  Student_3:1.252  Student_4:1.330  Student_4:0.082  [self:0.020]
   [34/288] cue=1 c1=60° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.067  Student_1:0.148  Student_2:0.122  Student_3:0.262  Student_4:0.365  Student_1:0.119  Student_2:0.158  Student_3:0.242  Student_4:0.344  Student_2:0.241  Student_3:0.138  Student_4:0.241  Student_3:0.356  Student_4:0.462  Student_4:0.110  [self:0.122]
+  Student_0:0.055  Student_1:0.041  Student_2:0.107  Student_3:0.348  Student_4:0.342  Student_1:0.067  Student_2:0.075  Student_3:0.380  Student_4:0.373  Student_2:0.116  Student_3:0.335  Student_4:0.329  Student_3:0.420  Student_4:0.413  Student_4:0.034  [self:0.052]
   [35/288] cue=1 c1=60° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.138  Student_1:0.198  Student_2:0.043  Student_3:0.159  Student_4:0.140  Student_1:0.079  Student_2:0.135  Student_3:0.095  Student_4:0.126  Student_2:0.199  Student_3:0.137  Student_4:0.178  Student_3:0.162  Student_4:0.144  Student_4:0.051  [self:0.044]
+  Student_0:0.215  Student_1:0.143  Student_2:0.061  Student_3:0.124  Student_4:0.216  Student_1:0.087  Student_2:0.240  Student_3:0.199  Student_4:0.143  Student_2:0.170  Student_3:0.118  Student_4:0.106  Student_3:0.143  Student_4:0.235  Student_4:0.115  [self:0.051]
   [36/288] cue=1 c1=60° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  Student_1:0.130  Student_2:0.127  Student_3:0.117  Student_4:0.136  Student_1:0.084  Student_2:0.079  Student_3:0.146  Student_4:0.154  Student_2:0.036  Student_3:0.190  Student_4:0.193  Student_3:0.201  Student_4:0.206  Student_4:0.043  [self:0.045]
+  Student_0:0.041  Student_1:0.080  Student_2:0.040  Student_3:0.105  Student_4:0.122  Student_1:0.065  Student_2:0.032  Student_3:0.125  Student_4:0.121  Student_2:0.080  Student_3:0.144  Student_4:0.137  Student_3:0.114  Student_4:0.118  Student_4:0.065  [self:0.055]
   [37/288] cue=1 c1=90° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.066  Student_2:0.052  Student_3:0.114  Student_4:0.118  Student_1:0.054  Student_2:0.040  Student_3:0.089  Student_4:0.097  Student_2:0.047  Student_3:0.058  Student_4:0.060  Student_3:0.092  Student_4:0.096  Student_4:0.019  [self:0.021]
+  Student_0:0.056  Student_1:0.051  Student_2:0.040  Student_3:0.110  Student_4:0.098  Student_1:0.037  Student_2:0.038  Student_3:0.082  Student_4:0.076  Student_2:0.050  Student_3:0.067  Student_4:0.052  Student_3:0.105  Student_4:0.095  Student_4:0.027  [self:0.028]
   [38/288] cue=1 c1=90° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.047  Student_1:0.073  Student_2:0.039  Student_3:0.054  Student_4:0.068  Student_1:0.075  Student_2:0.038  Student_3:0.021  Student_4:0.064  Student_2:0.049  Student_3:0.090  Student_4:0.131  Student_3:0.051  Student_4:0.085  Student_4:0.056  [self:0.025]
+  Student_0:0.066  Student_1:0.097  Student_2:0.085  Student_3:0.078  Student_4:0.059  Student_1:0.048  Student_2:0.038  Student_3:0.039  Student_4:0.087  Student_2:0.046  Student_3:0.080  Student_4:0.133  Student_3:0.064  Student_4:0.108  Student_4:0.066  [self:0.036]
   [39/288] cue=1 c1=90° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.087  Student_1:0.088  Student_2:0.119  Student_3:0.111  Student_4:0.144  Student_1:0.031  Student_2:0.081  Student_3:0.104  Student_4:0.128  Student_2:0.100  Student_3:0.127  Student_4:0.152  Student_3:0.078  Student_4:0.102  Student_4:0.072  [self:0.028]
+  Student_0:0.102  Student_1:0.075  Student_2:0.116  Student_3:0.120  Student_4:0.158  Student_1:0.076  Student_2:0.064  Student_3:0.062  Student_4:0.116  Student_2:0.090  Student_3:0.129  Student_4:0.180  Student_3:0.091  Student_4:0.133  Student_4:0.056  [self:0.029]
   [40/288] cue=1 c1=90° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.374  Student_1:0.416  Student_2:0.574  Student_3:0.518  Student_4:0.536  Student_1:0.059  Student_2:0.255  Student_3:0.222  Student_4:0.233  Student_2:0.248  Student_3:0.217  Student_4:0.228  Student_3:0.087  Student_4:0.069  Student_4:0.066  [self:0.081]
+  Student_0:0.368  Student_1:0.424  Student_2:0.567  Student_3:0.527  Student_4:0.521  Student_1:0.090  Student_2:0.251  Student_3:0.243  Student_4:0.231  Student_2:0.204  Student_3:0.205  Student_4:0.192  Student_3:0.111  Student_4:0.082  Student_4:0.063  [self:0.105]
   [41/288] cue=1 c1=90° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.327  Student_1:0.444  Student_2:0.442  Student_3:0.805  Student_4:0.835  Student_1:0.440  Student_2:0.435  Student_3:0.861  Student_4:0.895  Student_2:0.093  Student_3:0.446  Student_4:0.476  Student_3:0.459  Student_4:0.488  Student_4:0.155  [self:0.130]
+  Student_0:0.250  Student_1:0.338  Student_2:0.398  Student_3:0.709  Student_4:0.688  Student_1:0.269  Student_2:0.329  Student_3:0.704  Student_4:0.686  Student_2:0.110  Student_3:0.455  Student_4:0.436  Student_3:0.419  Student_4:0.395  Student_4:0.131  [self:0.086]
   [42/288] cue=1 c1=90° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.227  Student_1:0.232  Student_2:0.146  Student_3:1.232  Student_4:1.204  Student_1:0.094  Student_2:0.102  Student_3:1.397  Student_4:1.363  Student_2:0.130  Student_3:1.446  Student_4:1.415  Student_3:1.340  Student_4:1.305  Student_4:0.058  [self:0.212]
+  Student_0:0.143  Student_1:0.258  Student_2:0.102  Student_3:1.260  Student_4:1.333  Student_1:0.319  Student_2:0.168  Student_3:1.184  Student_4:1.255  Student_2:0.186  Student_3:1.495  Student_4:1.567  Student_3:1.332  Student_4:1.402  Student_4:0.096  [self:0.036]
   [43/288] cue=1 c1=90° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.102  Student_1:0.193  Student_2:0.167  Student_3:1.996  Student_4:2.147  Student_1:0.123  Student_2:0.120  Student_3:2.040  Student_4:2.190  Student_2:0.058  Student_3:2.151  Student_4:2.303  Student_3:2.133  Student_4:2.285  Student_4:0.154  [self:0.064]
+  Student_0:0.161  Student_1:0.066  Student_2:0.076  Student_3:2.127  Student_4:2.101  Student_1:0.169  Student_2:0.196  Student_3:1.970  Student_4:1.945  Student_2:0.093  Student_3:2.137  Student_4:2.112  Student_3:2.156  Student_4:2.130  Student_4:0.059  [self:0.076]
   [44/288] cue=1 c1=90° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.156  Student_1:0.092  Student_2:0.088  Student_3:1.892  Student_4:1.974  Student_1:0.231  Student_2:0.124  Student_3:1.749  Student_4:1.831  Student_2:0.132  Student_3:1.976  Student_4:2.058  Student_3:1.869  Student_4:1.950  Student_4:0.087  [self:0.165]
+  Student_0:0.083  Student_1:0.204  Student_2:0.131  Student_3:1.784  Student_4:1.902  Student_1:0.139  Student_2:0.201  Student_3:1.713  Student_4:1.831  Student_2:0.326  Student_3:1.588  Student_4:1.706  Student_3:1.908  Student_4:2.026  Student_4:0.122  [self:0.070]
   [45/288] cue=1 c1=90° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.216  Student_1:0.121  Student_2:0.276  Student_3:0.618  Student_4:0.618  Student_1:0.131  Student_2:0.087  Student_3:0.815  Student_4:0.811  Student_2:0.172  Student_3:0.719  Student_4:0.719  Student_3:0.874  Student_4:0.868  Student_4:0.029  [self:0.034]
+  Student_0:0.056  Student_1:0.147  Student_2:0.301  Student_3:0.570  Student_4:0.772  Student_1:0.121  Student_2:0.273  Student_3:0.589  Student_4:0.784  Student_2:0.167  Student_3:0.698  Student_4:0.899  Student_3:0.846  Student_4:1.047  Student_4:0.209  [self:0.058]
   [46/288] cue=1 c1=90° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.093  Student_1:0.078  Student_2:0.129  Student_3:0.222  Student_4:0.238  Student_1:0.080  Student_2:0.147  Student_3:0.190  Student_4:0.187  Student_2:0.128  Student_3:0.212  Student_4:0.217  Student_3:0.331  Student_4:0.322  Student_4:0.056  [self:0.044]
+  Student_0:0.065  Student_1:0.082  Student_2:0.195  Student_3:0.118  Student_4:0.094  Student_1:0.094  Student_2:0.158  Student_3:0.153  Student_4:0.113  Student_2:0.126  Student_3:0.177  Student_4:0.134  Student_3:0.297  Student_4:0.237  Student_4:0.080  [self:0.121]
   [47/288] cue=1 c1=90° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.039  Student_1:0.048  Student_2:0.141  Student_3:0.182  Student_4:0.187  Student_1:0.057  Student_2:0.117  Student_3:0.177  Student_4:0.183  Student_2:0.134  Student_3:0.173  Student_4:0.190  Student_3:0.113  Student_4:0.160  Student_4:0.065  [self:0.076]
+  Student_0:0.079  Student_1:0.060  Student_2:0.062  Student_3:0.114  Student_4:0.154  Student_1:0.090  Student_2:0.094  Student_3:0.161  Student_4:0.211  Student_2:0.062  Student_3:0.138  Student_4:0.168  Student_3:0.106  Student_4:0.135  Student_4:0.055  [self:0.035]
   [48/288] cue=1 c1=90° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.036  Student_1:0.036  Student_2:0.061  Student_3:0.068  Student_4:0.051  Student_1:0.027  Student_2:0.061  Student_3:0.072  Student_4:0.061  Student_2:0.078  Student_3:0.060  Student_4:0.048  Student_3:0.121  Student_4:0.099  Student_4:0.034  [self:0.024]
+  Student_0:0.048  Student_1:0.026  Student_2:0.041  Student_3:0.070  Student_4:0.070  Student_1:0.035  Student_2:0.065  Student_3:0.053  Student_4:0.047  Student_2:0.044  Student_3:0.062  Student_4:0.061  Student_3:0.101  Student_4:0.101  Student_4:0.039  [self:0.036]
   [49/288] cue=1 c1=120° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.133  Student_1:0.105  Student_2:0.136  Student_3:0.178  Student_4:0.187  Student_1:0.079  Student_2:0.045  Student_3:0.093  Student_4:0.082  Student_2:0.083  Student_3:0.135  Student_4:0.137  Student_3:0.110  Student_4:0.083  Student_4:0.053  [self:0.040]
+  Student_0:0.102  Student_1:0.101  Student_2:0.201  Student_3:0.166  Student_4:0.162  Student_1:0.047  Student_2:0.116  Student_3:0.085  Student_4:0.081  Student_2:0.141  Student_3:0.110  Student_4:0.109  Student_3:0.172  Student_4:0.149  Student_4:0.045  [self:0.150]
   [50/288] cue=1 c1=120° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.038  Student_2:0.103  Student_3:0.120  Student_4:0.123  Student_1:0.090  Student_2:0.031  Student_3:0.057  Student_4:0.059  Student_2:0.091  Student_3:0.115  Student_4:0.116  Student_3:0.044  Student_4:0.041  Student_4:0.030  [self:0.156]
+  Student_0:0.049  Student_1:0.048  Student_2:0.061  Student_3:0.042  Student_4:0.044  Student_1:0.060  Student_2:0.043  Student_3:0.050  Student_4:0.053  Student_2:0.079  Student_3:0.072  Student_4:0.070  Student_3:0.043  Student_4:0.051  Student_4:0.034  [self:0.024]
   [51/288] cue=1 c1=120° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.128  Student_1:0.092  Student_2:0.064  Student_3:0.078  Student_4:0.113  Student_1:0.066  Student_2:0.147  Student_3:0.147  Student_4:0.210  Student_2:0.110  Student_3:0.100  Student_4:0.159  Student_3:0.097  Student_4:0.106  Student_4:0.069  [self:0.046]
+  Student_0:0.095  Student_1:0.076  Student_2:0.120  Student_3:0.167  Student_4:0.179  Student_1:0.128  Student_2:0.050  Student_3:0.107  Student_4:0.119  Student_2:0.167  Student_3:0.212  Student_4:0.220  Student_3:0.084  Student_4:0.106  Student_4:0.048  [self:0.090]
   [52/288] cue=1 c1=120° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.161  Student_1:0.240  Student_2:0.191  Student_3:0.319  Student_4:0.212  Student_1:0.298  Student_2:0.051  Student_3:0.408  Student_4:0.204  Student_2:0.303  Student_3:0.146  Student_4:0.283  Student_3:0.401  Student_4:0.185  Student_4:0.265  [self:0.026]
+  Student_0:0.156  Student_1:0.252  Student_2:0.177  Student_3:0.287  Student_4:0.204  Student_1:0.281  Student_2:0.150  Student_3:0.362  Student_4:0.196  Student_2:0.182  Student_3:0.144  Student_4:0.300  Student_3:0.247  Student_4:0.189  Student_4:0.238  [self:0.048]
   [53/288] cue=1 c1=120° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.459  Student_1:0.396  Student_2:0.462  Student_3:0.538  Student_4:0.781  Student_1:0.208  Student_2:0.134  Student_3:0.408  Student_4:0.395  Student_2:0.144  Student_3:0.263  Student_4:0.571  Student_3:0.333  Student_4:0.456  Student_4:0.538  [self:0.040]
+  Student_0:0.392  Student_1:0.406  Student_2:0.449  Student_3:0.526  Student_4:0.727  Student_1:0.115  Student_2:0.092  Student_3:0.318  Student_4:0.449  Student_2:0.097  Student_3:0.232  Student_4:0.526  Student_3:0.277  Student_4:0.472  Student_4:0.501  [self:0.065]
   [54/288] cue=1 c1=120° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.170  Student_1:0.187  Student_2:0.269  Student_3:0.254  Student_4:0.588  Student_1:0.054  Student_2:0.199  Student_3:0.144  Student_4:0.473  Student_2:0.174  Student_3:0.156  Student_4:0.491  Student_3:0.177  Student_4:0.648  Student_4:0.517  [self:0.111]
+  Student_0:0.162  Student_1:0.241  Student_2:0.273  Student_3:0.251  Student_4:0.526  Student_1:0.111  Student_2:0.172  Student_3:0.164  Student_4:0.446  Student_2:0.087  Student_3:0.206  Student_4:0.519  Student_3:0.267  Student_4:0.590  Student_4:0.351  [self:0.045]
   [55/288] cue=1 c1=120° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.077  Student_1:0.219  Student_2:0.279  Student_3:0.204  Student_4:0.138  Student_1:0.190  Student_2:0.222  Student_3:0.242  Student_4:0.163  Student_2:0.138  Student_3:0.375  Student_4:0.312  Student_3:0.443  Student_4:0.372  Student_4:0.100  [self:0.048]
+  Student_0:0.105  Student_1:0.187  Student_2:0.224  Student_3:0.249  Student_4:0.177  Student_1:0.106  Student_2:0.132  Student_3:0.333  Student_4:0.259  Student_2:0.074  Student_3:0.428  Student_4:0.356  Student_3:0.462  Student_4:0.386  Student_4:0.107  [self:0.094]
   [56/288] cue=1 c1=120° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.046  Student_1:0.217  Student_2:0.273  Student_3:0.274  Student_4:0.226  Student_1:0.193  Student_2:0.241  Student_3:0.297  Student_4:0.236  Student_2:0.111  Student_3:0.458  Student_4:0.363  Student_3:0.518  Student_4:0.426  Student_4:0.105  [self:0.068]
+  Student_0:0.081  Student_1:0.120  Student_2:0.265  Student_3:0.237  Student_4:0.271  Student_1:0.155  Student_2:0.267  Student_3:0.256  Student_4:0.290  Student_2:0.168  Student_3:0.310  Student_4:0.361  Student_3:0.466  Student_4:0.517  Student_4:0.066  [self:0.090]
   [57/288] cue=1 c1=120° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.109  Student_1:0.095  Student_2:0.185  Student_3:0.276  Student_4:0.265  Student_1:0.092  Student_2:0.094  Student_3:0.365  Student_4:0.355  Student_2:0.158  Student_3:0.297  Student_4:0.289  Student_3:0.450  Student_4:0.440  Student_4:0.053  [self:0.063]
+  Student_0:0.110  Student_1:0.088  Student_2:0.139  Student_3:0.238  Student_4:0.279  Student_1:0.139  Student_2:0.086  Student_3:0.332  Student_4:0.353  Student_2:0.145  Student_3:0.253  Student_4:0.307  Student_3:0.369  Student_4:0.405  Student_4:0.087  [self:0.041]
   [58/288] cue=1 c1=120° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.065  Student_1:0.083  Student_2:0.079  Student_3:0.101  Student_4:0.145  Student_1:0.059  Student_2:0.067  Student_3:0.114  Student_4:0.135  Student_2:0.063  Student_3:0.084  Student_4:0.145  Student_3:0.104  Student_4:0.133  Student_4:0.122  [self:0.059]
+  Student_0:0.130  Student_1:0.127  Student_2:0.126  Student_3:0.106  Student_4:0.159  Student_1:0.045  Student_2:0.189  Student_3:0.123  Student_4:0.202  Student_2:0.209  Student_3:0.126  Student_4:0.216  Student_3:0.135  Student_4:0.094  Student_4:0.118  [self:0.077]
   [59/288] cue=1 c1=120° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.055  Student_1:0.148  Student_2:0.048  Student_3:0.356  Student_4:0.404  Student_1:0.140  Student_2:0.059  Student_3:0.342  Student_4:0.392  Student_2:0.145  Student_3:0.250  Student_4:0.302  Student_3:0.329  Student_4:0.378  Student_4:0.060  [self:0.066]
+  Student_0:0.088  Student_1:0.117  Student_2:0.080  Student_3:0.332  Student_4:0.349  Student_1:0.057  Student_2:0.130  Student_3:0.316  Student_4:0.336  Student_2:0.151  Student_3:0.276  Student_4:0.290  Student_3:0.326  Student_4:0.355  Student_4:0.068  [self:0.083]
   [60/288] cue=1 c1=120° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.127  Student_1:0.073  Student_2:0.106  Student_3:0.410  Student_4:0.386  Student_1:0.101  Student_2:0.212  Student_3:0.378  Student_4:0.350  Student_2:0.128  Student_3:0.409  Student_4:0.383  Student_3:0.477  Student_4:0.452  Student_4:0.048  [self:0.090]
+  Student_0:0.052  Student_1:0.097  Student_2:0.054  Student_3:0.478  Student_4:0.437  Student_1:0.066  Student_2:0.057  Student_3:0.441  Student_4:0.400  Student_2:0.107  Student_3:0.391  Student_4:0.350  Student_3:0.484  Student_4:0.444  Student_4:0.052  [self:0.046]
   [61/288] cue=1 c1=150° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.037  Student_1:0.208  Student_2:0.042  Student_3:0.113  Student_4:0.184  Student_1:0.188  Student_2:0.036  Student_3:0.088  Student_4:0.178  Student_2:0.187  Student_3:0.190  Student_4:0.341  Student_3:0.100  Student_4:0.191  Student_4:0.175  [self:0.046]
+  Student_0:0.056  Student_1:0.130  Student_2:0.063  Student_3:0.179  Student_4:0.130  Student_1:0.088  Student_2:0.088  Student_3:0.202  Student_4:0.142  Student_2:0.160  Student_3:0.276  Student_4:0.215  Student_3:0.141  Student_4:0.088  Student_4:0.080  [self:0.062]
   [62/288] cue=1 c1=150° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.046  Student_1:0.123  Student_2:0.066  Student_3:0.135  Student_4:0.223  Student_1:0.097  Student_2:0.049  Student_3:0.134  Student_4:0.222  Student_2:0.073  Student_3:0.065  Student_4:0.143  Student_3:0.101  Student_4:0.188  Student_4:0.096  [self:0.087]
+  Student_0:0.061  Student_1:0.161  Student_2:0.133  Student_3:0.080  Student_4:0.073  Student_1:0.120  Student_2:0.127  Student_3:0.114  Student_4:0.077  Student_2:0.238  Student_3:0.206  Student_4:0.143  Student_3:0.108  Student_4:0.175  Student_4:0.085  [self:0.032]
   [63/288] cue=1 c1=150° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.092  Student_1:0.265  Student_2:0.086  Student_3:0.146  Student_4:0.150  Student_1:0.192  Student_2:0.068  Student_3:0.175  Student_4:0.181  Student_2:0.197  Student_3:0.337  Student_4:0.343  Student_3:0.199  Student_4:0.202  Student_4:0.033  [self:0.034]
+  Student_0:0.061  Student_1:0.214  Student_2:0.224  Student_3:0.171  Student_4:0.190  Student_1:0.198  Student_2:0.217  Student_3:0.187  Student_4:0.207  Student_2:0.047  Student_3:0.263  Student_4:0.265  Student_3:0.282  Student_4:0.284  Student_4:0.032  [self:0.065]
   [64/288] cue=1 c1=150° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.315  Student_1:0.067  Student_2:0.125  Student_3:0.631  Student_4:0.739  Student_1:0.339  Student_2:0.198  Student_3:0.928  Student_4:1.033  Student_2:0.147  Student_3:0.600  Student_4:0.707  Student_3:0.739  Student_4:0.846  Student_4:0.124  [self:0.040]
+  Student_0:0.074  Student_1:0.298  Student_2:0.056  Student_3:0.704  Student_4:0.657  Student_1:0.316  Student_2:0.105  Student_3:0.736  Student_4:0.695  Student_2:0.262  Student_3:0.431  Student_4:0.390  Student_3:0.672  Student_4:0.627  Student_4:0.079  [self:0.216]
   [65/288] cue=1 c1=150° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.225  Student_1:0.280  Student_2:0.158  Student_3:0.351  Student_4:0.547  Student_1:0.069  Student_2:0.141  Student_3:0.355  Student_4:0.675  Student_2:0.164  Student_3:0.338  Student_4:0.679  Student_3:0.298  Student_4:0.550  Student_4:0.445  [self:0.119]
+  Student_0:0.133  Student_1:0.147  Student_2:0.132  Student_3:0.298  Student_4:0.638  Student_1:0.060  Student_2:0.150  Student_3:0.347  Student_4:0.703  Student_2:0.143  Student_3:0.364  Student_4:0.707  Student_3:0.302  Student_4:0.586  Student_4:0.478  [self:0.137]
   [66/288] cue=1 c1=150° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.126  Student_1:0.223  Student_2:0.146  Student_3:0.258  Student_4:0.316  Student_1:0.201  Student_2:0.163  Student_3:0.301  Student_4:0.409  Student_2:0.087  Student_3:0.123  Student_4:0.235  Student_3:0.163  Student_4:0.260  Student_4:0.131  [self:0.035]
+  Student_0:0.126  Student_1:0.182  Student_2:0.129  Student_3:0.285  Student_4:0.334  Student_1:0.265  Student_2:0.214  Student_3:0.360  Student_4:0.444  Student_2:0.068  Student_3:0.162  Student_4:0.204  Student_3:0.214  Student_4:0.254  Student_4:0.119  [self:0.032]
   [67/288] cue=1 c1=150° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.138  Student_1:0.168  Student_2:0.100  Student_3:0.402  Student_4:0.296  Student_1:0.100  Student_2:0.078  Student_3:0.306  Student_4:0.195  Student_2:0.073  Student_3:0.260  Student_4:0.153  Student_3:0.323  Student_4:0.213  Student_4:0.120  [self:0.086]
+  Student_0:0.127  Student_1:0.161  Student_2:0.105  Student_3:0.379  Student_4:0.310  Student_1:0.094  Student_2:0.055  Student_3:0.289  Student_4:0.214  Student_2:0.072  Student_3:0.260  Student_4:0.189  Student_3:0.308  Student_4:0.233  Student_4:0.080  [self:0.080]
   [68/288] cue=1 c1=150° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.081  Student_1:0.131  Student_2:0.077  Student_3:0.110  Student_4:0.116  Student_1:0.139  Student_2:0.049  Student_3:0.158  Student_4:0.177  Student_2:0.103  Student_3:0.073  Student_4:0.103  Student_3:0.134  Student_4:0.155  Student_4:0.040  [self:0.038]
+  Student_0:0.040  Student_1:0.102  Student_2:0.101  Student_3:0.127  Student_4:0.123  Student_1:0.095  Student_2:0.082  Student_3:0.145  Student_4:0.143  Student_2:0.116  Student_3:0.102  Student_4:0.109  Student_3:0.198  Student_4:0.200  Student_4:0.039  [self:0.058]
   [69/288] cue=1 c1=150° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.112  Student_2:0.040  Student_3:0.075  Student_4:0.054  Student_1:0.120  Student_2:0.038  Student_3:0.073  Student_4:0.064  Student_2:0.097  Student_3:0.145  Student_4:0.076  Student_3:0.067  Student_4:0.048  Student_4:0.106  [self:0.047]
+  Student_0:0.071  Student_1:0.080  Student_2:0.057  Student_3:0.047  Student_4:0.044  Student_1:0.120  Student_2:0.059  Student_3:0.080  Student_4:0.076  Student_2:0.093  Student_3:0.063  Student_4:0.072  Student_3:0.075  Student_4:0.068  Student_4:0.048  [self:0.046]
   [70/288] cue=1 c1=150° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.120  Student_1:0.149  Student_2:0.080  Student_3:0.135  Student_4:0.140  Student_1:0.067  Student_2:0.095  Student_3:0.180  Student_4:0.160  Student_2:0.122  Student_3:0.207  Student_4:0.175  Student_3:0.106  Student_4:0.085  Student_4:0.072  [self:0.042]
+  Student_0:0.163  Student_1:0.138  Student_2:0.076  Student_3:0.089  Student_4:0.137  Student_1:0.072  Student_2:0.198  Student_3:0.166  Student_4:0.182  Student_2:0.181  Student_3:0.149  Student_4:0.167  Student_3:0.066  Student_4:0.106  Student_4:0.068  [self:0.067]
   [71/288] cue=1 c1=150° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  Student_1:0.210  Student_2:0.065  Student_3:1.097  Student_4:1.201  Student_1:0.243  Student_2:0.088  Student_3:1.100  Student_4:1.204  Student_2:0.202  Student_3:0.955  Student_4:1.056  Student_3:1.058  Student_4:1.162  Student_4:0.131  [self:0.047]
+  Student_0:0.064  Student_1:0.301  Student_2:0.051  Student_3:1.116  Student_4:1.169  Student_1:0.322  Student_2:0.083  Student_3:1.135  Student_4:1.188  Student_2:0.276  Student_3:0.893  Student_4:0.943  Student_3:1.086  Student_4:1.138  Student_4:0.072  [self:0.079]
   [72/288] cue=1 c1=150° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.144  Student_1:0.309  Student_2:0.243  Student_3:0.996  Student_4:1.014  Student_1:0.183  Student_2:0.127  Student_3:0.872  Student_4:0.891  Student_2:0.084  Student_3:0.736  Student_4:0.755  Student_3:0.806  Student_4:0.826  Student_4:0.043  [self:0.040]
+  Student_0:0.168  Student_1:0.270  Student_2:0.089  Student_3:0.899  Student_4:0.984  Student_1:0.121  Student_2:0.100  Student_3:0.744  Student_4:0.829  Student_2:0.198  Student_3:0.667  Student_4:0.753  Student_3:0.823  Student_4:0.908  Student_4:0.090  [self:0.066]
   [73/288] cue=1 c1=180° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.124  Student_1:0.159  Student_2:0.058  Student_3:0.042  Student_4:0.127  Student_1:0.063  Student_2:0.093  Student_3:0.106  Student_4:0.052  Student_2:0.137  Student_3:0.155  Student_4:0.093  Student_3:0.059  Student_4:0.102  Student_4:0.105  [self:0.161]
+  Student_0:0.079  Student_1:0.183  Student_2:0.091  Student_3:0.286  Student_4:0.219  Student_1:0.224  Student_2:0.114  Student_3:0.236  Student_4:0.249  Student_2:0.123  Student_3:0.451  Student_4:0.093  Student_3:0.335  Student_4:0.156  Student_4:0.468  [self:0.081]
   [74/288] cue=1 c1=180° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.099  Student_1:0.111  Student_2:0.139  Student_3:0.115  Student_4:0.335  Student_1:0.155  Student_2:0.063  Student_3:0.138  Student_4:0.416  Student_2:0.210  Student_3:0.195  Student_4:0.272  Student_3:0.157  Student_4:0.452  Student_4:0.324  [self:0.097]
+  Student_0:0.076  Student_1:0.068  Student_2:0.242  Student_3:0.164  Student_4:0.241  Student_1:0.067  Student_2:0.191  Student_3:0.216  Student_4:0.296  Student_2:0.219  Student_3:0.179  Student_4:0.261  Student_3:0.358  Student_4:0.454  Student_4:0.113  [self:0.035]
   [75/288] cue=1 c1=180° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.181  Student_1:0.158  Student_2:0.353  Student_3:0.471  Student_4:0.396  Student_1:0.078  Student_2:0.225  Student_3:0.644  Student_4:0.569  Student_2:0.272  Student_3:0.594  Student_4:0.518  Student_3:0.780  Student_4:0.701  Student_4:0.089  [self:0.043]
+  Student_0:0.141  Student_1:0.084  Student_2:0.288  Student_3:0.594  Student_4:0.530  Student_1:0.125  Student_2:0.202  Student_3:0.728  Student_4:0.665  Student_2:0.289  Student_3:0.622  Student_4:0.560  Student_3:0.846  Student_4:0.781  Student_4:0.080  [self:0.075]
   [76/288] cue=1 c1=180° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.099  Student_1:0.166  Student_2:0.066  Student_3:0.728  Student_4:0.758  Student_1:0.101  Student_2:0.152  Student_3:0.660  Student_4:0.691  Student_2:0.214  Student_3:0.569  Student_4:0.600  Student_3:0.758  Student_4:0.789  Student_4:0.040  [self:0.191]
+  Student_0:0.149  Student_1:0.145  Student_2:0.045  Student_3:0.882  Student_4:0.776  Student_1:0.057  Student_2:0.151  Student_3:0.773  Student_4:0.668  Student_2:0.156  Student_3:0.750  Student_4:0.644  Student_3:0.895  Student_4:0.788  Student_4:0.123  [self:0.164]
   [77/288] cue=1 c1=180° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.072  Student_2:0.087  Student_3:0.280  Student_4:0.274  Student_1:0.122  Student_2:0.043  Student_3:0.322  Student_4:0.306  Student_2:0.110  Student_3:0.259  Student_4:0.263  Student_3:0.309  Student_4:0.294  Student_4:0.124  [self:0.120]
+  Student_0:0.051  Student_1:0.279  Student_2:0.084  Student_3:0.323  Student_4:0.308  Student_1:0.258  Student_2:0.060  Student_3:0.326  Student_4:0.314  Student_2:0.215  Student_3:0.326  Student_4:0.331  Student_3:0.314  Student_4:0.311  Student_4:0.048  [self:0.059]
   [78/288] cue=1 c1=180° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.140  Student_1:0.227  Student_2:0.144  Student_3:0.311  Student_4:0.291  Student_1:0.157  Student_2:0.057  Student_3:0.260  Student_4:0.262  Student_2:0.124  Student_3:0.124  Student_4:0.133  Student_3:0.214  Student_4:0.212  Student_4:0.050  [self:0.075]
+  Student_0:0.073  Student_1:0.109  Student_2:0.090  Student_3:0.286  Student_4:0.194  Student_1:0.124  Student_2:0.062  Student_3:0.301  Student_4:0.220  Student_2:0.100  Student_3:0.190  Student_4:0.113  Student_3:0.248  Student_4:0.182  Student_4:0.113  [self:0.043]
   [79/288] cue=1 c1=180° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.101  Student_1:0.103  Student_2:0.094  Student_3:0.244  Student_4:0.093  Student_1:0.119  Student_2:0.052  Student_3:0.169  Student_4:0.039  Student_2:0.084  Student_3:0.221  Student_4:0.109  Student_3:0.168  Student_4:0.042  Student_4:0.183  [self:0.055]
+  Student_0:0.114  Student_1:0.072  Student_2:0.106  Student_3:0.273  Student_4:0.076  Student_1:0.110  Student_2:0.031  Student_3:0.170  Student_4:0.068  Student_2:0.096  Student_3:0.250  Student_4:0.092  Student_3:0.180  Student_4:0.068  Student_4:0.227  [self:0.041]
   [80/288] cue=1 c1=180° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.086  Student_1:0.127  Student_2:0.154  Student_3:0.112  Student_4:0.050  Student_1:0.104  Student_2:0.085  Student_3:0.046  Student_4:0.122  Student_2:0.086  Student_3:0.091  Student_4:0.136  Student_3:0.061  Student_4:0.181  Student_4:0.150  [self:0.043]
+  Student_0:0.078  Student_1:0.091  Student_2:0.067  Student_3:0.051  Student_4:0.111  Student_1:0.086  Student_2:0.060  Student_3:0.053  Student_4:0.159  Student_2:0.066  Student_3:0.097  Student_4:0.147  Student_3:0.055  Student_4:0.149  Student_4:0.133  [self:0.039]
   [81/288] cue=1 c1=180° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.051  Student_1:0.037  Student_2:0.086  Student_3:0.077  Student_4:0.073  Student_1:0.054  Student_2:0.059  Student_3:0.105  Student_4:0.100  Student_2:0.081  Student_3:0.071  Student_4:0.062  Student_3:0.132  Student_4:0.124  Student_4:0.036  [self:0.042]
+  Student_0:0.070  Student_1:0.045  Student_2:0.049  Student_3:0.135  Student_4:0.102  Student_1:0.050  Student_2:0.042  Student_3:0.184  Student_4:0.144  Student_2:0.033  Student_3:0.157  Student_4:0.117  Student_3:0.159  Student_4:0.120  Student_4:0.061  [self:0.048]
   [82/288] cue=1 c1=180° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.061  Student_1:0.088  Student_2:0.100  Student_3:0.421  Student_4:0.342  Student_1:0.087  Student_2:0.106  Student_3:0.446  Student_4:0.366  Student_2:0.040  Student_3:0.406  Student_4:0.339  Student_3:0.398  Student_4:0.344  Student_4:0.112  [self:0.031]
+  Student_0:0.057  Student_1:0.067  Student_2:0.111  Student_3:0.310  Student_4:0.347  Student_1:0.084  Student_2:0.108  Student_3:0.350  Student_4:0.384  Student_2:0.059  Student_3:0.324  Student_4:0.345  Student_3:0.365  Student_4:0.388  Student_4:0.071  [self:0.025]
   [83/288] cue=1 c1=180° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.062  Student_1:0.208  Student_2:0.065  Student_3:1.023  Student_4:1.068  Student_1:0.179  Student_2:0.060  Student_3:0.988  Student_4:1.034  Student_2:0.158  Student_3:0.937  Student_4:0.983  Student_3:0.998  Student_4:1.044  Student_4:0.049  [self:0.080]
+  Student_0:0.201  Student_1:0.272  Student_2:0.135  Student_3:1.070  Student_4:1.081  Student_1:0.088  Student_2:0.085  Student_3:1.008  Student_4:1.020  Student_2:0.148  Student_3:0.979  Student_4:0.991  Student_3:1.032  Student_4:1.043  Student_4:0.034  [self:0.078]
   [84/288] cue=1 c1=180° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.104  Student_2:0.063  Student_3:0.425  Student_4:0.352  Student_1:0.138  Student_2:0.111  Student_3:0.421  Student_4:0.342  Student_2:0.079  Student_3:0.333  Student_4:0.318  Student_3:0.393  Student_4:0.334  Student_4:0.115  [self:0.051]
+  Student_0:0.065  Student_1:0.049  Student_2:0.132  Student_3:0.482  Student_4:0.438  Student_1:0.061  Student_2:0.162  Student_3:0.443  Student_4:0.397  Student_2:0.168  Student_3:0.484  Student_4:0.433  Student_3:0.373  Student_4:0.336  Student_4:0.063  [self:0.030]
   [85/288] cue=1 c1=210° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.091  Student_1:0.233  Student_2:0.153  Student_3:0.115  Student_4:0.156  Student_1:0.272  Student_2:0.120  Student_3:0.179  Student_4:0.200  Student_2:0.358  Student_3:0.186  Student_4:0.100  Student_3:0.224  Student_4:0.277  Student_4:0.099  [self:0.191]
+  Student_0:0.051  Student_1:0.190  Student_2:0.148  Student_3:0.100  Student_4:0.118  Student_1:0.171  Student_2:0.137  Student_3:0.112  Student_4:0.111  Student_2:0.301  Student_3:0.260  Student_4:0.092  Student_3:0.141  Student_4:0.241  Student_4:0.174  [self:0.129]
   [86/288] cue=1 c1=210° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.297  Student_1:0.213  Student_2:0.295  Student_3:0.855  Student_4:0.821  Student_1:0.109  Student_2:0.054  Student_3:1.133  Student_4:1.092  Student_2:0.152  Student_3:1.046  Student_4:1.004  Student_3:1.140  Student_4:1.105  Student_4:0.057  [self:0.148]
+  Student_0:0.098  Student_1:0.082  Student_2:0.069  Student_3:1.021  Student_4:1.035  Student_1:0.045  Student_2:0.136  Student_3:0.980  Student_4:0.986  Student_2:0.116  Student_3:1.013  Student_4:1.018  Student_3:1.082  Student_4:1.093  Student_4:0.033  [self:0.037]
   [87/288] cue=1 c1=210° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.098  Student_1:0.103  Student_2:0.126  Student_3:1.668  Student_4:1.577  Student_1:0.053  Student_2:0.206  Student_3:1.612  Student_4:1.518  Student_2:0.211  Student_3:1.576  Student_4:1.483  Student_3:1.761  Student_4:1.669  Student_4:0.103  [self:0.105]
+  Student_0:0.061  Student_1:0.060  Student_2:0.143  Student_3:1.356  Student_4:1.534  Student_1:0.077  Student_2:0.180  Student_3:1.360  Student_4:1.536  Student_2:0.189  Student_3:1.302  Student_4:1.480  Student_3:1.478  Student_4:1.657  Student_4:0.184  [self:0.051]
   [88/288] cue=1 c1=210° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.147  Student_1:0.245  Student_2:0.225  Student_3:0.856  Student_4:0.748  Student_1:0.380  Student_2:0.127  Student_3:0.985  Student_4:0.884  Student_2:0.442  Student_3:0.615  Student_4:0.508  Student_3:1.052  Student_4:0.940  Student_4:0.132  [self:0.076]
+  Student_0:0.088  Student_1:0.269  Student_2:0.159  Student_3:1.196  Student_4:1.101  Student_1:0.231  Student_2:0.136  Student_3:1.150  Student_4:1.063  Student_2:0.128  Student_3:0.931  Student_4:0.840  Student_3:1.049  Student_4:0.955  Student_4:0.101  [self:0.188]
   [89/288] cue=1 c1=210° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.073  Student_1:0.083  Student_2:0.150  Student_3:0.181  Student_4:0.150  Student_1:0.090  Student_2:0.088  Student_3:0.215  Student_4:0.193  Student_2:0.120  Student_3:0.149  Student_4:0.151  Student_3:0.226  Student_4:0.234  Student_4:0.059  [self:0.043]
+  Student_0:0.151  Student_1:0.048  Student_2:0.245  Student_3:0.184  Student_4:0.169  Student_1:0.122  Student_2:0.125  Student_3:0.272  Student_4:0.260  Student_2:0.226  Student_3:0.205  Student_4:0.188  Student_3:0.309  Student_4:0.314  Student_4:0.057  [self:0.144]
   [90/288] cue=1 c1=210° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.051  Student_1:0.087  Student_2:0.043  Student_3:0.080  Student_4:0.095  Student_1:0.071  Student_2:0.031  Student_3:0.050  Student_4:0.076  Student_2:0.072  Student_3:0.056  Student_4:0.058  Student_3:0.053  Student_4:0.067  Student_4:0.042  [self:0.118]
+  Student_0:0.073  Student_1:0.054  Student_2:0.057  Student_3:0.072  Student_4:0.095  Student_1:0.063  Student_2:0.044  Student_3:0.089  Student_4:0.130  Student_2:0.060  Student_3:0.087  Student_4:0.114  Student_3:0.059  Student_4:0.102  Student_4:0.075  [self:0.066]
   [91/288] cue=1 c1=210° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.060  Student_1:0.044  Student_2:0.102  Student_3:0.088  Student_4:0.046  Student_1:0.045  Student_2:0.062  Student_3:0.044  Student_4:0.058  Student_2:0.070  Student_3:0.081  Student_4:0.037  Student_3:0.071  Student_4:0.083  Student_4:0.089  [self:0.029]
+  Student_0:0.067  Student_1:0.043  Student_2:0.091  Student_3:0.088  Student_4:0.040  Student_1:0.059  Student_2:0.063  Student_3:0.056  Student_4:0.072  Student_2:0.076  Student_3:0.093  Student_4:0.034  Student_3:0.092  Student_4:0.080  Student_4:0.103  [self:0.045]
   [92/288] cue=1 c1=210° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.152  Student_1:0.047  Student_2:0.193  Student_3:0.146  Student_4:0.145  Student_1:0.154  Student_2:0.067  Student_3:0.274  Student_4:0.275  Student_2:0.198  Student_3:0.132  Student_4:0.132  Student_3:0.315  Student_4:0.315  Student_4:0.070  [self:0.040]
+  Student_0:0.150  Student_1:0.055  Student_2:0.187  Student_3:0.182  Student_4:0.158  Student_1:0.113  Student_2:0.071  Student_3:0.308  Student_4:0.290  Student_2:0.148  Student_3:0.213  Student_4:0.182  Student_3:0.337  Student_4:0.317  Student_4:0.104  [self:0.049]
   [93/288] cue=1 c1=210° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.178  Student_1:0.075  Student_2:0.214  Student_3:0.445  Student_4:0.360  Student_1:0.141  Student_2:0.152  Student_3:0.617  Student_4:0.530  Student_2:0.154  Student_3:0.486  Student_4:0.403  Student_3:0.594  Student_4:0.505  Student_4:0.096  [self:0.027]
+  Student_0:0.155  Student_1:0.077  Student_2:0.200  Student_3:0.389  Student_4:0.403  Student_1:0.106  Student_2:0.119  Student_3:0.534  Student_4:0.548  Student_2:0.134  Student_3:0.436  Student_4:0.453  Student_3:0.533  Student_4:0.549  Student_4:0.057  [self:0.032]
   [94/288] cue=1 c1=210° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.074  Student_1:0.043  Student_2:0.037  Student_3:0.524  Student_4:0.518  Student_1:0.086  Student_2:0.085  Student_3:0.561  Student_4:0.552  Student_2:0.043  Student_3:0.550  Student_4:0.544  Student_3:0.532  Student_4:0.524  Student_4:0.041  [self:0.042]
+  Student_0:0.050  Student_1:0.048  Student_2:0.063  Student_3:0.499  Student_4:0.521  Student_1:0.076  Student_2:0.075  Student_3:0.539  Student_4:0.561  Student_2:0.044  Student_3:0.500  Student_4:0.522  Student_3:0.520  Student_4:0.541  Student_4:0.028  [self:0.022]
   [95/288] cue=1 c1=210° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.067  Student_1:0.046  Student_2:0.040  Student_3:0.531  Student_4:0.503  Student_1:0.066  Student_2:0.044  Student_3:0.559  Student_4:0.524  Student_2:0.046  Student_3:0.516  Student_4:0.482  Student_3:0.556  Student_4:0.522  Student_4:0.038  [self:0.030]
+  Student_0:0.040  Student_1:0.046  Student_2:0.035  Student_3:0.524  Student_4:0.476  Student_1:0.055  Student_2:0.044  Student_3:0.522  Student_4:0.477  Student_2:0.058  Student_3:0.494  Student_4:0.457  Student_3:0.544  Student_4:0.501  Student_4:0.066  [self:0.045]
   [96/288] cue=1 c1=210° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.050  Student_1:0.070  Student_2:0.050  Student_3:0.403  Student_4:0.303  Student_1:0.039  Student_2:0.057  Student_3:0.397  Student_4:0.292  Student_2:0.067  Student_3:0.405  Student_4:0.298  Student_3:0.400  Student_4:0.298  Student_4:0.162  [self:0.041]
+  Student_0:0.065  Student_1:0.058  Student_2:0.107  Student_3:0.399  Student_4:0.248  Student_1:0.045  Student_2:0.087  Student_3:0.408  Student_4:0.247  Student_2:0.090  Student_3:0.417  Student_4:0.254  Student_3:0.487  Student_4:0.327  Student_4:0.185  [self:0.041]
   [97/288] cue=1 c1=240° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.108  Student_1:0.212  Student_2:0.119  Student_3:0.047  Student_4:0.187  Student_1:0.127  Student_2:0.184  Student_3:0.106  Student_4:0.119  Student_2:0.294  Student_3:0.209  Student_4:0.062  Student_3:0.131  Student_4:0.279  Student_4:0.177  [self:0.061]
+  Student_0:0.059  Student_1:0.117  Student_2:0.177  Student_3:0.072  Student_4:0.067  Student_1:0.125  Student_2:0.146  Student_3:0.087  Student_4:0.051  Student_2:0.262  Student_3:0.089  Student_4:0.154  Student_3:0.201  Student_4:0.157  Student_4:0.082  [self:0.166]
   [98/288] cue=1 c1=240° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.114  Student_1:0.041  Student_2:0.200  Student_3:0.746  Student_4:0.939  Student_1:0.089  Student_2:0.115  Student_3:0.834  Student_4:1.022  Student_2:0.172  Student_3:0.759  Student_4:0.952  Student_3:0.927  Student_4:1.121  Student_4:0.196  [self:0.072]
+  Student_0:0.077  Student_1:0.229  Student_2:0.216  Student_3:0.831  Student_4:1.052  Student_1:0.193  Student_2:0.276  Student_3:0.786  Student_4:0.999  Student_2:0.431  Student_3:0.607  Student_4:0.828  Student_3:1.033  Student_4:1.254  Student_4:0.223  [self:0.218]
   [99/288] cue=1 c1=240° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.073  Student_1:0.230  Student_2:0.036  Student_3:1.539  Student_4:1.460  Student_1:0.167  Student_2:0.078  Student_3:1.484  Student_4:1.400  Student_2:0.216  Student_3:1.395  Student_4:1.308  Student_3:1.557  Student_4:1.476  Student_4:0.099  [self:0.034]
+  Student_0:0.088  Student_1:0.290  Student_2:0.066  Student_3:1.668  Student_4:1.512  Student_1:0.214  Student_2:0.051  Student_3:1.590  Student_4:1.436  Student_2:0.237  Student_3:1.433  Student_4:1.279  Student_3:1.639  Student_4:1.485  Student_4:0.159  [self:0.022]
   [100/288] cue=1 c1=240° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.183  Student_1:0.138  Student_2:0.223  Student_3:0.690  Student_4:0.734  Student_1:0.137  Student_2:0.090  Student_3:0.858  Student_4:0.898  Student_2:0.126  Student_3:0.803  Student_4:0.849  Student_3:0.892  Student_4:0.939  Student_4:0.061  [self:0.061]
+  Student_0:0.154  Student_1:0.311  Student_2:0.199  Student_3:0.674  Student_4:0.472  Student_1:0.189  Student_2:0.114  Student_3:0.817  Student_4:0.611  Student_2:0.166  Student_3:0.970  Student_4:0.760  Student_3:0.843  Student_4:0.633  Student_4:0.216  [self:0.049]
   [101/288] cue=1 c1=240° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.113  Student_1:0.129  Student_2:0.067  Student_3:0.169  Student_4:0.080  Student_1:0.071  Student_2:0.132  Student_3:0.123  Student_4:0.148  Student_2:0.166  Student_3:0.064  Student_4:0.107  Student_3:0.203  Student_4:0.110  Student_4:0.138  [self:0.049]
+  Student_0:0.087  Student_1:0.062  Student_2:0.130  Student_3:0.162  Student_4:0.054  Student_1:0.063  Student_2:0.117  Student_3:0.140  Student_4:0.106  Student_2:0.095  Student_3:0.176  Student_4:0.076  Student_3:0.254  Student_4:0.142  Student_4:0.158  [self:0.092]
   [102/288] cue=1 c1=240° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.061  Student_1:0.054  Student_2:0.056  Student_3:0.051  Student_4:0.040  Student_1:0.069  Student_2:0.035  Student_3:0.062  Student_4:0.047  Student_2:0.068  Student_3:0.059  Student_4:0.046  Student_3:0.055  Student_4:0.044  Student_4:0.044  [self:0.057]
+  Student_0:0.058  Student_1:0.068  Student_2:0.083  Student_3:0.079  Student_4:0.031  Student_1:0.037  Student_2:0.036  Student_3:0.070  Student_4:0.053  Student_2:0.043  Student_3:0.056  Student_4:0.068  Student_3:0.081  Student_4:0.080  Student_4:0.089  [self:0.058]
   [103/288] cue=1 c1=240° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.060  Student_1:0.082  Student_2:0.047  Student_3:0.182  Student_4:0.145  Student_1:0.068  Student_2:0.050  Student_3:0.150  Student_4:0.110  Student_2:0.079  Student_3:0.142  Student_4:0.113  Student_3:0.165  Student_4:0.126  Student_4:0.050  [self:0.033]
+  Student_0:0.070  Student_1:0.133  Student_2:0.061  Student_3:0.214  Student_4:0.131  Student_1:0.075  Student_2:0.045  Student_3:0.159  Student_4:0.071  Student_2:0.088  Student_3:0.102  Student_4:0.052  Student_3:0.165  Student_4:0.080  Student_4:0.101  [self:0.105]
   [104/288] cue=1 c1=240° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.233  Student_1:0.132  Student_2:0.228  Student_3:0.242  Student_4:0.241  Student_1:0.110  Student_2:0.101  Student_3:0.460  Student_4:0.449  Student_2:0.142  Student_3:0.358  Student_4:0.350  Student_3:0.468  Student_4:0.454  Student_4:0.045  [self:0.054]
+  Student_0:0.254  Student_1:0.164  Student_2:0.210  Student_3:0.273  Student_4:0.268  Student_1:0.099  Student_2:0.114  Student_3:0.497  Student_4:0.491  Student_2:0.118  Student_3:0.406  Student_4:0.402  Student_3:0.477  Student_4:0.469  Student_4:0.025  [self:0.032]
   [105/288] cue=1 c1=240° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.159  Student_1:0.162  Student_2:0.148  Student_3:0.328  Student_4:0.356  Student_1:0.123  Student_2:0.034  Student_3:0.476  Student_4:0.502  Student_2:0.112  Student_3:0.477  Student_4:0.505  Student_3:0.467  Student_4:0.494  Student_4:0.046  [self:0.026]
+  Student_0:0.155  Student_1:0.154  Student_2:0.140  Student_3:0.339  Student_4:0.360  Student_1:0.120  Student_2:0.033  Student_3:0.476  Student_4:0.497  Student_2:0.120  Student_3:0.480  Student_4:0.502  Student_3:0.459  Student_4:0.480  Student_4:0.059  [self:0.033]
   [106/288] cue=1 c1=240° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.112  Student_1:0.129  Student_2:0.123  Student_3:0.269  Student_4:0.261  Student_1:0.051  Student_2:0.032  Student_3:0.358  Student_4:0.345  Student_2:0.028  Student_3:0.392  Student_4:0.380  Student_3:0.378  Student_4:0.366  Student_4:0.027  [self:0.017]
+  Student_0:0.077  Student_1:0.120  Student_2:0.098  Student_3:0.283  Student_4:0.268  Student_1:0.074  Student_2:0.046  Student_3:0.333  Student_4:0.315  Student_2:0.030  Student_3:0.400  Student_4:0.384  Student_3:0.373  Student_4:0.357  Student_4:0.034  [self:0.032]
   [107/288] cue=1 c1=240° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.067  Student_1:0.069  Student_2:0.085  Student_3:0.423  Student_4:0.387  Student_1:0.049  Student_2:0.069  Student_3:0.423  Student_4:0.383  Student_2:0.032  Student_3:0.467  Student_4:0.429  Student_3:0.481  Student_4:0.444  Student_4:0.066  [self:0.025]
+  Student_0:0.052  Student_1:0.062  Student_2:0.104  Student_3:0.420  Student_4:0.378  Student_1:0.066  Student_2:0.108  Student_3:0.401  Student_4:0.357  Student_2:0.052  Student_3:0.458  Student_4:0.416  Student_3:0.502  Student_4:0.460  Student_4:0.065  [self:0.044]
   [108/288] cue=1 c1=240° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.106  Student_1:0.109  Student_2:0.088  Student_3:0.320  Student_4:0.374  Student_1:0.044  Student_2:0.082  Student_3:0.219  Student_4:0.278  Student_2:0.081  Student_3:0.221  Student_4:0.286  Student_3:0.256  Student_4:0.308  Student_4:0.067  [self:0.044]
+  Student_0:0.112  Student_1:0.119  Student_2:0.126  Student_3:0.284  Student_4:0.393  Student_1:0.055  Student_2:0.077  Student_3:0.182  Student_4:0.291  Student_2:0.099  Student_3:0.175  Student_4:0.285  Student_3:0.188  Student_4:0.302  Student_4:0.126  [self:0.069]
   [109/288] cue=1 c1=270° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.068  Student_1:0.063  Student_2:0.172  Student_3:0.317  Student_4:0.162  Student_1:0.033  Student_2:0.203  Student_3:0.334  Student_4:0.179  Student_2:0.195  Student_3:0.349  Student_4:0.197  Student_3:0.184  Student_4:0.070  Student_4:0.160  [self:0.039]
+  Student_0:0.117  Student_1:0.162  Student_2:0.049  Student_3:0.303  Student_4:0.280  Student_1:0.068  Student_2:0.105  Student_3:0.352  Student_4:0.330  Student_2:0.158  Student_3:0.417  Student_4:0.394  Student_3:0.284  Student_4:0.263  Student_4:0.028  [self:0.093]
   [110/288] cue=1 c1=270° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.167  Student_1:0.235  Student_2:0.100  Student_3:0.037  Student_4:0.080  Student_1:0.097  Student_2:0.236  Student_3:0.172  Student_4:0.099  Student_2:0.317  Student_3:0.248  Student_4:0.175  Student_3:0.080  Student_4:0.162  Student_4:0.086  [self:0.069]
+  Student_0:0.063  Student_1:0.082  Student_2:0.065  Student_3:0.049  Student_4:0.067  Student_1:0.105  Student_2:0.027  Student_3:0.079  Student_4:0.039  Student_2:0.104  Student_3:0.063  Student_4:0.124  Student_3:0.077  Student_4:0.045  Student_4:0.077  [self:0.108]
   [111/288] cue=1 c1=270° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.119  Student_2:0.230  Student_3:0.620  Student_4:0.628  Student_1:0.120  Student_2:0.237  Student_3:0.621  Student_4:0.624  Student_2:0.302  Student_3:0.569  Student_4:0.574  Student_3:0.839  Student_4:0.848  Student_4:0.038  [self:0.092]
+  Student_0:0.083  Student_1:0.098  Student_2:0.040  Student_3:0.436  Student_4:0.441  Student_1:0.143  Student_2:0.073  Student_3:0.499  Student_4:0.495  Student_2:0.095  Student_3:0.411  Student_4:0.412  Student_3:0.446  Student_4:0.452  Student_4:0.042  [self:0.339]
   [112/288] cue=1 c1=270° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.190  Student_1:0.114  Student_2:0.120  Student_3:0.393  Student_4:0.408  Student_1:0.238  Student_2:0.219  Student_3:0.213  Student_4:0.237  Student_2:0.075  Student_3:0.439  Student_4:0.455  Student_3:0.408  Student_4:0.423  Student_4:0.081  [self:0.068]
+  Student_0:0.115  Student_1:0.086  Student_2:0.183  Student_3:0.335  Student_4:0.408  Student_1:0.149  Student_2:0.258  Student_3:0.250  Student_4:0.321  Student_2:0.140  Student_3:0.369  Student_4:0.440  Student_3:0.468  Student_4:0.534  Student_4:0.086  [self:0.072]
   [113/288] cue=1 c1=270° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.080  Student_1:0.096  Student_2:0.089  Student_3:0.068  Student_4:0.087  Student_1:0.109  Student_2:0.154  Student_3:0.082  Student_4:0.103  Student_2:0.161  Student_3:0.111  Student_4:0.134  Student_3:0.083  Student_4:0.083  Student_4:0.043  [self:0.049]
+  Student_0:0.086  Student_1:0.114  Student_2:0.129  Student_3:0.059  Student_4:0.103  Student_1:0.095  Student_2:0.196  Student_3:0.121  Student_4:0.161  Student_2:0.220  Student_3:0.143  Student_4:0.199  Student_3:0.084  Student_4:0.075  Student_4:0.066  [self:0.057]
   [114/288] cue=1 c1=270° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.076  Student_1:0.157  Student_2:0.173  Student_3:0.169  Student_4:0.194  Student_1:0.167  Student_2:0.190  Student_3:0.173  Student_4:0.200  Student_2:0.061  Student_3:0.066  Student_4:0.074  Student_3:0.058  Student_4:0.058  Student_4:0.042  [self:0.079]
+  Student_0:0.136  Student_1:0.089  Student_2:0.076  Student_3:0.098  Student_4:0.079  Student_1:0.209  Student_2:0.190  Student_3:0.218  Student_4:0.188  Student_2:0.072  Student_3:0.060  Student_4:0.077  Student_3:0.077  Student_4:0.064  Student_4:0.044  [self:0.049]
   [115/288] cue=1 c1=270° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.131  Student_1:0.137  Student_2:0.069  Student_3:0.292  Student_4:0.233  Student_1:0.222  Student_2:0.171  Student_3:0.384  Student_4:0.287  Student_2:0.117  Student_3:0.171  Student_4:0.164  Student_3:0.244  Student_4:0.195  Student_4:0.135  [self:0.031]
+  Student_0:0.086  Student_1:0.149  Student_2:0.066  Student_3:0.295  Student_4:0.300  Student_1:0.134  Student_2:0.116  Student_3:0.295  Student_4:0.289  Student_2:0.149  Student_3:0.186  Student_4:0.217  Student_3:0.256  Student_4:0.264  Student_4:0.077  [self:0.118]
   [116/288] cue=1 c1=270° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.095  Student_2:0.090  Student_3:0.306  Student_4:0.333  Student_1:0.103  Student_2:0.069  Student_3:0.364  Student_4:0.389  Student_2:0.047  Student_3:0.358  Student_4:0.396  Student_3:0.378  Student_4:0.413  Student_4:0.057  [self:0.025]
+  Student_0:0.065  Student_1:0.089  Student_2:0.098  Student_3:0.356  Student_4:0.334  Student_1:0.079  Student_2:0.080  Student_3:0.417  Student_4:0.393  Student_2:0.030  Student_3:0.412  Student_4:0.401  Student_3:0.423  Student_4:0.412  Student_4:0.055  [self:0.027]
   [117/288] cue=1 c1=270° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.046  Student_2:0.072  Student_3:0.330  Student_4:0.309  Student_1:0.057  Student_2:0.050  Student_3:0.371  Student_4:0.346  Student_2:0.034  Student_3:0.371  Student_4:0.350  Student_3:0.399  Student_4:0.377  Student_4:0.039  [self:0.020]
+  Student_0:0.061  Student_1:0.051  Student_2:0.072  Student_3:0.322  Student_4:0.310  Student_1:0.047  Student_2:0.034  Student_3:0.375  Student_4:0.360  Student_2:0.041  Student_3:0.366  Student_4:0.354  Student_3:0.391  Student_4:0.377  Student_4:0.045  [self:0.016]
   [118/288] cue=1 c1=270° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.092  Student_1:0.095  Student_2:0.122  Student_3:0.212  Student_4:0.252  Student_1:0.079  Student_2:0.046  Student_3:0.291  Student_4:0.331  Student_2:0.080  Student_3:0.266  Student_4:0.310  Student_3:0.327  Student_4:0.367  Student_4:0.051  [self:0.022]
+  Student_0:0.086  Student_1:0.091  Student_2:0.133  Student_3:0.212  Student_4:0.241  Student_1:0.079  Student_2:0.064  Student_3:0.288  Student_4:0.313  Student_2:0.094  Student_3:0.259  Student_4:0.291  Student_3:0.342  Student_4:0.368  Student_4:0.050  [self:0.018]
   [119/288] cue=1 c1=270° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.059  Student_2:0.080  Student_3:0.241  Student_4:0.229  Student_1:0.069  Student_2:0.090  Student_3:0.201  Student_4:0.190  Student_2:0.050  Student_3:0.249  Student_4:0.236  Student_3:0.279  Student_4:0.268  Student_4:0.043  [self:0.024]
+  Student_0:0.050  Student_1:0.074  Student_2:0.080  Student_3:0.235  Student_4:0.239  Student_1:0.087  Student_2:0.089  Student_3:0.192  Student_4:0.199  Student_2:0.033  Student_3:0.257  Student_4:0.262  Student_3:0.258  Student_4:0.264  Student_4:0.035  [self:0.022]
   [120/288] cue=1 c1=270° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.151  Student_1:0.261  Student_2:0.117  Student_3:0.415  Student_4:0.513  Student_1:0.133  Student_2:0.044  Student_3:0.282  Student_4:0.373  Student_2:0.152  Student_3:0.172  Student_4:0.268  Student_3:0.303  Student_4:0.400  Student_4:0.105  [self:0.103]
+  Student_0:0.066  Student_1:0.141  Student_2:0.065  Student_3:0.322  Student_4:0.422  Student_1:0.115  Student_2:0.058  Student_3:0.306  Student_4:0.411  Student_2:0.117  Student_3:0.275  Student_4:0.387  Student_3:0.299  Student_4:0.403  Student_4:0.120  [self:0.062]
   [121/288] cue=1 c1=300° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.109  Student_1:0.163  Student_2:0.199  Student_3:0.282  Student_4:0.271  Student_1:0.229  Student_2:0.106  Student_3:0.322  Student_4:0.317  Student_2:0.308  Student_3:0.178  Student_4:0.159  Student_3:0.415  Student_4:0.416  Student_4:0.071  [self:0.048]
+  Student_0:0.124  Student_1:0.137  Student_2:0.166  Student_3:0.244  Student_4:0.217  Student_1:0.227  Student_2:0.051  Student_3:0.333  Student_4:0.311  Student_2:0.260  Student_3:0.173  Student_4:0.137  Student_3:0.368  Student_4:0.349  Student_4:0.054  [self:0.020]
   [122/288] cue=1 c1=300° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.051  Student_1:0.374  Student_2:0.124  Student_3:0.281  Student_4:0.228  Student_1:0.338  Student_2:0.079  Student_3:0.320  Student_4:0.268  Student_2:0.270  Student_3:0.647  Student_4:0.597  Student_3:0.387  Student_4:0.338  Student_4:0.057  [self:0.138]
+  Student_0:0.040  Student_1:0.309  Student_2:0.066  Student_3:0.471  Student_4:0.341  Student_1:0.296  Student_2:0.057  Student_3:0.468  Student_4:0.341  Student_2:0.347  Student_3:0.758  Student_4:0.630  Student_3:0.421  Student_4:0.297  Student_4:0.136  [self:0.048]
   [123/288] cue=1 c1=300° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.117  Student_1:0.271  Student_2:0.114  Student_3:0.282  Student_4:0.150  Student_1:0.163  Student_2:0.051  Student_3:0.375  Student_4:0.240  Student_2:0.167  Student_3:0.508  Student_4:0.378  Student_3:0.360  Student_4:0.229  Student_4:0.138  [self:0.039]
+  Student_0:0.198  Student_1:0.251  Student_2:0.061  Student_3:0.162  Student_4:0.123  Student_1:0.072  Student_2:0.242  Student_3:0.339  Student_4:0.302  Student_2:0.294  Student_3:0.376  Student_4:0.346  Student_3:0.110  Student_4:0.076  Student_4:0.053  [self:0.101]
   [124/288] cue=1 c1=300° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.072  Student_2:0.089  Student_3:0.051  Student_4:0.150  Student_1:0.063  Student_2:0.062  Student_3:0.059  Student_4:0.165  Student_2:0.050  Student_3:0.080  Student_4:0.132  Student_3:0.084  Student_4:0.122  Student_4:0.116  [self:0.028]
+  Student_0:0.071  Student_1:0.100  Student_2:0.098  Student_3:0.050  Student_4:0.106  Student_1:0.076  Student_2:0.079  Student_3:0.095  Student_4:0.149  Student_2:0.055  Student_3:0.105  Student_4:0.154  Student_3:0.092  Student_4:0.120  Student_4:0.066  [self:0.034]
   [125/288] cue=1 c1=300° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.058  Student_1:0.057  Student_2:0.093  Student_3:0.149  Student_4:0.169  Student_1:0.080  Student_2:0.105  Student_3:0.131  Student_4:0.153  Student_2:0.091  Student_3:0.158  Student_4:0.178  Student_3:0.126  Student_4:0.131  Student_4:0.046  [self:0.021]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0124_cue1_c1300_c2120.png
+  Student_0:0.060  Student_1:0.085  Student_2:0.092  Student_3:0.177  Student_4:0.183  Student_1:0.089  Student_2:0.059  Student_3:0.123  Student_4:0.130  Student_2:0.099  Student_3:0.185  Student_4:0.183  Student_3:0.120  Student_4:0.115  Student_4:0.053  [self:0.023]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0124_cue1_c1300_c2120.png
   [126/288] cue=1 c1=300° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.138  Student_1:0.114  Student_2:0.123  Student_3:0.474  Student_4:0.497  Student_1:0.172  Student_2:0.075  Student_3:0.431  Student_4:0.444  Student_2:0.179  Student_3:0.479  Student_4:0.508  Student_3:0.480  Student_4:0.472  Student_4:0.062  [self:0.036]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0125_cue1_c1300_c2150.png
+  Student_0:0.146  Student_1:0.109  Student_2:0.078  Student_3:0.477  Student_4:0.509  Student_1:0.157  Student_2:0.101  Student_3:0.407  Student_4:0.434  Student_2:0.102  Student_3:0.456  Student_4:0.489  Student_3:0.445  Student_4:0.476  Student_4:0.045  [self:0.056]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0125_cue1_c1300_c2150.png
   [127/288] cue=1 c1=300° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.123  Student_1:0.095  Student_2:0.116  Student_3:0.685  Student_4:0.720  Student_1:0.114  Student_2:0.147  Student_3:0.667  Student_4:0.683  Student_2:0.055  Student_3:0.707  Student_4:0.741  Student_3:0.753  Student_4:0.788  Student_4:0.058  [self:0.037]
+  Student_0:0.104  Student_1:0.088  Student_2:0.145  Student_3:0.676  Student_4:0.725  Student_1:0.102  Student_2:0.114  Student_3:0.645  Student_4:0.690  Student_2:0.077  Student_3:0.708  Student_4:0.757  Student_3:0.728  Student_4:0.773  Student_4:0.064  [self:0.027]
   [128/288] cue=1 c1=300° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.054  Student_1:0.092  Student_2:0.066  Student_3:0.496  Student_4:0.478  Student_1:0.061  Student_2:0.044  Student_3:0.492  Student_4:0.472  Student_2:0.068  Student_3:0.506  Student_4:0.487  Student_3:0.525  Student_4:0.509  Student_4:0.032  [self:0.024]
+  Student_0:0.050  Student_1:0.086  Student_2:0.061  Student_3:0.494  Student_4:0.499  Student_1:0.059  Student_2:0.065  Student_3:0.478  Student_4:0.482  Student_2:0.078  Student_3:0.500  Student_4:0.490  Student_3:0.534  Student_4:0.523  Student_4:0.031  [self:0.028]
   [129/288] cue=1 c1=300° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.040  Student_1:0.033  Student_2:0.038  Student_3:0.335  Student_4:0.294  Student_1:0.024  Student_2:0.048  Student_3:0.318  Student_4:0.278  Student_2:0.043  Student_3:0.320  Student_4:0.279  Student_3:0.330  Student_4:0.293  Student_4:0.046  [self:0.021]
+  Student_0:0.026  Student_1:0.033  Student_2:0.038  Student_3:0.322  Student_4:0.295  Student_1:0.024  Student_2:0.037  Student_3:0.317  Student_4:0.289  Student_2:0.053  Student_3:0.305  Student_4:0.277  Student_3:0.339  Student_4:0.314  Student_4:0.040  [self:0.012]
   [130/288] cue=1 c1=300° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.045  Student_1:0.044  Student_2:0.050  Student_3:0.210  Student_4:0.189  Student_1:0.020  Student_2:0.055  Student_3:0.207  Student_4:0.180  Student_2:0.055  Student_3:0.204  Student_4:0.176  Student_3:0.250  Student_4:0.225  Student_4:0.055  [self:0.015]
+  Student_0:0.061  Student_1:0.045  Student_2:0.064  Student_3:0.192  Student_4:0.193  Student_1:0.043  Student_2:0.054  Student_3:0.198  Student_4:0.194  Student_2:0.076  Student_3:0.166  Student_4:0.164  Student_3:0.240  Student_4:0.238  Student_4:0.042  [self:0.018]
   [131/288] cue=1 c1=300° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.129  Student_1:0.208  Student_2:0.099  Student_3:0.133  Student_4:0.308  Student_1:0.156  Student_2:0.089  Student_3:0.089  Student_4:0.227  Student_2:0.186  Student_3:0.175  Student_4:0.127  Student_3:0.059  Student_4:0.289  Student_4:0.273  [self:0.038]
+  Student_0:0.130  Student_1:0.193  Student_2:0.099  Student_3:0.133  Student_4:0.295  Student_1:0.128  Student_2:0.085  Student_3:0.074  Student_4:0.206  Student_2:0.122  Student_3:0.105  Student_4:0.124  Student_3:0.049  Student_4:0.234  Student_4:0.206  [self:0.044]
   [132/288] cue=1 c1=300° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.379  Student_1:0.361  Student_2:0.507  Student_3:0.380  Student_4:0.459  Student_1:0.145  Student_2:0.237  Student_3:0.121  Student_4:0.172  Student_2:0.209  Student_3:0.242  Student_4:0.294  Student_3:0.342  Student_4:0.370  Student_4:0.084  [self:0.037]
+  Student_0:0.376  Student_1:0.349  Student_2:0.476  Student_3:0.358  Student_4:0.469  Student_1:0.132  Student_2:0.240  Student_3:0.132  Student_4:0.205  Student_2:0.165  Student_3:0.226  Student_4:0.313  Student_3:0.357  Student_4:0.425  Student_4:0.117  [self:0.045]
   [133/288] cue=1 c1=330° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.033  Student_2:0.181  Student_3:0.381  Student_4:0.449  Student_1:0.056  Student_2:0.175  Student_3:0.361  Student_4:0.430  Student_2:0.173  Student_3:0.386  Student_4:0.453  Student_3:0.270  Student_4:0.337  Student_4:0.144  [self:0.023]
+  Student_0:0.087  Student_1:0.081  Student_2:0.247  Student_3:0.373  Student_4:0.459  Student_1:0.059  Student_2:0.186  Student_3:0.298  Student_4:0.384  Student_2:0.182  Student_3:0.319  Student_4:0.405  Student_3:0.259  Student_4:0.295  Student_4:0.181  [self:0.027]
   [134/288] cue=1 c1=330° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.038  Student_1:0.065  Student_2:0.126  Student_3:0.528  Student_4:0.522  Student_1:0.061  Student_2:0.126  Student_3:0.546  Student_4:0.542  Student_2:0.147  Student_3:0.540  Student_4:0.535  Student_3:0.434  Student_4:0.431  Student_4:0.046  [self:0.044]
+  Student_0:0.074  Student_1:0.068  Student_2:0.046  Student_3:0.455  Student_4:0.476  Student_1:0.058  Student_2:0.060  Student_3:0.505  Student_4:0.528  Student_2:0.060  Student_3:0.482  Student_4:0.502  Student_3:0.468  Student_4:0.491  Student_4:0.042  [self:0.027]
   [135/288] cue=1 c1=330° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.072  Student_2:0.065  Student_3:0.159  Student_4:0.158  Student_1:0.031  Student_2:0.037  Student_3:0.201  Student_4:0.198  Student_2:0.035  Student_3:0.194  Student_4:0.201  Student_3:0.198  Student_4:0.198  Student_4:0.040  [self:0.028]
+  Student_0:0.104  Student_1:0.142  Student_2:0.055  Student_3:0.126  Student_4:0.175  Student_1:0.049  Student_2:0.076  Student_3:0.211  Student_4:0.258  Student_2:0.118  Student_3:0.251  Student_4:0.302  Student_3:0.156  Student_4:0.198  Student_4:0.063  [self:0.019]
   [136/288] cue=1 c1=330° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.032  Student_1:0.026  Student_2:0.058  Student_3:0.066  Student_4:0.049  Student_1:0.030  Student_2:0.045  Student_3:0.054  Student_4:0.035  Student_2:0.056  Student_3:0.063  Student_4:0.040  Student_3:0.091  Student_4:0.065  Student_4:0.031  [self:0.013]
+  Student_0:0.035  Student_1:0.038  Student_2:0.044  Student_3:0.066  Student_4:0.040  Student_1:0.022  Student_2:0.039  Student_3:0.064  Student_4:0.035  Student_2:0.043  Student_3:0.067  Student_4:0.036  Student_3:0.088  Student_4:0.062  Student_4:0.034  [self:0.024]
   [137/288] cue=1 c1=330° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.064  Student_2:0.077  Student_3:0.330  Student_4:0.326  Student_1:0.065  Student_2:0.061  Student_3:0.310  Student_4:0.312  Student_2:0.031  Student_3:0.345  Student_4:0.342  Student_3:0.352  Student_4:0.353  Student_4:0.030  [self:0.023]
+  Student_0:0.072  Student_1:0.058  Student_2:0.072  Student_3:0.370  Student_4:0.342  Student_1:0.056  Student_2:0.061  Student_3:0.335  Student_4:0.308  Student_2:0.039  Student_3:0.376  Student_4:0.348  Student_3:0.393  Student_4:0.366  Student_4:0.036  [self:0.023]
   [138/288] cue=1 c1=330° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.049  Student_2:0.051  Student_3:0.607  Student_4:0.523  Student_1:0.025  Student_2:0.046  Student_3:0.584  Student_4:0.499  Student_2:0.053  Student_3:0.574  Student_4:0.490  Student_3:0.607  Student_4:0.522  Student_4:0.103  [self:0.032]
+  Student_0:0.046  Student_1:0.069  Student_2:0.061  Student_3:0.563  Student_4:0.511  Student_1:0.063  Student_2:0.039  Student_3:0.563  Student_4:0.505  Student_2:0.087  Student_3:0.508  Student_4:0.453  Student_3:0.588  Student_4:0.530  Student_4:0.121  [self:0.043]
   [139/288] cue=1 c1=330° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.087  Student_1:0.098  Student_2:0.053  Student_3:0.404  Student_4:0.404  Student_1:0.070  Student_2:0.095  Student_3:0.325  Student_4:0.325  Student_2:0.086  Student_3:0.356  Student_4:0.353  Student_3:0.415  Student_4:0.416  Student_4:0.037  [self:0.027]
+  Student_0:0.086  Student_1:0.100  Student_2:0.066  Student_3:0.437  Student_4:0.429  Student_1:0.051  Student_2:0.086  Student_3:0.409  Student_4:0.398  Student_2:0.096  Student_3:0.416  Student_4:0.400  Student_3:0.476  Student_4:0.467  Student_4:0.063  [self:0.038]
   [140/288] cue=1 c1=330° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.090  Student_1:0.075  Student_2:0.088  Student_3:0.182  Student_4:0.172  Student_1:0.107  Student_2:0.095  Student_3:0.167  Student_4:0.153  Student_2:0.114  Student_3:0.195  Student_4:0.175  Student_3:0.242  Student_4:0.229  Student_4:0.065  [self:0.028]
+  Student_0:0.053  Student_1:0.072  Student_2:0.081  Student_3:0.235  Student_4:0.174  Student_1:0.059  Student_2:0.103  Student_3:0.217  Student_4:0.148  Student_2:0.120  Student_3:0.245  Student_4:0.172  Student_3:0.300  Student_4:0.238  Student_4:0.093  [self:0.031]
   [141/288] cue=1 c1=330° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.051  Student_1:0.054  Student_2:0.050  Student_3:0.122  Student_4:0.160  Student_1:0.069  Student_2:0.038  Student_3:0.126  Student_4:0.164  Student_2:0.082  Student_3:0.114  Student_4:0.157  Student_3:0.141  Student_4:0.176  Student_4:0.082  [self:0.044]
+  Student_0:0.059  Student_1:0.100  Student_2:0.074  Student_3:0.154  Student_4:0.169  Student_1:0.062  Student_2:0.040  Student_3:0.112  Student_4:0.129  Student_2:0.084  Student_3:0.059  Student_4:0.080  Student_3:0.126  Student_4:0.145  Student_4:0.038  [self:0.035]
   [142/288] cue=1 c1=330° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.071  Student_2:0.115  Student_3:0.102  Student_4:0.093  Student_1:0.062  Student_2:0.074  Student_3:0.132  Student_4:0.128  Student_2:0.105  Student_3:0.135  Student_4:0.113  Student_3:0.153  Student_4:0.170  Student_4:0.052  [self:0.026]
+  Student_0:0.044  Student_1:0.058  Student_2:0.085  Student_3:0.118  Student_4:0.089  Student_1:0.070  Student_2:0.094  Student_3:0.144  Student_4:0.119  Student_2:0.077  Student_3:0.129  Student_4:0.096  Student_3:0.142  Student_4:0.125  Student_4:0.056  [self:0.036]
   [143/288] cue=1 c1=330° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.146  Student_1:0.180  Student_2:0.211  Student_3:0.234  Student_4:0.276  Student_1:0.119  Student_2:0.131  Student_3:0.111  Student_4:0.152  Student_2:0.221  Student_3:0.194  Student_4:0.240  Student_3:0.108  Student_4:0.140  Student_4:0.056  [self:0.037]
+  Student_0:0.210  Student_1:0.186  Student_2:0.277  Student_3:0.308  Student_4:0.374  Student_1:0.135  Student_2:0.139  Student_3:0.132  Student_4:0.194  Student_2:0.260  Student_3:0.228  Student_4:0.285  Student_3:0.116  Student_4:0.151  Student_4:0.069  [self:0.039]
   [144/288] cue=1 c1=330° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.161  Student_1:0.089  Student_2:0.102  Student_3:0.208  Student_4:0.248  Student_1:0.130  Student_2:0.124  Student_3:0.237  Student_4:0.203  Student_2:0.033  Student_3:0.164  Student_4:0.195  Student_3:0.146  Student_4:0.175  Student_4:0.056  [self:0.042]
+  Student_0:0.126  Student_1:0.116  Student_2:0.106  Student_3:0.217  Student_4:0.243  Student_1:0.157  Student_2:0.102  Student_3:0.264  Student_4:0.222  Student_2:0.079  Student_3:0.175  Student_4:0.252  Student_3:0.170  Student_4:0.196  Student_4:0.092  [self:0.039]
   [145/288] cue=2 c1=0° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.070  Student_1:0.125  Student_2:0.092  Student_3:0.298  Student_4:0.262  Student_1:0.066  Student_2:0.071  Student_3:0.269  Student_4:0.225  Student_2:0.128  Student_3:0.310  Student_4:0.264  Student_3:0.217  Student_4:0.202  Student_4:0.084  [self:0.024]
+  Student_0:0.078  Student_1:0.094  Student_2:0.133  Student_3:0.354  Student_4:0.315  Student_1:0.050  Student_2:0.082  Student_3:0.293  Student_4:0.254  Student_2:0.127  Student_3:0.331  Student_4:0.289  Student_3:0.228  Student_4:0.195  Student_4:0.084  [self:0.026]
   [146/288] cue=2 c1=0° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.151  Student_2:0.134  Student_3:0.146  Student_4:0.080  Student_1:0.078  Student_2:0.047  Student_3:0.075  Student_4:0.115  Student_2:0.048  Student_3:0.110  Student_4:0.158  Student_3:0.104  Student_4:0.157  Student_4:0.094  [self:0.057]
+  Student_0:0.112  Student_1:0.131  Student_2:0.085  Student_3:0.132  Student_4:0.089  Student_1:0.048  Student_2:0.034  Student_3:0.071  Student_4:0.132  Student_2:0.070  Student_3:0.094  Student_4:0.154  Student_3:0.070  Student_4:0.113  Student_4:0.077  [self:0.066]
   [147/288] cue=2 c1=0° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.150  Student_2:0.169  Student_3:0.093  Student_4:0.064  Student_1:0.123  Student_2:0.132  Student_3:0.062  Student_4:0.040  Student_2:0.062  Student_3:0.086  Student_4:0.104  Student_3:0.117  Student_4:0.134  Student_4:0.050  [self:0.036]
+  Student_0:0.083  Student_1:0.219  Student_2:0.169  Student_3:0.081  Student_4:0.058  Student_1:0.150  Student_2:0.095  Student_3:0.051  Student_4:0.108  Student_2:0.080  Student_3:0.178  Student_4:0.241  Student_3:0.137  Student_4:0.194  Student_4:0.079  [self:0.064]
   [148/288] cue=2 c1=0° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.039  Student_1:0.047  Student_2:0.031  Student_3:0.058  Student_4:0.040  Student_1:0.032  Student_2:0.020  Student_3:0.043  Student_4:0.027  Student_2:0.031  Student_3:0.052  Student_4:0.052  Student_3:0.053  Student_4:0.038  Student_4:0.039  [self:0.020]
+  Student_0:0.043  Student_1:0.033  Student_2:0.032  Student_3:0.052  Student_4:0.039  Student_1:0.024  Student_2:0.037  Student_3:0.048  Student_4:0.028  Student_2:0.033  Student_3:0.049  Student_4:0.038  Student_3:0.060  Student_4:0.039  Student_4:0.042  [self:0.024]
   [149/288] cue=2 c1=0° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.088  Student_2:0.031  Student_3:0.118  Student_4:0.129  Student_1:0.054  Student_2:0.038  Student_3:0.099  Student_4:0.129  Student_2:0.082  Student_3:0.092  Student_4:0.150  Student_3:0.123  Student_4:0.126  Student_4:0.118  [self:0.074]
+  Student_0:0.075  Student_1:0.113  Student_2:0.100  Student_3:0.121  Student_4:0.199  Student_1:0.056  Student_2:0.074  Student_3:0.128  Student_4:0.222  Student_2:0.052  Student_3:0.158  Student_4:0.258  Student_3:0.192  Student_4:0.282  Student_4:0.131  [self:0.028]
   [150/288] cue=2 c1=0° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.084  Student_1:0.047  Student_2:0.113  Student_3:0.381  Student_4:0.450  Student_1:0.080  Student_2:0.180  Student_3:0.438  Student_4:0.510  Student_2:0.128  Student_3:0.386  Student_4:0.458  Student_3:0.303  Student_4:0.370  Student_4:0.096  [self:0.042]
+  Student_0:0.065  Student_1:0.104  Student_2:0.040  Student_3:0.337  Student_4:0.359  Student_1:0.069  Student_2:0.050  Student_3:0.358  Student_4:0.385  Student_2:0.070  Student_3:0.415  Student_4:0.438  Student_3:0.368  Student_4:0.388  Student_4:0.054  [self:0.050]
   [151/288] cue=2 c1=0° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.054  Student_1:0.084  Student_2:0.054  Student_3:0.220  Student_4:0.085  Student_1:0.081  Student_2:0.048  Student_3:0.242  Student_4:0.091  Student_2:0.093  Student_3:0.198  Student_4:0.059  Student_3:0.249  Student_4:0.109  Student_4:0.185  [self:0.136]
+  Student_0:0.077  Student_1:0.117  Student_2:0.095  Student_3:0.229  Student_4:0.187  Student_1:0.108  Student_2:0.086  Student_3:0.220  Student_4:0.179  Student_2:0.074  Student_3:0.303  Student_4:0.240  Student_3:0.291  Student_4:0.252  Student_4:0.081  [self:0.078]
   [152/288] cue=2 c1=0° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.089  Student_1:0.199  Student_2:0.233  Student_3:0.374  Student_4:0.270  Student_1:0.245  Student_2:0.153  Student_3:0.305  Student_4:0.212  Student_2:0.392  Student_3:0.529  Student_4:0.407  Student_3:0.178  Student_4:0.112  Student_4:0.146  [self:0.088]
+  Student_0:0.203  Student_1:0.096  Student_2:0.329  Student_3:0.339  Student_4:0.391  Student_1:0.166  Student_2:0.136  Student_3:0.190  Student_4:0.215  Student_2:0.297  Student_3:0.290  Student_4:0.333  Student_3:0.125  Student_4:0.148  Student_4:0.086  [self:0.051]
   [153/288] cue=2 c1=0° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.219  Student_1:0.071  Student_2:0.083  Student_3:0.460  Student_4:0.540  Student_1:0.207  Student_2:0.279  Student_3:0.662  Student_4:0.738  Student_2:0.087  Student_3:0.466  Student_4:0.541  Student_3:0.403  Student_4:0.485  Student_4:0.092  [self:0.095]
+  Student_0:0.118  Student_1:0.067  Student_2:0.051  Student_3:0.592  Student_4:0.615  Student_1:0.084  Student_2:0.136  Student_3:0.699  Student_4:0.720  Student_2:0.074  Student_3:0.625  Student_4:0.646  Student_3:0.581  Student_4:0.606  Student_4:0.055  [self:0.035]
   [154/288] cue=2 c1=0° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.183  Student_1:0.188  Student_2:0.191  Student_3:0.236  Student_4:0.229  Student_1:0.030  Student_2:0.040  Student_3:0.397  Student_4:0.388  Student_2:0.033  Student_3:0.392  Student_4:0.386  Student_3:0.401  Student_4:0.398  Student_4:0.036  [self:0.089]
+  Student_0:0.058  Student_1:0.129  Student_2:0.058  Student_3:0.237  Student_4:0.331  Student_1:0.085  Student_2:0.048  Student_3:0.213  Student_4:0.309  Student_2:0.121  Student_3:0.280  Student_4:0.376  Student_3:0.215  Student_4:0.308  Student_4:0.111  [self:0.041]
   [155/288] cue=2 c1=0° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.094  Student_1:0.074  Student_2:0.104  Student_3:0.515  Student_4:0.324  Student_1:0.062  Student_2:0.038  Student_3:0.439  Student_4:0.250  Student_2:0.090  Student_3:0.450  Student_4:0.262  Student_3:0.462  Student_4:0.278  Student_4:0.202  [self:0.040]
+  Student_0:0.047  Student_1:0.070  Student_2:0.056  Student_3:0.404  Student_4:0.380  Student_1:0.034  Student_2:0.044  Student_3:0.396  Student_4:0.374  Student_2:0.070  Student_3:0.376  Student_4:0.354  Student_3:0.434  Student_4:0.412  Student_4:0.056  [self:0.064]
   [156/288] cue=2 c1=0° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.053  Student_1:0.058  Student_2:0.077  Student_3:0.682  Student_4:0.707  Student_1:0.042  Student_2:0.051  Student_3:0.645  Student_4:0.671  Student_2:0.089  Student_3:0.653  Student_4:0.679  Student_3:0.626  Student_4:0.651  Student_4:0.100  [self:0.028]
+  Student_0:0.164  Student_1:0.077  Student_2:0.136  Student_3:0.760  Student_4:0.707  Student_1:0.106  Student_2:0.040  Student_3:0.608  Student_4:0.555  Student_2:0.093  Student_3:0.693  Student_4:0.639  Student_3:0.644  Student_4:0.591  Student_4:0.063  [self:0.091]
   [157/288] cue=2 c1=30° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  Student_1:0.124  Student_2:0.076  Student_3:0.229  Student_4:0.200  Student_1:0.102  Student_2:0.039  Student_3:0.181  Student_4:0.152  Student_2:0.073  Student_3:0.210  Student_4:0.181  Student_3:0.186  Student_4:0.156  Student_4:0.036  [self:0.029]
+  Student_0:0.062  Student_1:0.096  Student_2:0.114  Student_3:0.227  Student_4:0.198  Student_1:0.090  Student_2:0.060  Student_3:0.179  Student_4:0.150  Student_2:0.100  Student_3:0.180  Student_4:0.149  Student_3:0.126  Student_4:0.102  Student_4:0.038  [self:0.022]
   [158/288] cue=2 c1=30° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.091  Student_1:0.248  Student_2:0.245  Student_3:0.186  Student_4:0.147  Student_1:0.208  Student_2:0.207  Student_3:0.134  Student_4:0.107  Student_2:0.040  Student_3:0.139  Student_4:0.180  Student_3:0.164  Student_4:0.206  Student_4:0.054  [self:0.033]
+  Student_0:0.168  Student_1:0.245  Student_2:0.277  Student_3:0.228  Student_4:0.145  Student_1:0.098  Student_2:0.127  Student_3:0.084  Student_4:0.100  Student_2:0.055  Student_3:0.098  Student_4:0.170  Student_3:0.146  Student_4:0.219  Student_4:0.093  [self:0.036]
   [159/288] cue=2 c1=30° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.055  Student_1:0.176  Student_2:0.147  Student_3:0.068  Student_4:0.080  Student_1:0.138  Student_2:0.105  Student_3:0.093  Student_4:0.053  Student_2:0.053  Student_3:0.224  Student_4:0.122  Student_3:0.197  Student_4:0.097  Student_4:0.105  [self:0.037]
+  Student_0:0.128  Student_1:0.283  Student_2:0.238  Student_3:0.144  Student_4:0.135  Student_1:0.169  Student_2:0.124  Student_3:0.062  Student_4:0.036  Student_2:0.063  Student_3:0.191  Student_4:0.169  Student_3:0.153  Student_4:0.130  Student_4:0.058  [self:0.045]
   [160/288] cue=2 c1=30° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.036  Student_1:0.062  Student_2:0.089  Student_3:0.059  Student_4:0.048  Student_1:0.061  Student_2:0.079  Student_3:0.031  Student_4:0.037  Student_2:0.043  Student_3:0.055  Student_4:0.086  Student_3:0.070  Student_4:0.104  Student_4:0.041  [self:0.017]
+  Student_0:0.092  Student_1:0.117  Student_2:0.100  Student_3:0.095  Student_4:0.064  Student_1:0.061  Student_2:0.034  Student_3:0.029  Student_4:0.044  Student_2:0.039  Student_3:0.078  Student_4:0.097  Student_3:0.051  Student_4:0.070  Student_4:0.038  [self:0.032]
   [161/288] cue=2 c1=30° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.039  Student_1:0.063  Student_2:0.049  Student_3:0.088  Student_4:0.050  Student_1:0.076  Student_2:0.044  Student_3:0.084  Student_4:0.049  Student_2:0.087  Student_3:0.081  Student_4:0.072  Student_3:0.073  Student_4:0.029  Student_4:0.057  [self:0.064]
+  Student_0:0.042  Student_1:0.050  Student_2:0.041  Student_3:0.084  Student_4:0.097  Student_1:0.057  Student_2:0.035  Student_3:0.071  Student_4:0.076  Student_2:0.052  Student_3:0.108  Student_4:0.114  Student_3:0.079  Student_4:0.083  Student_4:0.031  [self:0.082]
   [162/288] cue=2 c1=30° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.064  Student_1:0.163  Student_2:0.134  Student_3:0.311  Student_4:0.346  Student_1:0.129  Student_2:0.162  Student_3:0.279  Student_4:0.311  Student_2:0.276  Student_3:0.196  Student_4:0.228  Student_3:0.432  Student_4:0.466  Student_4:0.102  [self:0.098]
+  Student_0:0.061  Student_1:0.149  Student_2:0.087  Student_3:0.232  Student_4:0.302  Student_1:0.130  Student_2:0.092  Student_3:0.213  Student_4:0.283  Student_2:0.212  Student_3:0.127  Student_4:0.199  Student_3:0.293  Student_4:0.364  Student_4:0.089  [self:0.113]
   [163/288] cue=2 c1=30° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.108  Student_1:0.088  Student_2:0.093  Student_3:0.427  Student_4:0.583  Student_1:0.170  Student_2:0.092  Student_3:0.510  Student_4:0.667  Student_2:0.157  Student_3:0.388  Student_4:0.533  Student_3:0.456  Student_4:0.622  Student_4:0.173  [self:0.046]
+  Student_0:0.076  Student_1:0.080  Student_2:0.103  Student_3:0.464  Student_4:0.701  Student_1:0.077  Student_2:0.065  Student_3:0.422  Student_4:0.650  Student_2:0.110  Student_3:0.447  Student_4:0.675  Student_3:0.400  Student_4:0.636  Student_4:0.247  [self:0.156]
   [164/288] cue=2 c1=30° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.232  Student_1:0.345  Student_2:0.357  Student_3:0.244  Student_4:0.079  Student_1:0.140  Student_2:0.141  Student_3:0.089  Student_4:0.265  Student_2:0.073  Student_3:0.170  Student_4:0.361  Student_3:0.176  Student_4:0.383  Student_4:0.224  [self:0.061]
+  Student_0:0.108  Student_1:0.389  Student_2:0.262  Student_3:0.200  Student_4:0.124  Student_1:0.302  Student_2:0.173  Student_3:0.136  Student_4:0.214  Student_2:0.160  Student_3:0.244  Student_4:0.467  Student_3:0.131  Student_4:0.366  Student_4:0.251  [self:0.043]
   [165/288] cue=2 c1=30° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.262  Student_1:0.257  Student_2:0.031  Student_3:0.439  Student_4:0.283  Student_1:0.034  Student_2:0.268  Student_3:0.209  Student_4:0.077  Student_2:0.273  Student_3:0.208  Student_4:0.071  Student_3:0.452  Student_4:0.296  Student_4:0.171  [self:0.308]
+  Student_0:0.065  Student_1:0.230  Student_2:0.042  Student_3:0.190  Student_4:0.162  Student_1:0.254  Student_2:0.039  Student_3:0.238  Student_4:0.203  Student_2:0.251  Student_3:0.117  Student_4:0.143  Student_3:0.213  Student_4:0.187  Student_4:0.050  [self:0.035]
   [166/288] cue=2 c1=30° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.111  Student_1:0.225  Student_2:0.233  Student_3:0.714  Student_4:0.730  Student_1:0.131  Student_2:0.139  Student_3:0.631  Student_4:0.645  Student_2:0.032  Student_3:0.520  Student_4:0.536  Student_3:0.507  Student_4:0.525  Student_4:0.034  [self:0.081]
+  Student_0:0.039  Student_1:0.136  Student_2:0.322  Student_3:0.631  Student_4:0.747  Student_1:0.137  Student_2:0.333  Student_3:0.649  Student_4:0.766  Student_2:0.213  Student_3:0.530  Student_4:0.647  Student_3:0.335  Student_4:0.456  Student_4:0.130  [self:0.094]
   [167/288] cue=2 c1=30° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.075  Student_1:0.256  Student_2:0.114  Student_3:0.938  Student_4:1.013  Student_1:0.188  Student_2:0.074  Student_3:0.996  Student_4:1.075  Student_2:0.179  Student_3:1.174  Student_4:1.254  Student_3:1.031  Student_4:1.107  Student_4:0.094  [self:0.027]
+  Student_0:0.090  Student_1:0.203  Student_2:0.140  Student_3:1.172  Student_4:1.031  Student_1:0.126  Student_2:0.073  Student_3:1.245  Student_4:1.105  Student_2:0.112  Student_3:1.357  Student_4:1.216  Student_3:1.284  Student_4:1.147  Student_4:0.144  [self:0.035]
   [168/288] cue=2 c1=30° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.049  Student_1:0.065  Student_2:0.044  Student_3:0.704  Student_4:0.859  Student_1:0.056  Student_2:0.032  Student_3:0.677  Student_4:0.836  Student_2:0.054  Student_3:0.660  Student_4:0.821  Student_3:0.690  Student_4:0.849  Student_4:0.190  [self:0.025]
+  Student_0:0.040  Student_1:0.077  Student_2:0.053  Student_3:0.712  Student_4:0.722  Student_1:0.061  Student_2:0.026  Student_3:0.690  Student_4:0.703  Student_2:0.055  Student_3:0.650  Student_4:0.662  Student_3:0.678  Student_4:0.691  Student_4:0.042  [self:0.032]
   [169/288] cue=2 c1=60° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.056  Student_1:0.077  Student_2:0.035  Student_3:0.068  Student_4:0.070  Student_1:0.034  Student_2:0.055  Student_3:0.050  Student_4:0.034  Student_2:0.085  Student_3:0.054  Student_4:0.039  Student_3:0.071  Student_4:0.075  Student_4:0.031  [self:0.033]
+  Student_0:0.035  Student_1:0.057  Student_2:0.035  Student_3:0.054  Student_4:0.053  Student_1:0.067  Student_2:0.043  Student_3:0.037  Student_4:0.041  Student_2:0.066  Student_3:0.084  Student_4:0.086  Student_3:0.074  Student_4:0.076  Student_4:0.025  [self:0.024]
   [170/288] cue=2 c1=60° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.047  Student_1:0.074  Student_2:0.089  Student_3:0.059  Student_4:0.049  Student_1:0.081  Student_2:0.082  Student_3:0.087  Student_4:0.065  Student_2:0.074  Student_3:0.080  Student_4:0.081  Student_3:0.111  Student_4:0.128  Student_4:0.050  [self:0.022]
+  Student_0:0.057  Student_1:0.088  Student_2:0.092  Student_3:0.089  Student_4:0.049  Student_1:0.060  Student_2:0.045  Student_3:0.091  Student_4:0.090  Student_2:0.061  Student_3:0.076  Student_4:0.104  Student_3:0.097  Student_4:0.125  Student_4:0.059  [self:0.034]
   [171/288] cue=2 c1=60° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.119  Student_1:0.152  Student_2:0.129  Student_3:0.127  Student_4:0.143  Student_1:0.072  Student_2:0.042  Student_3:0.073  Student_4:0.086  Student_2:0.096  Student_3:0.133  Student_4:0.149  Student_3:0.082  Student_4:0.086  Student_4:0.047  [self:0.032]
+  Student_0:0.074  Student_1:0.077  Student_2:0.088  Student_3:0.110  Student_4:0.109  Student_1:0.074  Student_2:0.050  Student_3:0.050  Student_4:0.082  Student_2:0.109  Student_3:0.086  Student_4:0.135  Student_3:0.068  Student_4:0.083  Student_4:0.073  [self:0.063]
   [172/288] cue=2 c1=60° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.140  Student_1:0.107  Student_2:0.095  Student_3:0.135  Student_4:0.141  Student_1:0.067  Student_2:0.072  Student_3:0.156  Student_4:0.169  Student_2:0.063  Student_3:0.144  Student_4:0.160  Student_3:0.090  Student_4:0.102  Student_4:0.029  [self:0.032]
+  Student_0:0.109  Student_1:0.108  Student_2:0.108  Student_3:0.155  Student_4:0.150  Student_1:0.079  Student_2:0.043  Student_3:0.090  Student_4:0.101  Student_2:0.072  Student_3:0.127  Student_4:0.138  Student_3:0.072  Student_4:0.083  Student_4:0.036  [self:0.031]
   [173/288] cue=2 c1=60° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.062  Student_1:0.100  Student_2:0.059  Student_3:0.281  Student_4:0.228  Student_1:0.112  Student_2:0.053  Student_3:0.292  Student_4:0.240  Student_2:0.107  Student_3:0.209  Student_4:0.163  Student_3:0.293  Student_4:0.237  Student_4:0.082  [self:0.036]
+  Student_0:0.069  Student_1:0.055  Student_2:0.044  Student_3:0.271  Student_4:0.179  Student_1:0.065  Student_2:0.051  Student_3:0.288  Student_4:0.199  Student_2:0.052  Student_3:0.251  Student_4:0.165  Student_3:0.280  Student_4:0.189  Student_4:0.118  [self:0.061]
   [174/288] cue=2 c1=60° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.093  Student_1:0.089  Student_2:0.057  Student_3:0.899  Student_4:0.758  Student_1:0.134  Student_2:0.079  Student_3:0.839  Student_4:0.702  Student_2:0.098  Student_3:0.928  Student_4:0.794  Student_3:0.871  Student_4:0.732  Student_4:0.167  [self:0.106]
+  Student_0:0.155  Student_1:0.323  Student_2:0.336  Student_3:0.926  Student_4:0.987  Student_1:0.192  Student_2:0.226  Student_3:0.825  Student_4:0.886  Student_2:0.146  Student_3:0.711  Student_4:0.771  Student_3:0.605  Student_4:0.665  Student_4:0.073  [self:0.068]
   [175/288] cue=2 c1=60° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.053  Student_1:0.240  Student_2:0.036  Student_3:0.863  Student_4:1.101  Student_1:0.239  Student_2:0.055  Student_3:0.866  Student_4:1.103  Student_2:0.249  Student_3:1.092  Student_4:1.330  Student_3:0.852  Student_4:1.091  Student_4:0.251  [self:0.047]
+  Student_0:0.158  Student_1:0.207  Student_2:0.054  Student_3:0.942  Student_4:0.938  Student_1:0.084  Student_2:0.139  Student_3:1.073  Student_4:1.069  Student_2:0.186  Student_3:1.138  Student_4:1.134  Student_3:0.962  Student_4:0.959  Student_4:0.035  [self:0.031]
   [176/288] cue=2 c1=60° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.160  Student_2:0.166  Student_3:1.020  Student_4:1.142  Student_1:0.094  Student_2:0.110  Student_3:1.080  Student_4:1.193  Student_2:0.054  Student_3:1.161  Student_4:1.280  Student_3:1.135  Student_4:1.259  Student_4:0.132  [self:0.045]
+  Student_0:0.156  Student_1:0.155  Student_2:0.190  Student_3:0.978  Student_4:1.152  Student_1:0.034  Student_2:0.074  Student_3:1.104  Student_4:1.275  Student_2:0.053  Student_3:1.113  Student_4:1.285  Student_3:1.126  Student_4:1.301  Student_4:0.180  [self:0.061]
   [177/288] cue=2 c1=60° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.047  Student_1:0.103  Student_2:0.072  Student_3:0.714  Student_4:0.766  Student_1:0.070  Student_2:0.046  Student_3:0.751  Student_4:0.799  Student_2:0.077  Student_3:0.810  Student_4:0.857  Student_3:0.771  Student_4:0.826  Student_4:0.070  [self:0.052]
+  Student_0:0.079  Student_1:0.097  Student_2:0.054  Student_3:0.813  Student_4:0.843  Student_1:0.157  Student_2:0.078  Student_3:0.878  Student_4:0.902  Student_2:0.136  Student_3:0.738  Student_4:0.768  Student_3:0.843  Student_4:0.875  Student_4:0.046  [self:0.105]
   [178/288] cue=2 c1=60° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.038  Student_1:0.089  Student_2:0.255  Student_3:0.365  Student_4:0.255  Student_1:0.072  Student_2:0.277  Student_3:0.389  Student_4:0.278  Student_2:0.312  Student_3:0.447  Student_4:0.341  Student_3:0.161  Student_4:0.080  Student_4:0.140  [self:0.180]
+  Student_0:0.095  Student_1:0.264  Student_2:0.483  Student_3:0.324  Student_4:0.425  Student_1:0.184  Student_2:0.406  Student_3:0.272  Student_4:0.373  Student_2:0.243  Student_3:0.165  Student_4:0.258  Student_3:0.208  Student_4:0.109  Student_4:0.112  [self:0.062]
   [179/288] cue=2 c1=60° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.051  Student_1:0.066  Student_2:0.043  Student_3:0.504  Student_4:0.664  Student_1:0.048  Student_2:0.049  Student_3:0.547  Student_4:0.709  Student_2:0.059  Student_3:0.553  Student_4:0.715  Student_3:0.520  Student_4:0.681  Student_4:0.168  [self:0.078]
+  Student_0:0.141  Student_1:0.137  Student_2:0.044  Student_3:0.487  Student_4:0.474  Student_1:0.030  Student_2:0.110  Student_3:0.614  Student_4:0.603  Student_2:0.112  Student_3:0.597  Student_4:0.586  Student_3:0.519  Student_4:0.506  Student_4:0.042  [self:0.064]
   [180/288] cue=2 c1=60° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.028  Student_1:0.045  Student_2:0.080  Student_3:0.289  Student_4:0.306  Student_1:0.040  Student_2:0.065  Student_3:0.289  Student_4:0.303  Student_2:0.059  Student_3:0.265  Student_4:0.278  Student_3:0.241  Student_4:0.256  Student_4:0.044  [self:0.024]
+  Student_0:0.029  Student_1:0.039  Student_2:0.043  Student_3:0.216  Student_4:0.272  Student_1:0.032  Student_2:0.037  Student_3:0.208  Student_4:0.264  Student_2:0.042  Student_3:0.194  Student_4:0.251  Student_3:0.188  Student_4:0.241  Student_4:0.060  [self:0.023]
   [181/288] cue=2 c1=90° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.034  Student_2:0.045  Student_3:0.095  Student_4:0.072  Student_1:0.036  Student_2:0.017  Student_3:0.075  Student_4:0.062  Student_2:0.029  Student_3:0.076  Student_4:0.061  Student_3:0.076  Student_4:0.068  Student_4:0.036  [self:0.024]
+  Student_0:0.052  Student_1:0.035  Student_2:0.034  Student_3:0.095  Student_4:0.070  Student_1:0.041  Student_2:0.028  Student_3:0.073  Student_4:0.069  Student_2:0.028  Student_3:0.069  Student_4:0.057  Student_3:0.084  Student_4:0.066  Student_4:0.039  [self:0.023]
   [182/288] cue=2 c1=90° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.049  Student_1:0.050  Student_2:0.035  Student_3:0.042  Student_4:0.042  Student_1:0.031  Student_2:0.031  Student_3:0.043  Student_4:0.043  Student_2:0.032  Student_3:0.066  Student_4:0.055  Student_3:0.047  Student_4:0.028  Student_4:0.033  [self:0.021]
+  Student_0:0.059  Student_1:0.066  Student_2:0.052  Student_3:0.055  Student_4:0.056  Student_1:0.040  Student_2:0.021  Student_3:0.037  Student_4:0.036  Student_2:0.031  Student_3:0.072  Student_4:0.057  Student_3:0.046  Student_4:0.030  Student_4:0.035  [self:0.016]
   [183/288] cue=2 c1=90° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.092  Student_1:0.061  Student_2:0.106  Student_3:0.082  Student_4:0.069  Student_1:0.046  Student_2:0.084  Student_3:0.081  Student_4:0.110  Student_2:0.090  Student_3:0.079  Student_4:0.093  Student_3:0.067  Student_4:0.097  Student_4:0.050  [self:0.021]
+  Student_0:0.088  Student_1:0.123  Student_2:0.124  Student_3:0.127  Student_4:0.078  Student_1:0.091  Student_2:0.072  Student_3:0.095  Student_4:0.088  Student_2:0.113  Student_3:0.075  Student_4:0.116  Student_3:0.080  Student_4:0.084  Student_4:0.069  [self:0.027]
   [184/288] cue=2 c1=90° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.302  Student_1:0.169  Student_2:0.203  Student_3:0.318  Student_4:0.410  Student_1:0.181  Student_2:0.204  Student_3:0.440  Student_4:0.521  Student_2:0.125  Student_3:0.320  Student_4:0.399  Student_3:0.291  Student_4:0.358  Student_4:0.104  [self:0.046]
+  Student_0:0.226  Student_1:0.128  Student_2:0.190  Student_3:0.252  Student_4:0.405  Student_1:0.149  Student_2:0.132  Student_3:0.321  Student_4:0.437  Student_2:0.123  Student_3:0.220  Student_4:0.354  Student_3:0.239  Student_4:0.353  Student_4:0.170  [self:0.068]
   [185/288] cue=2 c1=90° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.085  Student_1:0.364  Student_2:0.127  Student_3:1.151  Student_4:0.964  Student_1:0.327  Student_2:0.115  Student_3:1.118  Student_4:0.935  Student_2:0.244  Student_3:0.819  Student_4:0.636  Student_3:1.050  Student_4:0.867  Student_4:0.243  [self:0.168]
+  Student_0:0.071  Student_1:0.375  Student_2:0.146  Student_3:1.090  Student_4:0.867  Student_1:0.367  Student_2:0.146  Student_3:1.091  Student_4:0.872  Student_2:0.239  Student_3:0.750  Student_4:0.527  Student_3:0.968  Student_4:0.748  Student_4:0.284  [self:0.102]
   [186/288] cue=2 c1=90° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.126  Student_1:0.081  Student_2:0.067  Student_3:1.211  Student_4:1.211  Student_1:0.087  Student_2:0.100  Student_3:1.304  Student_4:1.304  Student_2:0.053  Student_3:1.284  Student_4:1.285  Student_3:1.264  Student_4:1.264  Student_4:0.026  [self:0.098]
+  Student_0:0.257  Student_1:0.253  Student_2:0.168  Student_3:1.151  Student_4:1.299  Student_1:0.092  Student_2:0.137  Student_3:1.381  Student_4:1.528  Student_2:0.101  Student_3:1.393  Student_4:1.539  Student_3:1.303  Student_4:1.450  Student_4:0.165  [self:0.135]
   [187/288] cue=2 c1=90° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.136  Student_1:0.093  Student_2:0.131  Student_3:1.319  Student_4:1.362  Student_1:0.059  Student_2:0.061  Student_3:1.415  Student_4:1.457  Student_2:0.066  Student_3:1.391  Student_4:1.433  Student_3:1.382  Student_4:1.425  Student_4:0.054  [self:0.034]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0186_cue2_c190_c2180.png
+  Student_0:0.162  Student_1:0.066  Student_2:0.183  Student_3:1.232  Student_4:1.329  Student_1:0.124  Student_2:0.055  Student_3:1.360  Student_4:1.455  Student_2:0.166  Student_3:1.269  Student_4:1.364  Student_3:1.364  Student_4:1.461  Student_4:0.101  [self:0.048]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0186_cue2_c190_c2180.png
   [188/288] cue=2 c1=90° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.148  Student_1:0.127  Student_2:0.250  Student_3:1.228  Student_4:1.093  Student_1:0.077  Student_2:0.135  Student_3:1.325  Student_4:1.193  Student_2:0.177  Student_3:1.323  Student_4:1.189  Student_3:1.454  Student_4:1.320  Student_4:0.140  [self:0.034]
+  Student_0:0.102  Student_1:0.082  Student_2:0.199  Student_3:1.098  Student_4:1.061  Student_1:0.149  Student_2:0.121  Student_3:1.161  Student_4:1.122  Student_2:0.254  Student_3:1.059  Student_4:1.015  Student_3:1.276  Student_4:1.236  Student_4:0.054  [self:0.141]
   [189/288] cue=2 c1=90° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.233  Student_1:0.232  Student_2:0.080  Student_3:0.897  Student_4:0.916  Student_1:0.045  Student_2:0.222  Student_3:0.679  Student_4:0.698  Student_2:0.219  Student_3:0.678  Student_4:0.698  Student_3:0.890  Student_4:0.908  Student_4:0.039  [self:0.130]
+  Student_0:0.140  Student_1:0.139  Student_2:0.070  Student_3:0.872  Student_4:0.798  Student_1:0.048  Student_2:0.144  Student_3:0.758  Student_4:0.686  Student_2:0.132  Student_3:0.774  Student_4:0.700  Student_3:0.893  Student_4:0.820  Student_4:0.084  [self:0.042]
   [190/288] cue=2 c1=90° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.211  Student_1:0.172  Student_2:0.188  Student_3:0.122  Student_4:0.293  Student_1:0.123  Student_2:0.369  Student_3:0.195  Student_4:0.143  Student_2:0.326  Student_3:0.163  Student_4:0.228  Student_3:0.254  Student_4:0.434  Student_4:0.197  [self:0.142]
+  Student_0:0.157  Student_1:0.087  Student_2:0.241  Student_3:0.171  Student_4:0.129  Student_1:0.143  Student_2:0.359  Student_3:0.135  Student_4:0.166  Student_2:0.280  Student_3:0.196  Student_4:0.151  Student_3:0.315  Student_4:0.285  Student_4:0.086  [self:0.041]
   [191/288] cue=2 c1=90° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.063  Student_1:0.041  Student_2:0.067  Student_3:0.254  Student_4:0.216  Student_1:0.043  Student_2:0.053  Student_3:0.289  Student_4:0.241  Student_2:0.062  Student_3:0.263  Student_4:0.216  Student_3:0.265  Student_4:0.212  Student_4:0.091  [self:0.037]
+  Student_0:0.032  Student_1:0.034  Student_2:0.060  Student_3:0.214  Student_4:0.315  Student_1:0.029  Student_2:0.052  Student_3:0.205  Student_4:0.311  Student_2:0.047  Student_3:0.200  Student_4:0.301  Student_3:0.185  Student_4:0.280  Student_4:0.113  [self:0.047]
   [192/288] cue=2 c1=90° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.042  Student_1:0.032  Student_2:0.037  Student_3:0.051  Student_4:0.041  Student_1:0.027  Student_2:0.031  Student_3:0.055  Student_4:0.055  Student_2:0.029  Student_3:0.057  Student_4:0.044  Student_3:0.070  Student_4:0.063  Student_4:0.032  [self:0.021]
+  Student_0:0.038  Student_1:0.017  Student_2:0.035  Student_3:0.050  Student_4:0.046  Student_1:0.029  Student_2:0.029  Student_3:0.052  Student_4:0.069  Student_2:0.033  Student_3:0.041  Student_4:0.045  Student_3:0.067  Student_4:0.071  Student_4:0.039  [self:0.013]
   [193/288] cue=2 c1=120° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.042  Student_1:0.036  Student_2:0.069  Student_3:0.181  Student_4:0.150  Student_1:0.032  Student_2:0.036  Student_3:0.154  Student_4:0.140  Student_2:0.054  Student_3:0.159  Student_4:0.123  Student_3:0.134  Student_4:0.144  Student_4:0.058  [self:0.023]
+  Student_0:0.036  Student_1:0.038  Student_2:0.052  Student_3:0.236  Student_4:0.145  Student_1:0.035  Student_2:0.028  Student_3:0.230  Student_4:0.139  Student_2:0.036  Student_3:0.208  Student_4:0.119  Student_3:0.213  Student_4:0.124  Student_4:0.105  [self:0.035]
   [194/288] cue=2 c1=120° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.036  Student_2:0.067  Student_3:0.042  Student_4:0.066  Student_1:0.056  Student_2:0.032  Student_3:0.048  Student_4:0.055  Student_2:0.065  Student_3:0.041  Student_4:0.070  Student_3:0.050  Student_4:0.043  Student_4:0.043  [self:0.045]
+  Student_0:0.040  Student_1:0.082  Student_2:0.061  Student_3:0.084  Student_4:0.059  Student_1:0.071  Student_2:0.047  Student_3:0.073  Student_4:0.062  Student_2:0.032  Student_3:0.028  Student_4:0.081  Student_3:0.040  Student_4:0.055  Student_4:0.073  [self:0.016]
   [195/288] cue=2 c1=120° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.133  Student_1:0.097  Student_2:0.057  Student_3:0.121  Student_4:0.184  Student_1:0.040  Student_2:0.086  Student_3:0.123  Student_4:0.101  Student_2:0.050  Student_3:0.096  Student_4:0.111  Student_3:0.088  Student_4:0.149  Student_4:0.073  [self:0.059]
+  Student_0:0.057  Student_1:0.038  Student_2:0.053  Student_3:0.159  Student_4:0.207  Student_1:0.041  Student_2:0.075  Student_3:0.134  Student_4:0.184  Student_2:0.063  Student_3:0.139  Student_4:0.188  Student_3:0.192  Student_4:0.243  Student_4:0.060  [self:0.032]
   [196/288] cue=2 c1=120° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.410  Student_1:0.202  Student_2:0.241  Student_3:0.428  Student_4:0.580  Student_1:0.250  Student_2:0.211  Student_3:0.783  Student_4:0.939  Student_2:0.111  Student_3:0.572  Student_4:0.723  Student_3:0.586  Student_4:0.742  Student_4:0.168  [self:0.133]
+  Student_0:0.340  Student_1:0.131  Student_2:0.278  Student_3:0.579  Student_4:0.521  Student_1:0.240  Student_2:0.103  Student_3:0.827  Student_4:0.779  Student_2:0.174  Student_3:0.635  Student_4:0.582  Student_3:0.758  Student_4:0.710  Student_4:0.182  [self:0.092]
   [197/288] cue=2 c1=120° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.380  Student_1:0.166  Student_2:0.205  Student_3:0.505  Student_4:0.731  Student_1:0.286  Student_2:0.264  Student_3:0.572  Student_4:0.741  Student_2:0.079  Student_3:0.433  Student_4:0.644  Student_3:0.482  Student_4:0.691  Student_4:0.304  [self:0.119]
+  Student_0:0.469  Student_1:0.157  Student_2:0.272  Student_3:0.514  Student_4:0.780  Student_1:0.374  Student_2:0.229  Student_3:0.749  Student_4:0.961  Student_2:0.153  Student_3:0.492  Student_4:0.746  Student_3:0.572  Student_4:0.813  Student_4:0.369  [self:0.071]
   [198/288] cue=2 c1=120° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.135  Student_1:0.190  Student_2:0.192  Student_3:0.515  Student_4:0.402  Student_1:0.288  Student_2:0.287  Student_3:0.614  Student_4:0.493  Student_2:0.087  Student_3:0.365  Student_4:0.340  Student_3:0.445  Student_4:0.402  Student_4:0.307  [self:0.093]
+  Student_0:0.117  Student_1:0.199  Student_2:0.139  Student_3:0.553  Student_4:0.279  Student_1:0.275  Student_2:0.214  Student_3:0.616  Student_4:0.325  Student_2:0.255  Student_3:0.382  Student_4:0.337  Student_3:0.627  Student_4:0.403  Student_4:0.376  [self:0.053]
   [199/288] cue=2 c1=120° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.089  Student_1:0.139  Student_2:0.087  Student_3:0.446  Student_4:0.444  Student_1:0.118  Student_2:0.036  Student_3:0.433  Student_4:0.436  Student_2:0.128  Student_3:0.394  Student_4:0.404  Student_3:0.434  Student_4:0.436  Student_4:0.045  [self:0.214]
+  Student_0:0.112  Student_1:0.077  Student_2:0.159  Student_3:0.532  Student_4:0.485  Student_1:0.140  Student_2:0.159  Student_3:0.460  Student_4:0.414  Student_2:0.150  Student_3:0.544  Student_4:0.501  Student_3:0.614  Student_4:0.567  Student_4:0.098  [self:0.085]
   [200/288] cue=2 c1=120° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.070  Student_1:0.082  Student_2:0.145  Student_3:0.161  Student_4:0.138  Student_1:0.117  Student_2:0.173  Student_3:0.159  Student_4:0.115  Student_2:0.098  Student_3:0.209  Student_4:0.197  Student_3:0.273  Student_4:0.255  Student_4:0.092  [self:0.094]
+  Student_0:0.123  Student_1:0.098  Student_2:0.083  Student_3:0.263  Student_4:0.236  Student_1:0.064  Student_2:0.134  Student_3:0.197  Student_4:0.166  Student_2:0.134  Student_3:0.200  Student_4:0.169  Student_3:0.297  Student_4:0.269  Student_4:0.048  [self:0.192]
   [201/288] cue=2 c1=120° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.101  Student_1:0.212  Student_2:0.137  Student_3:0.079  Student_4:0.114  Student_1:0.240  Student_2:0.099  Student_3:0.103  Student_4:0.124  Student_2:0.319  Student_3:0.142  Student_4:0.137  Student_3:0.179  Student_4:0.190  Student_4:0.065  [self:0.044]
+  Student_0:0.110  Student_1:0.114  Student_2:0.126  Student_3:0.090  Student_4:0.073  Student_1:0.151  Student_2:0.063  Student_3:0.123  Student_4:0.084  Student_2:0.199  Student_3:0.070  Student_4:0.109  Student_3:0.147  Student_4:0.101  Student_4:0.063  [self:0.061]
   [202/288] cue=2 c1=120° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.068  Student_1:0.068  Student_2:0.113  Student_3:0.211  Student_4:0.327  Student_1:0.109  Student_2:0.063  Student_3:0.180  Student_4:0.280  Student_2:0.164  Student_3:0.261  Student_4:0.380  Student_3:0.157  Student_4:0.249  Student_4:0.123  [self:0.069]
+  Student_0:0.045  Student_1:0.054  Student_2:0.085  Student_3:0.176  Student_4:0.242  Student_1:0.053  Student_2:0.092  Student_3:0.191  Student_4:0.263  Student_2:0.100  Student_3:0.188  Student_4:0.255  Student_3:0.150  Student_4:0.208  Student_4:0.077  [self:0.027]
   [203/288] cue=2 c1=120° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.062  Student_1:0.059  Student_2:0.049  Student_3:0.235  Student_4:0.267  Student_1:0.056  Student_2:0.079  Student_3:0.242  Student_4:0.273  Student_2:0.056  Student_3:0.208  Student_4:0.241  Student_3:0.212  Student_4:0.245  Student_4:0.042  [self:0.030]
+  Student_0:0.041  Student_1:0.058  Student_2:0.052  Student_3:0.213  Student_4:0.270  Student_1:0.042  Student_2:0.048  Student_3:0.218  Student_4:0.271  Student_2:0.051  Student_3:0.202  Student_4:0.255  Student_3:0.197  Student_4:0.251  Student_4:0.062  [self:0.023]
   [204/288] cue=2 c1=120° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.086  Student_1:0.072  Student_2:0.053  Student_3:0.531  Student_4:0.492  Student_1:0.031  Student_2:0.045  Student_3:0.521  Student_4:0.501  Student_2:0.042  Student_3:0.516  Student_4:0.495  Student_3:0.510  Student_4:0.478  Student_4:0.054  [self:0.032]
+  Student_0:0.085  Student_1:0.081  Student_2:0.075  Student_3:0.511  Student_4:0.556  Student_1:0.039  Student_2:0.030  Student_3:0.470  Student_4:0.501  Student_2:0.048  Student_3:0.489  Student_4:0.510  Student_3:0.469  Student_4:0.512  Student_4:0.075  [self:0.025]
   [205/288] cue=2 c1=150° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.065  Student_1:0.057  Student_2:0.068  Student_3:0.209  Student_4:0.195  Student_1:0.031  Student_2:0.052  Student_3:0.179  Student_4:0.164  Student_2:0.038  Student_3:0.185  Student_4:0.171  Student_3:0.214  Student_4:0.199  Student_4:0.059  [self:0.025]
+  Student_0:0.062  Student_1:0.071  Student_2:0.051  Student_3:0.206  Student_4:0.201  Student_1:0.076  Student_2:0.054  Student_3:0.181  Student_4:0.172  Student_2:0.058  Student_3:0.241  Student_4:0.230  Student_3:0.191  Student_4:0.180  Student_4:0.079  [self:0.065]
   [206/288] cue=2 c1=150° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.075  Student_1:0.065  Student_2:0.081  Student_3:0.165  Student_4:0.123  Student_1:0.074  Student_2:0.033  Student_3:0.134  Student_4:0.090  Student_2:0.074  Student_3:0.190  Student_4:0.132  Student_3:0.146  Student_4:0.100  Student_4:0.095  [self:0.028]
+  Student_0:0.077  Student_1:0.059  Student_2:0.062  Student_3:0.180  Student_4:0.105  Student_1:0.040  Student_2:0.038  Student_3:0.152  Student_4:0.086  Student_2:0.028  Student_3:0.153  Student_4:0.081  Student_3:0.148  Student_4:0.080  Student_4:0.104  [self:0.048]
   [207/288] cue=2 c1=150° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.073  Student_1:0.209  Student_2:0.087  Student_3:0.316  Student_4:0.380  Student_1:0.174  Student_2:0.068  Student_3:0.362  Student_4:0.429  Student_2:0.131  Student_3:0.512  Student_4:0.579  Student_3:0.388  Student_4:0.454  Student_4:0.078  [self:0.050]
+  Student_0:0.168  Student_1:0.184  Student_2:0.084  Student_3:0.365  Student_4:0.507  Student_1:0.058  Student_2:0.095  Student_3:0.521  Student_4:0.662  Student_2:0.109  Student_3:0.545  Student_4:0.686  Student_3:0.443  Student_4:0.585  Student_4:0.148  [self:0.047]
   [208/288] cue=2 c1=150° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.334  Student_1:0.087  Student_2:0.371  Student_3:1.349  Student_4:1.259  Student_1:0.268  Student_2:0.069  Student_3:1.660  Student_4:1.573  Student_2:0.302  Student_3:1.416  Student_4:1.325  Student_3:1.715  Student_4:1.625  Student_4:0.113  [self:0.167]
+  Student_0:0.072  Student_1:0.096  Student_2:0.057  Student_3:1.491  Student_4:1.534  Student_1:0.082  Student_2:0.082  Student_3:1.460  Student_4:1.505  Student_2:0.115  Student_3:1.420  Student_4:1.462  Student_3:1.529  Student_4:1.572  Student_4:0.062  [self:0.086]
   [209/288] cue=2 c1=150° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.322  Student_1:0.464  Student_2:0.365  Student_3:0.244  Student_4:0.481  Student_1:0.415  Student_2:0.316  Student_3:0.197  Student_4:0.420  Student_2:0.119  Student_3:0.572  Student_4:0.823  Student_3:0.466  Student_4:0.717  Student_4:0.266  [self:0.044]
+  Student_0:0.285  Student_1:0.423  Student_2:0.402  Student_3:0.271  Student_4:0.452  Student_1:0.338  Student_2:0.327  Student_3:0.305  Student_4:0.382  Student_2:0.073  Student_3:0.628  Student_4:0.708  Student_3:0.605  Student_4:0.688  Student_4:0.263  [self:0.060]
   [210/288] cue=2 c1=150° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.335  Student_1:0.164  Student_2:0.094  Student_3:0.309  Student_4:0.329  Student_1:0.200  Student_2:0.268  Student_3:0.117  Student_4:0.153  Student_2:0.098  Student_3:0.186  Student_4:0.298  Student_3:0.262  Student_4:0.324  Student_4:0.240  [self:0.063]
+  Student_0:0.298  Student_1:0.073  Student_2:0.128  Student_3:0.223  Student_4:0.292  Student_1:0.284  Student_2:0.372  Student_3:0.120  Student_4:0.183  Student_2:0.115  Student_3:0.221  Student_4:0.324  Student_3:0.312  Student_4:0.311  Student_4:0.265  [self:0.080]
   [211/288] cue=2 c1=150° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.118  Student_1:0.117  Student_2:0.109  Student_3:0.292  Student_4:0.100  Student_1:0.089  Student_2:0.104  Student_3:0.202  Student_4:0.052  Student_2:0.047  Student_3:0.280  Student_4:0.109  Student_3:0.302  Student_4:0.106  Student_4:0.210  [self:0.053]
+  Student_0:0.120  Student_1:0.097  Student_2:0.109  Student_3:0.165  Student_4:0.088  Student_1:0.127  Student_2:0.130  Student_3:0.146  Student_4:0.105  Student_2:0.055  Student_3:0.227  Student_4:0.130  Student_3:0.226  Student_4:0.122  Student_4:0.116  [self:0.075]
   [212/288] cue=2 c1=150° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.104  Student_1:0.062  Student_2:0.084  Student_3:0.067  Student_4:0.050  Student_1:0.093  Student_2:0.036  Student_3:0.121  Student_4:0.074  Student_2:0.079  Student_3:0.048  Student_4:0.047  Student_3:0.106  Student_4:0.058  Student_4:0.056  [self:0.029]
+  Student_0:0.096  Student_1:0.063  Student_2:0.101  Student_3:0.137  Student_4:0.124  Student_1:0.065  Student_2:0.055  Student_3:0.124  Student_4:0.109  Student_2:0.086  Student_3:0.091  Student_4:0.093  Student_3:0.153  Student_4:0.134  Student_4:0.054  [self:0.067]
   [213/288] cue=2 c1=150° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.114  Student_1:0.132  Student_2:0.114  Student_3:0.148  Student_4:0.110  Student_1:0.048  Student_2:0.054  Student_3:0.089  Student_4:0.050  Student_2:0.050  Student_3:0.062  Student_4:0.043  Student_3:0.056  Student_4:0.032  Student_4:0.056  [self:0.056]
+  Student_0:0.060  Student_1:0.054  Student_2:0.080  Student_3:0.070  Student_4:0.059  Student_1:0.081  Student_2:0.104  Student_3:0.099  Student_4:0.082  Student_2:0.037  Student_3:0.047  Student_4:0.033  Student_3:0.041  Student_4:0.032  Student_4:0.038  [self:0.039]
   [214/288] cue=2 c1=150° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.100  Student_2:0.061  Student_3:0.275  Student_4:0.269  Student_1:0.060  Student_2:0.060  Student_3:0.264  Student_4:0.257  Student_2:0.093  Student_3:0.270  Student_4:0.274  Student_3:0.228  Student_4:0.220  Student_4:0.046  [self:0.088]
+  Student_0:0.086  Student_1:0.064  Student_2:0.083  Student_3:0.272  Student_4:0.271  Student_1:0.087  Student_2:0.152  Student_3:0.351  Student_4:0.345  Student_2:0.103  Student_3:0.296  Student_4:0.293  Student_3:0.210  Student_4:0.211  Student_4:0.040  [self:0.046]
   [215/288] cue=2 c1=150° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.045  Student_1:0.157  Student_2:0.109  Student_3:0.841  Student_4:0.886  Student_1:0.150  Student_2:0.099  Student_3:0.832  Student_4:0.878  Student_2:0.064  Student_3:0.817  Student_4:0.861  Student_3:0.828  Student_4:0.873  Student_4:0.055  [self:0.042]
+  Student_0:0.070  Student_1:0.065  Student_2:0.086  Student_3:0.890  Student_4:0.878  Student_1:0.041  Student_2:0.087  Student_3:0.852  Student_4:0.840  Student_2:0.071  Student_3:0.836  Student_4:0.825  Student_3:0.883  Student_4:0.872  Student_4:0.055  [self:0.050]
   [216/288] cue=2 c1=150° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.084  Student_1:0.166  Student_2:0.060  Student_3:0.518  Student_4:0.610  Student_1:0.092  Student_2:0.101  Student_3:0.492  Student_4:0.579  Student_2:0.174  Student_3:0.526  Student_4:0.545  Student_3:0.549  Student_4:0.642  Student_4:0.124  [self:0.066]
+  Student_0:0.066  Student_1:0.167  Student_2:0.060  Student_3:0.596  Student_4:0.649  Student_1:0.112  Student_2:0.076  Student_3:0.572  Student_4:0.626  Student_2:0.151  Student_3:0.495  Student_4:0.546  Student_3:0.612  Student_4:0.664  Student_4:0.062  [self:0.090]
   [217/288] cue=2 c1=180° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.060  Student_1:0.070  Student_2:0.077  Student_3:0.063  Student_4:0.085  Student_1:0.074  Student_2:0.076  Student_3:0.049  Student_4:0.053  Student_2:0.046  Student_3:0.045  Student_4:0.114  Student_3:0.060  Student_4:0.121  Student_4:0.085  [self:0.040]
+  Student_0:0.075  Student_1:0.092  Student_2:0.089  Student_3:0.069  Student_4:0.089  Student_1:0.037  Student_2:0.097  Student_3:0.071  Student_4:0.042  Student_2:0.113  Student_3:0.085  Student_4:0.056  Student_3:0.063  Student_4:0.108  Student_4:0.074  [self:0.049]
   [218/288] cue=2 c1=180° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.117  Student_1:0.260  Student_2:0.288  Student_3:0.119  Student_4:0.166  Student_1:0.147  Student_2:0.185  Student_3:0.153  Student_4:0.269  Student_2:0.067  Student_3:0.286  Student_4:0.408  Student_3:0.305  Student_4:0.431  Student_4:0.141  [self:0.035]
+  Student_0:0.212  Student_1:0.235  Student_2:0.400  Student_3:0.126  Student_4:0.112  Student_1:0.041  Student_2:0.202  Student_3:0.233  Student_4:0.296  Student_2:0.187  Student_3:0.243  Student_4:0.307  Student_3:0.403  Student_4:0.470  Student_4:0.075  [self:0.030]
   [219/288] cue=2 c1=180° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.150  Student_1:0.110  Student_2:0.101  Student_3:1.958  Student_4:1.989  Student_1:0.225  Student_2:0.062  Student_3:2.087  Student_4:2.117  Student_2:0.189  Student_3:1.875  Student_4:1.905  Student_3:2.048  Student_4:2.078  Student_4:0.037  [self:0.153]
+  Student_0:0.236  Student_1:0.040  Student_2:0.077  Student_3:1.952  Student_4:1.907  Student_1:0.227  Student_2:0.167  Student_3:2.171  Student_4:2.125  Student_2:0.087  Student_3:1.955  Student_4:1.909  Student_3:2.019  Student_4:1.974  Student_4:0.064  [self:0.087]
   [220/288] cue=2 c1=180° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.249  Student_1:0.095  Student_2:0.244  Student_3:1.728  Student_4:1.659  Student_1:0.307  Student_2:0.070  Student_3:1.945  Student_4:1.878  Student_2:0.311  Student_3:1.652  Student_4:1.584  Student_3:1.960  Student_4:1.891  Student_4:0.093  [self:0.085]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0219_cue2_c1180_c290.png
+  Student_0:0.124  Student_1:0.075  Student_2:0.085  Student_3:1.893  Student_4:1.915  Student_1:0.080  Student_2:0.190  Student_3:1.785  Student_4:1.806  Student_2:0.132  Student_3:1.839  Student_4:1.859  Student_3:1.959  Student_4:1.979  Student_4:0.036  [self:0.092]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0219_cue2_c1180_c290.png
   [221/288] cue=2 c1=180° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.105  Student_1:0.275  Student_2:0.070  Student_3:0.850  Student_4:0.839  Student_1:0.173  Student_2:0.096  Student_3:0.749  Student_4:0.741  Student_2:0.263  Student_3:0.581  Student_4:0.573  Student_3:0.841  Student_4:0.832  Student_4:0.064  [self:0.163]
+  Student_0:0.154  Student_1:0.118  Student_2:0.124  Student_3:0.625  Student_4:0.672  Student_1:0.247  Student_2:0.140  Student_3:0.762  Student_4:0.810  Student_2:0.195  Student_3:0.527  Student_4:0.575  Student_3:0.716  Student_4:0.763  Student_4:0.080  [self:0.051]
   [222/288] cue=2 c1=180° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.102  Student_1:0.080  Student_2:0.056  Student_3:0.267  Student_4:0.199  Student_1:0.147  Student_2:0.124  Student_3:0.171  Student_4:0.109  Student_2:0.066  Student_3:0.308  Student_4:0.245  Student_3:0.286  Student_4:0.218  Student_4:0.071  [self:0.087]
+  Student_0:0.111  Student_1:0.077  Student_2:0.059  Student_3:0.284  Student_4:0.234  Student_1:0.106  Student_2:0.128  Student_3:0.187  Student_4:0.155  Student_2:0.088  Student_3:0.243  Student_4:0.199  Student_3:0.297  Student_4:0.246  Student_4:0.074  [self:0.051]
   [223/288] cue=2 c1=180° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.213  Student_1:0.097  Student_2:0.151  Student_3:0.267  Student_4:0.132  Student_1:0.267  Student_2:0.072  Student_3:0.071  Student_4:0.096  Student_2:0.200  Student_3:0.319  Student_4:0.187  Student_3:0.123  Student_4:0.054  Student_4:0.159  [self:0.047]
+  Student_0:0.204  Student_1:0.120  Student_2:0.144  Student_3:0.294  Student_4:0.128  Student_1:0.255  Student_2:0.080  Student_3:0.120  Student_4:0.096  Student_2:0.183  Student_3:0.326  Student_4:0.194  Student_3:0.161  Student_4:0.062  Student_4:0.197  [self:0.038]
   [224/288] cue=2 c1=180° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.126  Student_1:0.093  Student_2:0.139  Student_3:0.114  Student_4:0.082  Student_1:0.126  Student_2:0.100  Student_3:0.061  Student_4:0.143  Student_2:0.087  Student_3:0.133  Student_4:0.140  Student_3:0.140  Student_4:0.192  Student_4:0.095  [self:0.036]
+  Student_0:0.096  Student_1:0.100  Student_2:0.108  Student_3:0.086  Student_4:0.080  Student_1:0.123  Student_2:0.075  Student_3:0.049  Student_4:0.137  Student_2:0.072  Student_3:0.124  Student_4:0.137  Student_3:0.098  Student_4:0.159  Student_4:0.097  [self:0.058]
   [225/288] cue=2 c1=180° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.075  Student_1:0.042  Student_2:0.083  Student_3:0.228  Student_4:0.232  Student_1:0.054  Student_2:0.055  Student_3:0.207  Student_4:0.214  Student_2:0.061  Student_3:0.227  Student_4:0.231  Student_3:0.254  Student_4:0.259  Student_4:0.031  [self:0.056]
+  Student_0:0.083  Student_1:0.054  Student_2:0.064  Student_3:0.200  Student_4:0.113  Student_1:0.056  Student_2:0.036  Student_3:0.247  Student_4:0.159  Student_2:0.041  Student_3:0.214  Student_4:0.125  Student_3:0.219  Student_4:0.130  Student_4:0.098  [self:0.035]
   [226/288] cue=2 c1=180° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.081  Student_1:0.123  Student_2:0.083  Student_3:0.449  Student_4:0.413  Student_1:0.096  Student_2:0.095  Student_3:0.480  Student_4:0.433  Student_2:0.154  Student_3:0.417  Student_4:0.388  Student_3:0.491  Student_4:0.435  Student_4:0.082  [self:0.027]
+  Student_0:0.084  Student_1:0.073  Student_2:0.043  Student_3:0.474  Student_4:0.414  Student_1:0.058  Student_2:0.060  Student_3:0.503  Student_4:0.438  Student_2:0.054  Student_3:0.457  Student_4:0.397  Student_3:0.465  Student_4:0.399  Student_4:0.073  [self:0.045]
   [227/288] cue=2 c1=180° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.112  Student_1:0.114  Student_2:0.073  Student_3:1.244  Student_4:1.235  Student_1:0.035  Student_2:0.059  Student_3:1.192  Student_4:1.183  Student_2:0.065  Student_3:1.182  Student_4:1.173  Student_3:1.228  Student_4:1.219  Student_4:0.050  [self:0.033]
+  Student_0:0.121  Student_1:0.080  Student_2:0.073  Student_3:1.233  Student_4:1.272  Student_1:0.074  Student_2:0.084  Student_3:1.184  Student_4:1.224  Student_2:0.064  Student_3:1.189  Student_4:1.229  Student_3:1.243  Student_4:1.282  Student_4:0.047  [self:0.038]
   [228/288] cue=2 c1=180° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.061  Student_1:0.042  Student_2:0.094  Student_3:0.377  Student_4:0.399  Student_1:0.046  Student_2:0.105  Student_3:0.403  Student_4:0.424  Student_2:0.090  Student_3:0.377  Student_4:0.398  Student_3:0.393  Student_4:0.414  Student_4:0.041  [self:0.068]
+  Student_0:0.063  Student_1:0.080  Student_2:0.066  Student_3:0.492  Student_4:0.412  Student_1:0.073  Student_2:0.070  Student_3:0.463  Student_4:0.379  Student_2:0.059  Student_3:0.425  Student_4:0.343  Student_3:0.469  Student_4:0.387  Student_4:0.131  [self:0.032]
   [229/288] cue=2 c1=210° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.092  Student_1:0.083  Student_2:0.090  Student_3:0.074  Student_4:0.068  Student_1:0.085  Student_2:0.058  Student_3:0.059  Student_4:0.122  Student_2:0.093  Student_3:0.108  Student_4:0.102  Student_3:0.054  Student_4:0.122  Student_4:0.110  [self:0.068]
+  Student_0:0.179  Student_1:0.105  Student_2:0.064  Student_3:0.090  Student_4:0.045  Student_1:0.186  Student_2:0.142  Student_3:0.114  Student_4:0.169  Student_2:0.100  Student_3:0.152  Student_4:0.086  Student_3:0.066  Student_4:0.053  Student_4:0.087  [self:0.068]
   [230/288] cue=2 c1=210° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.099  Student_1:0.144  Student_2:0.254  Student_3:1.389  Student_4:1.305  Student_1:0.066  Student_2:0.180  Student_3:1.448  Student_4:1.363  Student_2:0.132  Student_3:1.498  Student_4:1.414  Student_3:1.623  Student_4:1.540  Student_4:0.092  [self:0.081]
+  Student_0:0.174  Student_1:0.134  Student_2:0.293  Student_3:1.301  Student_4:1.400  Student_1:0.063  Student_2:0.143  Student_3:1.441  Student_4:1.538  Student_2:0.193  Student_3:1.397  Student_4:1.495  Student_3:1.571  Student_4:1.672  Student_4:0.120  [self:0.130]
   [231/288] cue=2 c1=210° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.110  Student_1:0.129  Student_2:0.196  Student_3:2.676  Student_4:2.551  Student_1:0.055  Student_2:0.116  Student_3:2.756  Student_4:2.632  Student_2:0.074  Student_3:2.791  Student_4:2.666  Student_3:2.856  Student_4:2.731  Student_4:0.129  [self:0.035]
+  Student_0:0.138  Student_1:0.101  Student_2:0.278  Student_3:2.587  Student_4:2.661  Student_1:0.047  Student_2:0.170  Student_3:2.675  Student_4:2.749  Student_2:0.185  Student_3:2.657  Student_4:2.732  Student_3:2.832  Student_4:2.907  Student_4:0.086  [self:0.022]
   [232/288] cue=2 c1=210° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.103  Student_1:0.098  Student_2:0.081  Student_3:1.704  Student_4:1.788  Student_1:0.060  Student_2:0.105  Student_3:1.775  Student_4:1.858  Student_2:0.076  Student_3:1.778  Student_4:1.861  Student_3:1.747  Student_4:1.830  Student_4:0.097  [self:0.042]
+  Student_0:0.052  Student_1:0.086  Student_2:0.074  Student_3:1.672  Student_4:1.709  Student_1:0.072  Student_2:0.080  Student_3:1.643  Student_4:1.681  Student_2:0.115  Student_3:1.616  Student_4:1.652  Student_3:1.717  Student_4:1.754  Student_4:0.051  [self:0.051]
   [233/288] cue=2 c1=210° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.059  Student_1:0.104  Student_2:0.074  Student_3:0.686  Student_4:0.736  Student_1:0.092  Student_2:0.038  Student_3:0.700  Student_4:0.750  Student_2:0.081  Student_3:0.780  Student_4:0.830  Student_3:0.710  Student_4:0.760  Student_4:0.060  [self:0.064]
+  Student_0:0.063  Student_1:0.135  Student_2:0.193  Student_3:0.592  Student_4:0.581  Student_1:0.111  Student_2:0.173  Student_3:0.614  Student_4:0.602  Student_2:0.079  Student_3:0.712  Student_4:0.700  Student_3:0.780  Student_4:0.770  Student_4:0.068  [self:0.099]
   [234/288] cue=2 c1=210° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.059  Student_1:0.105  Student_2:0.059  Student_3:0.121  Student_4:0.095  Student_1:0.115  Student_2:0.086  Student_3:0.102  Student_4:0.062  Student_2:0.070  Student_3:0.114  Student_4:0.114  Student_3:0.140  Student_4:0.118  Student_4:0.051  [self:0.050]
+  Student_0:0.050  Student_1:0.098  Student_2:0.052  Student_3:0.055  Student_4:0.073  Student_1:0.081  Student_2:0.033  Student_3:0.049  Student_4:0.065  Student_2:0.069  Student_3:0.070  Student_4:0.076  Student_3:0.039  Student_4:0.059  Student_4:0.034  [self:0.042]
   [235/288] cue=2 c1=210° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.096  Student_1:0.073  Student_2:0.104  Student_3:0.077  Student_4:0.045  Student_1:0.139  Student_2:0.052  Student_3:0.039  Student_4:0.106  Student_2:0.134  Student_3:0.123  Student_4:0.062  Student_3:0.068  Student_4:0.114  Student_4:0.086  [self:0.037]
+  Student_0:0.095  Student_1:0.107  Student_2:0.098  Student_3:0.087  Student_4:0.059  Student_1:0.116  Student_2:0.035  Student_3:0.034  Student_4:0.142  Student_2:0.106  Student_3:0.113  Student_4:0.129  Student_3:0.031  Student_4:0.147  Student_4:0.131  [self:0.036]
   [236/288] cue=2 c1=210° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.119  Student_1:0.166  Student_2:0.153  Student_3:0.396  Student_4:0.417  Student_1:0.062  Student_2:0.073  Student_3:0.302  Student_4:0.336  Student_2:0.103  Student_3:0.249  Student_4:0.286  Student_3:0.336  Student_4:0.377  Student_4:0.081  [self:0.033]
+  Student_0:0.134  Student_1:0.186  Student_2:0.168  Student_3:0.439  Student_4:0.449  Student_1:0.087  Student_2:0.060  Student_3:0.335  Student_4:0.362  Student_2:0.107  Student_3:0.258  Student_4:0.283  Student_3:0.333  Student_4:0.363  Student_4:0.086  [self:0.033]
   [237/288] cue=2 c1=210° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.034  Student_1:0.066  Student_2:0.146  Student_3:0.581  Student_4:0.586  Student_1:0.078  Student_2:0.126  Student_3:0.596  Student_4:0.600  Student_2:0.165  Student_3:0.528  Student_4:0.534  Student_3:0.594  Student_4:0.597  Student_4:0.039  [self:0.048]
+  Student_0:0.035  Student_1:0.058  Student_2:0.113  Student_3:0.624  Student_4:0.592  Student_1:0.049  Student_2:0.107  Student_3:0.614  Student_4:0.581  Student_2:0.113  Student_3:0.580  Student_4:0.549  Student_3:0.625  Student_4:0.590  Student_4:0.081  [self:0.025]
   [238/288] cue=2 c1=210° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.109  Student_1:0.066  Student_2:0.081  Student_3:0.442  Student_4:0.436  Student_1:0.051  Student_2:0.058  Student_3:0.514  Student_4:0.507  Student_2:0.039  Student_3:0.500  Student_4:0.494  Student_3:0.507  Student_4:0.502  Student_4:0.029  [self:0.026]
+  Student_0:0.108  Student_1:0.073  Student_2:0.078  Student_3:0.470  Student_4:0.452  Student_1:0.048  Student_2:0.061  Student_3:0.514  Student_4:0.493  Student_2:0.037  Student_3:0.502  Student_4:0.483  Student_3:0.518  Student_4:0.500  Student_4:0.038  [self:0.035]
   [239/288] cue=2 c1=210° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.062  Student_1:0.055  Student_2:0.073  Student_3:0.584  Student_4:0.527  Student_1:0.036  Student_2:0.069  Student_3:0.584  Student_4:0.512  Student_2:0.088  Student_3:0.573  Student_4:0.508  Student_3:0.638  Student_4:0.566  Student_4:0.088  [self:0.023]
+  Student_0:0.084  Student_1:0.056  Student_2:0.055  Student_3:0.568  Student_4:0.523  Student_1:0.066  Student_2:0.058  Student_3:0.593  Student_4:0.532  Student_2:0.077  Student_3:0.548  Student_4:0.500  Student_3:0.604  Student_4:0.550  Student_4:0.071  [self:0.018]
   [240/288] cue=2 c1=210° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.068  Student_1:0.078  Student_2:0.049  Student_3:0.297  Student_4:0.304  Student_1:0.084  Student_2:0.088  Student_3:0.262  Student_4:0.270  Student_2:0.111  Student_3:0.246  Student_4:0.249  Student_3:0.321  Student_4:0.330  Student_4:0.044  [self:0.040]
+  Student_0:0.057  Student_1:0.114  Student_2:0.060  Student_3:0.302  Student_4:0.255  Student_1:0.109  Student_2:0.086  Student_3:0.282  Student_4:0.228  Student_2:0.121  Student_3:0.224  Student_4:0.196  Student_3:0.319  Student_4:0.273  Student_4:0.082  [self:0.032]
   [241/288] cue=2 c1=240° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.085  Student_1:0.064  Student_2:0.078  Student_3:0.118  Student_4:0.133  Student_1:0.091  Student_2:0.115  Student_3:0.047  Student_4:0.071  Student_2:0.068  Student_3:0.129  Student_4:0.148  Student_3:0.152  Student_4:0.182  Student_4:0.038  [self:0.032]
+  Student_0:0.079  Student_1:0.074  Student_2:0.120  Student_3:0.037  Student_4:0.079  Student_1:0.041  Student_2:0.164  Student_3:0.072  Student_4:0.063  Student_2:0.148  Student_3:0.074  Student_4:0.067  Student_3:0.127  Student_4:0.185  Student_4:0.063  [self:0.025]
   [242/288] cue=2 c1=240° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.063  Student_1:0.049  Student_2:0.229  Student_3:0.959  Student_4:1.191  Student_1:0.054  Student_2:0.202  Student_3:0.980  Student_4:1.215  Student_2:0.225  Student_3:0.955  Student_4:1.191  Student_3:1.161  Student_4:1.396  Student_4:0.236  [self:0.115]
+  Student_0:0.096  Student_1:0.112  Student_2:0.090  Student_3:0.969  Student_4:0.994  Student_1:0.036  Student_2:0.164  Student_3:0.892  Student_4:0.916  Student_2:0.186  Student_3:0.874  Student_4:0.899  Student_3:1.030  Student_4:1.053  Student_4:0.032  [self:0.160]
   [243/288] cue=2 c1=240° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.089  Student_1:0.316  Student_2:0.086  Student_3:2.451  Student_4:2.352  Student_1:0.245  Student_2:0.025  Student_3:2.384  Student_4:2.285  Student_2:0.253  Student_3:2.147  Student_4:2.048  Student_3:2.390  Student_4:2.292  Student_4:0.107  [self:0.062]
+  Student_0:0.096  Student_1:0.377  Student_2:0.078  Student_3:2.261  Student_4:2.339  Student_1:0.307  Student_2:0.136  Student_3:2.188  Student_4:2.267  Student_2:0.437  Student_3:1.891  Student_4:1.969  Student_3:2.322  Student_4:2.400  Student_4:0.080  [self:0.065]
   [244/288] cue=2 c1=240° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.136  Student_1:0.107  Student_2:0.145  Student_3:1.211  Student_4:1.355  Student_1:0.095  Student_2:0.082  Student_3:1.315  Student_4:1.459  Student_2:0.073  Student_3:1.304  Student_4:1.449  Student_3:1.339  Student_4:1.483  Student_4:0.148  [self:0.062]
+  Student_0:0.223  Student_1:0.135  Student_2:0.307  Student_3:1.120  Student_4:1.286  Student_1:0.140  Student_2:0.116  Student_3:1.317  Student_4:1.483  Student_2:0.194  Student_3:1.241  Student_4:1.407  Student_3:1.415  Student_4:1.581  Student_4:0.170  [self:0.047]
   [245/288] cue=2 c1=240° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.101  Student_1:0.079  Student_2:0.056  Student_3:0.307  Student_4:0.215  Student_1:0.100  Student_2:0.078  Student_3:0.328  Student_4:0.248  Student_2:0.060  Student_3:0.346  Student_4:0.260  Student_3:0.323  Student_4:0.232  Student_4:0.096  [self:0.041]
+  Student_0:0.073  Student_1:0.066  Student_2:0.087  Student_3:0.336  Student_4:0.220  Student_1:0.096  Student_2:0.136  Student_3:0.282  Student_4:0.170  Student_2:0.094  Student_3:0.327  Student_4:0.220  Student_3:0.410  Student_4:0.297  Student_4:0.119  [self:0.119]
   [246/288] cue=2 c1=240° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.050  Student_1:0.090  Student_2:0.079  Student_3:0.102  Student_4:0.066  Student_1:0.086  Student_2:0.068  Student_3:0.097  Student_4:0.064  Student_2:0.043  Student_3:0.031  Student_4:0.055  Student_3:0.044  Student_4:0.029  Student_4:0.059  [self:0.055]
+  Student_0:0.048  Student_1:0.095  Student_2:0.039  Student_3:0.073  Student_4:0.082  Student_1:0.103  Student_2:0.040  Student_3:0.078  Student_4:0.088  Student_2:0.096  Student_3:0.051  Student_4:0.055  Student_3:0.065  Student_4:0.086  Student_4:0.064  [self:0.057]
   [247/288] cue=2 c1=240° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.050  Student_1:0.050  Student_2:0.064  Student_3:0.102  Student_4:0.135  Student_1:0.048  Student_2:0.031  Student_3:0.113  Student_4:0.140  Student_2:0.049  Student_3:0.097  Student_4:0.126  Student_3:0.123  Student_4:0.147  Student_4:0.045  [self:0.067]
+  Student_0:0.053  Student_1:0.058  Student_2:0.081  Student_3:0.133  Student_4:0.116  Student_1:0.046  Student_2:0.085  Student_3:0.098  Student_4:0.078  Student_2:0.065  Student_3:0.125  Student_4:0.102  Student_3:0.177  Student_4:0.140  Student_4:0.067  [self:0.063]
   [248/288] cue=2 c1=240° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.045  Student_1:0.120  Student_2:0.136  Student_3:0.507  Student_4:0.522  Student_1:0.138  Student_2:0.110  Student_3:0.536  Student_4:0.547  Student_2:0.143  Student_3:0.418  Student_4:0.433  Student_3:0.549  Student_4:0.563  Student_4:0.059  [self:0.033]
-Saved plot: results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0247_cue2_c1240_c2210.png
+  Student_0:0.043  Student_1:0.113  Student_2:0.137  Student_3:0.545  Student_4:0.507  Student_1:0.121  Student_2:0.108  Student_3:0.577  Student_4:0.536  Student_2:0.158  Student_3:0.467  Student_4:0.428  Student_3:0.615  Student_4:0.576  Student_4:0.063  [self:0.025]
+Saved plot: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sweep_plots/trial0247_cue2_c1240_c2210.png
   [249/288] cue=2 c1=240° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.182  Student_1:0.163  Student_2:0.164  Student_3:0.367  Student_4:0.413  Student_1:0.081  Student_2:0.051  Student_3:0.528  Student_4:0.575  Student_2:0.036  Student_3:0.528  Student_4:0.573  Student_3:0.525  Student_4:0.571  Student_4:0.069  [self:0.040]
+  Student_0:0.167  Student_1:0.143  Student_2:0.137  Student_3:0.403  Student_4:0.442  Student_1:0.076  Student_2:0.053  Student_3:0.552  Student_4:0.593  Student_2:0.031  Student_3:0.545  Student_4:0.584  Student_3:0.533  Student_4:0.573  Student_4:0.063  [self:0.032]
   [250/288] cue=2 c1=240° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.101  Student_1:0.154  Student_2:0.131  Student_3:0.301  Student_4:0.324  Student_1:0.087  Student_2:0.043  Student_3:0.383  Student_4:0.405  Student_2:0.052  Student_3:0.451  Student_4:0.474  Student_3:0.423  Student_4:0.444  Student_4:0.028  [self:0.020]
+  Student_0:0.081  Student_1:0.130  Student_2:0.113  Student_3:0.329  Student_4:0.313  Student_1:0.075  Student_2:0.045  Student_3:0.390  Student_4:0.373  Student_2:0.036  Student_3:0.454  Student_4:0.437  Student_3:0.430  Student_4:0.413  Student_4:0.024  [self:0.016]
   [251/288] cue=2 c1=240° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.061  Student_1:0.048  Student_2:0.081  Student_3:0.298  Student_4:0.248  Student_1:0.022  Student_2:0.043  Student_3:0.303  Student_4:0.256  Student_2:0.048  Student_3:0.304  Student_4:0.254  Student_3:0.333  Student_4:0.288  Student_4:0.067  [self:0.022]
+  Student_0:0.043  Student_1:0.034  Student_2:0.061  Student_3:0.310  Student_4:0.251  Student_1:0.030  Student_2:0.049  Student_3:0.296  Student_4:0.236  Student_2:0.047  Student_3:0.311  Student_4:0.252  Student_3:0.329  Student_4:0.271  Student_4:0.068  [self:0.023]
   [252/288] cue=2 c1=240° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.070  Student_1:0.081  Student_2:0.087  Student_3:0.249  Student_4:0.301  Student_1:0.086  Student_2:0.073  Student_3:0.239  Student_4:0.293  Student_2:0.113  Student_3:0.180  Student_4:0.233  Student_3:0.264  Student_4:0.320  Student_4:0.067  [self:0.067]
+  Student_0:0.064  Student_1:0.125  Student_2:0.092  Student_3:0.236  Student_4:0.283  Student_1:0.074  Student_2:0.086  Student_3:0.185  Student_4:0.229  Student_2:0.123  Student_3:0.122  Student_4:0.169  Student_3:0.217  Student_4:0.272  Student_4:0.080  [self:0.039]
   [253/288] cue=2 c1=270° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.100  Student_1:0.077  Student_2:0.118  Student_3:0.218  Student_4:0.066  Student_1:0.043  Student_2:0.046  Student_3:0.132  Student_4:0.051  Student_2:0.060  Student_3:0.149  Student_4:0.034  Student_3:0.161  Student_4:0.077  Student_4:0.168  [self:0.077]
+  Student_0:0.064  Student_1:0.083  Student_2:0.090  Student_3:0.092  Student_4:0.096  Student_1:0.045  Student_2:0.045  Student_3:0.041  Student_4:0.048  Student_2:0.058  Student_3:0.040  Student_4:0.055  Student_3:0.065  Student_4:0.070  Student_4:0.039  [self:0.024]
   [254/288] cue=2 c1=270° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.106  Student_1:0.125  Student_2:0.059  Student_3:0.270  Student_4:0.291  Student_1:0.037  Student_2:0.056  Student_3:0.187  Student_4:0.207  Student_2:0.085  Student_3:0.159  Student_4:0.178  Student_3:0.235  Student_4:0.258  Student_4:0.031  [self:0.125]
+  Student_0:0.232  Student_1:0.252  Student_2:0.044  Student_3:0.230  Student_4:0.322  Student_1:0.045  Student_2:0.217  Student_3:0.029  Student_4:0.099  Student_2:0.241  Student_3:0.064  Student_4:0.078  Student_3:0.216  Student_4:0.311  Student_4:0.102  [self:0.048]
   [255/288] cue=2 c1=270° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.106  Student_1:0.151  Student_2:0.073  Student_3:1.053  Student_4:0.951  Student_1:0.075  Student_2:0.047  Student_3:0.969  Student_4:0.865  Student_2:0.105  Student_3:0.913  Student_4:0.809  Student_3:1.008  Student_4:0.904  Student_4:0.109  [self:0.105]
+  Student_0:0.074  Student_1:0.076  Student_2:0.103  Student_3:0.833  Student_4:0.759  Student_1:0.035  Student_2:0.052  Student_3:0.878  Student_4:0.798  Student_2:0.038  Student_3:0.894  Student_4:0.815  Student_3:0.920  Student_4:0.840  Student_4:0.088  [self:0.119]
   [256/288] cue=2 c1=270° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.069  Student_1:0.068  Student_2:0.223  Student_3:0.385  Student_4:0.267  Student_1:0.063  Student_2:0.223  Student_3:0.379  Student_4:0.257  Student_2:0.178  Student_3:0.430  Student_4:0.305  Student_3:0.595  Student_4:0.461  Student_4:0.145  [self:0.049]
+  Student_0:0.086  Student_1:0.182  Student_2:0.312  Student_3:0.233  Student_4:0.312  Student_1:0.134  Student_2:0.251  Student_3:0.292  Student_4:0.368  Student_2:0.157  Student_3:0.407  Student_4:0.483  Student_3:0.537  Student_4:0.611  Student_4:0.085  [self:0.037]
   [257/288] cue=2 c1=270° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.097  Student_1:0.067  Student_2:0.073  Student_3:0.080  Student_4:0.071  Student_1:0.091  Student_2:0.066  Student_3:0.059  Student_4:0.069  Student_2:0.066  Student_3:0.088  Student_4:0.092  Student_3:0.047  Student_4:0.056  Student_4:0.047  [self:0.065]
+  Student_0:0.114  Student_1:0.073  Student_2:0.062  Student_3:0.100  Student_4:0.070  Student_1:0.117  Student_2:0.074  Student_3:0.056  Student_4:0.162  Student_2:0.061  Student_3:0.120  Student_4:0.128  Student_3:0.082  Student_4:0.112  Student_4:0.118  [self:0.040]
   [258/288] cue=2 c1=270° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.063  Student_1:0.069  Student_2:0.092  Student_3:0.117  Student_4:0.118  Student_1:0.065  Student_2:0.104  Student_3:0.128  Student_4:0.118  Student_2:0.128  Student_3:0.124  Student_4:0.085  Student_3:0.080  Student_4:0.138  Student_4:0.092  [self:0.042]
+  Student_0:0.107  Student_1:0.090  Student_2:0.088  Student_3:0.108  Student_4:0.124  Student_1:0.070  Student_2:0.167  Student_3:0.109  Student_4:0.144  Student_2:0.148  Student_3:0.069  Student_4:0.105  Student_3:0.121  Student_4:0.112  Student_4:0.059  [self:0.053]
   [259/288] cue=2 c1=270° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.106  Student_1:0.092  Student_2:0.110  Student_3:0.460  Student_4:0.375  Student_1:0.175  Student_2:0.194  Student_3:0.536  Student_4:0.430  Student_2:0.063  Student_3:0.383  Student_4:0.304  Student_3:0.412  Student_4:0.338  Student_4:0.153  [self:0.102]
+  Student_0:0.126  Student_1:0.066  Student_2:0.118  Student_3:0.346  Student_4:0.370  Student_1:0.125  Student_2:0.114  Student_3:0.441  Student_4:0.453  Student_2:0.090  Student_3:0.335  Student_4:0.356  Student_3:0.403  Student_4:0.429  Student_4:0.094  [self:0.036]
   [260/288] cue=2 c1=270° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.073  Student_1:0.113  Student_2:0.073  Student_3:0.643  Student_4:0.685  Student_1:0.109  Student_2:0.060  Student_3:0.693  Student_4:0.731  Student_2:0.121  Student_3:0.616  Student_4:0.644  Student_3:0.700  Student_4:0.730  Student_4:0.072  [self:0.037]
+  Student_0:0.066  Student_1:0.132  Student_2:0.091  Student_3:0.648  Student_4:0.684  Student_1:0.101  Student_2:0.084  Student_3:0.666  Student_4:0.702  Student_2:0.122  Student_3:0.607  Student_4:0.641  Student_3:0.695  Student_4:0.734  Student_4:0.053  [self:0.041]
   [261/288] cue=2 c1=270° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.081  Student_1:0.039  Student_2:0.043  Student_3:0.464  Student_4:0.484  Student_1:0.089  Student_2:0.053  Student_3:0.467  Student_4:0.486  Student_2:0.044  Student_3:0.484  Student_4:0.510  Student_3:0.488  Student_4:0.508  Student_4:0.030  [self:0.021]
+  Student_0:0.076  Student_1:0.030  Student_2:0.040  Student_3:0.472  Student_4:0.486  Student_1:0.096  Student_2:0.047  Student_3:0.469  Student_4:0.478  Student_2:0.060  Student_3:0.484  Student_4:0.499  Student_3:0.485  Student_4:0.497  Student_4:0.032  [self:0.021]
   [262/288] cue=2 c1=270° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.081  Student_1:0.068  Student_2:0.135  Student_3:0.274  Student_4:0.298  Student_1:0.073  Student_2:0.077  Student_3:0.339  Student_4:0.360  Student_2:0.091  Student_3:0.328  Student_4:0.352  Student_3:0.407  Student_4:0.430  Student_4:0.037  [self:0.020]
+  Student_0:0.067  Student_1:0.059  Student_2:0.129  Student_3:0.283  Student_4:0.313  Student_1:0.065  Student_2:0.082  Student_3:0.326  Student_4:0.356  Student_2:0.087  Student_3:0.335  Student_4:0.366  Student_3:0.405  Student_4:0.436  Student_4:0.033  [self:0.019]
   [263/288] cue=2 c1=270° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.055  Student_1:0.069  Student_2:0.066  Student_3:0.261  Student_4:0.253  Student_1:0.032  Student_2:0.049  Student_3:0.241  Student_4:0.230  Student_2:0.064  Student_3:0.223  Student_4:0.212  Student_3:0.268  Student_4:0.261  Student_4:0.039  [self:0.029]
+  Student_0:0.062  Student_1:0.074  Student_2:0.043  Student_3:0.266  Student_4:0.261  Student_1:0.043  Student_2:0.065  Student_3:0.224  Student_4:0.214  Student_2:0.056  Student_3:0.248  Student_4:0.237  Student_3:0.265  Student_4:0.264  Student_4:0.044  [self:0.024]
   [264/288] cue=2 c1=270° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.129  Student_2:0.082  Student_3:0.199  Student_4:0.219  Student_1:0.109  Student_2:0.104  Student_3:0.174  Student_4:0.198  Student_2:0.135  Student_3:0.103  Student_4:0.107  Student_3:0.214  Student_4:0.225  Student_4:0.054  [self:0.033]
+  Student_0:0.152  Student_1:0.144  Student_2:0.184  Student_3:0.275  Student_4:0.329  Student_1:0.084  Student_2:0.087  Student_3:0.157  Student_4:0.207  Student_2:0.159  Student_3:0.142  Student_4:0.196  Student_3:0.210  Student_4:0.247  Student_4:0.074  [self:0.079]
   [265/288] cue=2 c1=300° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.071  Student_1:0.131  Student_2:0.066  Student_3:0.142  Student_4:0.127  Student_1:0.068  Student_2:0.036  Student_3:0.137  Student_4:0.085  Student_2:0.097  Student_3:0.165  Student_4:0.110  Student_3:0.150  Student_4:0.102  Student_4:0.064  [self:0.041]
+  Student_0:0.067  Student_1:0.121  Student_2:0.121  Student_3:0.218  Student_4:0.201  Student_1:0.068  Student_2:0.080  Student_3:0.166  Student_4:0.146  Student_2:0.045  Student_3:0.112  Student_4:0.088  Student_3:0.144  Student_4:0.112  Student_4:0.079  [self:0.052]
   [266/288] cue=2 c1=300° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.078  Student_1:0.170  Student_2:0.077  Student_3:0.134  Student_4:0.161  Student_1:0.107  Student_2:0.024  Student_3:0.154  Student_4:0.185  Student_2:0.111  Student_3:0.244  Student_4:0.281  Student_3:0.155  Student_4:0.191  Student_4:0.066  [self:0.058]
+  Student_0:0.061  Student_1:0.048  Student_2:0.061  Student_3:0.173  Student_4:0.123  Student_1:0.072  Student_2:0.034  Student_3:0.125  Student_4:0.082  Student_2:0.067  Student_3:0.176  Student_4:0.139  Student_3:0.128  Student_4:0.097  Student_4:0.056  [self:0.047]
   [267/288] cue=2 c1=300° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.078  Student_1:0.178  Student_2:0.130  Student_3:0.067  Student_4:0.085  Student_1:0.110  Student_2:0.177  Student_3:0.038  Student_4:0.033  Student_2:0.281  Student_3:0.134  Student_4:0.114  Student_3:0.166  Student_4:0.182  Student_4:0.038  [self:0.082]
+  Student_0:0.050  Student_1:0.081  Student_2:0.149  Student_3:0.085  Student_4:0.044  Student_1:0.096  Student_2:0.163  Student_3:0.100  Student_4:0.065  Student_2:0.086  Student_3:0.037  Student_4:0.056  Student_3:0.099  Student_4:0.129  Student_4:0.052  [self:0.023]
   [268/288] cue=2 c1=300° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.098  Student_1:0.095  Student_2:0.094  Student_3:0.060  Student_4:0.081  Student_1:0.115  Student_2:0.119  Student_3:0.076  Student_4:0.127  Student_2:0.043  Student_3:0.122  Student_4:0.149  Student_3:0.108  Student_4:0.131  Student_4:0.067  [self:0.037]
+  Student_0:0.043  Student_1:0.079  Student_2:0.112  Student_3:0.092  Student_4:0.079  Student_1:0.072  Student_2:0.115  Student_3:0.102  Student_4:0.094  Student_2:0.142  Student_3:0.148  Student_4:0.132  Student_3:0.136  Student_4:0.134  Student_4:0.048  [self:0.029]
   [269/288] cue=2 c1=300° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.037  Student_1:0.098  Student_2:0.123  Student_3:0.117  Student_4:0.131  Student_1:0.120  Student_2:0.144  Student_3:0.144  Student_4:0.157  Student_2:0.109  Student_3:0.131  Student_4:0.161  Student_3:0.096  Student_4:0.113  Student_4:0.041  [self:0.035]
+  Student_0:0.037  Student_1:0.095  Student_2:0.058  Student_3:0.108  Student_4:0.132  Student_1:0.114  Student_2:0.081  Student_3:0.120  Student_4:0.129  Student_2:0.080  Student_3:0.121  Student_4:0.139  Student_3:0.115  Student_4:0.124  Student_4:0.058  [self:0.057]
   [270/288] cue=2 c1=300° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.123  Student_1:0.121  Student_2:0.156  Student_3:0.485  Student_4:0.575  Student_1:0.070  Student_2:0.102  Student_3:0.411  Student_4:0.505  Student_2:0.068  Student_3:0.432  Student_4:0.524  Student_3:0.417  Student_4:0.513  Student_4:0.108  [self:0.069]
+  Student_0:0.127  Student_1:0.068  Student_2:0.072  Student_3:0.473  Student_4:0.540  Student_1:0.116  Student_2:0.118  Student_3:0.418  Student_4:0.494  Student_2:0.047  Student_3:0.456  Student_4:0.522  Student_3:0.479  Student_4:0.545  Student_4:0.141  [self:0.079]
   [271/288] cue=2 c1=300° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.141  Student_1:0.148  Student_2:0.070  Student_3:0.832  Student_4:0.881  Student_1:0.058  Student_2:0.117  Student_3:0.765  Student_4:0.813  Student_2:0.119  Student_3:0.733  Student_4:0.782  Student_3:0.803  Student_4:0.853  Student_4:0.062  [self:0.038]
+  Student_0:0.068  Student_1:0.103  Student_2:0.072  Student_3:0.739  Student_4:0.884  Student_1:0.071  Student_2:0.083  Student_3:0.714  Student_4:0.854  Student_2:0.086  Student_3:0.656  Student_4:0.798  Student_3:0.722  Student_4:0.861  Student_4:0.161  [self:0.051]
   [272/288] cue=2 c1=300° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.044  Student_1:0.100  Student_2:0.089  Student_3:0.562  Student_4:0.520  Student_1:0.091  Student_2:0.089  Student_3:0.569  Student_4:0.528  Student_2:0.059  Student_3:0.589  Student_4:0.565  Student_3:0.565  Student_4:0.547  Student_4:0.087  [self:0.069]
+  Student_0:0.042  Student_1:0.084  Student_2:0.052  Student_3:0.553  Student_4:0.534  Student_1:0.073  Student_2:0.073  Student_3:0.548  Student_4:0.533  Student_2:0.077  Student_3:0.561  Student_4:0.565  Student_3:0.574  Student_4:0.559  Student_4:0.069  [self:0.047]
   [273/288] cue=2 c1=300° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.040  Student_1:0.048  Student_2:0.043  Student_3:0.534  Student_4:0.515  Student_1:0.047  Student_2:0.046  Student_3:0.533  Student_4:0.509  Student_2:0.035  Student_3:0.536  Student_4:0.512  Student_3:0.553  Student_4:0.530  Student_4:0.040  [self:0.031]
+  Student_0:0.038  Student_1:0.048  Student_2:0.044  Student_3:0.543  Student_4:0.486  Student_1:0.066  Student_2:0.057  Student_3:0.565  Student_4:0.504  Student_2:0.039  Student_3:0.526  Student_4:0.469  Student_3:0.560  Student_4:0.501  Student_4:0.072  [self:0.026]
   [274/288] cue=2 c1=300° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.050  Student_1:0.051  Student_2:0.080  Student_3:0.327  Student_4:0.298  Student_1:0.026  Student_2:0.043  Student_3:0.360  Student_4:0.332  Student_2:0.051  Student_3:0.347  Student_4:0.323  Student_3:0.392  Student_4:0.367  Student_4:0.069  [self:0.043]
+  Student_0:0.025  Student_1:0.050  Student_2:0.063  Student_3:0.358  Student_4:0.310  Student_1:0.036  Student_2:0.053  Student_3:0.364  Student_4:0.318  Student_2:0.040  Student_3:0.376  Student_4:0.331  Student_3:0.407  Student_4:0.363  Student_4:0.070  [self:0.029]
   [275/288] cue=2 c1=300° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.108  Student_1:0.180  Student_2:0.188  Student_3:0.176  Student_4:0.278  Student_1:0.220  Student_2:0.140  Student_3:0.210  Student_4:0.333  Student_2:0.181  Student_3:0.062  Student_4:0.162  Student_3:0.148  Student_4:0.334  Student_4:0.189  [self:0.030]
+  Student_0:0.109  Student_1:0.157  Student_2:0.174  Student_3:0.168  Student_4:0.265  Student_1:0.145  Student_2:0.079  Student_3:0.148  Student_4:0.284  Student_2:0.202  Student_3:0.072  Student_4:0.153  Student_3:0.187  Student_4:0.350  Student_4:0.184  [self:0.024]
   [276/288] cue=2 c1=300° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.178  Student_1:0.171  Student_2:0.261  Student_3:0.203  Student_4:0.232  Student_1:0.158  Student_2:0.106  Student_3:0.232  Student_4:0.242  Student_2:0.188  Student_3:0.175  Student_4:0.194  Student_3:0.316  Student_4:0.323  Student_4:0.053  [self:0.084]
+  Student_0:0.233  Student_1:0.176  Student_2:0.293  Student_3:0.220  Student_4:0.254  Student_1:0.149  Student_2:0.092  Student_3:0.260  Student_4:0.250  Student_2:0.179  Student_3:0.145  Student_4:0.161  Student_3:0.312  Student_4:0.310  Student_4:0.063  [self:0.048]
   [277/288] cue=2 c1=330° c2=0°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.110  Student_1:0.059  Student_2:0.113  Student_3:0.301  Student_4:0.227  Student_1:0.131  Student_2:0.094  Student_3:0.199  Student_4:0.205  Student_2:0.090  Student_3:0.323  Student_4:0.255  Student_3:0.276  Student_4:0.255  Student_4:0.110  [self:0.055]
+  Student_0:0.064  Student_1:0.087  Student_2:0.095  Student_3:0.289  Student_4:0.230  Student_1:0.124  Student_2:0.109  Student_3:0.239  Student_4:0.197  Student_2:0.111  Student_3:0.358  Student_4:0.264  Student_3:0.294  Student_4:0.280  Student_4:0.130  [self:0.081]
   [278/288] cue=2 c1=330° c2=30°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.065  Student_1:0.046  Student_2:0.063  Student_3:0.154  Student_4:0.205  Student_1:0.066  Student_2:0.086  Student_3:0.179  Student_4:0.229  Student_2:0.062  Student_3:0.158  Student_4:0.207  Student_3:0.126  Student_4:0.176  Student_4:0.073  [self:0.037]
+  Student_0:0.056  Student_1:0.069  Student_2:0.072  Student_3:0.192  Student_4:0.149  Student_1:0.040  Student_2:0.089  Student_3:0.217  Student_4:0.175  Student_2:0.085  Student_3:0.230  Student_4:0.187  Student_3:0.165  Student_4:0.125  Student_4:0.050  [self:0.084]
   [279/288] cue=2 c1=330° c2=60°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.042  Student_1:0.070  Student_2:0.041  Student_3:0.161  Student_4:0.113  Student_1:0.037  Student_2:0.033  Student_3:0.182  Student_4:0.132  Student_2:0.060  Student_3:0.203  Student_4:0.154  Student_3:0.164  Student_4:0.115  Student_4:0.068  [self:0.084]
+  Student_0:0.148  Student_1:0.158  Student_2:0.111  Student_3:0.058  Student_4:0.065  Student_1:0.031  Student_2:0.065  Student_3:0.164  Student_4:0.114  Student_2:0.074  Student_3:0.172  Student_4:0.123  Student_3:0.123  Student_4:0.079  Student_4:0.078  [self:0.106]
   [280/288] cue=2 c1=330° c2=90°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.054  Student_1:0.034  Student_2:0.062  Student_3:0.056  Student_4:0.040  Student_1:0.043  Student_2:0.052  Student_3:0.041  Student_4:0.050  Student_2:0.040  Student_3:0.037  Student_4:0.022  Student_3:0.061  Student_4:0.046  Student_4:0.028  [self:0.015]
+  Student_0:0.057  Student_1:0.039  Student_2:0.065  Student_3:0.066  Student_4:0.064  Student_1:0.032  Student_2:0.051  Student_3:0.054  Student_4:0.028  Student_2:0.044  Student_3:0.045  Student_4:0.038  Student_3:0.058  Student_4:0.058  Student_4:0.032  [self:0.021]
   [281/288] cue=2 c1=330° c2=120°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.082  Student_1:0.085  Student_2:0.101  Student_3:0.405  Student_4:0.422  Student_1:0.036  Student_2:0.074  Student_3:0.430  Student_4:0.448  Student_2:0.058  Student_3:0.444  Student_4:0.463  Student_3:0.473  Student_4:0.489  Student_4:0.040  [self:0.054]
+  Student_0:0.072  Student_1:0.059  Student_2:0.115  Student_3:0.393  Student_4:0.423  Student_1:0.057  Student_2:0.093  Student_3:0.425  Student_4:0.457  Student_2:0.113  Student_3:0.382  Student_4:0.409  Student_3:0.484  Student_4:0.516  Student_4:0.083  [self:0.043]
   [282/288] cue=2 c1=330° c2=150°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.076  Student_1:0.245  Student_2:0.165  Student_3:0.466  Student_4:0.522  Student_1:0.268  Student_2:0.220  Student_3:0.400  Student_4:0.480  Student_2:0.097  Student_3:0.585  Student_4:0.472  Student_3:0.586  Student_4:0.483  Student_4:0.180  [self:0.048]
+  Student_0:0.076  Student_1:0.265  Student_2:0.159  Student_3:0.401  Student_4:0.471  Student_1:0.199  Student_2:0.108  Student_3:0.405  Student_4:0.433  Student_2:0.140  Student_3:0.547  Student_4:0.472  Student_3:0.493  Student_4:0.430  Student_4:0.105  [self:0.062]
   [283/288] cue=2 c1=330° c2=180°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.052  Student_1:0.132  Student_2:0.051  Student_3:0.504  Student_4:0.442  Student_1:0.109  Student_2:0.058  Student_3:0.490  Student_4:0.423  Student_2:0.112  Student_3:0.549  Student_4:0.477  Student_3:0.537  Student_4:0.472  Student_4:0.134  [self:0.044]
+  Student_0:0.137  Student_1:0.141  Student_2:0.089  Student_3:0.394  Student_4:0.366  Student_1:0.075  Student_2:0.094  Student_3:0.470  Student_4:0.431  Student_2:0.097  Student_3:0.472  Student_4:0.427  Student_3:0.466  Student_4:0.433  Student_4:0.105  [self:0.055]
   [284/288] cue=2 c1=330° c2=210°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.095  Student_1:0.088  Student_2:0.065  Student_3:0.377  Student_4:0.259  Student_1:0.062  Student_2:0.073  Student_3:0.461  Student_4:0.334  Student_2:0.093  Student_3:0.421  Student_4:0.288  Student_3:0.429  Student_4:0.313  Student_4:0.192  [self:0.072]
+  Student_0:0.103  Student_1:0.100  Student_2:0.097  Student_3:0.400  Student_4:0.224  Student_1:0.040  Student_2:0.075  Student_3:0.453  Student_4:0.268  Student_2:0.090  Student_3:0.432  Student_4:0.246  Student_3:0.460  Student_4:0.289  Student_4:0.237  [self:0.040]
   [285/288] cue=2 c1=330° c2=240°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.098  Student_1:0.086  Student_2:0.058  Student_3:0.386  Student_4:0.446  Student_1:0.070  Student_2:0.076  Student_3:0.298  Student_4:0.358  Student_2:0.071  Student_3:0.335  Student_4:0.390  Student_3:0.363  Student_4:0.425  Student_4:0.076  [self:0.036]
+  Student_0:0.093  Student_1:0.126  Student_2:0.069  Student_3:0.373  Student_4:0.429  Student_1:0.066  Student_2:0.073  Student_3:0.319  Student_4:0.359  Student_2:0.117  Student_3:0.296  Student_4:0.336  Student_3:0.376  Student_4:0.427  Student_4:0.066  [self:0.044]
   [286/288] cue=2 c1=330° c2=270°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.057  Student_1:0.103  Student_2:0.081  Student_3:0.331  Student_4:0.424  Student_1:0.077  Student_2:0.057  Student_3:0.341  Student_4:0.426  Student_2:0.090  Student_3:0.362  Student_4:0.425  Student_3:0.299  Student_4:0.378  Student_4:0.157  [self:0.060]
+  Student_0:0.073  Student_1:0.164  Student_2:0.136  Student_3:0.386  Student_4:0.388  Student_1:0.135  Student_2:0.114  Student_3:0.406  Student_4:0.423  Student_2:0.073  Student_3:0.347  Student_4:0.381  Student_3:0.314  Student_4:0.345  Student_4:0.061  [self:0.034]
   [287/288] cue=2 c1=330° c2=300°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.290  Student_1:0.312  Student_2:0.417  Student_3:0.389  Student_4:0.464  Student_1:0.098  Student_2:0.146  Student_3:0.164  Student_4:0.248  Student_2:0.158  Student_3:0.232  Student_4:0.308  Student_3:0.169  Student_4:0.256  Student_4:0.100  [self:0.028]
+  Student_0:0.250  Student_1:0.237  Student_2:0.337  Student_3:0.359  Student_4:0.454  Student_1:0.074  Student_2:0.107  Student_3:0.151  Student_4:0.257  Student_2:0.128  Student_3:0.191  Student_4:0.288  Student_3:0.142  Student_4:0.261  Student_4:0.124  [self:0.035]
   [288/288] cue=2 c1=330° c2=330°USING PRECUED ITEMS - SHOULD NEVER BE DONE IN TRAINING
-  Student_0:0.243  Student_1:0.106  Student_2:0.236  Student_3:0.238  Student_4:0.221  Student_1:0.253  Student_2:0.110  Student_3:0.311  Student_4:0.290  Student_2:0.212  Student_3:0.153  Student_4:0.155  Student_3:0.295  Student_4:0.291  Student_4:0.046  [self:0.046]
+  Student_0:0.220  Student_1:0.107  Student_2:0.201  Student_3:0.229  Student_4:0.225  Student_1:0.228  Student_2:0.054  Student_3:0.308  Student_4:0.298  Student_2:0.192  Student_3:0.139  Student_4:0.139  Student_3:0.272  Student_4:0.264  Student_4:0.055  [self:0.038]
 
-Saved sweep SW scores: results/all_teacher_student_sweeps/ablation_1/sw_sweep.csv
+Saved sweep SW scores: /scratch3/shaiq_home/repos/behaviour_ddpm/results/all_teacher_student_sweeps/ablation_1/sw_sweep.csv
 
 Mean sliced-Wasserstein per pair (overall / same-color / different-color):
-  sw_Ablated_1_vs_Student_0: 0.104773  same=0.179767  diff=0.097955
-  sw_Ablated_1_vs_Student_1: 0.123571  same=0.162529  diff=0.120029
-  sw_Ablated_1_vs_Student_2: 0.121637  same=0.182787  diff=0.116078
-  sw_Ablated_1_vs_Student_3: 0.410217  same=0.277234  diff=0.422306
-  sw_Ablated_1_vs_Student_4: 0.415340  same=0.305926  diff=0.425287
-  sw_Student_0_vs_Student_1: 0.108869  same=0.141579  diff=0.105895
-  sw_Student_0_vs_Student_2: 0.098810  same=0.119584  diff=0.096922
-  sw_Student_0_vs_Student_3: 0.412941  same=0.258694  diff=0.426963
-  sw_Student_0_vs_Student_4: 0.419923  same=0.282071  diff=0.432455
-  sw_Student_1_vs_Student_2: 0.116435  same=0.118148  diff=0.116279
-  sw_Student_1_vs_Student_3: 0.409100  same=0.236017  diff=0.424834
-  sw_Student_1_vs_Student_4: 0.416406  same=0.271046  diff=0.429621
-  sw_Student_2_vs_Student_3: 0.429672  same=0.242560  diff=0.446683
-  sw_Student_2_vs_Student_4: 0.441408  same=0.284056  diff=0.455712
-  sw_Student_3_vs_Student_4: 0.093398  same=0.128863  diff=0.090174
-  sw_self_reference: 0.058446  same=0.041734  diff=0.059966
+  sw_Ablated_1_vs_Student_0: 0.102001  same=0.177154  diff=0.095169
+  sw_Ablated_1_vs_Student_1: 0.122834  same=0.154391  diff=0.119965
+  sw_Ablated_1_vs_Student_2: 0.124000  same=0.186506  diff=0.118317
+  sw_Ablated_1_vs_Student_3: 0.410161  same=0.289941  diff=0.421090
+  sw_Ablated_1_vs_Student_4: 0.414176  same=0.309585  diff=0.423684
+  sw_Student_0_vs_Student_1: 0.102642  same=0.136551  diff=0.099559
+  sw_Student_0_vs_Student_2: 0.106277  same=0.110296  diff=0.105912
+  sw_Student_0_vs_Student_3: 0.406864  same=0.264167  diff=0.419837
+  sw_Student_0_vs_Student_4: 0.413915  same=0.293780  diff=0.424837
+  sw_Student_1_vs_Student_2: 0.118186  same=0.115149  diff=0.118462
+  sw_Student_1_vs_Student_3: 0.402389  same=0.235271  diff=0.417582
+  sw_Student_1_vs_Student_4: 0.410569  same=0.273056  diff=0.423071
+  sw_Student_2_vs_Student_3: 0.430970  same=0.251294  diff=0.447305
+  sw_Student_2_vs_Student_4: 0.439202  same=0.288638  diff=0.452890
+  sw_Student_3_vs_Student_4: 0.090669  same=0.142636  diff=0.085945
+  sw_self_reference: 0.056055  same=0.045422  diff=0.057022
 
-Reference self-SW (noise floor) — overall: 0.058446  same: 0.041734  diff: 0.059966
+Reference self-SW (noise floor) — overall: 0.056055  same: 0.045422  diff: 0.057022
 
 Normalised SW (ratio to self-SW baseline):
-  sw_Ablated_1_vs_Student_0: 2.281×  same=4.437×  diff=2.085×
-  sw_Ablated_1_vs_Student_1: 2.645×  same=4.385×  diff=2.487×
-  sw_Ablated_1_vs_Student_2: 2.716×  same=4.840×  diff=2.523×
-  sw_Ablated_1_vs_Student_3: 8.454×  same=7.502×  diff=8.541×
-  sw_Ablated_1_vs_Student_4: 8.458×  same=8.191×  diff=8.482×
-  sw_Student_0_vs_Student_1: 2.299×  same=3.635×  diff=2.178×
-  sw_Student_0_vs_Student_2: 2.107×  same=2.981×  diff=2.028×
-  sw_Student_0_vs_Student_3: 8.458×  same=7.261×  diff=8.567×
-  sw_Student_0_vs_Student_4: 8.526×  same=7.872×  diff=8.586×
-  sw_Student_1_vs_Student_2: 2.439×  same=3.290×  diff=2.362×
-  sw_Student_1_vs_Student_3: 8.523×  same=6.748×  diff=8.685×
-  sw_Student_1_vs_Student_4: 8.615×  same=7.622×  diff=8.705×
-  sw_Student_2_vs_Student_3: 8.850×  same=6.992×  diff=9.019×
-  sw_Student_2_vs_Student_4: 9.001×  same=8.100×  diff=9.083×
-  sw_Student_3_vs_Student_4: 1.991×  same=3.286×  diff=1.873×
+  sw_Ablated_1_vs_Student_0: 2.268×  same=3.988×  diff=2.112×
+  sw_Ablated_1_vs_Student_1: 2.717×  same=3.710×  diff=2.626×
+  sw_Ablated_1_vs_Student_2: 2.825×  same=4.463×  diff=2.677×
+  sw_Ablated_1_vs_Student_3: 9.101×  same=7.556×  diff=9.241×
+  sw_Ablated_1_vs_Student_4: 9.106×  same=7.824×  diff=9.223×
+  sw_Student_0_vs_Student_1: 2.269×  same=3.320×  diff=2.173×
+  sw_Student_0_vs_Student_2: 2.330×  same=2.524×  diff=2.313×
+  sw_Student_0_vs_Student_3: 9.056×  same=7.248×  diff=9.220×
+  sw_Student_0_vs_Student_4: 9.154×  same=7.860×  diff=9.272×
+  sw_Student_1_vs_Student_2: 2.631×  same=2.966×  diff=2.601×
+  sw_Student_1_vs_Student_3: 9.027×  same=6.573×  diff=9.250×
+  sw_Student_1_vs_Student_4: 9.158×  same=7.226×  diff=9.334×
+  sw_Student_2_vs_Student_3: 9.621×  same=7.127×  diff=9.848×
+  sw_Student_2_vs_Student_4: 9.786×  same=7.962×  diff=9.952×
+  sw_Student_3_vs_Student_4: 2.003×  same=3.272×  diff=1.888×
   sw_self_reference: 1.000×  same=1.000×  diff=1.000×
 
 Teacher-vs-students aggregate (mean over student SW per trial):
-  overall mean: 0.235108
-  same-color:   0.221649
-  diff-color:   0.236331
+  overall mean: 0.234634
+  same-color:   0.223516
+  diff-color:   0.235645

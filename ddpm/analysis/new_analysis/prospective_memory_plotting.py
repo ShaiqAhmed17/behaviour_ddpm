@@ -13,10 +13,16 @@ Usage in notebook:
 """
 
 import colorsys
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 from sklearn.decomposition import PCA
+from ddpm.utils.vis.style import set_publication_style, save_figure, save_legend
+
+
+set_publication_style()
 
 
 def bin_angle(angle, bin_size):
@@ -240,9 +246,9 @@ def plot_global_3d_trajectories(
     ax.set_xlim(lims[0])
     ax.set_ylim(lims[1])
     ax.set_zlim(lims[2])
-    ax.set_xlabel(f'PC1 ({pca.explained_variance_ratio_[0]:.1%})')
-    ax.set_ylabel(f'PC2 ({pca.explained_variance_ratio_[1]:.1%})')
-    ax.set_zlabel(f'PC3 ({pca.explained_variance_ratio_[2]:.1%})')
+    ax.set_xlabel(f'PC1 ({pca.explained_variance_ratio_[0]*100:.1f}\\%)')
+    ax.set_ylabel(f'PC2 ({pca.explained_variance_ratio_[1]*100:.1f}\\%)')
+    ax.set_zlabel(f'PC3 ({pca.explained_variance_ratio_[2]*100:.1f}\\%)')
     ax.set_title(title, fontweight='bold')
     ax.grid(True, alpha=0.25)
 
@@ -254,7 +260,9 @@ def plot_global_3d_trajectories(
     ]
     ax.legend(handles=legend_handles, fontsize=8, loc='upper right')
     
+    legend_labels = ['Cue 1', 'Cue 2', 'Start', 'End']
     plt.tight_layout()
-    plt.savefig(out_path, dpi=160, bbox_inches='tight')
-    plt.show()
+    save_figure(fig, out_path)
+    save_legend(legend_handles, legend_labels, Path(out_path))
+    plt.close(fig)
     print('Saved:', out_path)

@@ -1,4 +1,5 @@
 import numpy as np
+from ddpm.utils.vis.style import set_publication_style
 
 from typing import List
 from ddpm.tasks.main.multiepoch import MultiEpochDiffusionTask
@@ -10,6 +11,9 @@ from torch import Tensor as _T
 from matplotlib.pyplot import Axes
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
+
+
+set_publication_style()
 
 
 def symmetrize_and_square_axis(axes, min_size=None):

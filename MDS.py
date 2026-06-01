@@ -1,433 +1,444 @@
 #!/usr/bin/env python3
 """
-MDS projection of teacher + student space using hand-crafted and topological features.
-Computes difference + sum modes for all metrics, ranks by variance, visualizes.
+MDS.py  —  unified MDS over three distance types.
+
+Usage:
+    python MDS.py --kind sw           # Sliced-Wasserstein (metric)
+    python MDS.py --kind procrustes   # Procrustes residual (non-metric)
+    python MDS.py --kind feature      # Feature-space Euclidean (non-metric)
+    python MDS.py --kind all          # All three
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
-from sklearn.decomposition import PCA
-from sklearn.manifold import MDS
-from sklearn.preprocessing import StandardScaler
-from scipy.spatial.distance import pdist, squareform
+from __future__ import annotations
+
+import argparse
 import re
 import sys
+from pathlib import Path
 
-# ─────────────────────────────────────────────────────────────────────────────
-# SETUP
-# ─────────────────────────────────────────────────────────────────────────────
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib.lines import Line2D
+from scipy.spatial.distance import pdist, squareform
+from sklearn.manifold import MDS
+from sklearn.preprocessing import StandardScaler
 
-REPO_ROOT = Path('/scratch3/shaiq_home/repos/behaviour_ddpm')
-RESULTS_DIR = REPO_ROOT / 'ddpm' / 'analysis' / 'new_analysis' / 'results' / 'prospective_memory_dual'
+REPO_ROOT = Path(__file__).resolve().parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
 
-N_BINS = 12
-BIN_SIZE = 360.0 / N_BINS
-DEVICE = 'cpu'
+from ddpm.utils.vis.style import set_publication_style, save_figure, save_legend
 
-# ─────────────────────────────────────────────────────────────────────────────
-# HELPER FUNCTIONS (from notebook)
-# ─────────────────────────────────────────────────────────────────────────────
+set_publication_style()
 
-def _bangle(a, sz=30.0):
-    return int(a // sz) % int(360 // sz)
+# ── Paths ─────────────────────────────────────────────────────────────────────
+RESULTS    = REPO_ROOT / 'ddpm/analysis/new_analysis/results'
+FEAT_DIR   = RESULTS / 'prospective_memory_dual'
+OUTPUT_DIR = RESULTS / 'mds_unified'
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-def _group_bins(tl_mt):
-    """Group trial indices by cue and target/distractor angle."""
-    g = {c: {'target': {b: [] for b in range(N_BINS)},
-              'distractor': {b: [] for b in range(N_BINS)}} for c in [1, 2]}
-    for i, (cue, c1, c2) in enumerate(tl_mt):
-        cue = int(cue)
-        ta, da = (c1, c2) if cue == 1 else (c2, c1)
-        g[cue]['target'][int(ta // BIN_SIZE) % N_BINS].append(i)
-        g[cue]['distractor'][int(da // BIN_SIZE) % N_BINS].append(i)
-    for c in [1, 2]:
-        for role in ['target', 'distractor']:
-            for b in range(N_BINS):
-                g[c][role][b] = np.array(g[c][role][b], dtype=np.int64)
-    return g
+# ── Canonical model list ──────────────────────────────────────────────────────
+# Each entry: (label, role, abl_dir, student_type)
+#   label        – internal key used throughout
+#   role         – 'teacher' | 'student'
+#   abl_dir      – int ablation direction, or None for healthy
+#   student_type – 'single' | 'none' | None (teachers)
+MODELS = [
+    ('T_healthy', 'teacher', None,  None),
+    ('T_d01',     'teacher', 1,     None),
+    ('T_d04',     'teacher', 4,     None),
+    ('T_d05',     'teacher', 5,     None),
+    ('T_d07',     'teacher', 7,     None),
+    ('T_d12',     'teacher', 12,    None),
+    ('S_d01_s0',  'student', 1,     'single'),
+    ('S_d01_s1',  'student', 1,     'single'),
+    ('S_d01_s2',  'student', 1,     'single'),
+    ('S_d01_s3',  'student', 1,     'single'),
+    ('S_d01_s4',  'student', 1,     'single'),
+    ('S_d04_s0',  'student', 4,     'single'),
+    ('S_d05_s0',  'student', 5,     'single'),
+    ('S_d07_s0',  'student', 7,     'single'),
+    ('S_d12_s0',  'student', 12,    'single'),
+    ('S_d12_s1',  'student', 12,    'single'),
+    ('S_noabl',   'student', None,  'none'),
+    ('S_noabl_1', 'student', None,  'none'),
+]
 
-def _bin_avg(tl_st, idx_per_bin):
-    """Average neural states within each angle bin."""
-    T, D = tl_st.shape[1], tl_st.shape[2]
-    out = np.zeros((N_BINS, T, D), np.float32)
-    for b, idx in idx_per_bin.items():
-        if len(idx):
-            out[b] = tl_st[idx].mean(0)
-    return out
+N  = len(MODELS)
+_idx = {m[0]: i for i, m in enumerate(MODELS)}
+
+# ── Label maps to each data source ────────────────────────────────────────────
+# SW  (pairwise_wasserstein.npy)
+_SW = {
+    'T_healthy': 'teacher_healthy',
+    'T_d01':     'teacher_dir01',
+    'T_d04':     'teacher_dir04',
+    'T_d05':     'teacher_dir05',
+    'T_d07':     'teacher_dir07',
+    'T_d12':     'teacher_dir12',
+    'S_d01_s0':  'student_dir01_s0',
+    'S_d01_s1':  'student_dir01_s1',
+    'S_d01_s2':  'student_dir01_s2',
+    'S_d01_s3':  'student_dir01_s3',
+    'S_d01_s4':  'student_dir01_s4',
+    'S_d04_s0':  'student_dir04_s0',
+    'S_d05_s0':  'student_dir05_s0',
+    'S_d07_s0':  'student_dir07_s0',
+    'S_d12_s0':  'student_dir12_s0',
+    'S_d12_s1':  'student_dir12_s1',
+    'S_d13_s0':  'student_dir13_s0',
+    'S_noabl':   'student_noabl_s0',
+    'S_noabl_1': 'student_noabl_abl_s0',
+}
+
+# Procrustes — teacher-teacher block
+_PROC_TT = {
+    'T_healthy': 'unablated',
+    'T_d01':     'dir_01',
+    'T_d04':     'dir_04',
+    'T_d05':     'dir_05',
+    'T_d07':     'dir_07',
+    'T_d12':     'dir_12',
+}
+# Procrustes — student-student block (normalized: abl{d}_s{s} → abl{d}_{s})
+_PROC_SS = {
+    'S_d01_s0': 'abl1_0',  'S_d01_s1': 'abl1_1',
+    'S_d01_s2': 'abl1_2',  'S_d01_s3': 'abl1_3',  'S_d01_s4': 'abl1_4',
+    'S_d04_s0': 'abl4_0',  'S_d05_s0': 'abl5_0',  'S_d07_s0': 'abl7_0',
+    'S_d12_s0': 'abl12_0', 'S_d12_s1': 'abl12_1',
+    'S_noabl':  'noabl_s0',
+    'S_noabl_1': 'noabl_abl_s0',
+}
+# Procrustes — teacher-student block (teacher labels same as TT, student same as SS)
+_PROC_TS_T = _PROC_TT
+_PROC_TS_S = _PROC_SS
+
+# Feature — path to timeline_raw_states.npz
+def _feat_npz(label, abl_dir, role, student_type):
+    base = FEAT_DIR
+    if role == 'teacher':
+        if abl_dir is None:
+            return base / 'index_cued_first_diffusion_0.3_swap_7/timeline_raw_states.npz'
+        return base / f'ablated_teacher_dir_{abl_dir:02d}/timeline_raw_states.npz'
+    # student
+    seed = int(re.search(r's(\d+)$', label).group(1)) if re.search(r's(\d+)$', label) else 0
+    if student_type == 'none':
+        if label == 'S_noabl_1':
+            return base / 'index_cued_first_diffusion_0.3_swap_recovery_ablation_no_ablation_0/timeline_raw_states.npz'
+        return base / 'index_cued_first_diffusion_0.3_swap_recovery_no_ablation_0/timeline_raw_states.npz'
+    return base / f'index_cued_first_diffusion_0.3_swap_recovery_ablation_{abl_dir}_{seed}/timeline_raw_states.npz'
+
+_FEAT_NPZ = {
+    lab: _feat_npz(lab, abl, role, stype)
+    for lab, role, abl, stype in MODELS
+}
+
+# ── Distance matrix loaders ───────────────────────────────────────────────────
+
+def load_sw() -> np.ndarray:
+    """Sliced-Wasserstein pairwise distances (from cached .npy)."""
+    all_labels = np.load(RESULTS / 'wasserstein_mds/model_labels.npy', allow_pickle=True).tolist()
+    all_mat    = np.load(RESULTS / 'wasserstein_mds/pairwise_wasserstein.npy')
+    idx = {l: i for i, l in enumerate(all_labels)}
+    D = np.zeros((N, N))
+    for lab, *_ in MODELS:
+        for lab2, *_ in MODELS:
+            D[_idx[lab], _idx[lab2]] = all_mat[idx[_SW[lab]], idx[_SW[lab2]]]
+    return D
+
+
+def load_procrustes() -> np.ndarray:
+    """Procrustes residuals assembled from TT, SS, and TS blocks."""
+    tt_mat = np.load(RESULTS / 'teacher_teacher_heatmap/heatmap_fixed.npy')
+    tt_idx = {str(l): i for i, l in enumerate(
+        np.load(RESULTS/'teacher_teacher_heatmap/labels.npz', allow_pickle=True)['labels'])}
+
+    ss_raw   = np.load(RESULTS / 'student_student_heatmap/labels.npz', allow_pickle=True)['labels']
+    def _norm(l):
+        l = str(l)
+        if l == 'no_abl': return 'noabl_s0'
+        m = re.match(r'abl(\d+)_s(\d+)', l)
+        return f'abl{m.group(1)}_{m.group(2)}' if m else l
+    ss_mat = np.load(RESULTS / 'student_student_heatmap/heatmap_fixed.npy')
+    ss_idx  = {_norm(l): i for i, l in enumerate(ss_raw)}
+
+    ts_raw  = np.load(RESULTS / 'procrustes_heatmap_15dirs_all_students/labels.npz', allow_pickle=True)
+    ts_t_idx = {str(l): i for i, l in enumerate(ts_raw['teacher_labels'])}
+    ts_s_idx = {str(l): i for i, l in enumerate(ts_raw['student_labels'])}
+    ts_mat   = np.load(RESULTS / 'procrustes_heatmap_15dirs_all_students/heatmap_fixed.npy')
+
+    D = np.zeros((N, N))
+    teachers = [(lab, i) for i, (lab, role, *_) in enumerate(MODELS) if role == 'teacher']
+    students = [(lab, i) for i, (lab, role, *_) in enumerate(MODELS) if role == 'student']
+
+    for la, ia in teachers:
+        for lb, ib in teachers:
+            D[ia, ib] = tt_mat[tt_idx[_PROC_TT[la]], tt_idx[_PROC_TT[lb]]]
+    for la, ia in students:
+        for lb, ib in students:
+            ka, kb = _PROC_SS[la], _PROC_SS[lb]
+            if ka not in ss_idx or kb not in ss_idx:
+                D[ia, ib] = np.nan
+            else:
+                D[ia, ib] = ss_mat[ss_idx[ka], ss_idx[kb]]
+    for lt, it in teachers:
+        for ls, is_ in students:
+            ks = _PROC_TS_S[ls]
+            if ks not in ts_s_idx:
+                D[it, is_] = np.nan
+                D[is_, it] = np.nan
+            else:
+                v = ts_mat[ts_t_idx[_PROC_TS_T[lt]], ts_s_idx[ks]]
+                D[it, is_] = v
+                D[is_, it] = v
+
+    D = 0.5 * (D + D.T)
+    np.fill_diagonal(D, 0.0)
+    return D
+
 
 def _ring_metrics_over_time(tgt_bm, dis_bm):
-    """Compute ring geometry + separation metrics over time."""
+    from sklearn.decomposition import PCA as _PCA
+    N_BINS = 12
     T = tgt_bm.shape[1]
-    mr   = np.full((2, T), np.nan, np.float32)
-    rs   = np.full((2, T), np.nan, np.float32)
-    ecc  = np.full((2, T), np.nan, np.float32)
-    arc  = np.full((2, T), np.nan, np.float32)
-    plan = np.full((2, T), np.nan, np.float32)
-    cnrm = np.full((2, T), np.nan, np.float32)
-    vpc  = np.full((2, T), np.nan, np.float32)
-    pang = np.full(T, np.nan, np.float32)
-    csep = np.full(T, np.nan, np.float32)
-    vcom = np.full(T, np.nan, np.float32)
-
+    mr  = np.full((2, T), np.nan, np.float32)
+    rs  = np.full((2, T), np.nan, np.float32)
+    ecc = np.full((2, T), np.nan, np.float32)
+    arc = np.full((2, T), np.nan, np.float32)
+    plan= np.full((2, T), np.nan, np.float32)
+    cnrm= np.full((2, T), np.nan, np.float32)
+    vpc = np.full((2, T), np.nan, np.float32)
+    pang= np.full(T, np.nan, np.float32)
+    csep= np.full(T, np.nan, np.float32)
+    vcom= np.full(T, np.nan, np.float32)
     for t in range(T):
         tp, dp = tgt_bm[:, t, :], dis_bm[:, t, :]
         comb   = np.vstack([tp, dp])
-        cpca   = PCA(n_components=3)
+        cpca   = _PCA(n_components=3)
         coords = cpca.fit_transform(comb)
         t3, d3 = coords[:N_BINS], coords[N_BINS:]
         vcom[t] = float(cpca.explained_variance_ratio_[:2].sum())
-
         tc, dc = t3.mean(0), d3.mean(0)
         td = np.linalg.norm(t3 - tc, axis=1)
         dd = np.linalg.norm(d3 - dc, axis=1)
-        mr[0, t], mr[1, t]   = td.mean(), dd.mean()
-        rs[0, t], rs[1, t]   = td.std(),  dd.std()
-        cnrm[0, t]            = np.linalg.norm(tc)
-        cnrm[1, t]            = np.linalg.norm(dc)
-        csep[t]               = np.linalg.norm(tc - dc)
-
+        mr[0,t],mr[1,t]   = td.mean(), dd.mean()
+        rs[0,t],rs[1,t]   = td.std(),  dd.std()
+        cnrm[0,t]         = np.linalg.norm(tc)
+        cnrm[1,t]         = np.linalg.norm(dc)
+        csep[t]           = np.linalg.norm(tc - dc)
         nt = nd = None
         for ri, (pts, ctr) in enumerate([(t3, tc), (d3, dc)]):
-            p = PCA(n_components=3).fit(pts - ctr)
-            plan[ri, t] = float(p.explained_variance_ratio_[:2].sum())
-            vpc[ri, t]  = float(PCA(n_components=2).fit(pts).explained_variance_ratio_.sum())
+            p = _PCA(n_components=3).fit(pts - ctr)
+            plan[ri,t] = float(p.explained_variance_ratio_[:2].sum())
+            vpc[ri,t]  = float(_PCA(n_components=2).fit(pts).explained_variance_ratio_.sum())
             if ri == 0: nt = p.components_[2]
             else:       nd = p.components_[2]
-
         pang[t] = float(np.degrees(np.arccos(np.clip(abs(np.dot(nt, nd)), 0, 1))))
-
         def _ecc(pts):
-            ev = PCA(n_components=2).fit(pts).explained_variance_
-            return ev[0] / ev[1] if ev[1] > 1e-12 else np.nan
-        ecc[0, t], ecc[1, t] = _ecc(t3), _ecc(d3)
-
+            ev = _PCA(n_components=2).fit(pts).explained_variance_
+            return ev[0]/ev[1] if ev[1] > 1e-12 else np.nan
+        ecc[0,t],ecc[1,t] = _ecc(t3), _ecc(d3)
         def _arc(pts):
             return float(np.std([np.linalg.norm(pts[(i+1)%N_BINS]-pts[i]) for i in range(N_BINS)]))
-        arc[0, t], arc[1, t] = _arc(t3), _arc(d3)
-
-    return {'mean_radius': mr, 'radius_std': rs, 'eccentricity': ecc, 'arc_std': arc,
-            'planarity': plan, 'centroid_norm': cnrm, 'var_pc12': vpc,
-            'plane_angle_deg': pang, 'centroid_separation': csep, 'var_pc12_combined': vcom}
-
-# ─────────────────────────────────────────────────────────────────────────────
-# TOPOLOGICAL FEATURES
-# ─────────────────────────────────────────────────────────────────────────────
-
-def compute_topological_features(tl_st, per_cue=False):
-    """Compute topological features from neural states (properly normalized)."""
-    features = {}
-    X = tl_st.reshape(-1, tl_st.shape[-1]).astype(np.float32)
-
-    # 1. Intrinsic dimensionality (% variance at 90%)
-    pca = PCA()
-    pca.fit(X)
-    cumsum_var = np.cumsum(pca.explained_variance_ratio_)
-    id_90 = float(np.argmax(cumsum_var >= 0.9) + 1) / len(pca.explained_variance_ratio_)
-    features['intrinsic_dim_90pct'] = id_90
-
-    # 2. Participation ratio
-    lam = pca.explained_variance_
-    part_ratio = float((lam.sum() ** 2) / (lam ** 2).sum())
-    features['participation_ratio'] = part_ratio
-
-    # 3. Variance explained by top-3 PCs
-    var_top3 = float(pca.explained_variance_ratio_[:3].sum())
-    features['var_top3_pcs'] = var_top3
-
-    # 4. Reconstruction error at rank-3 (NORMALIZED per-sample)
-    X_centered = X - X.mean(0)
-    pca3 = PCA(n_components=3)
-    X_recon = pca3.inverse_transform(pca3.fit_transform(X_centered))
-    per_sample_err = np.sum((X_centered - X_recon) ** 2, axis=1)
-    recon_err_normalized = float(np.sqrt(per_sample_err.mean()))
-    features['reconstruction_error_rank3'] = recon_err_normalized
-
-    # 5. Mean squared temporal derivative (per-trial average, normalized)
-    deriv_per_trial = []
-    for trial in tl_st:
-        diffs = np.diff(trial, axis=0)
-        squared_norms = np.sum(diffs ** 2, axis=1)
-        mean_deriv = np.mean(squared_norms)
-        deriv_per_trial.append(mean_deriv)
-    mstd = float(np.mean(deriv_per_trial))
-    features['mean_sq_temporal_deriv'] = mstd
-
-    # 6. Principal angle: target vs distractor subspaces
-    tgt_states = X[::2] if len(X) % 2 == 0 else X[:-1][::2]
-    dis_states = X[1::2] if len(X) % 2 == 0 else X[1:][1::2]
-    if len(tgt_states) > 3 and len(dis_states) > 3:
-        pca_tgt = PCA(n_components=3)
-        pca_dis = PCA(n_components=3)
-        pca_tgt.fit(tgt_states)
-        pca_dis.fit(dis_states)
-        cos_angle = abs(np.dot(pca_tgt.components_[0], pca_dis.components_[0]))
-        principal_angle = float(np.degrees(np.arccos(np.clip(cos_angle, 0, 1))))
-        features['principal_angle_tgt_dis'] = principal_angle
-    else:
-        features['principal_angle_tgt_dis'] = 0.0
-
-    # 7. Radius of curvature (normalized)
-    curvatures = []
-    for trial in tl_st:
-        if trial.shape[0] > 2:
-            diffs1 = np.diff(trial, axis=0)
-            diffs2 = np.diff(diffs1, axis=0)
-            if len(diffs2) > 0:
-                speeds = np.linalg.norm(diffs1[:-1], axis=1) + 1e-10
-                curvatures_trial = np.linalg.norm(diffs2, axis=1) / speeds
-                curvatures.append(np.mean(curvatures_trial))
-    features['radius_curvature'] = float(np.mean(curvatures)) if curvatures else 0.0
-
-    # 8. Signal-to-noise ratio (between-trial vs within-trial variance)
-    snr_vals = []
-    for pc_idx in range(min(3, len(pca.components_))):
-        pc = pca.components_[pc_idx]
-        proj = X @ pc
-        proj_reshaped = proj.reshape(tl_st.shape[0], tl_st.shape[1])
-        between_trial_var = np.var(proj_reshaped.mean(axis=1))
-        within_trial_var = np.mean(np.var(proj_reshaped, axis=1))
-        snr = between_trial_var / (within_trial_var + 1e-10)
-        snr_vals.append(snr)
-    features['snr_pc_avg'] = float(np.mean(snr_vals)) if snr_vals else 0.0
-
-    return features
+        arc[0,t],arc[1,t] = _arc(t3), _arc(d3)
+    return dict(mean_radius=mr, radius_std=rs, eccentricity=ecc, arc_std=arc,
+                planarity=plan, centroid_norm=cnrm, var_pc12=vpc,
+                plane_angle_deg=pang, centroid_separation=csep, var_pc12_combined=vcom)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# FEATURE EXTRACTION
-# ─────────────────────────────────────────────────────────────────────────────
+def _extract_features(npz_path: Path) -> dict:
+    from sklearn.decomposition import PCA as _PCA
+    N_BINS, BIN_SZ = 12, 30.0
+    npz  = np.load(npz_path)
+    tl_st, tl_mt = npz['tl_st'], npz['tl_mt']
 
-def extract_all_features(npz_path):
-    """
-    Extract all features (hand-crafted + topological, with diff/sum modes).
+    def _bangle(a): return int(a // BIN_SZ) % N_BINS
+    def _bin_avg(states_t, idx_per_bin):
+        T, D = states_t.shape[1], states_t.shape[2]
+        out = np.zeros((N_BINS, T, D), np.float32)
+        for b, idx in idx_per_bin.items():
+            if len(idx): out[b] = states_t[idx].mean(0)
+        return out
 
-    Returns:
-        dict: feature_name -> value (averaged across cues where applicable)
-    """
-    npz = np.load(npz_path)
-    tl_st = npz['tl_st']  # (n_trials, T, D)
-    tl_mt = npz['tl_mt']  # (n_trials, 3)
+    g = {c: {'target': {b: [] for b in range(N_BINS)},
+              'distractor': {b: [] for b in range(N_BINS)}} for c in [1,2]}
+    for i, (cue, c1, c2) in enumerate(tl_mt):
+        cue = int(cue)
+        ta, da = (c1, c2) if cue == 1 else (c2, c1)
+        g[cue]['target'][_bangle(ta)].append(i)
+        g[cue]['distractor'][_bangle(da)].append(i)
+    for c in [1,2]:
+        for role in ['target','distractor']:
+            for b in range(N_BINS):
+                g[c][role][b] = np.array(g[c][role][b], dtype=np.int64)
 
-    features = {}
-
-    # ─── Hand-crafted metrics (per cue) ────────────────────────────────────
-    g = _group_bins(tl_mt)
     metrics_per_cue = {}
-
     for c in [1, 2]:
         tgt_bm = _bin_avg(tl_st, g[c]['target'])
         dis_bm = _bin_avg(tl_st, g[c]['distractor'])
         metrics_per_cue[c] = _ring_metrics_over_time(tgt_bm, dis_bm)
 
-    # Extract and compute diff/sum modes for hand-crafted metrics
-    metric_names = ['mean_radius', 'radius_std', 'eccentricity', 'arc_std',
-                    'planarity', 'centroid_norm', 'var_pc12',
-                    'plane_angle_deg', 'centroid_separation', 'var_pc12_combined']
+    # Topological features
+    X = tl_st.reshape(-1, tl_st.shape[-1]).astype(np.float32)
+    pca = _PCA(); pca.fit(X)
+    cumsum = np.cumsum(pca.explained_variance_ratio_)
+    topo = {
+        'intrinsic_dim_90pct': float(np.argmax(cumsum >= 0.9) + 1) / len(cumsum),
+        'participation_ratio': float((pca.explained_variance_.sum()**2) / (pca.explained_variance_**2).sum()),
+        'var_top3_pcs': float(pca.explained_variance_ratio_[:3].sum()),
+    }
 
+    features = {}
+    metric_names = ['mean_radius','radius_std','eccentricity','arc_std','planarity',
+                    'centroid_norm','var_pc12','plane_angle_deg','centroid_separation','var_pc12_combined']
     for m in metric_names:
-        m1 = metrics_per_cue[1][m]
-        m2 = metrics_per_cue[2][m]
-
-        # Average across time (and target/distractor if 2D)
-        if m1.ndim == 2:  # (2, T) for tgt-dis metrics
-            v1 = m1.mean()
-            v2 = m2.mean()
-        else:  # (T,) for separation metrics
-            v1 = m1.mean()
-            v2 = m2.mean()
-
-        features[f'{m}_diff'] = v1 - v2
-        features[f'{m}_sum'] = v1 + v2
-
-    # ─── Topological features ─────────────────────────────────────────────
-    topo = compute_topological_features(tl_st)
-
-    # Add diff/sum for topological features too (compute per cue-grouped data)
-    topo_vals = {}
-    for c in [1, 2]:
-        tl_st_c = tl_st[tl_mt[:, 0] == c]  # states for this cue
-        topo_c = compute_topological_features(tl_st_c)
-        topo_vals[c] = topo_c
-
-    for topo_name in topo.keys():
-        v1 = topo_vals[1][topo_name]
-        v2 = topo_vals[2][topo_name]
-        features[f'{topo_name}_diff'] = v1 - v2
-        features[f'{topo_name}_sum'] = v1 + v2
-
+        v1, v2 = metrics_per_cue[1][m].mean(), metrics_per_cue[2][m].mean()
+        features[f'{m}_diff'] = float(v1 - v2)
+        features[f'{m}_sum']  = float(v1 + v2)
+    for k, v in topo.items():
+        features[f'{k}_sum']  = v
+        features[f'{k}_diff'] = 0.0
     return features
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MAIN PIPELINE
-# ─────────────────────────────────────────────────────────────────────────────
+
+def load_feature() -> np.ndarray:
+    """Feature-space Euclidean distances from timeline NPZ files."""
+    print('  Extracting features from NPZ files...')
+    feat_cache = OUTPUT_DIR / 'feature_cache.npz'
+    if feat_cache.exists():
+        cache = np.load(feat_cache)
+        mat   = cache['matrix']
+        print(f'  Loaded from cache: {mat.shape}')
+        return mat
+
+    fvs = []
+    for lab, *_ in MODELS:
+        p = _FEAT_NPZ[lab]
+        print(f'    {lab}...', end=' ', flush=True)
+        fvs.append(list(_extract_features(p).values()))
+        print('OK')
+    fv_matrix = np.array(fvs, dtype=np.float32)
+    fv_scaled  = StandardScaler().fit_transform(fv_matrix)
+    D = squareform(pdist(fv_scaled, metric='euclidean'))
+    np.savez(feat_cache, matrix=D)
+    return D
+
+# ── MDS fitting ───────────────────────────────────────────────────────────────
+
+def fit_mds(D: np.ndarray, metric: bool) -> np.ndarray:
+    mds = MDS(n_components=2, dissimilarity='precomputed', metric=metric, random_state=42)
+    coords = mds.fit_transform(D)
+    kind = 'metric' if metric else 'non-metric'
+    if metric:
+        kruskal = np.sqrt(mds.stress_ / (D ** 2).sum())
+    else:
+        kruskal = mds.stress_
+    print(f'  {kind} MDS Kruskal stress-1: {kruskal:.4f}')
+    return coords
+
+# ── Plotting ──────────────────────────────────────────────────────────────────
+
+tab20 = plt.colormaps['tab20']
+_all_dirs  = sorted({m[2] for m in MODELS if m[2] is not None})
+_dir_color = {d: tab20(i / max(len(_all_dirs), 1)) for i, d in enumerate(_all_dirs)}
+
+_MARKERS = {'single': 'D', 'multi': 's', 'pca': '^', 'none': 'P'}
+
+def _color(abl_dir):
+    return 'black' if abl_dir is None else _dir_color[abl_dir]
+
+
+def plot_mds(coords: np.ndarray, title: str, out_stem: Path):
+    fig, ax = plt.subplots(figsize=(10, 8))
+
+    for (_, role, abl_dir, stype), (x, y) in zip(MODELS, coords):
+        c = _color(abl_dir)
+        if role == 'teacher':
+            ax.scatter(x, y, s=400, marker='*', c=[c],
+                       edgecolors='black', linewidths=1.5, zorder=4)
+        else:
+            mk = _MARKERS.get(stype, 'D')
+            ax.scatter(x, y, s=130, marker=mk, c=[c],
+                       edgecolors='black', linewidths=0.6, alpha=0.85, zorder=3)
+
+    xs, ys = coords[:, 0], coords[:, 1]
+    xpad = 0.08 * (xs.max() - xs.min() or 1)
+    ypad = 0.08 * (ys.max() - ys.min() or 1)
+    ax.set_xlim(xs.min() - xpad, xs.max() + xpad)
+    ax.set_ylim(ys.min() - ypad, ys.max() + ypad)
+
+    ax.set_xlabel('MDS 1 (a.u.)', fontsize=18)
+    ax.set_ylabel('MDS 2 (a.u.)', fontsize=18)
+    ax.set_title(title, fontweight='bold', fontsize=20)
+    ax.tick_params(labelsize=14)
+    ax.grid(alpha=0.25)
+    fig.tight_layout()
+    save_figure(fig, out_stem)
+    plt.close(fig)
+    print(f'  Saved: {out_stem}.pdf / .png')
+
+
+def save_shared_legends():
+    """Save role and direction legends once — shared across all three MDS plots."""
+    role_handles = [
+        Line2D([0],[0], marker='*', color='w', markerfacecolor='grey',
+               markeredgecolor='black', markersize=14, label='Teacher'),
+        Line2D([0],[0], marker='D', color='w', markerfacecolor='grey',
+               markeredgecolor='black', markersize=9,  label='Student (single dir)'),
+        Line2D([0],[0], marker='P', color='w', markerfacecolor='grey',
+               markeredgecolor='black', markersize=9,  label='Student (no ablation)'),
+    ]
+    dir_handles = [
+        mpatches.Patch(facecolor='black', edgecolor='black', label='Healthy'),
+    ] + [
+        mpatches.Patch(facecolor=_dir_color[d], edgecolor='black', label=f'Dir {d:02d}')
+        for d in _all_dirs
+    ]
+    save_legend(role_handles, [h.get_label() for h in role_handles],
+                OUTPUT_DIR / 'legend_role')
+    save_legend(dir_handles,  [h.get_label() for h in dir_handles],
+                OUTPUT_DIR / 'legend_dir', ncol=2)
+    print(f'  Saved shared legends to {OUTPUT_DIR}/')
+
+# ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
-    print("=" * 80)
-    print("MDS ANALYSIS: Teacher + Student Space")
-    print("=" * 80)
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--kind', choices=['sw','procrustes','feature','all'], default='all')
+    args = ap.parse_args()
 
-    # ─── Load all NPZs ────────────────────────────────────────────────────
-    print("\nScanning NPZ files...")
-    teachers = {}
-    students = {}
+    kinds = ['sw','procrustes','feature'] if args.kind == 'all' else [args.kind]
 
-    for d in RESULTS_DIR.iterdir():
-        npz = d / 'timeline_raw_states.npz'
-        if not npz.exists():
-            continue
-
-        # Parse run name
-        m_teacher = re.match(r'^ablated_teacher_dir_(\d+)$', d.name)
-        if m_teacher:
-            teacher_id = int(m_teacher.group(1))
-            if teacher_id in [2, 3, 9, 11]:  # Skip ablation directions 2, 3, 9, 11
+    for kind in kinds:
+        print(f'\n=== {kind.upper()} ===')
+        if kind == 'sw':
+            D      = load_sw()
+            coords = fit_mds(D, metric=True)
+            title  = 'MDS (Wasserstein)'
+            plot_mds(coords, title, OUTPUT_DIR / f'mds_{kind}')
+        elif kind == 'procrustes':
+            D = load_procrustes()
+            if np.isnan(D).any():
+                print('  WARNING: procrustes matrix has NaNs (missing models) — skipping procrustes MDS')
                 continue
-            teachers[teacher_id] = npz
-            continue
+            coords = fit_mds(D, metric=True)
+            title  = 'MDS (Procrustes)'
+            plot_mds(coords, title, OUTPUT_DIR / f'mds_{kind}')
+        else:
+            D = load_feature()
+            for met, suffix in [(True, '_metric'), (False, '')]:
+                coords = fit_mds(D, metric=met)
+                label  = 'metric' if met else 'non-metric'
+                title  = f'MDS (Feature, {label})'
+                plot_mds(coords, title, OUTPUT_DIR / f'mds_{kind}{suffix}')
 
-        if d.name == 'index_cued_first_diffusion_0.3_swap_7':
-            teachers['no_ablation'] = npz
-            continue
+    print('\n=== Legends ===')
+    save_shared_legends()
+    print(f'\nAll outputs in {OUTPUT_DIR}')
 
-        m_student = re.match(r'^index_cued_first_diffusion_0\.3_swap_recovery_ablation_(.+)_(\d+)$', d.name)
-        if m_student:
-            key = m_student.group(1)
-            try:
-                key = int(key)
-            except ValueError:
-                pass
-            if key != 'idk' and key not in [2, 3, 9, 11]:  # Skip ablation directions 2, 3, 9, 11
-                students.setdefault(key, []).append((d.name, npz))
-
-    print(f"  Teachers: {len(teachers)}")
-    print(f"  Students: {sum(len(v) for v in students.values())}")
-
-    # ─── Extract features ─────────────────────────────────────────────────
-    print("\nExtracting features...")
-    feature_dict = {}
-
-    for tk, tnpz in sorted(teachers.items(), key=str):
-        print(f"  teacher {tk}...", end=' ', flush=True)
-        feature_dict[('teacher', tk)] = extract_all_features(tnpz)
-        print("OK")
-
-    for sk, stu_list in sorted(students.items(), key=str):
-        for sname, snpz in stu_list:
-            feature_dict[('student', sk, sname)] = extract_all_features(snpz)
-
-    print(f"Extracted {len(feature_dict)} feature vectors")
-
-    # ─── Feature selection by variance ────────────────────────────────────
-    print("\nFeature selection...")
-
-    # Use all features
-    all_feat_names = list(feature_dict[('teacher', list(teachers.keys())[0])].keys())
-    print(f"  Total features: {len(all_feat_names)}")
-
-    # Compute variance across teachers
-    teacher_features = np.array([[feature_dict[('teacher', tk)][fn]
-                                  for fn in all_feat_names]
-                                 for tk in sorted(teachers.keys(), key=str)])
-    feat_vars = teacher_features.var(axis=0)
-
-    # Select top K (e.g., 10-15)
-    top_k = min(15, len(all_feat_names))
-    top_k_idx = np.argsort(feat_vars)[-top_k:][::-1]
-    top_k_names = [all_feat_names[i] for i in top_k_idx]
-
-    print(f"\n  Top {top_k} features by variance:")
-    for i, idx in enumerate(top_k_idx):
-        print(f"    {i+1}. {all_feat_names[idx]:40s} var={feat_vars[idx]:.6f}")
-
-    # ─── Build feature matrix (selected features only) ────────────────────
-    print("\nBuilding feature matrix...")
-
-    all_keys = ([(('teacher', tk), tk) for tk in sorted(teachers.keys(), key=str)] +
-                [(('student', sk, sname), f"{sk}_{sname}")
-                 for sk in sorted(students.keys(), key=str)
-                 for sname, _ in sorted(students[sk], key=lambda x: x[0])])
-
-    n_all = len(all_keys)
-    fv_matrix = np.zeros((n_all, top_k), dtype=np.float32)
-
-    for i, (key, _) in enumerate(all_keys):
-        for j, fname in enumerate(top_k_names):
-            fv_matrix[i, j] = feature_dict[key][fname]
-
-    # Standardize
-    scaler = StandardScaler()
-    fv_matrix_scaled = scaler.fit_transform(fv_matrix)
-
-    # ─── Distance matrix ──────────────────────────────────────────────────
-    print("Computing distance matrix...")
-    dist_vec = pdist(fv_matrix_scaled, metric='euclidean')
-    dist_matrix = squareform(dist_vec)
-
-    print(f"  Distance matrix: {dist_matrix.shape}")
-    print(f"  Min: {dist_matrix[dist_matrix > 0].min():.3f}, Max: {dist_matrix.max():.3f}")
-
-    # ─── MDS projection ───────────────────────────────────────────────────
-    print("\nFitting MDS...")
-    mds = MDS(n_components=2, dissimilarity='precomputed', random_state=42)
-    mds_coords = mds.fit_transform(dist_matrix)
-    print(f"  Stress: {mds.stress_:.4f}")
-
-    # ─── Visualization ────────────────────────────────────────────────────
-    print("\nPlotting...")
-
-    fig, ax = plt.subplots(figsize=(14, 12))
-
-    # Teachers
-    teacher_indices = [i for i, (k, _) in enumerate(all_keys) if k[0] == 'teacher']
-    teacher_coords = mds_coords[teacher_indices]
-    teacher_labels = [str(k[1]) for k, _ in [all_keys[i] for i in teacher_indices]]
-
-    scatter_t = ax.scatter(teacher_coords[:, 0], teacher_coords[:, 1],
-                          s=400, marker='o', c=range(len(teacher_coords)),
-                          cmap='tab20', edgecolors='black', lw=2.5, label='Teachers', zorder=3)
-
-    for i, (xi, yi) in enumerate(teacher_coords):
-        ax.text(xi, yi, f"T{teacher_labels[i]}", ha='center', va='center',
-               fontsize=9, fontweight='bold', zorder=4)
-
-    # Students (colored by teacher ablation direction)
-    student_indices = [i for i, (k, _) in enumerate(all_keys) if k[0] == 'student']
-    student_coords = mds_coords[student_indices]
-    student_keys = [all_keys[i][0] for i in student_indices]
-    student_teacher_dirs = [k[1] for k in student_keys]  # ablation direction (key)
-
-    # Map teacher directions to colors
-    unique_dirs = sorted(set(student_teacher_dirs), key=str)
-    dir_to_color_idx = {d: i for i, d in enumerate(unique_dirs)}
-    student_colors = [dir_to_color_idx[d] for d in student_teacher_dirs]
-
-    scatter_s = ax.scatter(student_coords[:, 0], student_coords[:, 1],
-                          s=120, marker='x', c=student_colors, cmap='tab20',
-                          alpha=0.8, lw=2, label='Students', zorder=2)
-
-    # Add student labels (abbreviated)
-    for i, (xi, yi) in enumerate(student_coords):
-        teacher_dir = student_teacher_dirs[i]
-        ax.text(xi, yi, f"S{teacher_dir}", ha='center', va='center',
-               fontsize=7, alpha=0.6, zorder=2)
-
-    ax.set_xlabel('MDS 1', fontsize=12)
-    ax.set_ylabel('MDS 2', fontsize=12)
-    ax.set_title(f'Teacher/Student Space (MDS, top {top_k} features by variance)',
-                fontsize=14, fontweight='bold')
-    ax.legend(fontsize=11, loc='best')
-    ax.grid(alpha=0.3, zorder=0)
-
-    plt.tight_layout()
-    output_path = RESULTS_DIR / 'MDS_teacher_student_space.png'
-    plt.savefig(output_path, dpi=150, bbox_inches='tight')
-    print(f"  Saved: {output_path}")
-    plt.show()
-
-    print("\n" + "=" * 80)
-    print(f"✓ Done! {len(teacher_indices)} teachers, {len(student_indices)} students")
-    print("=" * 80)
 
 if __name__ == '__main__':
     main()

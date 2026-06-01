@@ -25,6 +25,7 @@ from scipy.stats import wasserstein_distance
 from sklearn.decomposition import PCA
 
 from purias_utils.multiitem_working_memory.util.circle_utils import polar2cart
+from ddpm.utils.vis.style import set_publication_style
 
 REPO_ROOT = Path('/scratch3/shaiq_home/repos/behaviour_ddpm')
 if str(REPO_ROOT) not in sys.path:
@@ -519,7 +520,7 @@ def generate_pretty_heatmaps(df, output_dir):
     was_abl_order = [a for a in abl_order if a != 'dir_11']
     was_mat = df.pivot(index='ablation_short', columns='student_short', values='sliced_wasserstein').reindex(index=was_abl_order, columns=stu_order)
 
-    sns.set_theme(style='whitegrid')
+    set_publication_style()
 
     fig, axes = plt.subplots(1, 2, figsize=(19, 8.5), gridspec_kw={'width_ratios': [1, 1]})
 
