@@ -101,18 +101,20 @@ print("\nFeature selection...")
 all_feat_names = list(features_all[('teacher', list(teachers.keys())[0])].keys())
 print(f"  Total features: {len(all_feat_names)}")
 
-# Compute variance across teachers
+# Compute CV (std / |mean|) across teachers — ranks features by relative variability,
+# factoring out differences in magnitude
 teacher_features = np.array([[features_all[('teacher', tk)][fn] for fn in all_feat_names]
                              for tk in sorted(teachers.keys(), key=str)])
-feat_vars = teacher_features.var(axis=0)
+eps = 1e-8
+feat_cv = teacher_features.std(axis=0) / (np.abs(teacher_features.mean(axis=0)) + eps)
 
 top_k = 15
-top_k_idx = np.argsort(feat_vars)[-top_k:][::-1]
+top_k_idx = np.argsort(feat_cv)[-top_k:][::-1]
 top_k_names = [all_feat_names[i] for i in top_k_idx]
 
-print(f"\nTop {top_k} features by variance:")
+print(f"\nTop {top_k} features by CV (std/|mean|):")
 for i, idx in enumerate(top_k_idx):
-    print(f"  {i+1:2d}. {all_feat_names[idx]:40s} var={feat_vars[idx]:.6e}")
+    print(f"  {i+1:2d}. {all_feat_names[idx]:40s} cv={feat_cv[idx]:.6e}")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Build feature matrix for teachers only

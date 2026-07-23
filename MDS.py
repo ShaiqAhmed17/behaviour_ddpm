@@ -21,6 +21,7 @@ matplotlib.use('Agg')
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from matplotlib.lines import Line2D
 from scipy.spatial.distance import pdist, squareform
 from sklearn.manifold import MDS
@@ -249,7 +250,7 @@ def _ring_metrics_over_time(tgt_bm, dis_bm):
                 plane_angle_deg=pang, centroid_separation=csep, var_pc12_combined=vcom)
 
 
-def _extract_features(npz_path: Path) -> dict:
+def extract_all_features(npz_path: Path) -> dict:
     from sklearn.decomposition import PCA as _PCA
     N_BINS, BIN_SZ = 12, 30.0
     npz  = np.load(npz_path)
@@ -304,27 +305,77 @@ def _extract_features(npz_path: Path) -> dict:
     return features
 
 
-def load_feature() -> np.ndarray:
-    """Feature-space Euclidean distances from timeline NPZ files."""
-    print('  Extracting features from NPZ files...')
+def _load_raw_features():
+    """Return (fv_matrix [N_models x N_feats], feat_names, model_labels)."""
     feat_cache = OUTPUT_DIR / 'feature_cache.npz'
     if feat_cache.exists():
-        cache = np.load(feat_cache)
-        mat   = cache['matrix']
-        print(f'  Loaded from cache: {mat.shape}')
-        return mat
+        cache     = np.load(feat_cache, allow_pickle=True)
+        fv_matrix = cache['matrix']
+        feat_names = cache['feat_names'].tolist()
+        print(f'  Loaded raw features from cache: {fv_matrix.shape}')
+    else:
+        print('  Extracting features from NPZ files...')
+        fvs = []
+        for lab, *_ in MODELS:
+            p = _FEAT_NPZ[lab]
+            print(f'    {lab}...', end=' ', flush=True)
+            fvs.append(extract_all_features(p))
+            print('OK')
+        feat_names = list(fvs[0].keys())
+        fv_matrix  = np.array([[f[k] for k in feat_names] for f in fvs], dtype=np.float32)
+        np.savez(feat_cache, matrix=fv_matrix, feat_names=np.array(feat_names))
+    model_labels = [m[0] for m in MODELS]
+    return fv_matrix, feat_names, model_labels
 
-    fvs = []
-    for lab, *_ in MODELS:
-        p = _FEAT_NPZ[lab]
-        print(f'    {lab}...', end=' ', flush=True)
-        fvs.append(list(_extract_features(p).values()))
-        print('OK')
-    fv_matrix = np.array(fvs, dtype=np.float32)
-    fv_scaled  = StandardScaler().fit_transform(fv_matrix)
+
+def load_feature(top_k: int = 15) -> np.ndarray:
+    """Feature-space Euclidean distances using top-k CV-selected features."""
+    fv_matrix, feat_names, _ = _load_raw_features()
+
+    teacher_rows = np.array([i for i, (_, role, *__) in enumerate(MODELS)
+                             if role == 'teacher'])
+    teacher_fv   = fv_matrix[teacher_rows]
+    eps          = 1e-8
+    feat_cv      = teacher_fv.std(axis=0) / (np.abs(teacher_fv.mean(axis=0)) + eps)
+    top_k_idx    = np.argsort(feat_cv)[-top_k:]
+
+    fv_selected = fv_matrix[:, top_k_idx]
+    fv_scaled   = StandardScaler().fit_transform(fv_selected)
     D = squareform(pdist(fv_scaled, metric='euclidean'))
-    np.savez(feat_cache, matrix=D)
+    print(f'  Feature MDS: top-{top_k} CV-selected features, D shape {D.shape}')
     return D
+
+
+def save_feature_stats(top_k: int = 15):
+    """Save a CSV ranking all features by CV (over teachers), with mean/std/min/max."""
+    fv_matrix, feat_names, _ = _load_raw_features()
+
+    teacher_rows = np.array([i for i, (_, role, *__) in enumerate(MODELS)
+                             if role == 'teacher'])
+    teacher_fv = fv_matrix[teacher_rows]
+    eps        = 1e-8
+    mean_  = teacher_fv.mean(axis=0)
+    std_   = teacher_fv.std(axis=0)
+    cv_    = std_ / (np.abs(mean_) + eps)
+    min_   = teacher_fv.min(axis=0)
+    max_   = teacher_fv.max(axis=0)
+
+    rank = np.argsort(cv_)[::-1]  # highest CV first
+    df = pd.DataFrame({
+        'rank':     np.arange(1, len(feat_names) + 1),
+        'feature':  [feat_names[i] for i in rank],
+        'cv':       cv_[rank],
+        'mean':     mean_[rank],
+        'std':      std_[rank],
+        'min':      min_[rank],
+        'max':      max_[rank],
+        'selected': ['yes' if r < top_k else 'no' for r in range(len(feat_names))],
+    })
+
+    out = OUTPUT_DIR / 'feature_stats.csv'
+    df.to_csv(out, index=False, float_format='%.6g')
+    print(f'  Saved feature stats: {out}')
+    print(df.to_string(index=False))
 
 # ── MDS fitting ───────────────────────────────────────────────────────────────
 
@@ -428,6 +479,7 @@ def main():
             title  = 'MDS (Procrustes)'
             plot_mds(coords, title, OUTPUT_DIR / f'mds_{kind}')
         else:
+            save_feature_stats()
             D = load_feature()
             for met, suffix in [(True, '_metric'), (False, '')]:
                 coords = fit_mds(D, metric=met)
