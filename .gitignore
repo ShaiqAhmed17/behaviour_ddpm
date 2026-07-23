@@ -2,3 +2,6 @@ archive
 shaiq_debug_area
 ddpm/dynamical/logs
 results_link_sampler
+
+# generated caches
+/ddpm/analysis/new_analysis/results/procrustes_heatmap/traj_cache/
