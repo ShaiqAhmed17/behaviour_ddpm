@@ -1,75 +1,87 @@
 # behaviour_ddpm
 
-Masters project exploring diffusion-based generative models for behavioural / dynamical data and their interaction with reinforcement‑learning agents and dynamical observers.
+**Masters project**: diffusion-based generative modeling for behavioural and dynamical time-series, with an emphasis on methodological development, evaluation, and applications to reinforcement learning and dynamical system diagnostics.
 
-## Ambition (short)
-Apply DDPM-style diffusion and continuous-time score-matching methods to model and simulate time series / behaviour, investigate recovery and diagnostics for dynamical systems, and connect generative models to downstream RL experiments and analyses.
+## Project objective
+This repository implements and evaluates diffusion-driven generative models (DDPM-style) and continuous-time score-matching methods for modelling time-series behaviour. The principal goals are:
+- To develop and validate diffusion-based models capable of simulating realistic behavioural/dynamical trajectories.
+- To investigate recovery and diagnostic methods for dynamical systems using generative and observer-based techniques.
+- To integrate the generative models with reinforcement-learning experiments for downstream evaluation and analysis.
 
-## High-level components
-- ddpm/ — core diffusion model code, training utilities, model definitions, configs and small examples.
-- ddm/ — dynamical-DDM experiment scripts, simulation utilities and plotting (includes ddm.py, ddm_test.py).
-- drl/ — reinforcement-learning experiment runners, agent/env scaffolds and a config-driven setup (drl/setup.py).
-- dynamic_observer/ — continuous-time score-matching and sampling experiments, tests and a notebook.
-- neurips_figures/, z_mate50_symposium_images/ — figure assets for write-ups and presentations.
-- results_link_* (symlinks) — development-time links to experiment output directories.
-- Top-level utilities and example scripts (e.g. hazard_rate_test.py).
-
-## How it fits together
-- The DDPM modules define diffusion schedules, time embeddings and neural architectures; training is config-driven and invoked from scripts under `ddpm/`.
-- DDM code uses simulation + plotting utilities to run controlled experiments and produce figures.
-- DRL experiments load or evaluate models in agent-environment setups, driven by YAML configs.
-- dynamic_observer houses CT score-matching tests and sampling notebooks used to validate continuous-time methods.
-
-## How to run (short)
-- Train / run DDPM experiments:
-```bash
-# from the repository root (see ddpm/README.md for config examples)
-ddpm.train.multiepoch ddpm/configs/<your_config>.yaml
+## Repository structure
+```
+ddpm/                    Core diffusion model code, training utilities, model definitions, configs
+ddm/                     Dynamical DDM experiment scripts, simulation utilities and plotting (ddm.py, ddm_test.py)
+drl/                     Reinforcement-learning experiments, agent/env scaffolds and config-driven runners (drl/setup.py)
+dynamic_observer/       Continuous-time score matching and sampling experiments, tests, and a notebook
+neurips_figures/         Figure assets for papers and presentations
+z_mate50_symposium_images/  Presentation images
+results_link_*           Symlinks to experiment output directories used during development
+README.md                This file
+hazard_rate_test.py      Top-level example / utility script
 ```
 
-- Run a DRL experiment:
+### How the pieces interact
+- The DDPM modules define diffusion schedules, time embeddings and neural architectures; training and sampling are driven by YAML configurations under `ddpm/configs/`.
+- The DDM components provide simulation and plotting utilities used to generate experimental figures and diagnostics.
+- The DRL experiments evaluate trained or sampled behaviours within agent-environment setups; runners are driven by YAML configuration files.
+- The dynamic observer folder contains continuous-time score-matching implementations, test suites and example notebooks used to validate methodological claims.
+
+## Quickstart (minimal)
+The repository uses configuration-driven runners. The examples below illustrate the common entry points used during development.
+
+- Train or evaluate a DDPM model (see `ddpm/README.md` for example configs):
+```bash
+# example (replace <config> with an actual YAML config path)
+ddpm.train.multiepoch ddpm/configs/<config>.yaml
+```
+
+- Run a DRL experiment (config path is required):
 ```bash
 python drl/setup.py path/to/config.yaml
 ```
 
-- Run DDM examples / tests:
+- Execute DDM examples / tests:
 ```bash
 python ddm/ddm_test.py
 python ddm/rt_ddpm.py
 ```
 
-- Run dynamic observer examples / notebook:
+- Open and run the dynamic observer notebook or run its tests:
 ```bash
 jupyter notebook dynamic_observer/test.ipynb
 python dynamic_observer/ct_exact_scorematching_test.py
 ```
 
 Notes:
-- Runners expect YAML configs and use configured `save_base` / results directories. Adjust paths or the `results_link_*` symlinks if needed.
-- Many scripts read/write model checkpoints; set paths in configs before running.
+- Most runners expect YAML configuration files and write model checkpoints and results to configured output directories. The repository contains development-time symlinks (`results_link_*`) that point to experiment outputs used in scripts and analyses.
+- Adjust configuration paths (e.g., `save_base`, checkpoint paths) before running experiments.
 
-## Typical requirements
-- Python 3.8+
+## Dependencies
+Typical dependencies used in the project include (representative):
+- Python 3.8 or later
 - PyTorch (CUDA optional)
 - numpy, matplotlib, tqdm, pyyaml
-- Project-specific utilities (e.g. purias_utils) referenced by some DRL scripts
+- Additional utilities referenced by some scripts (for example: `purias_utils` used by certain DRL utilities)
 
-Install basic deps (adjust versions as needed):
+Install basic dependencies (example):
 ```bash
-pip install torch numpy matplotlib tqdm pyyaml
+pip install "torch" numpy matplotlib tqdm pyyaml
 ```
 
-## Conventions & notes
-- Experiments are config-driven. Look in `ddpm/configs/` and `drl/configs/` for examples.
-- Model checkpoints and results live in configured result directories (symlinked with results_link_* during development).
-- Plots/figures are generated by scripts in `ddm/` and `dynamic_observer/`.
+For reproducible environments, provide an environment specification (requirements.txt or environment.yml) appropriate for your platform and CUDA configuration.
+
+## Development and conventions
+- Configuration-driven: experiments and evaluations are run via YAML configuration files. See `ddpm/configs/` and `drl/configs/` for examples.
+- Checkpoints and results: model state and results are written to configured output directories. Update configuration values to point to appropriate paths in your environment.
+- Tests and examples: small test scripts and notebooks are provided under `ddm/` and `dynamic_observer/` for quick verification of functionality.
 
 ## Files of interest
-- ddpm/: training code, model definitions and configs (entrypoints under ddpm/).
-- ddm/ddm.py, ddm/ddm_test.py: simulation workflows and plotting utilities.
-- drl/setup.py: config-driven RL experiment runner.
-- dynamic_observer/: CT score-matching and sampling scripts + notebook.
+- ddpm/: model definitions, training scripts, and configuration files
+- ddm/ddm.py, ddm/ddm_test.py: simulation workflows and plotting utilities
+- drl/setup.py: configuration-driven RL experiment runner
+- dynamic_observer/: continuous-time score-matching and sampling scripts + notebook
 
-## License & contact
-- No LICENSE file included. Add a license before reusing or redistributing code.
-- Author / contact: repository owner (see the GitHub profile for details).
+## License and contact
+- No license file is included in this repository. Add an explicit LICENSE file before distributing the code publicly.
+- For questions or collaboration, contact the repository owner via the associated GitHub profile.
